@@ -219,7 +219,7 @@ function  loadNewSite(){ //beim verlassen der Seite (Ladeanimation)
 }
 
 function onload1y(){ //onload 
-        //var starttime = new Date().getTime();
+        var starttime = new Date().getTime();
 	//return;
 	document.getElementById('please_wait').style.display='none';
 	if(document.getElementById('spinner_elem')!=undefined)document.getElementById('spinner_elem').style.display='none';
@@ -940,7 +940,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
      </span>
      */
         $tag_table = 'table';
-        $tag_tr = 'tr'; $tag_tr_append = '';
+        $tag_tr = 'tr'; $tag_tr_append = ' class="t_row" ';
         $tag_td = 'td';
         if( isset($_GET['no_table']) && $_GET['no_table']==1){
                 $tag_table = 'div';
@@ -948,7 +948,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
                 $tag_td = 'span';  
         }elseif( isset($_GET['no_table']) && $_GET['no_table']==2){
                 $tag_table = 'div';
-                $tag_tr = 'div'; $tag_tr_append =  ' class="float_e" ';
+                $tag_tr = 'div'; $tag_tr_append =  ' class="t_row float_e" ';
                 $tag_td = 'span';  
         }
       
