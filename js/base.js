@@ -78,8 +78,10 @@ function toggleInLinkListe_andFocus(parentSpan, buchstaben){
    for(i=0;i<buchstaben.length;i++){
         link = parentSpan.querySelectorAll('[href="#buchstabe_'+buchstaben[i]+'"]')[0];
         if(link!=undefined && firstElement==null) firstElement = link; //falls man zurückspringen muss auf's erste
-        if(found_takeNextElement && link!=undefined && link!=null){ready=true; break;} //gefunden
-        if(document.activeElement==link){ //'link' ist aktuell aktives Element
+        var link_href_hash = '';
+        if(link.href!='' && link.href.split('#').length>1) link_href_hash = link.href.split('#')[1];
+         if(found_takeNextElement && link!=undefined && link!=null){ready=true; break;} //gefunden
+        if(document.activeElement==link || location.hash.replace('#','')==link_href_hash){ //'link' ist aktuell aktives Element
                 if( i == buchstaben.length-1 )link = firstElement; //'link' ist letztes Element der Reihe; also das erste nehmen;
                 else found_takeNextElement = true; 
         }
@@ -87,6 +89,7 @@ function toggleInLinkListe_andFocus(parentSpan, buchstaben){
    if( !ready && firstElement!=undefined )link = firstElement;
    link.focus();
    formItemFocus( link );
+   window.setTimeout(function(){ location.href = link; },50);
 }
   
   
