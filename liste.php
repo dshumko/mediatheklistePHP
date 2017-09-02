@@ -952,8 +952,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
       
         echo "        <$tag_table id=\"table_sel_thema\"  style=\"border-spacing:0 0pt;width:100%;\" >";
         foreach($themen as $b => $themen){
-              //Buchstaben link
-              echo "<a class=\"anker anker_buchstabe\" name=\"buchstabe_".rawurlencode($b)."\"></a>";
+              $showBuchstabenlink = true;
               foreach($themen as $url => $more){
                 $ll++;
                 //$aktiv;
@@ -964,7 +963,12 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
         	      
         	      echo "
       <$tag_tr $tag_tr_append>
-          <$tag_td>
+          <$tag_td>";
+            if($showBuchstabenlink==true){ //Buchstaben link (einmal)
+              echo "<a class=\"anker anker_buchstabe\" name=\"buchstabe_".rawurlencode($b)."\"></a>";
+              $showBuchstabenlink = false;
+            }
+            echo "
             <a name=\"anker1_thema_sel_$ll\" class=\"anker_thema\"></a>
             <a href=\"$url\" id=\"mainlink_thema_sel_$ll\"  onClick=\"if( location.hash.search('#anker1_thema_sel_')!==-1)window.history.back();window.location='#anker1_thema_sel_".($anker_ll)."';loadNewSite()\" class=\"t_sel_a\">".$more['title']."</a>
           </$tag_td>
