@@ -212,8 +212,10 @@ function  loadNewSite(){ //beim verlassen der Seite (Ladeanimation)
     document.getElementsByTagName('body')[0].style.background = '#c3c3ff';
     document.getElementById('list_auswahl_links_sender').style.background = '#c3c3ff';
     if(document.getElementById('list_auswahl_links_thema')!=undefined)document.getElementById('list_auswahl_links_thema').style.background  = '#c3c3ff';
-    document.getElementById('spinner_elem').style.display='inline';
-    window.setTimeout(function(){document.getElementById('spinner_elem').style.display='none'},50);
+    if(document.getElementById('spinner_elem')!=undefined){
+      document.getElementById('spinner_elem').style.display='inline';
+      window.setTimeout(function(){document.getElementById('spinner_elem').style.display='none'},50);
+    }
 }
 
 function onload1y(){ //onload 
