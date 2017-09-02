@@ -145,10 +145,7 @@ a:focus{
 .schnellausw_h{
   cursor:pointer;z-index:2;padding-right: 6pt;float:right;color:blue;text-decoration:underline;
 }
-/*
-.t_sel_date{
-  cursor:pointer;z-index:2;color:blue;
-}*/   /*float:right;text-decoration:underline;*/
+
 
 .link_every_same_color, .link_every_same_color:visited{
   color:blue;
@@ -156,10 +153,29 @@ a:focus{
 .link_every_same_color_underl, .link_every_same_color_underl:visited{
   text-decoration:underline;
 }
-/*
-.t_sel_add_schnellauswahl{
-  z-index:2;float:right;
-}*/
+
+.float_e{
+  width:100%;
+  min-width:100%;
+  display:inline-block;
+}
+.float_e span{
+  display: inline-block;
+}
+.float_e :nth-child(1){
+  width:50%;  min-width:50%;  max-width:50%;
+}
+.float_e .td_del{
+  width:13%;  min-width:13%;  max-width:13%;
+}  
+.float_e .t_sel_date{
+  /*cursor:pointer; color:blue; text-decoration:underline;*/
+  width:17%;  min-width:17%;  max-width:17%;
+}  
+
+.float_e .td_schnell{
+  width:18%;  min-width:18%;  max-width:18%;
+}
 /*
 .t_sel_a{
   display:inline;float:left;width:70%;

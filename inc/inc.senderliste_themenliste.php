@@ -12,6 +12,8 @@ function getSenderListe($options){
       uksort($sender, 'strcasecmp');
       if( isset($_GET['quality']) && $_GET["quality"]!='' )  $s2 = "&quality=".$_GET['quality']; else $s2="";
       if( isset($_GET['hide_shorter_then']) && $_GET["hide_shorter_then"]!='' )  $s3 = "&hide_shorter_then=".$_GET['hide_shorter_then']; else $s3="";
+      if( isset($_GET['no_table']) && $_GET["no_table"]!='' )  $s3 .= "&no_table=".(int)$_GET['no_table'];
+      
       //if( isset($hideHoerfassung) && $hideHoerfassung!='1' ) $s2 .="&hideHoerfassung=".$hideHoerfassung;  //verschoben auf Clientseite in Javascript
       $senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
       $senderListOutArray['Alle'] = "liste.php?sender=alle$s2$s3";

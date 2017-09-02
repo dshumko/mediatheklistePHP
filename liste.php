@@ -310,7 +310,24 @@ if(hideShorterThen>0){
       else if(e.length>1 && getCookie('hideShorterThen')!=e[1] ) location.href = location.href.replace('&hide_shorter_then='+e[1], '&hide_shorter_then='+getCookie('hideShorterThen') ); //korrigiere URL
 }else if( location.href.search('&hide_shorter_then=')!=-1){ 
       location.href = location.href.replace(/&hide_shorter_then=[0-9]*/,''); //lösche es raus
+}";
+if( !isset($_GET['thema']) || $_GET['thema']=='' ){
+  echo "
+  var e = location.href.match('no_table=([0-9]*)');
+  var no_table = getCookie('no_table');
+  if(no_table>0){
+        if( e==null && location.href.search(/\?/)!=-1){ //fuege es hinten an (aber vor den Anker)
+          var e = location.href.match('#(.*)');
+          var anker = '';
+          if(e!=null && e.length>0)anker = '#'+e[1];
+          location.href = location.href.replace(anker,'') + '&no_table='+ no_table + anker;
+        } 
+        else if(e.length>1 && getCookie('no_table')!=e[1] ) location.href = location.href.replace('&no_table='+e[1], '&no_table='+getCookie('no_table') ); //korrigiere URL
+  }else if( location.href.search('&no_table=')!=-1){ 
+        location.href = location.href.replace(/&no_table=[0-9]*/,''); //lösche es raus
+  }";
 }
+echo "
 </script>
 </head>
 <body onload=\"onload1y()\">
@@ -790,6 +807,15 @@ echo '
       <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
       
        <hr>
+       Bessere Performance langer Themenlisten (testweise):<br> 
+       <span style="float:right; text-align:right">
+            &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
+            <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
+            <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);window.location.reload();">Tabelle</a>
+      </span>
+      <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
+      
+       <br><hr>
        Filme ausblenden, die kürzer sind als:<br>
        <span style="float:left; text-align:left">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -900,7 +926,31 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
         if($hideShorterThen>0)echo "<p align=\"right\" style=\"padding-right:6pt;\">Filme kürzer als ".$hideShorterThen." Min. werden ausgeblendet (sihe Einstellungen).</p>";
         else echo "<br><br>";
         $ll = 0;
-        echo "<table id=\"table_sel_thema\"  style=\"border-collapse: separate;border-spacing:0 0pt;width:100%;\" >";
+        
+        /*
+
+      <a name="anker1_thema_sel_1507" class="anker_thema"></a>
+      <span class="link_to_thema_span t_sel">
+          <a href="http://localhost/Mediathek/liste.php?sender=alle&amp;thema=Landesschau%20Baden-W%C3%BCrttemberg" id="mainlink_thema_sel_1507" onclick="if( location.hash.search('#anker1_thema_sel_')!==-1)window.history.back();window.location='#anker1_thema_sel_1502';loadNewSite()" class="t_sel_a">Landesschau Baden-Württemberg (3509) &nbsp; 8Min∅ ard, swr<span class="t_sel_date">Fr, 15.09.2017 17:45</span></a>
+        	<a href="#" style="margin-left:15pt" class="link_every_same_color_underl link_every_same_color" onclick="appendHideThemaSelf(this);return false;">Ausblenden</a>
+          <a href="#" class="t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color" onclick="appendFavSelf(this);return false;">zur Schnellauswahl hinzufügen</a>
+          <span style="clear:both"></span>
+     </span>
+     */
+        $tag_table = 'table';
+        $tag_tr = 'tr'; $tag_tr_append = '';
+        $tag_td = 'td';
+        if( isset($_GET['no_table']) && $_GET['no_table']==1){
+                $tag_table = 'div';
+                $tag_tr = 'div';
+                $tag_td = 'span';  
+        }elseif( isset($_GET['no_table']) && $_GET['no_table']==2){
+                $tag_table = 'div';
+                $tag_tr = 'div'; $tag_tr_append =  ' class="float_e" ';
+                $tag_td = 'span';  
+        }
+      
+        echo "        <$tag_table id=\"table_sel_thema\"  style=\"border-spacing:0 0pt;width:100%;\" >";
         foreach($themen as $b => $themen){
               //Buchstaben link
               echo "<a class=\"anker anker_buchstabe\" name=\"buchstabe_".rawurlencode($b)."\"></a>";
@@ -911,23 +961,25 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
 	        if($anker_ll<=6)$anker_ll = 0;
 	        else if($anker_ll>6) $anker_ll -=5; //damit der aktuelle Eintrag nicht verdeckt ist von der Oberen Leiste
         	      //   <span class=\"link_to_thema_span t_sel\">...</span><span style=\"clear:both\"></span>
+        	      
         	      echo "
-      <tr>
-          <td>
+      <$tag_tr $tag_tr_append>
+          <$tag_td>
             <a name=\"anker1_thema_sel_$ll\" class=\"anker_thema\"></a>
             <a href=\"$url\" id=\"mainlink_thema_sel_$ll\"  onClick=\"if( location.hash.search('#anker1_thema_sel_')!==-1)window.history.back();window.location='#anker1_thema_sel_".($anker_ll)."';loadNewSite()\" class=\"t_sel_a\">".$more['title']."</a>
-          </td>
-          <td align=\"right\"><nobr>".$more['date']."</nobr></td>
-          <td class=\"td_del\" align=\"center\"></td>
-          <td class=\"td_schnell\"></td>
-      </tr>\n";
+          </$tag_td>
+          <$tag_td class=\"t_sel_date\" align=\"right\"><nobr>".$more['date']."</nobr></$tag_td>
+          <$tag_td class=\"td_del\" align=\"center\"></$tag_td>
+          <$tag_td class=\"td_schnell\"></$tag_td>
+      </$tag_tr>\n";
 //wird inzwischen per Javascript hinzugefügt:
 //        	<a href=\"#\" style=\"margin-left:15pt\" class=\"link_every_same_color_underl link_every_same_color\" onClick=\"appendHideThemaSelf(this);return false;\">Ausblenden</a>
 //          <a href=\"#\" class=\"t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color\" onClick=\"appendFavSelf(this);return false;\">zur Schnellauswahl hinzufügen</a>
               }
 	   }         
   echo"
-      </table></div>
+        </$tag_table> <!-- von id=\"table_sel_thema\" -->
+      </div>
       $buchstabenLinks
   </div>"; //id=div-thema-select     
 }
