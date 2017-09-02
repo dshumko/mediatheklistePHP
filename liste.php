@@ -309,11 +309,11 @@ if(hideShorterThen>0){
         if(e!=null && e.length>0)anker = '#'+e[1];
         location.href = location.href.replace(anker,'') + '&hide_shorter_then='+ hideShorterThen + anker;
       } 
-      else if(e.length>1 && getCookie('hideShorterThen')!=e[1] ) location.href = location.href.replace('&hide_shorter_then='+e[1], '&hide_shorter_then='+getCookie('hideShorterThen') ); //korrigiere URL
+      else if(e!=null  && e.length>1 && getCookie('hideShorterThen')!=e[1] ) location.href = location.href.replace('&hide_shorter_then='+e[1], '&hide_shorter_then='+getCookie('hideShorterThen') ); //korrigiere URL
 }else if( location.href.search('&hide_shorter_then=')!=-1){ 
       location.href = location.href.replace(/&hide_shorter_then=[0-9]*/,''); //lösche es raus
 }";
-if( !isset($_GET['thema']) || $_GET['thema']=='' ){
+if( isset($_GET['sender']) && (!isset($_GET['thema']) || $_GET['thema']=='') ){
   echo "
   var e = location.href.match('no_table=([0-9]*)');
   var no_table = getCookie('no_table');
@@ -324,7 +324,7 @@ if( !isset($_GET['thema']) || $_GET['thema']=='' ){
           if(e!=null && e.length>0)anker = '#'+e[1];
           location.href = location.href.replace(anker,'') + '&no_table='+ no_table + anker;
         } 
-        else if(e.length>1 && getCookie('no_table')!=e[1] ) location.href = location.href.replace('&no_table='+e[1], '&no_table='+getCookie('no_table') ); //korrigiere URL
+        else if( e!=null  && e.length>1 && getCookie('no_table')!=e[1] ) location.href = location.href.replace('&no_table='+e[1], '&no_table='+getCookie('no_table') ); //korrigiere URL
   }else if( location.href.search('&no_table=')!=-1){ 
         location.href = location.href.replace(/&no_table=[0-9]*/,''); //lösche es raus
   }";
