@@ -323,7 +323,24 @@ if(
   if($system_allow_exec_and_have_unxz==1){ //lade+entpacke lokal
     echo "Filmliste wird neu geladen....bitte warten... 
     (je nach Internet-Verbindung/Server-Auslastung länger; kann bei 2Mbit auch bis zu 10Minuten dauern)
-    <span style=\"color:#cccccc\"></span><br><span id=\"spinner_elem0\"> <--<span class=\"rotate0 rotate_correctur\">&#1161;</span>-->  </span>
+    ";
+    echo "
+  <span style=\"float:left;position:relative;left:50%;\">
+   <span style=\"float:left;font-size:20pt;position:relative;left:-50%;\">";
+   
+if($loaderAnimation!==0) echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> <!--warten--> </span>";
+else             echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten </span>";
+
+if($loaderAnimation===1) echo 	"<span id=\"spinner_elem\"></span>";
+if($loaderAnimation===2) echo 	"<span id=\"spinner_elem\"><span class=\"rotate rotate_correctur\">&#1161;</span></span>";
+
+if($loaderAnimation===1) echo "
+    </span>
+  </span>
+    
+<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"/>
+    <!--<span style=\"color:#cccccc\"></span><br><span id=\"spinner_elem0\"> <--<span class=\"rotate0 rotate_correctur\">&#1161;</span>-->  </span>-->
+    <!--
     <style language=\"text/css\">
       .rotate0 {
         position: absolute;
@@ -339,7 +356,7 @@ if(
       @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
       @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
       @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-    </style>
+    </style>-->
     <script type=\"text/javascript\" src=\"js/spin.min.js\" async></script>
     <script language=\"javascript\"  type=\"text/javascript\">
       var spinner0e = new Spinner().spin();
