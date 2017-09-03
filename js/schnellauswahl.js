@@ -14,7 +14,7 @@ function appendHideThemaSelf(self){
 	newValueToAdd = newValueToAdd.replace(/&quality=[^&]*/,'').replace(/&hide_shorter_then=[^&]*/,'');
 	appendHideThema(newValueToAdd);
 	self.setAttribute('onclick','removeHideThema(\''+newValueToAdd+'\');this.innerText=\'\'; this.parentNode.parentNode.style.opacity=1;return false;');
-	self.innerHTML = 'später ausgeblendet; Rückgänig?</a>';
+	self.innerHTML = 'ausgeblendet';
 	self.parentNode.parentNode.style.opacity = 0.4;
 	return true;
 }
@@ -172,7 +172,7 @@ function updateThemenListeLink_addSchnellauswahl(){
        var elements = e.childNodes;
        if(elements[0].tagName != 'TR' && elements.length>1) elements = elements[1].childNodes; //ueberspringe <tbody>
        if(elements[0].tagName != 'TR' && elements.length==1) elements = elements[0].childNodes; //ueberspringe <tbody>
-       console.log(elements);
+       //console.log(elements);
   
        for (var i = 0; i < elements.length; i++) {
          //console.log(elements[i].getElementsByClassName('t_sel_a'));
@@ -184,7 +184,15 @@ function updateThemenListeLink_addSchnellauswahl(){
 	 if(elements[i].tagName=='TR')elements[i].addEventListener('mouseleave', hideAddMenuLinks, false);
 	 //if(elements[i].tagName=='TR')elements[i].getElementsByClassName('t_sel_a')[0].addEventListener('focusout', hideAddMenuLinks, false);
        }
-	
+       
+
+      for (var i = 0; i < 40 && i<elements.length; i++) { //ersten X/2 schon im verarbeiten, damit breite richtig ist
+         if(elements[i].tagName == undefined || elements[i].nodeName=='text' || elements[i].nodeName=='#text') continue;
+         if(elements[i].nodeName=='TR' || elements[i].className != undefined ){ //|| elements[i].className.search(/t_row/)!=-1
+           showAddMenuLinks( elements[i] );
+           hideAddMenuLinks( elements[i] );
+         }
+       }
 }
 
 function themenliste_tr_found_parent(e){
@@ -228,7 +236,7 @@ function showAddMenuLinks(event){
 	}
 	
 	//Ausblenden Link
-	tr_del.innerHTML = themenliste_ausblenden_innerhtml;
+	if(tr_del.innerHTML=='')tr_del.innerHTML = themenliste_ausblenden_innerhtml;
 	tr_del.style.visibility = '';
 }
 function hideAddMenuLinks(event){
