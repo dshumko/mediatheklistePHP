@@ -157,6 +157,7 @@ function onload1y(){ //onload
       var elem = document.getElementById('div-sender-select');  if(elem!=undefined)elem.style.paddingTop = h+'px';
       var elem = document.getElementById('schnellauswahl');     if(elem!=undefined)elem.style.paddingTop  = h+'px';
     }    //alert(a);
+    var c = getCookie('showFooter'); if(c>0) document.getElementById('fixed_footer').style.display = 'block';
     //alert( new Date().getTime() - starttime + 'ms');
 }
 
@@ -734,7 +735,8 @@ echo "<a name=\"settings\" class=\"anker\" ></a>";
 echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;padding:25pt;min-width:500pt;\">";
   echo "<span style=\"float:right\"><a href=\"#\" onclick=\"toggleShowOptions('close');return false;\" title=\"close\">x</a></span>
   <h3>⚙ Optionen</h3><br>
-         <div>Standart-Qualität: 
+         <hr>
+         <div>Standart-Qualität: <span style=\"float:right\">
               &nbsp;&nbsp;&nbsp;&nbsp; 
               <a href=\"#\" onClick=\"createCookie('quality','hd',365*5);loadNewSite();location.reload();return false;\" id=\"set_quality_hd\" >Hoch (=HD)</a>
               &nbsp;&nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;&nbsp; 
@@ -746,12 +748,13 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
                   else if(getCookie('quality')=='hd')document.getElementById('set_quality_hd').innerHTML+=' &#10008;';
                   else document.getElementById('set_quality_normal').innerHTML+=' &#10008;';
               </script>
+              </span>
          </div>\n";
      
 
   echo '
-        <br>
         <hr>
+        <br>
         <br>
         
         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
@@ -788,56 +791,33 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         
          <hr>
-         Themeliste
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp;Seitenweise:
-              &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
-              &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">lange Listen</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
-        
-         <span style="float:right; text-align:right"></span>
-         
-         <hr>
-         Bessere Performance langer Themenlisten (testweise):<br> 
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
-              <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
-              <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);window.location.reload();">Tabelle</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
-        
-         <br><hr>
-         Filme ausblenden, die kürzer sind als:<br>
-         <span style="float:left; text-align:left">
+<br>
+         <div style="clear:both"></div>
+         Filme ausblenden, die kürzer sind als:
+         <!--<span style="float:left; text-align:left">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_hideShorterThen_0" onClick="createCookie(\'hideShorterThen\',\'\',0);window.location.reload();">ausschalten</a> &nbsp;&nbsp;&nbsp; oder: &nbsp;&nbsp;&nbsp;
-         </span>
+              &nbsp;&nbsp;&nbsp; oder: &nbsp;&nbsp;&nbsp;
+         </span>-->
          <span style="float:right; text-align:right">';
 
               foreach ($hideShorterThenList as $h){
                   echo '<a href="#" id="options_link_hideShorterThen_'.$h.'" onClick="createCookie(\'hideShorterThen\',\''.$h.'\',356*10);window.location=\'#\';window.location.reload();"><'.$h.'Min.</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
               }
   echo '
+        oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideShorterThen_0" onClick="createCookie(\'hideShorterThen\',\'\',0);window.location.reload();">aus</a>
         </span>
         <script  language="javascript"  type="text/javascript">
           var c=getCookie(\'hideShorterThen\');
           if(c==\'\') c=0;
           document.getElementById(\'options_link_hideShorterThen_\'+parseInt(c)+\'\').innerHTML+=\' &#10008;\';
           //elseif(c>0) document.getElementById(\'options_link_hideShorterThen_aus\').innerHTML=\'anzeigen &#10008;\';
-        </script><br><br><br>
-        <span style="clean:both"></span>
+        </script>
+        <div style="clear:both"></div>
+
+        
+    
         ';
         $url = 'liste.php?';
-
-        //if($hideHoerfassung==1) echo "<hr><span style=\"color:#999999\">Filme mit Hörfassung im Namen werden ausgeblendet</span>";//verschoben in Javascript
-        //if($hideTrailer == 1) echo "<hr><span style=\"color:#999999\">Filme mit Trailer im Namen werden ausgeblendet</span><br>";//verschoben in Javascript
-        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Filme vom Sender arte.fr werden ausgeblendet</span><br>"; 
 
   //<br><br>
         echo "<hr>Themen ausblenden: 
@@ -851,8 +831,50 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
             else{ /*document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
             //document.getElementById('show_hideElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHideThema();return false;\">neu laden<a/>'; 
         </script>
+        
         ";  
         
+        //if($hideHoerfassung==1) echo "<hr><span style=\"color:#999999\">Filme mit Hörfassung im Namen werden ausgeblendet</span>";//verschoben in Javascript
+        //if($hideTrailer == 1) echo "<hr><span style=\"color:#999999\">Filme mit Trailer im Namen werden ausgeblendet</span><br>";//verschoben in Javascript
+        echo '<br><br>';
+        
+        echo '
+        <hr>Themenliste seitenweise anzeigen
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
+              &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">lange Listen</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
+         
+        <hr>
+         <span style="float:right; text-align:right"></span>
+                  Fußleiste zum hochscrollen <span style="color:#999999">&nbsp;hilfreich bei reiner Smart-TV Mausbedienung</span>
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);window.location.reload();">ausblenden</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'showFooter\')==1)document.getElementById(\'options_link_showFooter_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_showFooter_aus\').innerHTML+=\' &#10008;\'; </script>
+        
+         
+         <hr>
+         Möglicherweise bessere Performance bei langen Themenlisten:
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
+              <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
+              <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);window.location.reload();">Tabelle</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
+        
+        
+        ';
+        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"float:right\">immer (nicht änderbar)</span></span><br>"; 
+        echo " <br><br><br>";
      
 
   echo "
@@ -1153,7 +1175,7 @@ $creationtime = ($end - $startTimeRender);
 //position:fixed;
 if($cacheActive==false) printf("<small><span style=\"color:#000000;float:right;right:35pt;\">page created in %.2f sec.</span></small><br>&nbsp;", $creationtime);
 echo '';
-echo "<div id=\"fixed_footer\" style=\"width:100%;min-width:100%;bottom:0px;display:block;position:fixed;margin:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;;\">
+echo "<div id=\"fixed_footer\" style=\"width:100%;min-width:100%;bottom:0px;display:none;position:fixed;margin:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;;\">
     <a href=\"#top\" tabindex=\"\" style=\"display:block\" title=\"nach oben scrollen\">
       <span class=\"abstandlinks\">↥</span> <span style=\"float:right;padding-right: 12pt;\">↥</span><span style=\"clear:both\"></span>
     </a>
