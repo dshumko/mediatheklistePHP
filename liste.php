@@ -684,7 +684,7 @@ function show_thema_select(){
 </script>";
 echo "<br>\n";
 //if(isset($_GET['sender']))echo "<a href='#thema_select' id=\"link_thema_select\" onclick=\"document.getElementById('link_thema_select').style.background='#f3f3f3'; document.getElementById('spinner_elem').style.display='inline'; window.setTimeout(show_thema_select,10);\"  class=\"link_black_before_onload\" tabindex=\"2\"><span style=\"background:green\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Thema wählen&nbsp;&nbsp;&nbsp;";
-if(isset($_GET['sender']))echo "<a href='liste.php?sender=".$_GET['sender']."' id=\"link_thema_select\" onclick=\"document.getElementById('link_thema_select').style.background='#f3f3f3'; document.getElementById('spinner_elem').style.display='inline'; window.setTimeout(show_thema_select,10);\"  class=\"link_black_before_onload\" tabindex=\"2\"><span style=\"background:green\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Thema wählen&nbsp;&nbsp;&nbsp;
+if(isset($_GET['sender']))echo "<a href='liste.php?sender=".$_GET['sender']."' id=\"link_thema_select\" onclick=\"document.getElementById('link_thema_select').style.background='#f3f3f3'; document.getElementById('spinner_elem').style.display='inline'; window.setTimeout(show_thema_select,10);\"  class=\"link_black_before_onload\" tabindex=\"2\"><span style=\"background:green\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Thema wählen&nbsp;&nbsp;
 <script type=\"text/javascript\">
 var c = getCookie('hideShorterThen');
 if(c>0) document.getElementById('link_thema_select').href = document.getElementById('link_thema_select').href+'&hide_shorter_then='+c+'';
