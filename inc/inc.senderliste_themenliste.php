@@ -97,6 +97,7 @@ function getThemenliste($options){
         if(isset($_GET['sender']) && $_GET['sender']!='') $senderUrlPart = 'sender='.$_GET['sender'].'&';
         $lastBuchstabe = '';
         $allBuchstaben = array();
+        $allBuchstabenFirstEntry = array();
         $listThemenOut = '';
         $favs = array();
         if( isset($_COOKIE['favs']) ) $favs = JSON_decode( $_COOKIE['favs'] );
@@ -132,7 +133,7 @@ function getThemenliste($options){
 	      $lastBuchstabe = $b;
 	      if(!isset($allBuchstaben[$b])) $allBuchstaben[$b] = 0;
 	      $allBuchstaben[$b] += $count;
-
+              if( !isset($allBuchstabenFirstEntry[$b]) ) $allBuchstabenFirstEntry[$b] = $ll;
 
 	      $themenListOutArray[$b][substr(str_replace('\\"','"',$s),0,65)] = $href.$s2;
 
@@ -161,8 +162,23 @@ function getThemenliste($options){
             if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ) $dp = 'display:inline-block';
             $out.= "<div style=\"$dp;width:100%;padding-left:1pt;text-indent: -10pt;padding-left: 11pt;margin-top: -1pt;\" id=\"thema_sel_buchstaben\"><span style=\"background:blue\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Springe zu Buchstabe: ";
             $out.= "<script language=\"javascript\" type=\"text/javascript\"> possibleHideHbbTVButtons(); </script>";
+            $possible_url_base = '';
+            if(isset($_GET['start']) && $_GET['start']!='' && isset($_GET['ende']) && $_GET['ende']!=''){
+              $p     = parse_url($_SERVER['REQUEST_URI']);
+              $anker = (isset($p["fragment"]))?$p["fragment"]:'';
+              $possible_url_base = $_SERVER['REQUEST_URI'];
+              $possible_url_base = preg_replace('/&start=-?([0-9]*)/','',$possible_url_base);
+              $possible_url_base = preg_replace('/&ende=-?([0-9]*)/','',$possible_url_base);
+              $possible_url_base = preg_replace('/&&/','&',$possible_url_base);
+              if($anker!='')$possible_url_base = preg_replace('/'.$anker.'/','',$possible_url_base);
+            }
             foreach($allBuchstaben as $b=>$count){
-             $out.= "&nbsp;<a href=\"#buchstabe_".rawurlencode(utf8_encode($b))."\"  onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';\" ><b>".utf8_encode($b)."</b>&nbsp;<small>($count)</small> </a> &nbsp;\n";	
+                if(isset($_GET['start']) && $_GET['start']!='' && isset($_GET['ende']) && $_GET['ende']!=''){
+                  $diff  = $_GET['ende'] - $_GET['start'];
+                  $s = floor($allBuchstabenFirstEntry[$b]/$diff)*$diff;
+                  $possible_url= $possible_url_base.'&start='.$s.'&ende='.($s+$diff).'';
+                } else $possible_url = '';
+             $out.= "&nbsp;<a href=\"$possible_url#buchstabe_".rawurlencode(utf8_encode($b))."\" data-starts-with-no=\"$ll\" onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';\" class=\"buchstaben_anker_link\"><b>".utf8_encode($b)."</b>&nbsp;<small>($count)</small> </a> &nbsp;\n";	
             }
             $out.= "
              <script language=\"javascript\" type=\"text/javascript\">

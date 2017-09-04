@@ -109,6 +109,19 @@ var createCookie = function(name, value, days) {
     document.cookie = name + "=" + value + expires + "; path=/";
 }
 
+var createCookieInSeconds = function(name, value, seconds) {
+    var expires;
+    if (seconds) {
+        var date = new Date();
+        date.setTime(date.getTime() + (seconds * 1000));
+        expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        expires = "";
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
 function getCookie(c_name) {
     if (document.cookie.length > 0) {
         c_start = document.cookie.indexOf(c_name + "=");

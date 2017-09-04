@@ -345,11 +345,19 @@ function updateListeThemenLink_hideElements_andRepairLinks(){
 function updateListeSenderLink(){
         var c = getCookie('hideShorterThen');
         var e = document.getElementById("list_auswahl_links_sender");
-	      if(e==undefined)return;
+        if(e==undefined)return;
         var elements = e.getElementsByTagName("A");
+        if(c>0){
 	      for (var i = 0; i < elements.length; i++) {		
-		      if(c>0) elements[i].href = elements[i].href + '&hide_shorter_then' + '=' + c;
+		      elements[i].href = elements[i].href + '&hide_shorter_then' + '=' + c;
 	      }
+	}
+	var c = getCookie('pageination');
+	if(c>0){
+	      for (var i = 0; i < elements.length; i++) {		
+		      if(c>0) elements[i].href = elements[i].href + '&start=1' + '&ende=' + c;
+	      }
+	}
 }
 
 

@@ -164,9 +164,58 @@ function setFocusForLastLink(){
 		formItemFocus( document.getElementById(firstlink) ); //alert('a');
             ";
       }
-      echo "
-	//if( location.hash=='#thema_select' || location.hash.search('#buchstabe_')!==-1 || location.hash.search('#thema_sel_')!==-1  || location.hash.search('#anker1_thema_sel_')!==-1) show_thema_select();
-	if( location.hash=='#sender_select'  || location.hash.search('#thema_sel_')!==-1) document.getElementById('list_auswahl_links_sender').style.display='block';
+      echo " //--- Themenliste Seitenweise start ---";
+      if( isset($_GET['start']) && $_GET['start']!='' ){
+            echo "
+            // setzt aktuellern Zeiger/Focus
+            var prev_c = getCookie('prev_page');
+            var next_c = getCookie('next_page');
+            var next = document.getElementById('next_page');
+		        var prev = document.getElementById('prev_page');
+		        
+            if(next!=undefined){ next.focus(); formItemFocus( next ); }
+            if(prev!=undefined){ prev.focus(); formItemFocus( prev ); }
+		        if(next_c > prev_c && next!=undefined){ next.focus(); formItemFocus( next ); } //bleibe bei der gleichen Richtung (bspw. Seite vorwaerts)
+            ";
+      }    
+        
+      if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ){
+           echo "
+           // setzt/korrigiere URL mit Start/Ende-Parameter
+           var c = parseInt( getCookie('pageination') );
+           
+           var matchS = window.location.href.match(/start=(-?[0-9]*)/);
+           var start = 1;
+           if(matchS!=null && matchS.length>1) start = parseInt(matchS[1]);
+           
+           var matchE = window.location.href.match(/ende=(-?[0-9]*)/);
+           var ende = 0;
+           if(matchE!=null && matchE.length>1) ende = parseInt(matchE[1]);
+           
+           var e = location.href.match('#(.*)');
+           var anker = '';
+           if(e!=null && e.length>0)anker = '#'+e[1];
+           
+           var ende_kor = -1; //korrektur am Ende
+           
+           var cleanUrl = window.location.href.replace(anker,'').replace(/start=-?[0-9]*/,'').replace(/ende=-?[0-9]*/,'');
+           if( c<=0 && (start>0 || ende>0) ){ //lösche Pageination
+             window.location = cleanUrl+'anker';
+           }else if( c>0 && (start+c+ende_kor)!=ende ){         //korrigiere Pageination
+             ende = start+c;
+             var preventLoop = 0;
+             if(parseInt(getCookie('preventRedirectLoop'))>0) preventLoop+=parseInt(getCookie('preventRedirectLoop'));
+             createCookieInSeconds('preventRedirectLoop', preventLoop+1, 5);
+             if( parseInt(getCookie('preventRedirectLoop'))<5) window.location = cleanUrl+'&start='+start+'&ende='+(ende+ende_kor)+anker;
+           }
+           
+           ";
+   }
+   echo "
+   //--- Themenliste Seitenweise ende ---
+   
+	 //if( location.hash=='#thema_select' || location.hash.search('#buchstabe_')!==-1 || location.hash.search('#thema_sel_')!==-1  || location.hash.search('#anker1_thema_sel_')!==-1) show_thema_select();
+	 if( location.hash=='#sender_select'  || location.hash.search('#thema_sel_')!==-1) document.getElementById('list_auswahl_links_sender').style.display='block';
 	
 	if( location.hash=='#settings') toggleShowOptions('show');
 	if( location.hash.search('#film_')!==-1  || location.hash.search('#anker1_film_')!==-1){ 
@@ -730,6 +779,22 @@ echo '
       <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
       
        <hr>
+       Themeliste
+       <span style="float:right; text-align:right">
+            &nbsp;&nbsp;&nbsp;Seitenweise:
+            &nbsp;&nbsp;
+            <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
+            <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
+            <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
+            <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
+            &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+            <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">lange Listen</a>
+      </span>
+      <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
+      
+       <span style="float:right; text-align:right"></span>
+       
+       <hr>
        Bessere Performance langer Themenlisten (testweise):<br> 
        <span style="float:right; text-align:right">
             &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
@@ -839,6 +904,27 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
   if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='')) $dp = 'display:block';
   //$dp = '';
 
+
+  if(isset($_GET['start'])){
+    $ll_von = (int)$_GET['start'];        
+    $ll_bis = (int)$_GET['ende'];
+    $ll_diff = $ll_bis - $ll_von +1;
+    
+    $total_count = 0; foreach($themen as $b => $themen0) $total_count+=count($themen0);
+
+    $h = $_SERVER['REQUEST_URI'];
+    $h = preg_replace('/&start=-?[0-9]*/', '', $h);
+    $h = preg_replace('/&ende=-?[0-9]*/', '', $h);
+    
+    if($ll_von-1 > 0)            $h_prev = $h.'&start='.($ll_von-$ll_diff).'&ende='.($ll_bis-$ll_diff);
+    if($ll_bis+1 < $total_count) $h_next = $h.'&start='.($ll_von+$ll_diff).'&ende='.($ll_bis+$ll_diff);
+    echo "<p style=\"text-align:center;width:50%;display:block;float:left\">";
+    if( isset($h_prev) )echo "<a id=\"prev_page\" style=\"width:100%;min-width:100%;display:inline-block;\" onClick=\"createCookieInSeconds('prev_page',Date.now(),5)\" href=\"$h_prev\" ><</a>";
+    echo "</p>";
+    echo "<p style=\"text-align:center;width:50%;display:block;float:left\">";
+    if( isset($h_next) )echo "<a id=\"next_page\" style=\"width:100%;min-width:100%;display:inline-block;\" onClick=\"createCookieInSeconds('next_page',Date.now(),5)\" href=\"$h_next\">></a>";
+    echo "</p>";
+  }
   echo "
   <div id=\"div-thema-select\">
       <!--<a name=\"thema_select\"></a>-->
@@ -847,7 +933,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
         <!--<span style=\"float:right\"> <a href='#thema_select' onclick=\"document.getElementById('list_auswahl_links_thema').style.display='none'\">x</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>--><br>\n
         ";
         if($hideShorterThen>0)echo "<p align=\"right\" style=\"padding-right:6pt;\">Filme kürzer als ".$hideShorterThen." Min. werden ausgeblendet (sihe Einstellungen).</p>";
-        else echo "<br><br>";
+        //else echo "<br><br>";
         $ll = 0;
         
         /*
@@ -878,6 +964,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
               $showBuchstabenlink = true;
               foreach($themen as $url => $more){
                 $ll++;
+                if( isset($ll_von) && isset($ll_bis) && ($ll<$ll_von || $ll>$ll_bis) )continue;
                 //$aktiv;
                 $anker_ll = $ll;
 	        if($anker_ll<=6)$anker_ll = 0;
@@ -904,6 +991,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
 //          <a href=\"#\" class=\"t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color\" onClick=\"appendFavSelf(this);return false;\">zur Schnellauswahl hinzufügen</a>
               }
 	   }         
+
   echo"
         </$tag_table> <!-- von id=\"table_sel_thema\" -->
       </div>
@@ -1030,7 +1118,7 @@ echo "
  * Impressum
  */
 
-echo "<br><br>&nbsp; <br>";
+//echo "<br><br>echo "&nbsp; <br>";
 echo "<a name=\"impressum\" ></a>";
 echo "<div id=\"impressum\" style=\"display:none;background:white;margin:12pt;padding:12pt\">
 <br/><p align=\"right\"><a href=\"#\" onclick=\"document.getElementById('impressum').style.display='none'\">X</a></p>
@@ -1046,7 +1134,7 @@ echo "<div id=\"impressum\" style=\"display:none;background:white;margin:12pt;pa
  * Footer
  */
 echo "<a name=\"bottom\" ></a>";
-echo "<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;";//Abstandshalter nach unten;
+//echo "<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;";//Abstandshalter nach unten;
 //<p><a href=\"#top\">↥</a></p>
 //echo "<div id=\"footer2\" style=\"position: fixed;z-index: 222;display: block;bottom: 2pt;left: 270pt;\">";
 //echo '</div>';
@@ -1055,7 +1143,7 @@ echo "<br>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;";//Abstandshalter nach unten;
 $end = microtime(true);
 $creationtime = ($end - $startTimeRender);
 //position:fixed;
-if($cacheActive==false) printf("<small><span style=\"color:#000000;float:right;right:35pt;\">page created in %.2f sec.</span></small>", $creationtime);
+if($cacheActive==false) printf("<small><span style=\"color:#000000;float:right;right:35pt;\">page created in %.2f sec.</span></small><br>&nbsp;", $creationtime);
 echo '';
 echo "<div id=\"fixed_footer\" style=\"width:100%;min-width:100%;bottom:0px;display:block;position:fixed;margin:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;;\">
     <a href=\"#top\" tabindex=\"\" style=\"display:block\" title=\"nach oben scrollen\">
