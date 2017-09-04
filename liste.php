@@ -153,9 +153,10 @@ function onload1y(){ //onload
     if(h>0){
       var elem = document.getElementById('abstand_oben1');      if(elem!=undefined)elem.style.display    = 'none';
       var elem = document.getElementById('abstand_oben2');      if(elem!=undefined)elem.style.display    = 'none';
-      var elem = document.getElementById('div-thema-select');   if(elem!=undefined)elem.style.paddingTop = h+'px';
-      var elem = document.getElementById('div-sender-select');  if(elem!=undefined)elem.style.paddingTop = h+'px';
-      var elem = document.getElementById('schnellauswahl');     if(elem!=undefined)elem.style.paddingTop  = h+'px';
+      //var elem = document.getElementById('div-thema-select');   if(elem!=undefined)elem.style.paddingTop = h+'px';
+      //var elem = document.getElementById('div-sender-select');  if(elem!=undefined)elem.style.paddingTop = h+'px';
+      //var elem = document.getElementById('schnellauswahl');     if(elem!=undefined)elem.style.paddingTop  = h+'px';
+      var elem = document.getElementById('content');              if(elem!=undefined)elem.style.paddingTop  = h+'px';
     }    //alert(a);
     var c = getCookie('showFooter'); if(c>0) document.getElementById('fixed_footer').style.display = 'block';
     //alert( new Date().getTime() - starttime + 'ms');
@@ -467,11 +468,11 @@ if( isset($_GET['list_update__only_aufteilen']) && $_GET['list_update__only_auft
  * Hauptprogramm
  */
 
-
+echo "<div id=\"content\">";
 
 //utf8_encode()
 echo "<span id=\"abstand_oben1\"><br><br><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
-if(!isset($_GET['sender'])) echo " ".$welcomeText."";
+if(!isset($_GET['sender'])) echo "".$welcomeText."";
 
 echo "<span style=\"float:right\">";
 if(!file_exists($file) && file_exists('cache/status_startFilmlistenDownload')) echo "<p>Derzeit wird eine neue Filmliste runtergeladen (im Hintergrund)</p>";
@@ -524,7 +525,9 @@ if( isset($_GET['sender']) && $_GET['sender']!='' ){
 */
 
 
+
 if( isset($_GET['thema']) && $_GET['thema']!=''){
+echo "<br/ ><br />";
       require_once 'inc/inc.filmliste_eintraege.php';
       onFilmlisteSeite_linkAddToSchnellauswahl();
 }
@@ -532,7 +535,6 @@ if( isset($_GET['thema']) && $_GET['thema']!=''){
 
 
 
-echo "<br>&nbsp;";
 
 
 
@@ -540,7 +542,7 @@ echo "<br>&nbsp;";
 if( isset($_COOKIE['favs']) && !isset($_GET['sender']) && !isset($_GET['thema'])){
     if(isset($_GET['sender'])) $d =' display:none';else $d = '';
     echo "<div id=\"schnellauswahl\" style=\"$d\">";
-    echo "<br/ ><br />Schnellauswahl:</br>";
+    echo "Schnellauswahl:</br>";
     /*$favs = JSON_decode($_COOKIE['favs']);
     natcasesort($favs);
     foreach( $favs as $fav){ 
@@ -936,7 +938,11 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
   //$dp = '';
 
 
-  if(isset($_GET['start'])){
+
+  echo "
+  <div id=\"div-thema-select\">";
+  
+    if(isset($_GET['start'])){
       $ll_von = (int)$_GET['start'];        
       $ll_bis = (int)$_GET['ende'];
       $ll_diff = $ll_bis - $ll_von +1;
@@ -955,13 +961,13 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
       echo "<p style=\"text-align:center;width:50%;display:block;float:left\">";
       if( isset($h_next) )echo "<a id=\"next_page\" style=\"width:100%;min-width:100%;display:inline-block;\" onClick=\"createCookieInSeconds('next_page',Date.now(),5)\" href=\"$h_next\">></a>";
       echo "</p>";
-  }
-  echo "
-  <div id=\"div-thema-select\">
+    }
+  
+    echo "
       <!--<a name=\"thema_select\"></a>-->
       <a name=\"anker1_thema_sel_0\"></a><span id=\"abstand_oben2\"><br><br><br></span>
       <div id=\"list_auswahl_links_thema\" style=\"$dp;position:auto;z-index:102;\">
-        <!--<span style=\"float:right\"> <a href='#thema_select' onclick=\"document.getElementById('list_auswahl_links_thema').style.display='none'\">x</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>--><br>\n
+        <!--<span style=\"float:right\"> <a href='#thema_select' onclick=\"document.getElementById('list_auswahl_links_thema').style.display='none'\">x</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->\n
         ";
         if($hideShorterThen>0)echo "<p align=\"right\" style=\"padding-right:6pt;\">Filme kürzer als ".$hideShorterThen." Min. werden ausgeblendet (sihe Einstellungen).</p>";
         //else echo "<br><br>";
@@ -1174,7 +1180,7 @@ $end = microtime(true);
 $creationtime = ($end - $startTimeRender);
 //position:fixed;
 if($cacheActive==false) printf("<small><span style=\"color:#000000;float:right;right:35pt;\">page created in %.2f sec.</span></small><br>&nbsp;", $creationtime);
-echo '';
+echo '</div>'; //id="content" ende
 echo "<div id=\"fixed_footer\" style=\"width:100%;min-width:100%;bottom:0px;display:none;position:fixed;margin:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;;\">
     <a href=\"#top\" tabindex=\"\" style=\"display:block\" title=\"nach oben scrollen\">
       <span class=\"abstandlinks\">↥</span> <span style=\"float:right;padding-right: 12pt;\">↥</span><span style=\"clear:both\"></span>
