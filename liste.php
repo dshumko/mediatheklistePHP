@@ -1085,8 +1085,7 @@ foreach($allOuts as $outArrayS){ //Timestamp Array
                 </span>
               </a>
             </td>
-            <td>
-            <br>";
+            <td>";
             //$dpVideoLink='style="display:none"';
             //if(count($outArray['videofiles_links'])>1) echo "<a href=\"#\" class=\"abstandrechts link_every_same_color show_videolinks\" $dpShowLink>VideoLinks</a><br />";            
            // echo "<span class=\"videofiles_links\" $dpVideoLink>\n";

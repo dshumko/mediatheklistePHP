@@ -42,7 +42,7 @@ a:active{
   margin-left:-8pt;
   padding-left:8pt;
 }
-a:hover{
+a:hover, tr.videolink_row td:nth-child(1):hover{
   background:#f9f9f9
 }
 /*
@@ -93,6 +93,7 @@ a.anker, a.anker_thema {
   z-index:-1;
   top:-100pt;
   position:relative;
+  display: block;
 }
 a[name=sender_select]{
   padding-top: 56pt; /*abstand nach oben, damit nicht überdeckt*/      
