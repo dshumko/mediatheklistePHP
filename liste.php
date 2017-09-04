@@ -980,7 +980,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
             }
             echo "
             <a name=\"anker1_thema_sel_$ll\" class=\"anker_thema\"></a>
-            <a href=\"$url\" id=\"mainlink_thema_sel_$ll\"  onClick=\"if( location.hash.search('#anker1_thema_sel_')!==-1)window.history.back();window.location='#anker1_thema_sel_".($anker_ll)."';loadNewSite()\" class=\"t_sel_a\">".$more['title']."</a>
+            <a href=\"$url\" id=\"mainlink_thema_sel_$ll\" onClick=\"updateHash('#anker1_thema_sel_".($anker_ll)."');loadNewSite();return true;\" class=\"t_sel_a\">".$more['title']."</a>
           </$tag_td>
           <$tag_td class=\"t_sel_date\" align=\"right\"><nobr>".$more['date']."</nobr></$tag_td>
           <$tag_td class=\"td_del\" align=\"center\"></$tag_td>

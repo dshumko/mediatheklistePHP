@@ -91,9 +91,20 @@ function toggleInLinkListe_andFocus(parentSpan, buchstaben){
    formItemFocus( link );
    window.setTimeout(function(){ location.href = link; },50);
 }
-  
-  
-  
+ 
+ 
+
+function updateHash(hash){ //hash include starting #
+  var hash_ohne_nummer = hash.substring(0,hash.length - hash.match(/[0-9]$/)[0].length);
+  if( location.hash.search(hash_ohne_nummer)!==-1){
+          if(history.replaceState) history.replaceState( history.state, document.title , hash);
+          else window.history.back();
+  }
+  else{
+          if(history.replaceState) history.replaceState( history.state, document.title , hash);
+          else location.hash = hash;
+  }
+}
 
 //source: https://stackoverflow.com/questions/4825683/how-do-i-create-and-read-a-value-from-cookie
 var createCookie = function(name, value, days) {
@@ -186,13 +197,14 @@ var mousemoveFunctionOnce = function (event) {
 function filmliste_eintrage_event_onclick(){
 	       
           addEventListenerList( document.getElementsByClassName('list_video_mainlink'), "click", function(e) {
-                          if( location.hash.search('#anker1_film_')!==-1)window.history.back();
+                          //alt if( location.hash.search('#anker1_film_')!==-1)window.history.back();
                           var nummer = this.id;
                           nummer = nummer.replace('mainlink_film_' ,'');
                           nummer = Number(nummer);
                           if(nummer<2)  var scrollup_i = 0;                          
                           else var scrollup_i = nummer-2;
-                          window.location = '#anker1_film_'+scrollup_i;
+                          //alt window.location = '#anker1_film_'+scrollup_i;
+                          updateHash('#anker1_film_'+scrollup_i);
                           loadNewSite();
                           //test e.preventDefault();
                           //test return false;
