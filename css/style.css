@@ -87,6 +87,28 @@ body a{
 .anker_buchstabe{
   padding-top: 35pt;
 }
+.b_count{ /* verstecke wie viele Filme ein Buchstabe hat */
+  display: none;
+}
+
+
+
+.hbbtv_button{
+  width:10pt;
+  max-width:10pt;
+  display:inline-block;
+}
+#thema_sel_buchstaben .hbbtv_button{ margin-right:5pt; }
+
+#thema_sel_buchstaben_sub{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
 a.anker, a.anker_thema {
   visibility: hidden;
   z-index:-1;

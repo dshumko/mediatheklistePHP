@@ -160,7 +160,7 @@ function getThemenliste($options){
             //$dp = 'display:none;';
             //if( $anker=='#thema_select' || strstr($anker,'#buchstabe_')!==false || strstr($anker,'#thema_sel_')!==false) $dp = 'display:inline-block';
             if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ) $dp = 'display:inline-block';
-            $out.= "<div style=\"$dp;width:100%;padding-left:1pt;text-indent: -10pt;padding-left: 11pt;margin-top: -1pt;\" id=\"thema_sel_buchstaben\"><span style=\"background:blue\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Springe zu Buchstabe: ";
+            $out.= "<div style=\"$dp;width:100%;padding-left:1pt;text-indent: -10pt;padding-left: 11pt;margin-top: -1pt;\" id=\"thema_sel_buchstaben\"><span style=\"float:left\"><span style=\"background:blue\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span><!-- Springe zu -->Buchstabe:&nbsp; </span><div id=\"thema_sel_buchstaben_sub\">";
             $out.= "<script language=\"javascript\" type=\"text/javascript\"> possibleHideHbbTVButtons(); </script>";
             $possible_url_base = '';
             if(isset($_GET['start']) && $_GET['start']!='' && isset($_GET['ende']) && $_GET['ende']!=''){
@@ -178,7 +178,7 @@ function getThemenliste($options){
                   $s = floor($allBuchstabenFirstEntry[$b]/$diff)*$diff;
                   $possible_url= $possible_url_base.'&start='.$s.'&ende='.($s+$diff).'';
                 } else $possible_url = '';
-             $out.= "&nbsp;<a href=\"$possible_url#buchstabe_".rawurlencode(utf8_encode($b))."\" data-starts-with-no=\"$ll\" onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';\" class=\"buchstaben_anker_link\"><b>".utf8_encode($b)."</b>&nbsp;<small>($count)</small> </a> &nbsp;\n";  
+             $out.= "&nbsp;<a href=\"$possible_url#buchstabe_".rawurlencode(utf8_encode($b))."\" data-starts-with-no=\"$ll\" onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';\" class=\"buchstaben_anker_link\" title=\"$count Filme\"><b>".utf8_encode($b)."</b>&nbsp;<small class=\"b_count\">($count)</small> </a> &nbsp;\n";  
             }
             $out.= "
              <script language=\"javascript\" type=\"text/javascript\">
@@ -189,7 +189,7 @@ function getThemenliste($options){
                    }
                 //function onload2y(){   } //window.addEventListener(\"load\", onload2y); 
              </script>";
-            $out.= "</div><br><br>\n";
+            $out.= "</div></div><br><br>\n";
         }
 
         $out.= $listThemenOut;
