@@ -2,8 +2,8 @@
 
 document.addEventListener("keydown", function(e) {
      //Taste 1: || e.which == 49
-     if(e.which == 405)    document.getElementById('list_auswahl_links_sender').style.display='block'; //Gelb
-     if(e.which == 404)    document.getElementById('list_auswahl_links_thema').style.display='block'; //Grün
+     if(e.which == 405)    document.getElementById('div-sender-select').style.display='block'; //Gelb
+     if(e.which == 404)    document.getElementById('div-sender-select').style.display='block'; //Grün
      if(e.which == 406){
            var span = document.getElementById('thema_sel_buchstaben');
            var link = span.getElementsByTagName('a')[0];

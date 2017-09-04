@@ -114,7 +114,7 @@ echo "
 
 function  loadNewSite(){ //beim verlassen der Seite (Ladeanimation)
     document.getElementsByTagName('body')[0].style.background = '#c3c3ff';
-    document.getElementById('list_auswahl_links_sender').style.background = '#c3c3ff';
+    document.getElementById('div-sender-select').style.background = '#c3c3ff';
     if(document.getElementById('list_auswahl_links_thema')!=undefined)document.getElementById('list_auswahl_links_thema').style.background  = '#c3c3ff';
     if(document.getElementById('spinner_elem')!=undefined){
       document.getElementById('spinner_elem').style.display='inline';
@@ -149,6 +149,14 @@ function onload1y(){ //onload
                       getCookie('hideAudioDeskriptionFilme') ,
                       getCookie('hideTrailerFilme') ,
                       getCookie('hideShorterThen') );
+    var h = document.getElementById('fixed_head').offsetHeight;
+    if(h>0){
+      var elem = document.getElementById('abstand_oben1');      if(elem!=undefined)elem.style.display    = 'none';
+      var elem = document.getElementById('abstand_oben2');      if(elem!=undefined)elem.style.display    = 'none';
+      var elem = document.getElementById('div-thema-select');   if(elem!=undefined)elem.style.paddingTop = h+'px';
+      var elem = document.getElementById('div-sender-select');  if(elem!=undefined)elem.style.paddingTop = h+'px';
+      var elem = document.getElementById('schnellauswahl');     if(elem!=undefined)elem.style.paddingTop  = h+'px';
+    }    //alert(a);
     //alert( new Date().getTime() - starttime + 'ms');
 }
 
@@ -215,7 +223,7 @@ function setFocusForLastLink(){
     //--- Themenliste Seitenweise ende ---
    
     //if( location.hash=='#thema_select' || location.hash.search('#buchstabe_')!==-1 || location.hash.search('#thema_sel_')!==-1  || location.hash.search('#anker1_thema_sel_')!==-1) show_thema_select();
-    if( location.hash=='#sender_select'  || location.hash.search('#thema_sel_')!==-1) document.getElementById('list_auswahl_links_sender').style.display='block';
+    if( location.hash=='#sender_select'  || location.hash.search('#thema_sel_')!==-1) document.getElementById('div-sender-select').style.display='block';
   
     if( location.hash=='#settings') toggleShowOptions('show');
     if( location.hash.search('#film_')!==-1  || location.hash.search('#anker1_film_')!==-1){ 
@@ -461,8 +469,7 @@ if( isset($_GET['list_update__only_aufteilen']) && $_GET['list_update__only_auft
 
 
 //utf8_encode()
-echo "<br><br>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
-echo "<br><br><br>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
+echo "<span id=\"abstand_oben1\"><br><br><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
 if(!isset($_GET['sender'])) echo " ".$welcomeText."";
 
 echo "<span style=\"float:right\">";
@@ -655,10 +662,10 @@ echo "
 
 
 
-//document.getElementById('list_auswahl_links_sender').style.display='block';document.body.insertBefore(document.getElementById('list_auswahl_links_sender'),document.getElementById('schnellauswahl'));
+//document.getElementById('div-sender-select').style.display='block';document.body.insertBefore(document.getElementById('div-sender-select'),document.getElementById('schnellauswahl'));
 //doen not work (probleme bei HBBTV): formItemFocus(document.getElementById('sender_alle_link') )
 
-echo "<a href='#sender_select' onClick=\"document.getElementById('list_auswahl_links_sender').style.display='block';\"  id=\"link_sender_select\" class=\"link_black_before_onload\" tabindex=\"1\"><span style=\"background:yellow\"  class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Sender wählen&nbsp;&nbsp;&nbsp;";
+echo "<a href='#sender_select' onClick=\"document.getElementById('div-sender-select').style.display='block';\"  id=\"link_sender_select\" class=\"link_black_before_onload\" tabindex=\"1\"><span style=\"background:yellow\"  class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Sender wählen&nbsp;&nbsp;&nbsp;";
 if( isset($_GET['sender']))$s=$_GET['sender'];else $s='';
 echo "<span style=\"color:black\">$s <span id=\"sender_waehlen_append\"></span> </span>";
 echo "</a>";
@@ -874,11 +881,11 @@ $dp = 'display:none'; $anker = parse_url($_SERVER["REQUEST_URI"],PHP_URL_FRAGMEN
 if( $anker=='#sender_select'  || strstr($anker,'#thema_sel')!==false) $dp = 'display:block';
       
 echo "
-<div id=\"div-sender-select\">
-      <div id=\"list_auswahl_links_sender\" style=\"$dp\">
+<div id=\"div-sender-select\"  style=\"$dp\">
+      <div id=\"list_auswahl_links_sender\">
             <a name=\"sender_select\"></a>&nbsp;<br>&nbsp;<br>
             <span style=\"float:right\">
-                <a href='#sender_select' onclick=\"document.getElementById('list_auswahl_links_sender').style.display='none'\">X</a>
+                <a href='#sender_select' onclick=\"document.getElementById('div-sender-select').style.display='none'\">X</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </span><br>";
             
@@ -930,7 +937,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
   echo "
   <div id=\"div-thema-select\">
       <!--<a name=\"thema_select\"></a>-->
-      <a name=\"anker1_thema_sel_0\"></a><br><br><br>
+      <a name=\"anker1_thema_sel_0\"></a><span id=\"abstand_oben2\"><br><br><br></span>
       <div id=\"list_auswahl_links_thema\" style=\"$dp;position:auto;z-index:102;\">
         <!--<span style=\"float:right\"> <a href='#thema_select' onclick=\"document.getElementById('list_auswahl_links_thema').style.display='none'\">x</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>--><br>\n
         ";
