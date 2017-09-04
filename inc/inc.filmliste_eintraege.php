@@ -4,29 +4,29 @@ if($orf_filcheck_legal__filesize>0 && !file_exists('cache/orf_legalcheck')) mkdi
 
 
 function getFilmlistContentCache($file, $sender, $thema){
-                global $use_cache_filmlist_sender, $use_cache_filmlist_thema; //Konfig, ob Cache aktiv ist
-                
-                $thema = str_replace('"','\\"',$thema);
-                //finde richtig Cache-Datei (oder nehme komplette Liste)
-                $file_cache_sender_thema = '';
-                if($use_cache_filmlist_thema && isset($sender) && $sender!='' && isset($thema) && $thema!=''){
-                    $file_cache_sender_thema = 'cache/thema/cache_filmliste_';
-                    $file_cache_sender_thema.= substr(str_replace('/','',$sender),0,15).'_'.md5($thema);
-                }
-                
-                $file_cache_sender = '';
-                if(isset($sender) && $sender!='')
-                    $file_cache_sender = 'cache/sender/'.$file.'_sender_'.substr(str_replace('/','',$sender),0,15);
-                if(       $use_cache_filmlist_sender && 
-                          isset($sender) && $sender!='' && 
-                          isset($thema) && $thema!='' &&
-                          file_exists($file_cache_sender_thema)){
-                                return file_get_contents($file_cache_sender_thema);
-                }else if( $use_cache_filmlist_thema && 
-                          isset($sender) && $sender!='' && $sender!='alle' &&
-                          file_exists($file_cache_sender)){
-                                return file_get_contents($file_cache_sender);       
-                }else return NULL;      
+        global $use_cache_filmlist_sender, $use_cache_filmlist_thema; //Konfig, ob Cache aktiv ist
+        
+        $thema = str_replace('"','\\"',$thema);
+        //finde richtig Cache-Datei (oder nehme komplette Liste)
+        $file_cache_sender_thema = '';
+        if($use_cache_filmlist_thema && isset($sender) && $sender!='' && isset($thema) && $thema!=''){
+            $file_cache_sender_thema = 'cache/thema/cache_filmliste_';
+            $file_cache_sender_thema.= substr(str_replace('/','',$sender),0,15).'_'.md5($thema);
+        }
+        
+        $file_cache_sender = '';
+        if(isset($sender) && $sender!='')
+            $file_cache_sender = 'cache/sender/'.$file.'_sender_'.substr(str_replace('/','',$sender),0,15);
+        if(       $use_cache_filmlist_sender && 
+                  isset($sender) && $sender!='' && 
+                  isset($thema) && $thema!='' &&
+                  file_exists($file_cache_sender_thema)){
+                        return file_get_contents($file_cache_sender_thema);
+        }else if( $use_cache_filmlist_thema && 
+                  isset($sender) && $sender!='' && $sender!='alle' &&
+                  file_exists($file_cache_sender)){
+                        return file_get_contents($file_cache_sender);       
+        }else return NULL;      
 } 
 
 
@@ -91,21 +91,21 @@ function createAllElements(){
                 //zeige nur Schnellauswahl
                 $is_in_schnellauwahl = false;$favs = array();
                 if( $use_cache_filmlist_thema && !isset($_GET['sender']) && !isset($_GET['thema']) ){
-                      if( isset($_COOKIE['favs']) )$favs = JSON_decode($_COOKIE['favs']); else $favs= array();
-                      //foreach($favs as &$f)  $f = str_replace('x4sdy0ANDx4sdy0','&',$f);
-                      $line0='';
-                      $stringWithLines='';
-                      foreach($favs as $f){
-                              preg_match('/liste\.php\?sender=([^"]*)&thema=(.*)/',$f, $treffer);
-                              $stringS = getFilmlistContentCache($file, $treffer[1], $treffer[2]);
-                              if($stringS===NULL)continue;
-                              
-                              if($line0=='') $line0 = explode('"X":',$stringS)[0]; //"Filmliste:[FilmlistDatumk, etc]"
-                              else { $stringS = ','.str_replace($line0,'',$stringS);}
-                              $stringWithLines.= substr($stringS,0,-1);//ohne}
-                      }
-                      if($stringWithLines!='') $lineArray = explode('"X":', $stringWithLines.'}'); 
-                      else                     $lineArray = explode('"X":', file_get_contents($file) );//wenn cache leer, nimm alle
+                        if( isset($_COOKIE['favs']) )$favs = JSON_decode($_COOKIE['favs']); else $favs= array();
+                        //foreach($favs as &$f)  $f = str_replace('x4sdy0ANDx4sdy0','&',$f);
+                        $line0='';
+                        $stringWithLines='';
+                        foreach($favs as $f){
+                                preg_match('/liste\.php\?sender=([^"]*)&thema=(.*)/',$f, $treffer);
+                                $stringS = getFilmlistContentCache($file, $treffer[1], $treffer[2]);
+                                if($stringS===NULL)continue;
+                                
+                                if($line0=='') $line0 = explode('"X":',$stringS)[0]; //"Filmliste:[FilmlistDatumk, etc]"
+                                else { $stringS = ','.str_replace($line0,'',$stringS);}
+                                $stringWithLines.= substr($stringS,0,-1);//ohne}
+                        }
+                        if($stringWithLines!='') $lineArray = explode('"X":', $stringWithLines.'}'); 
+                        else                     $lineArray = explode('"X":', file_get_contents($file) );//wenn cache leer, nimm alle
                 }else{
                         
                         //finde richtig Cache-Datei (oder nehme komplette Liste)
@@ -140,7 +140,7 @@ function createAllElements(){
                                 'mediathekTitle'=>'',
                                 'mediathekUrl'=>'' );
                 
-     /* //Alternativ::Langsamer, geht dafür aber auch bei Servern mit wenig speicher:
+         /* //Alternativ::Langsamer, geht dafür aber auch bei Servern mit wenig speicher:
          while( strlen($readerBuffer)> 1000 || strpos($readerBuffer,'"X":')>0 ){
          //Buffer auffüllen
          if(strlen($readerBuffer)<4000 && !feof($handle)){ //fülle Buffer auf
@@ -181,86 +181,86 @@ function createAllElements(){
 
          //thema
          if( isset($json_line->X[1]) ){
-           $json_line->X[1] = trim($json_line->X[1]);//leerzeichen löschen
-           //$json_line->X[1] = str_replace('"',"'",$json_line->X[1]);//ohne ", sonst probleme im Javascript(JSON) später
-           //$json_line->X[1] = str_replace('#',"_",$json_line->X[1]);//ohne # wird als Anker interpretiert
-         }
+            $json_line->X[1] = trim($json_line->X[1]);//leerzeichen löschen
+            //$json_line->X[1] = str_replace('"',"'",$json_line->X[1]);//ohne ", sonst probleme im Javascript(JSON) später
+            //$json_line->X[1] = str_replace('#',"_",$json_line->X[1]);//ohne # wird als Anker interpretiert
+        }
 
 
-         //alternative Einleweg, aber am Ende nicht schneller, sondern lngsamer
-         //$return = preg_match('/^\["([^"]*)","([^"]*)","([^"]*)"/',$line,$treffer); //8Sek
-         //$return = preg_match('/^\["([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","/',$line,$treffer);
-         // var_dump( $line);echo'<br><hr>';var_dump($treffer); die("ww");
-         /*
-         if( $return==1 && isset($treffer) && isset($treffer[1]) && $treffer[1]!='' && isset($treffer[2]) && $treffer[2]!="" && isset($treffer[3]) && $treffer[3]!="" && isset($treffer[17]) ){
-             $a = array('X'=>array());
-             $json_line = (object) $a;
-             $json_line->X[0] = $treffer[1];
-             $json_line->X[1] = trim($treffer[2]);
-             $json_line->X[2] = $treffer[3];
-             $json_line->X[3] = $treffer[4];
-             $json_line->X[4] = $treffer[5];
-             $json_line->X[5] = $treffer[6];
-             $json_line->X[6] = $treffer[7];
-             $json_line->X[7] = $treffer[8];
-             $json_line->X[8] = $treffer[9];
-             $json_line->X[9] = $treffer[10];
-             $json_line->X[10] = $treffer[11];
-             $json_line->X[11] = $treffer[12];
-             $json_line->X[12] = $treffer[13];
-             $json_line->X[13] = $treffer[14];
-             $json_line->X[14] = $treffer[15];
-             $json_line->X[15] = $treffer[16];
-             $json_line->X[16] = $treffer[17];
-         }else{
+        //alternative Einleweg, aber am Ende nicht schneller, sondern lngsamer
+        //$return = preg_match('/^\["([^"]*)","([^"]*)","([^"]*)"/',$line,$treffer); //8Sek
+        //$return = preg_match('/^\["([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","/',$line,$treffer);
+        // var_dump( $line);echo'<br><hr>';var_dump($treffer); die("ww");
+        /*
+        if( $return==1 && isset($treffer) && isset($treffer[1]) && $treffer[1]!='' && isset($treffer[2]) && $treffer[2]!="" && isset($treffer[3]) && $treffer[3]!="" && isset($treffer[17]) ){
+            $a = array('X'=>array());
+            $json_line = (object) $a;
+            $json_line->X[0] = $treffer[1];
+            $json_line->X[1] = trim($treffer[2]);
+            $json_line->X[2] = $treffer[3];
+            $json_line->X[3] = $treffer[4];
+            $json_line->X[4] = $treffer[5];
+            $json_line->X[5] = $treffer[6];
+            $json_line->X[6] = $treffer[7];
+            $json_line->X[7] = $treffer[8];
+            $json_line->X[8] = $treffer[9];
+            $json_line->X[9] = $treffer[10];
+            $json_line->X[10] = $treffer[11];
+            $json_line->X[11] = $treffer[12];
+            $json_line->X[12] = $treffer[13];
+            $json_line->X[13] = $treffer[14];
+            $json_line->X[14] = $treffer[15];
+            $json_line->X[15] = $treffer[16];
+            $json_line->X[16] = $treffer[17];
+        }else{
             //wenn Inhalte(sender/thema) Fehlen - oder RegEx fehlgeschlagen (bspw. wegen " im Titel)
                 $json_line = json_decode( ("{\"X\":".$line."}")); //11Sek.
             if(isset($json_line->X[1]))$json_line->X[1] = trim($json_line->X[1]); //da war schonmal ein leerzeichen davor
-         }*/
-         if(isset($json_line->X[1]))$json_line->X[1] = trim($json_line->X[1]); //da war schonmal ein leerzeichen davor
+        }*/
+        if(isset($json_line->X[1]))$json_line->X[1] = trim($json_line->X[1]); //da war schonmal ein leerzeichen davor
 
 
-         if( !isset($json_line->X[0]) || $json_line->X[0]=='')      $json_line->X[0] = $lastSender;
-         else if(  isset($json_line->X[0]) && $json_line->X[0]!='') $lastSender      = $json_line->X[0];
-         if( !isset($json_line->X[1])  || $json_line->X[1]=='')     $json_line->X[1] = $lastThema;
-         else if(  isset($json_line->X[1]) && $json_line->X[1]!='') $lastThema       = $json_line->X[1];
+        if( !isset($json_line->X[0]) || $json_line->X[0]=='')      $json_line->X[0] = $lastSender;
+        else if(  isset($json_line->X[0]) && $json_line->X[0]!='') $lastSender      = $json_line->X[0];
+        if( !isset($json_line->X[1])  || $json_line->X[1]=='')     $json_line->X[1] = $lastThema;
+        else if(  isset($json_line->X[1]) && $json_line->X[1]!='') $lastThema       = $json_line->X[1];
 
 
-         if(!isset($json_line->X[2])){ $json_line->X[2] = 'Ohne';}
+        if(!isset($json_line->X[2])){ $json_line->X[2] = 'Ohne';}
 
-         if( isset($hideArte_fr) && $hideArte_fr==1 && $json_line->X[0] == "arte.fr")continue; //ausblenden 
+        if( isset($hideArte_fr) && $hideArte_fr==1 && $json_line->X[0] == "arte.fr")continue; //ausblenden 
          
-         /* verschoben in Cookiee/Javscript auf Clientseite
-         if($hideTrailer==1){
-             if( strlen($json_line->X[2])>=9 && strtolower(substr($json_line->X[2],0,9))=="trailer: ")continue;
-             if( strstr(strtolower($json_line->X[2]),"trailer "))continue;
-             if( strstr(strtolower($json_line->X[2])," trailer"))continue;
-         }
-         if($hideHoerfassung==1){
-             if( strlen($json_line->X[2])>=12 && strtolower(substr($json_line->X[2],0,12))=="hörfassung: "){continue;}
-             //if( strlen($json_line->X[2])>=12 && strtolower(substr($json_line->X[2],-12))=="- hörfassung")continue;
-                 if( strlen($json_line->X[2])>=12 && strtolower(substr($json_line->X[2],-11))==" hörfassung")continue;
-             if( strstr(strtolower($json_line->X[2]),"hörfassung"))continue;
-         }*/
+        /* verschoben in Cookiee/Javscript auf Clientseite
+        if($hideTrailer==1){
+            if( strlen($json_line->X[2])>=9 && strtolower(substr($json_line->X[2],0,9))=="trailer: ")continue;
+            if( strstr(strtolower($json_line->X[2]),"trailer "))continue;
+            if( strstr(strtolower($json_line->X[2])," trailer"))continue;
+        }
+        if($hideHoerfassung==1){
+            if( strlen($json_line->X[2])>=12 && strtolower(substr($json_line->X[2],0,12))=="hörfassung: "){continue;}
+            //if( strlen($json_line->X[2])>=12 && strtolower(substr($json_line->X[2],-12))=="- hörfassung")continue;
+                if( strlen($json_line->X[2])>=12 && strtolower(substr($json_line->X[2],-11))==" hörfassung")continue;
+            if( strstr(strtolower($json_line->X[2]),"hörfassung"))continue;
+        }*/
          
 
 
-         $json_line->X[0] = strtolower($json_line->X[0]);
-         $aktuellerSender = $json_line->X[0];
-         $json_line->X[1] = trim($json_line->X[1]); //zur sicherheit ein zweites mal
+        $json_line->X[0] = strtolower($json_line->X[0]);
+        $aktuellerSender = $json_line->X[0];
+        $json_line->X[1] = trim($json_line->X[1]); //zur sicherheit ein zweites mal
          
-         if( isset($json_line->X[5]) && $json_line->X[5]!=''){
-           $e = explode(':',$json_line->X[5]); 
-           $l = $e[0]*60+$e[1];
-           if( !isset( $allLengths[$l]) )   $allLengths[$l] = 0;
-           $allLengths[ $l ]++; 
-         }
+        if( isset($json_line->X[5]) && $json_line->X[5]!=''){
+             $e = explode(':',$json_line->X[5]); 
+             $l = $e[0]*60+$e[1];
+             if( !isset( $allLengths[$l]) )   $allLengths[$l] = 0;
+             $allLengths[ $l ]++; 
+        }
           
-         //Aus-Filter nach Länge
-         if( isset($l) && $l!=='' && isset($_GET['filter_minFilmLength']) && $_GET['filter_minFilmLength']!='' && $_GET['filter_minFilmLength']>$l)continue; 
-         if( isset($l) && $l!=='' && isset($_GET['filter_maxFilmLength']) && $_GET['filter_maxFilmLength']!='' && $_GET['filter_maxFilmLength']<$l)continue; 
-         //Wortsuche
-         if( isset($_GET['search']) && $_GET['search']!=''){
+        //Aus-Filter nach Länge
+        if( isset($l) && $l!=='' && isset($_GET['filter_minFilmLength']) && $_GET['filter_minFilmLength']!='' && $_GET['filter_minFilmLength']>$l)continue; 
+        if( isset($l) && $l!=='' && isset($_GET['filter_maxFilmLength']) && $_GET['filter_maxFilmLength']!='' && $_GET['filter_maxFilmLength']<$l)continue; 
+        //Wortsuche
+        if( isset($_GET['search']) && $_GET['search']!=''){
             $s = $_GET['search'];
             if(isset($_GET['search_fulltext']) && $_GET['search_fulltext']==1 ) $ft = true; else $ft = false;
     
@@ -269,7 +269,7 @@ function createAllElements(){
             else if( $ft && stristr($json_line->X[7], $s) ) { echo '';}
             else continue; //nicht gefunden
 
-         }
+        }
          
 
                 

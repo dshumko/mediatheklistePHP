@@ -1,7 +1,7 @@
 
 
 document.addEventListener("keydown", function(e) {
-          //Taste 1: || e.which == 49
+     //Taste 1: || e.which == 49
      if(e.which == 405)    document.getElementById('list_auswahl_links_sender').style.display='block'; //Gelb
      if(e.which == 404)    document.getElementById('list_auswahl_links_thema').style.display='block'; //Grün
      if(e.which == 406){
@@ -194,8 +194,7 @@ var mousemoveFunctionOnce = function (event) {
 
 
 
-function filmliste_eintrage_event_onclick(){
-	       
+function filmliste_eintrage_event_onclick(){   
           addEventListenerList( document.getElementsByClassName('list_video_mainlink'), "click", function(e) {
                           //alt if( location.hash.search('#anker1_film_')!==-1)window.history.back();
                           var nummer = this.id;
@@ -256,43 +255,43 @@ function updateVideoMainLink_withQualityLink(){;
         if( c=='' || c=='normal' ) return; //prüfe ob überhaupt gesetzt/bzw. abweichend
         if( c!='hd' && c!='low' )  return; //prüfe ob richtig gesetzt
         var list = document.getElementsByClassName('list_video_mainlink');
-        	for (var i = 0; i < list.length; i++) {
-        	        var href = '';
-        	        var e;
-        	        var parent = filmliste_line_getParentNode(list[i].parentNode);
-        	        if(parent==undefined) return; //Fehler
-        	        
+          for (var i = 0; i < list.length; i++) {
+                  var href = '';
+                  var e;
+                  var parent = filmliste_line_getParentNode(list[i].parentNode);
+                  if(parent==undefined) return; //Fehler
+                  
 
-        	        if(c=='hd')  e = parent.getElementsByClassName('videolink_hd');
-        	        if(c=='low') e = parent.getElementsByClassName('videolink_kl');
-        	        if(e.length>0){ href = e[0].href; list[i].href = href; } //setzt Link
-        	        
-        	        e = parent.getElementsByClassName('notice_fileformat_not_playable');
-        	        if(e.length>0){ e[0].innerHTML = ''; e[0].innerText = '';} //Der hinweis galt nur für "Normal-Video"
-        	        
-        	        //Prüfe Videoformat
-        	        if(href!=''){
-        	                var type =  getFileType(href);
-        	                if( !isHbbTV() && type!='mp4' ){ //bspw. bei flv m3u m3u8
-        	                        preText = '';
-        	                        e = parent.getElementsByClassName('videolink_kl'); var hrefLo = ''; if(e.length>0) hrefLo = e[0].href;
-        	                        if(type != getFileType(hrefLo) && hrefLo!='' )preText = 'Bitte anderen VideoLinks wählen.';
-        	                        e = parent.getElementsByClassName('videolink_no'); var hrefNo = ''; if(e.length>0) hrefNo = e[0].href;
-        	                        if(type != getFileType(hrefNo) && hrefNo!='' )preText = 'Bitte anderen VideoLinks wählen.';
-        	                        e = parent.getElementsByClassName('videolink_hd'); var hrefHd = ''; if(e.length>0) hrefHd = e[0].href;
-        	                        if(type != getFileType(hrefHd) && hrefHd!='' )preText = 'Bitte anderen VideoLinks wählen.';
-        	                        parent.getElementsByClassName('line_headline')[0].innerHTML = type + ' ' + preText + parent.getElementsByClassName('line_headline')[0].innerHTML;
-        	                }
-        	                
-        	        }
-        	        
-        	}
+                  if(c=='hd')  e = parent.getElementsByClassName('videolink_hd');
+                  if(c=='low') e = parent.getElementsByClassName('videolink_kl');
+                  if(e.length>0){ href = e[0].href; list[i].href = href; } //setzt Link
+                  
+                  e = parent.getElementsByClassName('notice_fileformat_not_playable');
+                  if(e.length>0){ e[0].innerHTML = ''; e[0].innerText = '';} //Der hinweis galt nur für "Normal-Video"
+                  
+                  //Prüfe Videoformat
+                  if(href!=''){
+                          var type =  getFileType(href);
+                          if( !isHbbTV() && type!='mp4' ){ //bspw. bei flv m3u m3u8
+                                  preText = '';
+                                  e = parent.getElementsByClassName('videolink_kl'); var hrefLo = ''; if(e.length>0) hrefLo = e[0].href;
+                                  if(type != getFileType(hrefLo) && hrefLo!='' )preText = 'Bitte anderen VideoLinks wählen.';
+                                  e = parent.getElementsByClassName('videolink_no'); var hrefNo = ''; if(e.length>0) hrefNo = e[0].href;
+                                  if(type != getFileType(hrefNo) && hrefNo!='' )preText = 'Bitte anderen VideoLinks wählen.';
+                                  e = parent.getElementsByClassName('videolink_hd'); var hrefHd = ''; if(e.length>0) hrefHd = e[0].href;
+                                  if(type != getFileType(hrefHd) && hrefHd!='' )preText = 'Bitte anderen VideoLinks wählen.';
+                                  parent.getElementsByClassName('line_headline')[0].innerHTML = type + ' ' + preText + parent.getElementsByClassName('line_headline')[0].innerHTML;
+                          }
+                          
+                  }
+                  
+          }
         
 }
 function getFileType(href){
         var s = href.split('.');
         var type = s[s.length-1];
-        return type;	                
+        return type;                  
 }
 
 function filmliste_line_getParentNode(node){ //suche parent-Element für diesen Film
@@ -310,30 +309,30 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
         var count_hideShorterThen = 0;
         var list = document.getElementsByClassName('list_video_mainlink');
         for (var i = 0; i < list.length; i++) {
-        	        if(hideHoerfassungFilme==1 && list[i].innerText.search(/hörfassung/i)!=-1 || list[i].innerHTML.search(/hörfassung/i)!=-1){
-        	                var parent = filmliste_line_getParentNode( list[i].parentNode );
-        	                if(parent==undefined) return; else parent.style.display = 'none';   
-        	        }
-        	        if( hideAudioDeskriptionFilme==1 && list[i].innerText.search(/Audiodeskription/i)!=-1 || list[i].innerHTML.search(/Audiodeskription/i)!=-1){
-        	                var parent = filmliste_line_getParentNode( list[i].parentNode );
-        	                if(parent==undefined) return; else parent.style.display = 'none';   
-        	        }
-        	        if( hideAudioDeskriptionFilme==1 && (list[i].innerText.search(/AD | /i)!=-1 || list[i].innerHTML.search(/AD | /i)!=-1)){
-        	                var parent = filmliste_line_getParentNode( list[i].parentNode );
-        	                if(parent==undefined) return; else parent.style.display = 'none';   
-        	        }
-        	        if(hideTrailerFilme==1 && list[i].innerText.search(/Trailer/i)!=-1 || list[i].innerHTML.search(/Trailer/i)!=-1){
-        	                var parent = filmliste_line_getParentNode( list[i].parentNode );
-        	                if(parent==undefined) return; else parent.style.display = 'none';   
-        	        }
-	                if(hideShorterThen>0){
-	                    var lObj = list[i].getElementsByClassName('film_length');
-	                    if(lObj.length>0) var l = lObj[0]; else continue;
-	                    if(parseInt(l.innerText)!=NaN && parseInt(l.innerText) < hideShorterThen){
-	                        var parent = filmliste_line_getParentNode( list[i].parentNode );
-	                        if(parent==undefined) return; else{ parent.style.display = 'none'; count_hideShorterThen++;}  
-	                    }
-	                }
+                  if(hideHoerfassungFilme==1 && list[i].innerText.search(/hörfassung/i)!=-1 || list[i].innerHTML.search(/hörfassung/i)!=-1){
+                          var parent = filmliste_line_getParentNode( list[i].parentNode );
+                          if(parent==undefined) return; else parent.style.display = 'none';   
+                  }
+                  if( hideAudioDeskriptionFilme==1 && list[i].innerText.search(/Audiodeskription/i)!=-1 || list[i].innerHTML.search(/Audiodeskription/i)!=-1){
+                          var parent = filmliste_line_getParentNode( list[i].parentNode );
+                          if(parent==undefined) return; else parent.style.display = 'none';   
+                  }
+                  if( hideAudioDeskriptionFilme==1 && (list[i].innerText.search(/AD | /i)!=-1 || list[i].innerHTML.search(/AD | /i)!=-1)){
+                          var parent = filmliste_line_getParentNode( list[i].parentNode );
+                          if(parent==undefined) return; else parent.style.display = 'none';   
+                  }
+                  if(hideTrailerFilme==1 && list[i].innerText.search(/Trailer/i)!=-1 || list[i].innerHTML.search(/Trailer/i)!=-1){
+                          var parent = filmliste_line_getParentNode( list[i].parentNode );
+                          if(parent==undefined) return; else parent.style.display = 'none';   
+                  }
+                  if(hideShorterThen>0){
+                      var lObj = list[i].getElementsByClassName('film_length');
+                      if(lObj.length>0) var l = lObj[0]; else continue;
+                      if(parseInt(l.innerText)!=NaN && parseInt(l.innerText) < hideShorterThen){
+                          var parent = filmliste_line_getParentNode( list[i].parentNode );
+                          if(parent==undefined) return; else{ parent.style.display = 'none'; count_hideShorterThen++;}  
+                      }
+                  }
         }//ende FOR-Schleife
         if(count_hideShorterThen>0){
            document.getElementById('notice_before_filmliste__hideShorterThen').style.display = 'block';

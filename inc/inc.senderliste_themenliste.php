@@ -1,5 +1,5 @@
 <?php
-//Mülleimer:	      echo '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlQTFRF/wAA////AAAAOomPOgAAAAJ0Uk5TAAB2k804AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAC1JREFUCB1jZA1g+M8IJUJWM7IGMvxjZE11+MXIOuEAMyPrUhA3kTAB1gE0CgBy2xa5RVbz1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNS0wNi0xN1QxMDoyMjowNiswMjowMN485REAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTQtMTAtMjRUMDM6MDM6MDUrMDI6MDCcI6OUAAAAAElFTkSuQmCC" alt="🗑" width="16" height="16">';
+//Mülleimer:        echo '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlQTFRF/wAA////AAAAOomPOgAAAAJ0Uk5TAAB2k804AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAC1JREFUCB1jZA1g+M8IJUJWM7IGMvxjZE11+MXIOuEAMyPrUhA3kTAB1gE0CgBy2xa5RVbz1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNS0wNi0xN1QxMDoyMjowNiswMjowMN485REAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTQtMTAtMjRUMDM6MDM6MDUrMDI6MDCcI6OUAAAAAElFTkSuQmCC" alt="🗑" width="16" height="16">';
 
 function getSenderListe($options){
       //$hideHoerfassung = 0; if($options['hideHoerfassung'])     $hideHoerfassung     = $options['hideHoerfassung']; //verschoben auf Clientseite in Javascript
@@ -48,9 +48,9 @@ function getThemenliste($options){
         
       $out = '';
    
-	    
+      
       $arrayThemen = array();
-	        
+          
       $out='';
       //if(  $cache_for_startseite_is_fresh==='' || !file_exists($file.'__cache__select_thema') || filemtime($file) > filemtime($file.'__cache__select_thema')){
       //alle Themen Liste, für alle Sender
@@ -60,27 +60,27 @@ function getThemenliste($options){
         if( $_GET['sender']=='alle'){
           $allThemen = array();
           foreach($senderThema as $sender=>$themen ){
-	          foreach($themen as $thema=>$more_data  ){
-		         $count    = $more_data['count'];
-		         $lastDate = $more_data['lastDate']; 
-		         $aLen     = (isset( $more_data['aLen']))?$more_data['aLen']:''; 
-	       	     if( !isset($allThemen[ $thema ]) ) $allThemen[ $thema ] = array('count'=>0,'lastDate'=>'','aLen'=>'');
-		           $allThemen[ $thema ]['count'] += $count;
-		           if($allThemen[ $thema ]['lastDate']<$lastDate) $allThemen[ $thema ]['lastDate'] += $lastDate;
-		           //if($thema=="3nach9"){echo"a".$aLen.'a'; var_dump($more_data);}
-		           if($allThemen[ $thema ]['aLen']=='') $allThemen[ $thema ]['aLen'] += $aLen;
-		           else{   //durchschnittslänge neu Berechnen (das Ergebnis ist aber etwas ungenau)
-		             if($aLen>0){  
-		                $a = $allThemen[ $thema ]['count'] * $allThemen[ $thema ]['aLen'];
-		                $b = $count * $aLen;
-		                $c = ( $a + $b ) / ($allThemen[ $thema ]['count'] + $count);
-		                $allThemen[ $thema ]['aLen'] = round($c);
-		             }
-		           }
-		           if(!isset($allThemen[ $thema ]['sender']))$allThemen[ $thema ]['sender'] = array();
-		           if(array_search($sender,$allThemen[ $thema ]['sender'])===FALSE)$allThemen[ $thema ]['sender'][] = $sender;
-		           // else $allThemen[ $thema ]['aLen'] = NULL;
-	         }
+            foreach($themen as $thema=>$more_data  ){
+             $count    = $more_data['count'];
+             $lastDate = $more_data['lastDate']; 
+             $aLen     = (isset( $more_data['aLen']))?$more_data['aLen']:''; 
+                if( !isset($allThemen[ $thema ]) ) $allThemen[ $thema ] = array('count'=>0,'lastDate'=>'','aLen'=>'');
+               $allThemen[ $thema ]['count'] += $count;
+               if($allThemen[ $thema ]['lastDate']<$lastDate) $allThemen[ $thema ]['lastDate'] += $lastDate;
+               //if($thema=="3nach9"){echo"a".$aLen.'a'; var_dump($more_data);}
+               if($allThemen[ $thema ]['aLen']=='') $allThemen[ $thema ]['aLen'] += $aLen;
+               else{   //durchschnittslänge neu Berechnen (das Ergebnis ist aber etwas ungenau)
+                 if($aLen>0){  
+                    $a = $allThemen[ $thema ]['count'] * $allThemen[ $thema ]['aLen'];
+                    $b = $count * $aLen;
+                    $c = ( $a + $b ) / ($allThemen[ $thema ]['count'] + $count);
+                    $allThemen[ $thema ]['aLen'] = round($c);
+                 }
+               }
+               if(!isset($allThemen[ $thema ]['sender']))$allThemen[ $thema ]['sender'] = array();
+               if(array_search($sender,$allThemen[ $thema ]['sender'])===FALSE)$allThemen[ $thema ]['sender'][] = $sender;
+               // else $allThemen[ $thema ]['aLen'] = NULL;
+           }
           }
           
           uksort($allThemen, 'strcasecmp');
@@ -122,33 +122,33 @@ function getThemenliste($options){
 
         foreach($senderThema[ strtolower($_GET['sender']) ] as $s=>$more_data ){
           $ll++;
-	      $count    = $more_data['count'];
-	      $lastDate = $more_data['lastDate'];         
-	      if(isset($_GET['sender']) && $_GET['sender']=='alle') $senderUrlPart = 'sender='.$_GET['sender'].'&';
-	      if( isset($_GET['hide_shorter_then']) && $_GET["hide_shorter_then"]!='' )  $s3 = "&hide_shorter_then=".$_GET['hide_shorter_then']; else $s3="";
-	      $href     = "liste.php?".$senderUrlPart."thema=".rawurlencode(str_replace('\\"','"',$s))."".$s3;
+        $count    = $more_data['count'];
+        $lastDate = $more_data['lastDate'];         
+        if(isset($_GET['sender']) && $_GET['sender']=='alle') $senderUrlPart = 'sender='.$_GET['sender'].'&';
+        if( isset($_GET['hide_shorter_then']) && $_GET["hide_shorter_then"]!='' )  $s3 = "&hide_shorter_then=".$_GET['hide_shorter_then']; else $s3="";
+        $href     = "liste.php?".$senderUrlPart."thema=".rawurlencode(str_replace('\\"','"',$s))."".$s3;
           if( isset($_GET["quality"]) && $_GET["quality"]!='' ) $s2 ="&quality=".$_GET["quality"]; else $s2 = '';
           //if( isset($hideHoerfassung) && $hideHoerfassung!='1' ) $s2 .="&hideHoerfassung=".$hideHoerfassung;
-	      $b = strtoupper(substr($s,0,1));
-	      $lastBuchstabe = $b;
-	      if(!isset($allBuchstaben[$b])) $allBuchstaben[$b] = 0;
-	      $allBuchstaben[$b] += $count;
+        $b = strtoupper(substr($s,0,1));
+        $lastBuchstabe = $b;
+        if(!isset($allBuchstaben[$b])) $allBuchstaben[$b] = 0;
+        $allBuchstaben[$b] += $count;
               if( !isset($allBuchstabenFirstEntry[$b]) ) $allBuchstabenFirstEntry[$b] = $ll;
 
-	      $themenListOutArray[$b][substr(str_replace('\\"','"',$s),0,65)] = $href.$s2;
+        $themenListOutArray[$b][substr(str_replace('\\"','"',$s),0,65)] = $href.$s2;
 
           $title = substr($s,0,50);
-	      if($count>1)$title.= " ($count)";
-	      if( isset($more_data['aLen']) && $more_data['aLen']!==NULL ){
-	          $title.= ' &nbsp; '.round($more_data['aLen']).'Min'; //durchschnittslaenge
-	          if($count>1) $title.= '∅';
-	      }
-	      if( isset($more_data['sender']) )$title.= " ".implode(', ',$more_data['sender'])."";
+        if($count>1)$title.= " ($count)";
+        if( isset($more_data['aLen']) && $more_data['aLen']!==NULL ){
+            $title.= ' &nbsp; '.round($more_data['aLen']).'Min'; //durchschnittslaenge
+            if($count>1) $title.= '∅';
+        }
+        if( isset($more_data['sender']) )$title.= " ".implode(', ',$more_data['sender'])."";
           if($lastDate!='') $lastDateFormat = de_getWochentag($lastDate+(60*60)).gmdate(', d.m.Y H:i', $lastDate+(60*60));
-	      //if($lastDate!='') $title.= "<span class=\"t_sel_date\" >".$lastDateFormat."</span>";
+        //if($lastDate!='') $title.= "<span class=\"t_sel_date\" >".$lastDateFormat."</span>";
               if($lastDate!='') $date = $lastDateFormat; else $date=''; //"<span class=\"t_sel_date\" >"....</span>
 
-	      $arrayThemen[ $b ][ $href ] = array('name'=>substr($s,0,50), 'count'=>"$count", 'title'=>$title, 'date'=>$date, 'lastDate'=>$lastDateFormat);
+        $arrayThemen[ $b ][ $href ] = array('name'=>substr($s,0,50), 'count'=>"$count", 'title'=>$title, 'date'=>$date, 'lastDate'=>$lastDateFormat);
         }
 
         if( isset($allBuchstaben) ){
@@ -178,7 +178,7 @@ function getThemenliste($options){
                   $s = floor($allBuchstabenFirstEntry[$b]/$diff)*$diff;
                   $possible_url= $possible_url_base.'&start='.$s.'&ende='.($s+$diff).'';
                 } else $possible_url = '';
-             $out.= "&nbsp;<a href=\"$possible_url#buchstabe_".rawurlencode(utf8_encode($b))."\" data-starts-with-no=\"$ll\" onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';\" class=\"buchstaben_anker_link\"><b>".utf8_encode($b)."</b>&nbsp;<small>($count)</small> </a> &nbsp;\n";	
+             $out.= "&nbsp;<a href=\"$possible_url#buchstabe_".rawurlencode(utf8_encode($b))."\" data-starts-with-no=\"$ll\" onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';\" class=\"buchstaben_anker_link\"><b>".utf8_encode($b)."</b>&nbsp;<small>($count)</small> </a> &nbsp;\n";  
             }
             $out.= "
              <script language=\"javascript\" type=\"text/javascript\">
@@ -198,7 +198,7 @@ function getThemenliste($options){
         //file_put_contents($file.'__cache__select_thema',$out);
        }
       //}else{
-      //   $out = file_get_contents($file.'__cache__select_thema');	
+      //   $out = file_get_contents($file.'__cache__select_thema');  
       //}
       
 
@@ -209,40 +209,40 @@ function getThemenliste($options){
 
 
 function de_getWochenTag($timestamp_fuer_wochentag){
-	$trans = array(
-		'Monday'    => 'Montag',
-		'Tuesday'   => 'Dienstag',
-		'Wednesday' => 'Mittwoch',
-		'Thursday'  => 'Donnerstag',
-		'Friday'    => 'Freitag',
-		'Saturday'  => 'Samstag',
-		'Sunday'    => 'Sonntag',
-		'Mon'     => 'Mo',
-		'Tue'     => 'Di',
-		'Wed'     => 'Mi',
-		'Thu'     => 'Do',
-		'Fri'     => 'Fr',
-		'Sat'     => 'Sa',
-		'Sun'     => 'So'
-	);
-	$wochentag = date("D", $timestamp_fuer_wochentag);
-	$wochentag = strtr($wochentag, $trans);
-	return $wochentag;
+  $trans = array(
+    'Monday'    => 'Montag',
+    'Tuesday'   => 'Dienstag',
+    'Wednesday' => 'Mittwoch',
+    'Thursday'  => 'Donnerstag',
+    'Friday'    => 'Freitag',
+    'Saturday'  => 'Samstag',
+    'Sunday'    => 'Sonntag',
+    'Mon'     => 'Mo',
+    'Tue'     => 'Di',
+    'Wed'     => 'Mi',
+    'Thu'     => 'Do',
+    'Fri'     => 'Fr',
+    'Sat'     => 'Sa',
+    'Sun'     => 'So'
+  );
+  $wochentag = date("D", $timestamp_fuer_wochentag);
+  $wochentag = strtr($wochentag, $trans);
+  return $wochentag;
 }
 function de_getMonat($timestamp_fuer_monat){
-	$trans = array(
-		'January'   => 'Januar',
-		'February'  => 'Februar',
-		'March'     => 'März',
-		'May'     => 'Mai',
-		'June'    => 'Juni',
-		'July'    => 'Juli',
-		'October'   => 'Oktober',
-		'December'  => 'Dezember',
-	);
-	$monat = date("F", $timestamp_fuer_monat);
-	$monat = strtr($monat, $trans);
-	return $monat;
+  $trans = array(
+    'January'   => 'Januar',
+    'February'  => 'Februar',
+    'March'     => 'März',
+    'May'     => 'Mai',
+    'June'    => 'Juni',
+    'July'    => 'Juli',
+    'October'   => 'Oktober',
+    'December'  => 'Dezember',
+  );
+  $monat = date("F", $timestamp_fuer_monat);
+  $monat = strtr($monat, $trans);
+  return $monat;
 }
 
 
