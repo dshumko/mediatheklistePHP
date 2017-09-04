@@ -201,7 +201,7 @@ function filmliste_eintrage_event_onclick(){
                           nummer = nummer.replace('mainlink_film_' ,'');
                           nummer = Number(nummer);
                           if(nummer<2)  var scrollup_i = 0;                          
-                          else var scrollup_i = nummer-2;
+                          else var scrollup_i = nummer; //-2
                           //alt window.location = '#anker1_film_'+scrollup_i;
                           updateHash('#anker1_film_'+scrollup_i);
                           loadNewSite();

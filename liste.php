@@ -228,7 +228,7 @@ function setFocusForLastLink(){
     if( location.hash=='#settings') toggleShowOptions('show');
     if( location.hash.search('#film_')!==-1  || location.hash.search('#anker1_film_')!==-1){ 
     var mainlinkNumber = location.hash.replace('#','').replace('anker1_film_','');
-    var number = Number(mainlinkNumber) + 2;
+    var number = Number(mainlinkNumber);//  + 2;
     var mainlink = 'mainlink_' + 'film_' + number; //+2 ist die Korrektur damit der obere Rand nicht überdeckt (vgl. Code beim erstellen des Ankers)
     console.log( 'setzte Fokus auf:'+' id: '+mainlink );
             document.getElementById(mainlink).focus();
@@ -236,7 +236,7 @@ function setFocusForLastLink(){
       }
        if( location.hash.search('#thema_sel_')!==-1 || location.hash.search('#anker1_thema_sel_')!==-1){
             var mainlinkNumber = location.hash.replace('#','').replace('anker1_thema_sel_','');
-            var number = Number(mainlinkNumber) + 5;
+            var number = Number(mainlinkNumber);// + 5;
             //console.log( ' nr: '+mainlinkNumber );
             var mainlink = 'mainlink_' + 'thema_sel_' + number;//+5 ist die Korrektur damit der obere Rand nicht überdeckt (vgl. Code beim erstellen des Ankers)
             //console.log( 'setzte Fokus auf:'+' id: '+mainlink );
@@ -976,8 +976,8 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
                   if( isset($ll_von) && isset($ll_bis) && ($ll<$ll_von || $ll>$ll_bis) )continue;
                   //$aktiv;
                   $anker_ll = $ll;
-                  if($anker_ll<=6)$anker_ll = 0;
-                  else if($anker_ll>6) $anker_ll -=5; //damit der aktuelle Eintrag nicht verdeckt ist von der Oberen Leiste
+                  //if($anker_ll<=6)$anker_ll = 0;
+                  //else if($anker_ll>6) $anker_ll -=5; //damit der aktuelle Eintrag nicht verdeckt ist von der Oberen Leiste
                   //   <span class=\"link_to_thema_span t_sel\">...</span><span style=\"clear:both\"></span>
                   
                   echo "
