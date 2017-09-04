@@ -1092,7 +1092,7 @@ foreach($allOuts as $outArrayS){ //Timestamp Array
 	    foreach ($outArray['videofiles_links'] as $videoTitle => $videoUrl ){
 	        $class = strtolower( substr(strip_tags($videoTitle), 0,2) );
 		echo "
-		    <a class=\"videolink_$class\" style=\"left:20pt;padding-left:5pt;\" href=\"".$videoUrl."\" > $videoTitle</a><br />";
+		    <a class=\"videolink_$class\ videolink\" href=\"".$videoUrl."\" > $videoTitle</a><br />";
 	    }
 	            
 	    //echo "</span>";
