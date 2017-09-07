@@ -350,7 +350,8 @@ function toggleShowOptions(state){
         if(state== 'show'){document.getElementById('options').style.display = 'block';showAlleFromHideThema()}
         else if(state=='close'){
                 document.getElementById('options').style.display = 'none';
-                if( location.hash.search('#settings')!==-1)window.history.back();//location.hash = '';
+                history.replaceState( history.state, document.title , '#');
+                //if( location.hash.search('#settings')!==-1)window.history.back();//location.hash = '';
         }
         document.getElementById('vorschaltseite_thumb').src = document.getElementById('vorschaltseite_thumb').getAttribute('data-src');
 }

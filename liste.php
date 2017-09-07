@@ -192,14 +192,15 @@ function setFocusForLastLink(){
     if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ){
            echo "
            // setzt/korrigiere URL mit Start/Ende-Parameter
-           var c = parseInt( getCookie('pageination') );
+           var c_raw = getCookie('pageination');
+           var c = parseInt( c_raw );
            
            var matchS = window.location.href.match(/start=(-?[0-9]*)/);
-           var start = 1;
+           var start  = 0;
            if(matchS!=null && matchS.length>1) start = parseInt(matchS[1]);
            
            var matchE = window.location.href.match(/ende=(-?[0-9]*)/);
-           var ende = 0;
+           var ende   = 0;
            if(matchE!=null && matchE.length>1) ende = parseInt(matchE[1]);
            
            var e = location.href.match('#(.*)');
@@ -207,16 +208,20 @@ function setFocusForLastLink(){
            if(e!=null && e.length>0)anker = '#'+e[1];
            
            var ende_kor = -1; //korrektur am Ende
+           //console.log(c_raw+'+'+c+'+'+start+'+'+ ende);
            
-           var cleanUrl = window.location.href.replace(anker,'').replace(/start=-?[0-9]*/,'').replace(/ende=-?[0-9]*/,'');
-           if( c<=0 && (start>0 || ende>0) ){ //lösche Pageination
-             window.location = cleanUrl+'anker';
+           var cleanUrl = window.location.href.replace(anker,'').replace(/start=-?[0-9]*/,'').replace(/ende=-?[0-9]*/,'').replace(/&&/,'&').replace(/&&/,'&');
+           if (cleanUrl.substring([ cleanUrl.length -1],1)=='&' ) cleanUrl = cleanUrl.substring(0,cleanUrl.length-2); //& am Ende löschen
+           console.log(cleanUrl);
+           if( (c_raw=='' || c<=0) && (start>0 || ende>0) ){ //lösche Pageination
+             window.location = cleanUrl+anker;
            }else if( c>0 && (start+c+ende_kor)!=ende ){         //korrigiere Pageination
              ende = start+c;
              var preventLoop = 0;
              if(parseInt(getCookie('preventRedirectLoop'))>0) preventLoop+=parseInt(getCookie('preventRedirectLoop'));
              createCookieInSeconds('preventRedirectLoop', preventLoop+1, 5);
-             if( parseInt(getCookie('preventRedirectLoop'))<5) window.location = cleanUrl+'&start='+start+'&ende='+(ende+ende_kor)+anker;
+             if(start==0) start = 1;
+             if( parseInt(getCookie('preventRedirectLoop'))<10) window.location = cleanUrl+'&start='+start+'&ende='+(ende+ende_kor)+anker;
            }
            
            ";
