@@ -784,7 +784,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
          <hr>
          Filme mit Audiodeskription oder "AD |" im Namen   
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideAudioDeskription_an" onClick="createCookie(\'hideAudioDeskription\',\'1\',356*10);window.location.reload();">ausgeblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideAudioDeskription_an" onClick="createCookie(\'hideAudioDeskription\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_hideAudioDeskription_aus" onClick="createCookie(\'hideAudioDeskription\',\'\',0);window.location.reload();">anzeigen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideAudioDeskription\')==1)document.getElementById(\'options_link_hideAudioDeskription_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideAudioDeskription_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
@@ -792,7 +792,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
          <hr>
          Filme mit Trailer im Namen   
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);window.location.reload();">ausgeblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);window.location.reload();">anzeigen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
@@ -800,7 +800,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
          <hr>
 <br>
          <div style="clear:both"></div>
-         Filme ausblenden, die kürzer sind als:
+         Filme, die kürzer sind als:
          <!--<span style="float:left; text-align:left">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp; oder: &nbsp;&nbsp;&nbsp;
@@ -827,7 +827,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         $url = 'liste.php?';
 
   //<br><br>
-        echo "<hr>Themen ausblenden: 
+        echo "<hr>einzelne Themen 
         <span style=\"float:right;padding:1pt\">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"if(confirm('Alle versteckten Einträge wieder anzeigen?')==true){createCookie('hide_thema','',-1);window.location.reload();}return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
@@ -846,7 +846,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         echo '<br><br>';
         
         echo '
-        <hr>Themenliste seitenweise anzeigen
+        <hr>Themenliste seitenweise
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;
@@ -855,18 +855,30 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
               <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
               <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
               &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">lange Listen</a>
+              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">lange Listen (scrollen)</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
          
         <hr>
          <span style="float:right; text-align:right"></span>
-                  Fußleiste zum hochscrollen <span style="color:#999999">&nbsp;hilfreich bei reiner Smart-TV Mausbedienung</span>
+                  feste Fußleiste
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);window.location.reload();">ausblenden</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);window.location.reload();">anzeigen</a>
+
+
+              
         </span>
+        
+         
+        <div align="right">
+          <img style="float:right" src="img/fussleiste_w500px.png" />
+          <span style="color:#999999">
+          <span style="color:#999999">&nbsp;Hilfreich bei reiner Smart-TV Mausbedienung,<br>
+          &nbsp;durch Link zum schneller Spingen nach oben
+          </span>
+        </div>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'showFooter\')==1)document.getElementById(\'options_link_showFooter_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_showFooter_aus\').innerHTML+=\' &#10008;\'; </script>
+        <div style="clear:both"></div>
         
          
          <hr>
@@ -880,7 +892,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         
         
         ';
-        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"float:right\">immer (nicht änderbar)</span></span><br>"; 
+        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>"; 
         echo " <br><br><br>";
      
 
