@@ -13,7 +13,6 @@ function getSenderListe($options){
       if( isset($_GET['hide_shorter_then']) && $_GET["hide_shorter_then"]!='' )  $s3 = "&hide_shorter_then=".$_GET['hide_shorter_then']; else $s3="";
       if( isset($_GET['no_table']) && $_GET["no_table"]!='' )  $s3 .= "&no_table=".(int)$_GET['no_table'];
       
-      //if( isset($hideHoerfassung) && $hideHoerfassung!='1' ) $s2 .="&hideHoerfassung=".$hideHoerfassung;  //verschoben auf Clientseite in Javascript
       $senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
       $senderListOutArray['Alle'] = "liste.php?sender=alle$s2$s3";
       
@@ -29,10 +28,9 @@ function getSenderListe($options){
 
 
 function getThemenliste($options){
-      //$hideHoerfassung = 0; if($options['hideHoerfassung'])     $hideHoerfassung     = $options['hideHoerfassung']; 
       $hideArte_fr     = 0; if($options['hideArte_fr'])         $hideArte_fr       = $options['hideArte_fr'];
       $hideShorterThen = 0; if($options['hideShorterThen'])     $hideShorterThen   = $options['hideShorterThen'];
-      //die('aa'.$hideShorterThen);
+      
       if( $hideShorterThen>0)$fileNameAppend='hide_shorter_then'.(int)$hideShorterThen; else $fileNameAppend='';
       if( file_exists('cache/1/themenliste'.$fileNameAppend.'.serialize') )$senderThema = unserialize( utf8_decode(file_get_contents('cache/1/themenliste'.$fileNameAppend.'.serialize')));
       else if( file_exists('cache/1/themenliste.serialize') )$senderThema = unserialize( utf8_decode(file_get_contents('cache/1/themenliste.serialize'))); else $senderThema = array();
@@ -127,7 +125,6 @@ function getThemenliste($options){
               if( isset($_GET['hide_shorter_then']) && $_GET["hide_shorter_then"]!='' )  $s3 = "&hide_shorter_then=".$_GET['hide_shorter_then']; else $s3="";
               $href     = "liste.php?".$senderUrlPart."thema=".rawurlencode(str_replace('\\"','"',$s))."".$s3;
               if( isset($_GET["quality"]) && $_GET["quality"]!='' ) $s2 ="&quality=".$_GET["quality"]; else $s2 = '';
-              //if( isset($hideHoerfassung) && $hideHoerfassung!='1' ) $s2 .="&hideHoerfassung=".$hideHoerfassung;
               $b = strtoupper(substr($s,0,1));
               $lastBuchstabe = $b;
               if(!isset($allBuchstaben[$b])) $allBuchstaben[$b] = 0;

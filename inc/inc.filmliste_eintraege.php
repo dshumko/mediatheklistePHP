@@ -40,7 +40,6 @@ function checkIfVideoPlayable($url){ //betrifft nur normale Browser
 
 function createAllElements(){
         global $allOuts, $out1, $hideArte_fr, $debugTestMaxLineRead, $file, $maxJeSeite, $hideShorterThen, $remove_https_at_video_links, $dereff, $showSize, $showMinDSLSpeed, $letzterListeneintragOben, $use_cache_filmlist_sender, $use_cache_filmlist_thema, $fullscreen_play, $system_allow_exec_and_have_unxz, $orf_filcheck_legal__filesize, $maxRender;
-        //$hideTrailer, $hideHoerfassung, 
 
         $allOuts = array();
         $out =''; //eine 
@@ -78,8 +77,6 @@ function createAllElements(){
         else*/
 
 
-        //if( $hasAndShowFavs ){ $lineArray = explode('"X":', file_get_contents($file) ); }
-        //else
         if( $beOnThemenSelect ){}
         else {
                 /* alt, muell:
@@ -488,20 +485,7 @@ function createAllElements(){
                 }
             }
             
-            /*Not working
-            if( isset($json_line->X[9]) && strstr($json_line->X[9],'zdf.de/') &&
-                (!isset($json_line->X[13]) || $json_line->X[13]=='') &&
-                ( strstr($json_line->X[8],'http://rodlzdf-a.akamaihd.net/none/zdf')  )
-                 ){
-// https://zdfvodnone-vh.akamaihd.net/i/meta-files/zdf/smil/m3u8/300
-// /17/08/170808_millionenstadt3_inf/1/170808_millionenstadt3_inf.smil/index_229000_av.m3u8?null=0
-// http://rodlzdf-a.akamaihd.net/none/zdf
-// /17/08/170808_millionenstadt3_inf/1/170808_millionenstadt3_inf_2476k_p9v13.mp4
-                    $linkVeryLow = str_replace('http://rodlzdf-a.akamaihd.net/none/zdf','http://zdfvodnone-vh.akamaihd.net/i/meta-files/zdf/smil/m3u8/300',$json_line->X[8]);
-                    $linkVeryLow = preg_replace('/_inf_(.*).mp4/','_inf.smil/index_229000_av.m3u8?null=0',$linkVeryLow);
-                                        $out.= "<a   onClick=\"if( location.hash.search('#anker1_film_')!==-1)window.history.back();window.location='#anker1_film_".($anker_i-1)."';loadNewSite();\"  style=\"left:20pt;padding-left:5pt;\" href=\"".$dereff.$linkVeryLow."\" > RTMP klein ? </a><br />";
             
-            }*/
             if(isset($json_line->X[11]) && $json_line->X[11]!='')$outArray['videofiles_links']['RTMP'] = $dereff.$json_line->X[11];
             if(isset($json_line->X[15]) && $json_line->X[15]!='')$outArray['videofiles_links']['RTMP HD'] = $dereff.$json_line->X[15];
         
@@ -553,26 +537,20 @@ function createAllElements(){
 function onFilmlisteSeite_linkAddToSchnellauswahl(){
         //Schnellauswahl hinzufügen (Link auf der Themseite selbst)
         $senderUrlPart = '';
-    if(isset($_GET['sender']) && $_GET['sender']!='') $senderUrlPart = 'sender='.$_GET['sender'].'&';
+        if(isset($_GET['sender']) && $_GET['sender']!='') $senderUrlPart = 'sender='.$_GET['sender'].'&';
         $href = "liste.php?".$senderUrlPart."thema=".rawurlencode($_GET['thema'])."";
         if( isset($_COOKIE['favs']) ) $favs = JSON_decode($_COOKIE['favs']); else $favs = array();
-    $s2 = '';
-        //if( isset($_GET["quality"]) && $_GET["quality"]!='' ) $s2 .= "&quality=".$_GET['quality']; //verschoben in Cookie/Javascript
+        $s2 = '';
         if( isset($_GET["search"]) && $_GET["search"]!='' ) $s2 .= "&search=".rawurlencode($_GET['search']);
-    if( isset($_GET["search_fulltext"]) && $_GET["search_fulltext"]!='' ) $s2 .= "&search_fulltext=".$_GET['search_fulltext'];
-    if( isset($_GET["filter_minFilmLength"]) && $_GET["filter_minFilmLength"]!='' ) $s2 .= "&filter_minFilmLength=".$_GET['filter_minFilmLength'];
-    if( isset($_GET["filter_maxFilmLength"]) && $_GET["filter_maxFilmLength"]!='' ) $s2 .= "&filter_maxFilmLength=".$_GET['filter_maxFilmLength'];
+        if( isset($_GET["search_fulltext"]) && $_GET["search_fulltext"]!='' ) $s2 .= "&search_fulltext=".$_GET['search_fulltext'];
+        if( isset($_GET["filter_minFilmLength"]) && $_GET["filter_minFilmLength"]!='' ) $s2 .= "&filter_minFilmLength=".$_GET['filter_minFilmLength'];
+        if( isset($_GET["filter_maxFilmLength"]) && $_GET["filter_maxFilmLength"]!='' ) $s2 .= "&filter_maxFilmLength=".$_GET['filter_maxFilmLength'];
 
-    //if(is_array($favs) && array_search(rawurldecode($href),$favs)!==FALSE)$a = '★ Thema löschen aus ';else    $a = '☆ Thema hinzufügen zur '; //gelöscht, da sonst nicht cachbar //".$a."
-    $onClick = "if(appendFavDataHrefSelf(this)){this.innerText='★...später in der Liste';}";
-    //if(is_array($favs) && array_search(rawurldecode($href),$favs)!==FALSE)$onClick = "removeFav('".rawurldecode($href)."');";//this.innerText='☆...später gelöscht aus Liste';";
-    //&& !strstr($_GET['thema'],'&')
-       echo "<span style=\"text-align:right\">";
-       //if( strstr($_GET['thema'],'"')!='' ) echo "<span class=\"schnellausw_h\" title=\"wegen '' im Namen\"> <s>Schnellauswahl nicht möglich</s> </span>";
-       //if(!strstr($_GET['thema'],'"') ) 
-       echo "<a href=\"#\" data-href=\"$href\" class=\"schnellausw_h t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color\" onClick=\"appendFavDataHrefSelf(this);return false;\">zur Schnellauswahl hinzufügen</a>\n";
-       echo "<span style=\"clear:both\"></span> &nbsp;</span>\n";
-       echo "<br>\n";
+        $onClick = "if(appendFavDataHrefSelf(this)){this.innerText='★...später in der Liste';}";
+        echo "<span style=\"text-align:right\">";
+        echo "<a href=\"#\" data-href=\"$href\" class=\"schnellausw_h t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color\" onClick=\"appendFavDataHrefSelf(this);return false;\">zur Schnellauswahl hinzufügen</a>\n";
+        echo "<span style=\"clear:both\"></span> &nbsp;</span>\n";
+        echo "<br>\n";
 
         
 }

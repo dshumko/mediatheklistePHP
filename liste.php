@@ -7,34 +7,13 @@ $hideShorterThen = 0;
 if(isset($_GET['hide_shorter_then']) && $_GET['hide_shorter_then']!='')$hideShorterThen = (int)$_GET['hide_shorter_then'];
 if(isset($_GET['thema']) ) $_GET['thema'] = str_replace('x4sdy0ANDx4sdy0','&',$_GET['thema']); //sonst Probleme mit & im Thema
 
-//Programmcode
-/* nun per Javascript
-if( isset($_GET['hideHoerfassung']) ){
-      if((int)$_GET['hideHoerfassung']==$hideHoerfassung)setCookie('hideHoerfassung','',0);
-      else{
-            $hideHoerfassung = (int)$_GET['hideHoerfassung'];
-            setCookie('hideHoerfassung',$hideHoerfassung,time()+60*60*24*30*12*3);
-      }
-}else if( isset($_COOKIE['hideHoerfassung']) ) $hideHoerfassung = (int)$_COOKIE['hideHoerfassung'];
-*/
-
 $addPageTitle = '';
 if(isset($_GET['sender']) && $_GET['sender']!='') $addPageTitle .= ' '.$_GET['sender'];
 if(isset($_GET['thema']) && $_GET['thema']!='')   $addPageTitle .= ' '.$_GET['thema'];
 
 
-//if( isset($_GET['hideHoerfassung']) && $_GET['hideHoerfassung']!='') $hideHoerfassung = $_GET['hideHoerfassung'];   
-
-
 //Seite im Browser cachen (wenn sich Filmdatei/Programm-Code nicht geändert haben, behalte Browscache)
-$siteAllowCache = true;
-/* die Bedinung wurde später in den Code verschoben
-if(isset($_GET['sender']) && $_GET['sender']!=''){ $siteAllowCache = true;} //alle Sender- oder Themen-Unterseiten
-else if( (!isset($_GET['sender']) || $_GET['sender']=='') && (!isset($_COOKIE['favs']) || strlen($_COOKIE['favs'])<10) ) $siteAllowCache = true; //=entspricht Startseite ohne Cookies
-*/
-
-
-if(file_exists($file) && $cacheActive && $siteAllowCache){
+if(file_exists($file) && $cacheActive){
 
     if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     $if_modified_since = preg_replace('/;.*$/', '',   $_SERVER['HTTP_IF_MODIFIED_SINCE']);
@@ -372,14 +351,7 @@ $options_createCopyEachSender = array('hideArte_fr'=>$hideArte_fr, 'hideShorterT
 if(
       isset($_GET['list_update'])
    ){
-         
-         /* || !file_exists($file) ||
-      ( 
-    isset($filmlisteAutoReload_ifOlderThen) && $filmlisteAutoReload_ifOlderThen>0 && 
-    ( !file_exists($file) || ( file_exists($file) && date('U') > filemtime($file)+($filmlisteAutoReload_ifOlderThen*60) ) )
-      )
-      */
-  
+           
   require_once('inc/inc.filmlisten_download.php');
   set_time_limit(600); //k.a. ob das hier wirkt
   echo "<br><br><br>";
@@ -491,7 +463,7 @@ if( file_exists('cache/status_lastFilmlistenFileModified') ) $d = str_replace(' 
 if(!isset($_GET['sender'])) echo " &nbsp; Stand: ".$d.' &nbsp;'; //date ("d.m.Y H:i", filemtime($file))
 echo "</span><span style=\"clear:both\"></span>\n";
 
-/* Suchen/Filtern aus (geht auch nur in aktueller Filmliste)
+/* Suchen/Filtern aus (geht auch nur in aktueller Filmliste) (veralteter Programmcode; Suche wurde gelöscht, da viel Ressourcen braucht)
 if( isset($_GET['sender']) && $_GET['sender']!='' ){
       $n = 'display:none';
       if( isset($_GET['filter_minFilmLength']) && $_GET['filter_minFilmLength']!='' ) $n = '';
@@ -532,7 +504,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' ){
 
 
 if( isset($_GET['thema']) && $_GET['thema']!=''){
-echo "<br/ ><br />";
+      echo "<br/ ><br />";
       require_once 'inc/inc.filmliste_eintraege.php';
       onFilmlisteSeite_linkAddToSchnellauswahl();
 }
@@ -548,29 +520,14 @@ if( isset($_COOKIE['favs']) && !isset($_GET['sender']) && !isset($_GET['thema'])
     if(isset($_GET['sender'])) $d =' display:none';else $d = '';
     echo "<div id=\"schnellauswahl\" style=\"$d\">";
     echo "Schnellauswahl:</br>";
-    /*$favs = JSON_decode($_COOKIE['favs']);
-    natcasesort($favs);
-    foreach( $favs as $fav){ 
-      //if( isset($_GET["quality"]) && $_GET["quality"]!='' ) $s2 = "&quality=".$_GET['quality']; else $s2="";//verschoben in Cookie/Javascript
-      $s2 = '';
-      echo "<span class=\"line_schnellauswahl line_span\">
-               <a href=\"#\" style=\"float:right\" onclick=\"if( removeFav('".$fav."')){window.location.reload();this.text='wird gelöscht';}\" style=\"color:blue\">löschen</a>
-               <a style=\"display:block;width:100%\" href=\"".$fav.$s2."\">".str_replace('liste.php?sender=','',str_replace('&thema=',' ',($fav)))."</a>
-          </span>";
-    }
-    echo "<span style=\"cursor:pointer;text-decoration:underline; color:blue;float:right;text-align:right;display:inline-block\" onClick=\"  var date = new Date();      date.setTime(date.getTime() + (0 * 24 * 60 * 60 * 1000));expires = '; expires=' + date.toGMTString();    document.cookie = 'favs' + '=' + '' + expires + '; path=/';window.location.reload();\">Alle löschen</span><span style=\"clear:both\"></span>";*/
     echo "</div>";
     echo "<script language=\"javascript\" type=\"text/javascript\">getSchnellauswahl()</script>";
 }
 
-//if(isset($_GET['sender']))echo "<a href=\"#\" onclick=\"document.getElementById('schnellauswahl').style.display='inline';this.style.display='none';\" >Zeige Schnellauswahl</a><br>";
-
 echo "<span id=\"start_list_beginn\"></span>";
 
-//dann ist der ander Teil nicht mehr klickbar: echo " <span style=\"width:100%;min-width:100%;bottom:0px;display:block;position:fixed;margin:0pt;padding:10pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:10;text-align:center;;\"><a href=\"liste.php?\">⌂</a></span>";
-
 echo "<a name=\"top\"></a>\n";
-//echo "<br><br><hr>";
+
 
 /* 
 array(20) { [0]=> string(6) "Sender" [1]=> string(5) "Thema" [2]=> string(5)
@@ -587,13 +544,6 @@ $sender = array();
 $senderThema = array();
 $allLengths = array();
 
-//prüfe ob beim Startseite aus den Cache lesen
-//if($cache_for_startseite_is_fresh !='' && (!isset($_GET['sender']) || $_GET['sender']=='') ){
-//  if( file_exists($file.'__cache__select_sender') && filemtime($file) <= filemtime($file.'__cache__select_sender') &&
-//    file_exists($file.'__cache__select_thema')  && filemtime($file) <= filemtime($file.'__cache__select_thema') ){
-//    $cache_for_startseite_is_fresh = 1;  
-//   }
-//}
 
 
 echo "
@@ -635,7 +585,6 @@ var spinner = new Spinner(opts).spin()
 target.appendChild(spinner.el)
 
   </script>";
-//if($cache_for_startseite_is_fresh==1) echo "  <script language=\"javascript\"  type=\"text/javascript\">document.getElementById('spinner_elem').style.display='none';</script>";
 echo "
     </span>
   </span>
@@ -643,10 +592,6 @@ echo "
 ";
 
 
-
-//if( !isset($_GET['sender']) || $_GET['sender']=='' )echo "Bitte sende auswählen liste.php?sender=ABC<br>";
- 
-//if( isset($_GET['sender']))$s=$_GET['sender'];else $s='';
 echo "
 <div id=\"fixed_head\" style=\"width:100%;min-width:100%;top:0px;display:block;position:fixed;margin:0pt;padding:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;\"></span>\n";
 
@@ -686,7 +631,7 @@ echo "<div style=\"float:right;padding-right: 12pt;text-align:right\">
   <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">⚙ Einstellungen</a> <!-- <a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >&#x2315; Suchen</a> -->
   <a href=\"#bottom\" title=\"nach unten scrollen\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\" tabindex=\"0\">↧</a>
   <a href=\"#top\" title=\"nach oben scrollen\" style=\"margin-left:0px;padding-left:0px;text-decoration:none\" tabindex=\"0\">↥</a>";
-//if(isset($_GET['sender']))echo "<a style=\"float:right;padding-right: 25pt;\" href=\"#\" onclick=\"document.getElementById('schnellauswahl').style.display='inline';\" >Zeige Schnellauswahl</a>";
+
 
 echo "</div>";
 echo "
@@ -700,7 +645,7 @@ function show_thema_select(){
 }*/
 </script>";
 echo "<br>\n";
-//if(isset($_GET['sender']))echo "<a href='#thema_select' id=\"link_thema_select\" onclick=\"document.getElementById('link_thema_select').style.background='#f3f3f3'; document.getElementById('spinner_elem').style.display='inline'; window.setTimeout(show_thema_select,10);\"  class=\"link_black_before_onload\" tabindex=\"2\"><span style=\"background:green\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Thema wählen&nbsp;&nbsp;&nbsp;";
+
 if(isset($_GET['sender']))echo "<a href='liste.php?sender=".$_GET['sender']."' id=\"link_thema_select\" onclick=\"document.getElementById('link_thema_select').style.background='#f3f3f3'; document.getElementById('spinner_elem').style.display='inline'; window.setTimeout(show_thema_select,10);\"  class=\"link_black_before_onload\" tabindex=\"2\"><span style=\"background:green\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Thema wählen&nbsp;&nbsp;
 <script type=\"text/javascript\">
 var c = getCookie('hideShorterThen');
@@ -710,9 +655,7 @@ if(c>0) document.getElementById('link_thema_select').href = document.getElementB
 if( isset($_GET['thema']))$t=$_GET['thema'];else $t='';
 echo "<span style=\"color:black\">$t</span>";
 echo "</a>";
- 
 
-//echo"</div></div>\n"; //ende von Header-Leiste nach Unten verschoben
 
 
   
@@ -841,8 +784,6 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         
         ";  
         
-        //if($hideHoerfassung==1) echo "<hr><span style=\"color:#999999\">Filme mit Hörfassung im Namen werden ausgeblendet</span>";//verschoben in Javascript
-        //if($hideTrailer == 1) echo "<hr><span style=\"color:#999999\">Filme mit Trailer im Namen werden ausgeblendet</span><br>";//verschoben in Javascript
         echo '<br><br>';
         
         echo '
@@ -993,16 +934,6 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
         //else echo "<br><br>";
         $ll = 0;
         
-        /*
-
-      <a name="anker1_thema_sel_1507" class="anker_thema"></a>
-      <span class="link_to_thema_span t_sel">
-          <a href="http://localhost/Mediathek/liste.php?sender=alle&amp;thema=Landesschau%20Baden-W%C3%BCrttemberg" id="mainlink_thema_sel_1507" onclick="if( location.hash.search('#anker1_thema_sel_')!==-1)window.history.back();window.location='#anker1_thema_sel_1502';loadNewSite()" class="t_sel_a">Landesschau Baden-Württemberg (3509) &nbsp; 8Min∅ ard, swr<span class="t_sel_date">Fr, 15.09.2017 17:45</span></a>
-          <a href="#" style="margin-left:15pt" class="link_every_same_color_underl link_every_same_color" onclick="appendHideThemaSelf(this);return false;">Ausblenden</a>
-          <a href="#" class="t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color" onclick="appendFavSelf(this);return false;">zur Schnellauswahl hinzufügen</a>
-          <span style="clear:both"></span>
-     </span>
-     */
         $tag_table = 'table';
         $tag_tr = 'tr'; $tag_tr_append = ' class="t_row" ';
         $tag_td = 'td';
@@ -1043,9 +974,6 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
                       <$tag_td class=\"td_del\" align=\"center\"></$tag_td>
                       <$tag_td class=\"td_schnell\"></$tag_td>
                   </$tag_tr>\n";
-            //wird inzwischen per Javascript hinzugefügt:
-            //          <a href=\"#\" style=\"margin-left:15pt\" class=\"link_every_same_color_underl link_every_same_color\" onClick=\"appendHideThemaSelf(this);return false;\">Ausblenden</a>
-            //          <a href=\"#\" class=\"t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color\" onClick=\"appendFavSelf(this);return false;\">zur Schnellauswahl hinzufügen</a>
               }
         }         
 

@@ -189,7 +189,6 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
                 if( !isset($themenlist[$s]) )$themenlist[$s] = array();
                 if( !isset($themenlist[$s][$t]) )$themenlist[$s][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);
                 
-                //if($wi!=0 && $i>=$wi && $i<=$wi+10 )echo $line.'<br>';
                 if($themenlist[$s][$t]['lastDate']<$datum) $themenlist[$s][$t]['lastDate'] = $datum;
                 $themenlist[$s][$t]['count']++;
                 if($laenge!=''){ $themenlist[$s][$t]['countFuerGesamtLaenge']++; $themenlist[$s][$t]['gesamtLaenge'] += $laenge; }
@@ -242,7 +241,6 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
         
         $return = preg_match('/^{"Filmliste":\["([^"]*)","([^"]*)"/U',$line0,$treffer);
         file_put_contents('cache/filmliste_date', utf8_encode($treffer[1]));
-        //var_dump($themenlist);die();
 }//end function
 
 
