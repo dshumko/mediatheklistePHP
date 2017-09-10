@@ -271,17 +271,17 @@ function createAllElements(){
 
                 
                 
-            //zeige nur Schnellauswahl
-            $is_in_schnellauwahl = false;$favs = array();
-            if( !isset($_GET['sender']) && !isset($_GET['thema']) ){
-              if( isset($_COOKIE['favs']) )$favs = JSON_decode($_COOKIE['favs']); else $favs= array();
-              foreach($favs as &$f)  $f = str_replace('x4sdy0ANDx4sdy0','&',$f);
-              if(array_search('liste.php?sender='.$json_line->X[0].'&thema='.$json_line->X[1],$favs) !==FALSE) $is_in_schnellauwahl = true;
-              elseif(array_search('liste.php?sender=alle&thema='.$json_line->X[1],$favs) !==FALSE) $is_in_schnellauwahl = true;
-              else $is_in_schnellauwahl = false;
-            }        
-        
-            $linkHd = '';
+        //zeige nur Schnellauswahl
+        $is_in_schnellauwahl = false;$favs = array();
+        if( !isset($_GET['sender']) && !isset($_GET['thema']) ){
+          if( isset($_COOKIE['favs']) )$favs = JSON_decode($_COOKIE['favs']); else $favs= array();
+          foreach($favs as &$f)  $f = str_replace('x4sdy0ANDx4sdy0','&',$f);
+          if(array_search('liste.php?sender='.$json_line->X[0].'&thema='.$json_line->X[1],$favs) !==FALSE) $is_in_schnellauwahl = true;
+          elseif(array_search('liste.php?sender=alle&thema='.$json_line->X[1],$favs) !==FALSE) $is_in_schnellauwahl = true;
+          else $is_in_schnellauwahl = false;
+        }        
+    
+        $linkHd = '';
         $linkLow = '';
         $linkVeryLow = '';
             
@@ -291,54 +291,54 @@ function createAllElements(){
                 if(count($e)>1) $linkLow = substr($json_line->X[8],0,$e[0]).$e[1];
                 else $linkLow = $json_line->X[8].$json_line->X[12];
                 if($remove_https_at_video_links)$linkLow = str_replace('https://','http://',$linkLow); 
-            }
+        }
 
-            if( isset($json_line->X[14]) && $json_line->X[14]!=''){            
+        if( isset($json_line->X[14]) && $json_line->X[14]!=''){            
                 $e = explode('|',$json_line->X[14]);
                 if(strtolower($json_line->X[0])=='zdf')$link = substr($json_line->X[8],0,$e[0]+1).$e[1];
                 if(count($e)>1) $linkHd = substr($json_line->X[8],0,$e[0]).$e[1];
                 else $linkHd = $json_line->X[8].$json_line->X[14];
                 if($remove_https_at_video_links)$linkHd = str_replace('https://','http://',$linkHd);
         }
-            
-            
-            
-           //jetzt die Zeile die darstellt (nicht alle werden dargestellt, wenn liste zu lang werden würde)
-           if( (isset($_GET['sender']) && ( $_GET['sender']=='alle' || strtolower($_GET['sender']) == $aktuellerSender)) || $is_in_schnellauwahl ){
-             if($rendered_line_count>=$maxRender)continue;
-             if( !isset($_GET['thema']) || $_GET['thema']=='alle' ||
-                  strtolower($_GET['thema']) == strtolower($json_line->X[1]) ||
-                  (isset($_GET['search']) && $_GET['search']!='') || 
-              $is_in_schnellauwahl ){
+        
+        
+        
+       //jetzt die Zeile die darstellt (nicht alle werden dargestellt, wenn liste zu lang werden würde)
+       if( (isset($_GET['sender']) && ( $_GET['sender']=='alle' || strtolower($_GET['sender']) == $aktuellerSender)) || $is_in_schnellauwahl ){
+         if($rendered_line_count>=$maxRender)continue;
+         if( !isset($_GET['thema']) || $_GET['thema']=='alle' ||
+              strtolower($_GET['thema']) == strtolower($json_line->X[1]) ||
+              (isset($_GET['search']) && $_GET['search']!='') || 
+          $is_in_schnellauwahl ){
 
-                $out = "<tr>";
+            $out = "<tr>";
+        
+        $link = urlencode($json_line->X[8]);
+        $linkMain = $json_line->X[8];
+        /* verschoben in Javascript
+        if(isset($_GET['quality']) && $_GET['quality']!='normal' && $_GET['quality']!=''){
+            if($_GET['quality']=='low' && $linkLow!=''){
+                    $linkMain = $linkLow;
+                    if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[12]) )!=''){ //vlt. ist ja eine der anderen VideoVersionen abspielbar
+                            if( isset($json_line->X[8]) && $json_line->X[8]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
+                            else if( isset($json_line->X[14]) && $json_line->X[14]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
+                    }
+            }
+            if($_GET['quality']=='hd'  && $linkHd!='' ){
+                    $linkMain = $linkHd;
+                    if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[14]) )!=''){ //vlt. ist ja eine der anderen VideoVersionen abspielbar
+                            if( isset($json_line->X[8]) && $json_line->X[8]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
+                            else if( isset($json_line->X[12]) && $json_line->X[12]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
+                    }
+            }
             
-            $link = urlencode($json_line->X[8]);
-            $linkMain = $json_line->X[8];
-            /* verschoben in Javascript
-            if(isset($_GET['quality']) && $_GET['quality']!='normal' && $_GET['quality']!=''){
-                if($_GET['quality']=='low' && $linkLow!=''){
-                        $linkMain = $linkLow;
-                        if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[12]) )!=''){ //vlt. ist ja eine der anderen VideoVersionen abspielbar
-                                if( isset($json_line->X[8]) && $json_line->X[8]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
-                                else if( isset($json_line->X[14]) && $json_line->X[14]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
-                        }
-                }
-                if($_GET['quality']=='hd'  && $linkHd!='' ){
-                        $linkMain = $linkHd;
-                        if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[14]) )!=''){ //vlt. ist ja eine der anderen VideoVersionen abspielbar
-                                if( isset($json_line->X[8]) && $json_line->X[8]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
-                                else if( isset($json_line->X[12]) && $json_line->X[12]!='' && checkIfVideoPlayable($json_line->X[8])=='' ) $outArray['titleNotice'] = 'Bitte VideoLinks klicken. '.$outArray['titleNotice'];
-                        }
-                }
-                
-            }else{
-                    if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[8]) )!=''){}
-            }*/
-            if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[8]) )!=''){}
-            if($remove_https_at_video_links)$json_line->X[8] = str_replace('https://','http://',$json_line->X[8]); 
-            $href = $dereff.$linkMain;
-            if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video.php#".( $linkMain );
+        }else{
+                if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[8]) )!=''){}
+        }*/
+        if( ( $outArray['titleNotice'].= checkIfVideoPlayable($json_line->X[8]) )!=''){}
+        if($remove_https_at_video_links)$json_line->X[8] = str_replace('https://','http://',$json_line->X[8]); 
+        $href = $dereff.$linkMain;
+        if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video.php#".( $linkMain );
 
             
                         
