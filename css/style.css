@@ -77,7 +77,7 @@ body a{
 #fixed_head, #fixed_footer{
   background:#dddddd;
 }
-#fixed_footer a:hover, #fixed_footer a:focus, #fixed_footer a:active, #fixed_head a:hover, #fixed_head a:focus, #fixed_head a:active{
+#fixed_footer a:hover, #fixed_footer a:focus, #fixed_footer a:active, #fixed_head a:hover, #fixed_head a:focus, #fixed_head a:active, a.buchstaben_anker_link:hover b{
   background:#f9f9f9;
 }
 .anker{
