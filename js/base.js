@@ -154,6 +154,7 @@ function formItemFocus( item ){
     var savedTabIndex = item.getAttribute('tabindex');
     item.setAttribute('tabindex', '-1');
     item.focus();
+    if(savedTabIndex==null)savedTabIndex='';
     item.setAttribute('tabindex', savedTabIndex);
 }
 
