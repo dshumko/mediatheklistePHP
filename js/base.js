@@ -17,55 +17,46 @@ document.addEventListener("keydown", function(e) {
            formItemFocus( link );
      } //Blau
      
+     var parentSpanSelBuchstaben = document.getElementById('thema_sel_buchstaben');
      if(e.which == 49){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('#' , '(' , ')' , '[' , ']' , "'" ,0,1,2,3,4,5,6,7,8,9);
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"1\"
-     if(e.which == 50){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
+     if(e.which == 50){ //   || e.which==65 oder auch bustabe A auf normaler Tastatur (test)
            var buchstaben = new Array('A','B','C');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"2\"
      if(e.which == 51){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('D','E','F');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"3\"
      if(e.which == 52){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('G','H','I');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"4\"
      if(e.which == 53){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('J','K','L');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"5\"
      if(e.which == 54){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('M','N','O');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"6\"
      if(e.which == 55){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('P','Q','R','S');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"7\"
      if(e.which == 56){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('T','U','V');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"8\"
-     if(e.which == 57){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
-           var buchstaben = new Array('W','X','Y','Z');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+     if(e.which == 57){ // || e.which==87 oder auch buchstabe W auf normaler Tastatur (test)
+           var buchstaben = new Array('W','X','Y');
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"9\"
      if(e.which == 58){
-           var parentSpan = document.getElementById('thema_sel_buchstaben');
            var buchstaben = new Array('0');
-           toggleInLinkListe_andFocus(parentSpan, buchstaben);
+           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"0\"
      
 }, false); //ende Event Listener
@@ -75,21 +66,25 @@ function toggleInLinkListe_andFocus(parentSpan, buchstaben){
    var ready = false;
    var link;
    var firstElement = null;
-   for(i=0;i<buchstaben.length;i++){
-        link = parentSpan.querySelectorAll('[href="#buchstabe_'+buchstaben[i]+'"]')[0];
-        if(link!=undefined && firstElement==null) firstElement = link; //falls man zurückspringen muss auf's erste
+   for(i=0;i<buchstaben.length;i++){ 
+        link = parentSpan.querySelector('[href="#buchstabe_'+buchstaben[i]+'"]'); // gibt es einen BuchstabenLink dafür
+        if(link==undefined || link==null || link.href=='')continue;
+        if(firstElement==null) firstElement = link; //falls man zurückspringen muss auf's erste
+        if(found_takeNextElement){ready=true; break;} //gefunden
         var link_href_hash = '';
         if(link.href!='' && link.href.split('#').length>1) link_href_hash = link.href.split('#')[1];
-         if(found_takeNextElement && link!=undefined && link!=null){ready=true; break;} //gefunden
         if(document.activeElement==link || location.hash.replace('#','')==link_href_hash){ //'link' ist aktuell aktives Element
                 if( i == buchstaben.length-1 )link = firstElement; //'link' ist letztes Element der Reihe; also das erste nehmen;
                 else found_takeNextElement = true; 
         }
    }
    if( !ready && firstElement!=undefined )link = firstElement;
-   link.focus();
-   formItemFocus( link );
-   window.setTimeout(function(){ location.href = link; },50);
+   link.focus(); formItemFocus( link );
+   var firstElementNo = link.getAttribute('data-starts-with-no');
+   var a = document.getElementById('mainlink_thema_sel_'+firstElementNo);
+   a.focus();    formItemFocus( a );
+   //window.setTimeout(function(){ location.href = link.href; },50);
+   //window.setTimeout(function(){ location.href = a.href; },50);
 }
  
  
