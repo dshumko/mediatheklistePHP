@@ -205,8 +205,8 @@ function themenliste_tr_found_parent(e){
         return e;
 }
 
-var themenliste_ausblenden_innerhtml = '<a href=\"#\" style=\"margin-left:15pt\" class=\"link_every_same_color_underl link_every_same_color\" onClick=\"appendHideThemaSelf(this);return false;\">Ausblenden</a>&nbsp;';
-var themenliste_schnellauswahl_hinzufuegen_innerhtml = '<a href=\"#\" class=\"t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color\" onClick=\"appendFavSelf(this);return false;\" title=\"zur Schnellauswahl hinzufügen\">+Schnellauswahl</a>';
+var themenliste_ausblenden_innerhtml = '<a href=\"#\" style=\"margin-left:15pt\" class=\"link_every_same_color_underl link_every_same_color\" onClick=\"appendHideThemaSelf(this);return false;\" title=\"Thema dauerhaft ausblenden (lässt sich unter Einstellungen bearbeiten)\">Ausblenden</a>&nbsp;';
+var themenliste_schnellauswahl_hinzufuegen_innerhtml = '<a href=\"#\" class=\"t_sel_add_schnellauswahl link_every_same_color_underl link_every_same_color\" onClick=\"appendFavSelf(this);return false;\" title=\"zur Schnellauswahl hinzufügen (für eigene Liste auf der Startseite)\">+Schnellauswahl</a>';
 
 
 function showAddMenuLinks(event){ 

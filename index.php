@@ -193,7 +193,7 @@ function hideNoneHbbTVLinks(){
     for (var i = 0, len = list.length; i < len; i++) {
         list[i].style.display = 'none';
     }
-    document.getElementById('append').innerHTML = '<small />Ihr Browser unterstützt kein HbbTV, daher Links versteckt.</small>';
+    document.getElementById('append').innerHTML = '<span style="color:#aaaaaa"><small />Ihr Browser unterstützt kein HbbTV, daher Links versteckt.</small></span>';
 }
 
  
@@ -235,5 +235,5 @@ function hideNoneHbbTVLinks(){
 </span>
 
 <span style="clear:both" ></span>
-<span id="append" style="display:inline-block"></span>
+<span id="append" style="display: block;position: absolute;bottom: 5pt;left: 5pt;"></span>
 

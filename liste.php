@@ -708,7 +708,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         <br>
         
         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
-        Vorschaltseite (sihe Bild rechts):
+        HBBTV-Vorschaltseite (sihe Bild rechts)
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp;<a href="#" id="options_link_vorschaltseite_an" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);window.location.reload();">anzeigen</a>
@@ -743,7 +743,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
          <hr>
 <br>
          <div style="clear:both"></div>
-         Filme, die kürzer sind als:
+         Filme, die kürzer sind als ... Minuten ausblenden
          <!--<span style="float:left; text-align:left">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp; oder: &nbsp;&nbsp;&nbsp;
@@ -770,7 +770,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         $url = 'liste.php?';
 
   //<br><br>
-        echo "<hr>einzelne Themen 
+        echo "<hr>Einzelne Themen ausblenden:
         <span style=\"float:right;padding:1pt\">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"if(confirm('Alle versteckten Einträge wieder anzeigen?')==true){createCookie('hide_thema','',-1);window.location.reload();}return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
