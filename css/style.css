@@ -204,6 +204,9 @@ a:focus{
 .float_e .td_schnell{
   width:18%;  min-width:18%;  max-width:18%;
 }
+table#table_sel_thema tr td{
+  vertical-align: bottom;
+}
 /*
 .t_sel_a{
   display:inline;float:left;width:70%;

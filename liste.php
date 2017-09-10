@@ -456,7 +456,7 @@ if(
  
   createCopyEachSender($file,$options_createCopyEachSender,$hideShorterThenList);
 
-  echo "<u>Fertig</u></p><br>Bitte seite ggf. <a href=\"#\" onClick=\"window.location.reload()\">neuladen</a><br>"; myFlush();
+  echo "<u>Fertig</u></p><br>Bitte seite ggf. <a href=\"#\" onClick=\"window.location.reload()\">neuladen</a> <br>Zurück zum Seiten-Beginn <a href=\"liste.php\" >Liste.php</a><br>"; myFlush();
 }
 
 
