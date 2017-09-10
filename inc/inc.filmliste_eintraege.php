@@ -285,7 +285,7 @@ function createAllElements(){
         $linkLow = '';
         $linkVeryLow = '';
             
-        if($json_line->X[12]!=''){            
+        if( isset($json_line->X[12]) && $json_line->X[12]!=''){            
                 $e = explode('|',$json_line->X[12]);
                 if(strtolower($json_line->X[0])=='zdf')$link = substr($json_line->X[8],0,$e[0]+1).$e[1];
                 if(count($e)>1) $linkLow = substr($json_line->X[8],0,$e[0]).$e[1];
@@ -293,7 +293,7 @@ function createAllElements(){
                 if($remove_https_at_video_links)$linkLow = str_replace('https://','http://',$linkLow); 
             }
 
-            if($json_line->X[14]!=''){            
+            if( isset($json_line->X[14]) && $json_line->X[14]!=''){            
                 $e = explode('|',$json_line->X[14]);
                 if(strtolower($json_line->X[0])=='zdf')$link = substr($json_line->X[8],0,$e[0]+1).$e[1];
                 if(count($e)>1) $linkHd = substr($json_line->X[8],0,$e[0]).$e[1];
