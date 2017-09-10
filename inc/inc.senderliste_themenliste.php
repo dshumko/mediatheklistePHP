@@ -1,5 +1,4 @@
 <?php
-//Mülleimer:        echo '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlQTFRF/wAA////AAAAOomPOgAAAAJ0Uk5TAAB2k804AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAC1JREFUCB1jZA1g+M8IJUJWM7IGMvxjZE11+MXIOuEAMyPrUhA3kTAB1gE0CgBy2xa5RVbz1gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNS0wNi0xN1QxMDoyMjowNiswMjowMN485REAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTQtMTAtMjRUMDM6MDM6MDUrMDI6MDCcI6OUAAAAAElFTkSuQmCC" alt="🗑" width="16" height="16">';
 
 function getSenderListe($options){
       //$hideHoerfassung = 0; if($options['hideHoerfassung'])     $hideHoerfassung     = $options['hideHoerfassung']; //verschoben auf Clientseite in Javascript
