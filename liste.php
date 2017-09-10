@@ -846,7 +846,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         echo '<br><br>';
         
         echo '
-        <hr>Themenliste seitenweise
+        <hr>Themenliste seitenweise (je Seite)<!--<br><span style="color:#999999"></span>-->
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;
@@ -972,10 +972,13 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
       
       if($ll_von-1 > 0)            $h_prev = $h.'&start='.($ll_von-$ll_diff).'&ende='.($ll_bis-$ll_diff);
       if($ll_bis+1 < $total_count) $h_next = $h.'&start='.($ll_von+$ll_diff).'&ende='.($ll_bis+$ll_diff);
-      echo "<p style=\"text-align:center;width:50%;display:block;float:left\">";
-      if( isset($h_prev) )echo "<a id=\"prev_page\" style=\"width:100%;min-width:100%;display:inline-block;\" onClick=\"createCookieInSeconds('prev_page',Date.now(),5)\" href=\"$h_prev\" ><</a>";
-      echo "</p>";
-      echo "<p style=\"text-align:center;width:50%;display:block;float:left\">";
+      if( isset($h_prev) ){
+        echo "<p style=\"text-align:center;width:50%;display:block;float:left\">";
+        echo "<a id=\"prev_page\" style=\"width:100%;min-width:100%;display:inline-block;\" onClick=\"createCookieInSeconds('prev_page',Date.now(),5)\" href=\"$h_prev\" ><</a>";
+        echo "</p>";
+      }
+      if( !isset($h_prev) )echo "<p style=\"text-align:center;width:100%;display:block;float:left\">";
+      else echo "<p style=\"text-align:center;width:50%;display:block;float:left\">";
       if( isset($h_next) )echo "<a id=\"next_page\" style=\"width:100%;min-width:100%;display:inline-block;\" onClick=\"createCookieInSeconds('next_page',Date.now(),5)\" href=\"$h_next\">></a>";
       echo "</p>";
     }
