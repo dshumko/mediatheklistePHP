@@ -3,8 +3,8 @@ $startTimeRender = microtime(true);ini_set('display_errors', 1);ini_set('display
 
 require_once 'config.inc.php';
 
-
-
+$hideShorterThen = 0;
+if(isset($_GET['hide_shorter_then']) && $_GET['hide_shorter_then']!='')$hideShorterThen = (int)$_GET['hide_shorter_then'];
 if(isset($_GET['thema']) ) $_GET['thema'] = str_replace('x4sdy0ANDx4sdy0','&',$_GET['thema']); //sonst Probleme mit & im Thema
 
 //Programmcode
