@@ -368,7 +368,7 @@ if(
         else             echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten </span>";
 
         if($loaderAnimation===1) echo   "<span id=\"spinner_elem\"></span>";
-        if($loaderAnimation===2) echo   "<span id=\"spinner_elem\"><span class=\"rotate rotate_correctur\">&#1161;</span></span>";
+        if($loaderAnimation===2) echo   "<span id=\"spinner_elem\"><span class=\"rotate\"><span class=\"rotate_correctur\">&#1161;<span></span></span>";
 
         if($loaderAnimation===1) echo "
         </span>
@@ -554,7 +554,7 @@ if($loaderAnimation!==0) echo     "<span id=\"please_wait\" style=\"font-size:8p
 else             echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten </span>";
 
 if($loaderAnimation===1) echo   "<span id=\"spinner_elem\"></span>";
-if($loaderAnimation===2) echo   "<span id=\"spinner_elem\"><span class=\"rotate rotate_correctur\">&#1161;</span></span>";
+if($loaderAnimation===2) echo   "<span id=\"spinner_elem\"><span class=\"rotate\"><span class=\"rotate_correctur\">&#1161;</span></span></span>";
 
 if($loaderAnimation===1) echo "
 <script language=\"javascript\"  type=\"text/javascript\">
