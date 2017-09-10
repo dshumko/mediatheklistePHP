@@ -2,7 +2,7 @@
 
 document.addEventListener("keydown", function(e) {
      //Taste 1: || e.which == 49
-     if(e.which == 405)    document.getElementById('div-sender-select').style.display='block'; //Gelb
+     if(e.which == 405){    document.getElementById('div-sender-select').style.display='block'; formItemFocus( document.getElementById('senderliste_2') ); } //Gelb
      if(e.which == 404)    document.getElementById('div-sender-select').style.display='block'; //Grün
      if(e.which == 406){
            var span = document.getElementById('thema_sel_buchstaben');

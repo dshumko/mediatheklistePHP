@@ -673,7 +673,7 @@ echo "
 //document.getElementById('div-sender-select').style.display='block';document.body.insertBefore(document.getElementById('div-sender-select'),document.getElementById('schnellauswahl'));
 //doen not work (probleme bei HBBTV): formItemFocus(document.getElementById('sender_alle_link') )
 
-echo "<a href='#sender_select' onClick=\"document.getElementById('div-sender-select').style.display='block';\"  id=\"link_sender_select\" class=\"link_black_before_onload\" tabindex=\"1\"><span style=\"background:yellow\"  class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Sender wählen&nbsp;&nbsp;&nbsp;";
+echo "<a href='#sender_select' onClick=\"document.getElementById('div-sender-select').style.display='block';formItemFocus( document.getElementById('senderliste_2') );return false;\"  id=\"link_sender_select\" class=\"link_black_before_onload\" tabindex=\"1\"><span style=\"background:yellow\"  class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Sender wählen&nbsp;&nbsp;&nbsp;";
 if( isset($_GET['sender']))$s=$_GET['sender'];else $s='';
 echo "<span style=\"color:black\">$s <span id=\"sender_waehlen_append\"></span> </span>";
 echo "</a>";
@@ -933,7 +933,7 @@ echo "
             $i=0;
             foreach($senderListOutArray as $senderTitel => $senderUrl){
                 $i++;
-                echo "<a href=\"$senderUrl\" name=\"sender_sel$i\" onClick=\"window.location='#sender_sel$i';loadNewSite()\" style=\"display:block;width:100%;margin-left:-3pt;\" class=\"link_every_same_color\">$senderTitel</a>\n";     
+                echo "<a href=\"$senderUrl\" name=\"sender_sel$i\" id=\"senderliste_$i\" onClick=\"window.location='#sender_sel$i';loadNewSite()\" style=\"display:block;width:100%;margin-left:-3pt;\" class=\"link_every_same_color\">$senderTitel</a>\n";     
             }
 echo "
       </div>
