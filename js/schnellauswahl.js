@@ -166,30 +166,33 @@ function showURL(link){
     link = link_part0+'?sender='+sender+'&thema='+thema+'';
     return link    
 }
+
+
+
 function updateThemenListeLink_addSchnellauswahl(){
+       function check__TR__or__T_ROW(e){ return (e.tagName=='TR' || (e.className!=undefined && e.className.search(/t_row/)!=-1))  } //nur intern
       
        var e = document.getElementById('table_sel_thema'); // ebene darüber div#list_auswahl_links_thema
        if(e==undefined || e==null) return;
        var elements = e.childNodes;
        if(elements[0].tagName != 'TR' && elements.length>1) elements = elements[1].childNodes; //ueberspringe <tbody>
        if(elements[0].tagName != 'TR' && elements.length==1) elements = elements[0].childNodes; //ueberspringe <tbody>
-       //console.log(elements);
+       if(elements[0].tagName != 'TR') elements = document.getElementsByClassName('t_row');
   
        for (var i = 0; i < elements.length; i++) {
-           //console.log(elements[i].getElementsByClassName('t_sel_a'));
-           if(elements[i].tagName=='TR')elements[i].addEventListener('mouseenter', showAddMenuLinks, false);
-           if(elements[i].tagName=='TR'){
+           if( check__TR__or__T_ROW( elements[i] ) )elements[i].addEventListener('mouseenter', showAddMenuLinks, false);
+           if( check__TR__or__T_ROW( elements[i] ) ){
                   elements[i].getElementsByClassName('t_sel_a')[0].addEventListener('focus', showAddMenuLinks, false);
                   elements[i].getElementsByClassName('t_sel_a')[0].addEventListener('focusin', showAddMenuLinks, false);
            }
-           if(elements[i].tagName=='TR')elements[i].addEventListener('mouseleave', hideAddMenuLinks, false);
+           if( check__TR__or__T_ROW( elements[i] ) )elements[i].addEventListener('mouseleave', hideAddMenuLinks, false);
            //if(elements[i].tagName=='TR')elements[i].getElementsByClassName('t_sel_a')[0].addEventListener('focusout', hideAddMenuLinks, false);
        }
        
 
        for (var i = 0; i < 40 && i<elements.length; i++) { //ersten X/2 schon im verarbeiten, damit breite richtig ist
            if(elements[i].tagName == undefined || elements[i].nodeName=='text' || elements[i].nodeName=='#text') continue;
-           if(elements[i].nodeName=='TR' || elements[i].className != undefined ){ //|| elements[i].className.search(/t_row/)!=-1
+           if(elements[i].nodeName=='TR' || elements[i].className != undefined ){ // || (elements[i].className!=undefined && elements[i].className.search(/t_row/)!=-1) 
              showAddMenuLinks( elements[i] );
              hideAddMenuLinks( elements[i] );
            }
@@ -212,6 +215,7 @@ var themenliste_schnellauswahl_hinzufuegen_innerhtml = '<a href=\"#\" class=\"t_
 function showAddMenuLinks(event){ 
         if(event.target!=null)var e = themenliste_tr_found_parent( event.target );
         else var e = event;
+        e = themenliste_correct_found_parent(e); //wenn keine Tabelle
         
         var raw = getCookie('favs'); if (raw=='') raw='{}';
         var cookie_favs = JSON.parse(raw);
@@ -244,6 +248,7 @@ function showAddMenuLinks(event){
 function hideAddMenuLinks(event){
         if(event.target!=null)var e = themenliste_tr_found_parent( event.target );
         else var e = event;
+        e = themenliste_correct_found_parent(e);
         
         var tr_schnellauswahl = e.getElementsByClassName("td_schnell")[0];
         var tr_del            = e.getElementsByClassName("td_del")[0];
@@ -251,6 +256,10 @@ function hideAddMenuLinks(event){
         tr_del.style.visibility = 'hidden';
 }
 
+function themenliste_correct_found_parent(e){
+  if(e.className.search(/t_row/)==-1 && e.parentNode.className.search(/float_e/)!=-1) e = e.parentNode; //wenn keine Tabelle verwendet wird
+  return e;
+}
 
 //in der ThemenList den Schnellauswahl-Link aktualisieren
 function updateThemenListeLink_addSchnellauswahl_old(){
