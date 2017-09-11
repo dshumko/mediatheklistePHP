@@ -39,7 +39,7 @@ function checkIfVideoPlayable($url){ //betrifft nur normale Browser
 
 
 function createAllElements(){
-        global $allOuts, $out1, $hideArte_fr, $debugTestMaxLineRead, $file, $maxJeSeite, $hideShorterThen, $remove_https_at_video_links, $dereff, $showSize, $showMinDSLSpeed, $letzterListeneintragOben, $use_cache_filmlist_sender, $use_cache_filmlist_thema, $fullscreen_play, $system_allow_exec_and_have_unxz, $orf_filcheck_legal__filesize, $maxRender;
+        global $allOuts, $out1, $hideArte_fr, $debugTestMaxLineRead, $file, $maxJeSeite, $minLength, $remove_https_at_video_links, $dereff, $showSize, $showMinDSLSpeed, $letzterListeneintragOben, $use_cache_filmlist_sender, $use_cache_filmlist_thema, $fullscreen_play, $system_allow_exec_and_have_unxz, $orf_filcheck_legal__filesize, $maxRender;
 
         $allOuts = array();
         $out =''; //eine 
@@ -369,7 +369,7 @@ function createAllElements(){
                              $l = $e[0]*60+$e[1];
                              $outArray['length'].= ', <span class="film_length">'.$l.'</span> Min.';
                       }
-                      if($hideShorterThen>0 && $l<$hideShorterThen){ unset($outArray); continue; }
+                      if($minLength>0 && $l<$minLength){ unset($outArray); continue; }
 
                           if( isset($_GET['sender']) && $_GET['sender']=='alle' ){
                           $outArray['possibleSender'] = ' '.$json_line->X[0].' ';        

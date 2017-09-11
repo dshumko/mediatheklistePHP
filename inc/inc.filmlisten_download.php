@@ -58,7 +58,7 @@ function downloadTheFileAndExtract($webServiceUrl, $filepath, $cloud_convert_api
 * c)je Sender
 * d)je Thema
 */
-function createCopyEachSender($file,$options,$hideShorterThenList){
+function createCopyEachSender($file,$options,$minLength){
         global $use_cache_filmlist_sender, $use_cache_filmlist_thema; //Konfig, ob Cache aktiv ist
         
         //$hideTrailer   = 0; if($options['hideTrailer'])     $hideTrailer     = $options['hideTrailer'];
@@ -74,7 +74,7 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
         $lineSum = '';
         $senderlist = array();
         $themenlist = array();
-        $th_l_short = array(); //themenliste (wenn Mindest-Filmlänge angegeben)
+        $themen_withMinLength  = array(); //themenliste (wenn Mindest-Filmlänge angegeben)
               $i=0;
         $line0 = ''; //erste Zeile von Filmliste mit Datum/Spaltennamen //'{"Filmliste":[""],"Filmliste":[""],'
         $outlines = ''; //sammelt eintraege eines Themas; wird bei jeden Themawechsel abgespeichert und geleert
@@ -156,16 +156,16 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
                 if($laenge!=''){ $themenlist[$s][$t]['countFuerGesamtLaenge']++; $themenlist[$s][$t]['gesamtLaenge'] += $laenge; }
                 
                 //Themenliste für zu kurze Filme
-                if( count($hideShorterThenList)>0 ){
-                    foreach($hideShorterThenList as $l){
+                if( count($minLength)>0 ){
+                    foreach($minLength as $l){
                         if($laenge<$l || $laenge==0 || $laenge=='')continue; //zu Kurz
                         //Themenliste  
-                            if( !isset($th_l_short[$l][$s]) )$th_l_short[$l][$s] = array();
-                            if( !isset($th_l_short[$l][$s][$t]) )$th_l_short[$l][$s][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);
+                            if( !isset($themen_withMinLength [$l][$s]) )$themen_withMinLength [$l][$s] = array();
+                            if( !isset($themen_withMinLength [$l][$s][$t]) )$themen_withMinLength [$l][$s][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);
                                     
-                            if($th_l_short[$l][$s][$t]['lastDate']<$datum) $th_l_short[$l][$s][$t]['lastDate'] = $datum;
-                            $th_l_short[$l][$s][$t]['count']++;
-                            if($laenge!=''){ $th_l_short[$l][$s][$t]['countFuerGesamtLaenge']++; $th_l_short[$l][$s][$t]['gesamtLaenge'] += $laenge; }
+                            if($themen_withMinLength [$l][$s][$t]['lastDate']<$datum) $themen_withMinLength [$l][$s][$t]['lastDate'] = $datum;
+                            $themen_withMinLength [$l][$s][$t]['count']++;
+                            if($laenge!=''){ $themen_withMinLength [$l][$s][$t]['countFuerGesamtLaenge']++; $themen_withMinLength [$l][$s][$t]['gesamtLaenge'] += $laenge; }
                         
                     }
                 }
@@ -184,8 +184,8 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
         
         $themenlist = proccess_themenliste_getAndRenderDurchschnittslaenge($themenlist);
         
-        foreach($hideShorterThenList as $l){
-            $th_l_short[$l] = proccess_themenliste_getAndRenderDurchschnittslaenge($th_l_short[$l]);
+        foreach($minLength as $l){
+            $themen_withMinLength [$l] = proccess_themenliste_getAndRenderDurchschnittslaenge($themen_withMinLength [$l]);
         }
         
         if(!file_exists('cache')) mkdir('cache');
@@ -193,9 +193,9 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
         file_put_contents('cache/1/senderliste.serialize', utf8_encode(serialize($senderlist)));
         
         //Themenlisten mit mindeste-Film-Längen speichern
-        foreach($hideShorterThenList as $l){
+        foreach($minLength as $l){
                 $fileNameAppend='hide_shorter_then'.$l;
-                file_put_contents('cache/1/themenliste'.$fileNameAppend.'.serialize', utf8_encode(serialize($th_l_short[$l])));
+                file_put_contents('cache/1/themenliste'.$fileNameAppend.'.serialize', utf8_encode(serialize($themen_withMinLength [$l])));
         }
         file_put_contents('cache/1/themenliste.serialize', utf8_encode(serialize($themenlist)));
         

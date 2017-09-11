@@ -3,7 +3,7 @@
 function appendFavSelf(self){
         var link_element = self.parentNode.parentNode.getElementsByClassName('t_sel_a')[0];
   newValueToAdd = link_element.getAttribute('href');
-  newValueToAdd = newValueToAdd.replace(/&quality=[^&]*/,'').replace(/&hide_shorter_then=[^&]*/,'');
+  newValueToAdd = newValueToAdd.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
   appendFav(newValueToAdd);
   self.innerText='★...in der Liste';
   return true;
@@ -12,7 +12,7 @@ function appendFavSelf(self){
 function appendHideThemaSelf(self){
         var link_element = self.parentNode.parentNode.getElementsByClassName('t_sel_a')[0];
   newValueToAdd = link_element.getAttribute('href');
-  newValueToAdd = newValueToAdd.replace(/&quality=[^&]*/,'').replace(/&hide_shorter_then=[^&]*/,'');
+  newValueToAdd = newValueToAdd.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
   appendHideThema(newValueToAdd);
   self.setAttribute('onclick','removeHideThema(\''+newValueToAdd+'\');this.innerText=\'\'; this.parentNode.parentNode.style.opacity=1;return false;');
   self.innerHTML = 'ausgeblendet';
@@ -29,11 +29,11 @@ function appendFavDataHrefSelf(self){
 }
 
 function appendFav(href){
-        href = href.replace(/&quality=[^&]*/,'').replace(/&hide_shorter_then=[^&]*/,'');
+        href = href.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
         return append(href, 'favs');
 }
 function appendHideThema(href){
-        href = href.replace(/&quality=[^&]*/,'').replace(/&hide_shorter_then=[^&]*/,'');
+        href = href.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
         return append(href, 'hide_thema');
 }
 
@@ -74,11 +74,11 @@ function removeFavDataHrefSelf(self){
 
 
 function removeFav(href){
-        href = href.replace(/&quality=[^&]*/,'').replace(/&hide_shorter_then=[^&]*/,'');
+        href = href.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
         return remove(href, 'favs');}
         
 function removeHideThema(href){ 
-        href = href.replace(/&quality=[^&]*/,'').replace(/&hide_shorter_then=[^&]*/,'');
+        href = href.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
         return remove(href, 'hide_thema'); }
         
 function removeHideThemaDataHrefSelf(self){
@@ -321,7 +321,7 @@ function updateListeThemenLink_hideElements_andRepairLinks(){
       var raw = getCookie('hide_thema'); if(raw=='') raw = '{}';
       if(raw.length<=5 && hideAudioDeskription!=1 && hideTrailer!=1) return; //nix zu tun;
       
-      var c = getCookie('hideShorterThen');
+      var c = getCookie('minLength');
       var cookie_favs = JSON.parse(raw);
       var e = document.getElementById("list_auswahl_links_thema");
       if(e==undefined)return;
@@ -346,20 +346,20 @@ function updateListeThemenLink_hideElements_andRepairLinks(){
                       }
     
                       if(c>0){
-                        elements[i].href = elements[i].href + '&hide_shorter_then' + '=' + c;
+                        elements[i].href = elements[i].href + '&min_length' + '=' + c;
                       }
       }
 }
 
 
 function updateListeSenderLink(){
-        var c = getCookie('hideShorterThen');
+        var c = getCookie('minLength');
         var e = document.getElementById("list_auswahl_links_sender");
         if(e==undefined)return;
         var elements = e.getElementsByTagName("A");
         if(c>0){
             for (var i = 0; i < elements.length; i++) {    
-              elements[i].href = elements[i].href + '&hide_shorter_then' + '=' + c;
+              elements[i].href = elements[i].href + '&min_length' + '=' + c;
             }
         }
         var c = getCookie('pageination');

@@ -301,8 +301,8 @@ function filmliste_line_getParentNode(node){ //suche parent-Element für diesen 
 }
 
 
-function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskriptionFilme, hideTrailerFilme, hideShorterThen){
-        var count_hideShorterThen = 0;
+function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskriptionFilme, hideTrailerFilme, minLength){
+        var count_minLength = 0;
         var list = document.getElementsByClassName('list_video_mainlink');
         for (var i = 0; i < list.length; i++) {
                   if(hideHoerfassungFilme==1 && list[i].innerText.search(/hörfassung/i)!=-1 || list[i].innerHTML.search(/hörfassung/i)!=-1){
@@ -321,18 +321,18 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
                           if(parent==undefined) return; else parent.style.display = 'none';   
                   }
-                  if(hideShorterThen>0){
+                  if(minLength>0){
                       var lObj = list[i].getElementsByClassName('film_length');
                       if(lObj.length>0) var l = lObj[0]; else continue;
-                      if(parseInt(l.innerText)!=NaN && parseInt(l.innerText) < hideShorterThen){
+                      if(parseInt(l.innerText)!=NaN && parseInt(l.innerText) < minLength){
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
-                          if(parent==undefined) return; else{ parent.style.display = 'none'; count_hideShorterThen++;}  
+                          if(parent==undefined) return; else{ parent.style.display = 'none'; count_minLength++;}  
                       }
                   }
         }//ende FOR-Schleife
-        if(count_hideShorterThen>0){
-           document.getElementById('notice_before_filmliste__hideShorterThen').style.display = 'block';
-           document.getElementById('notice_before_filmliste__hideShorterThen').innerHTML = count_hideShorterThen+' Filme kürzer als '+getCookie('hideShorterThen')+'Minuten werden ausgeblendet. <a href="#" onclick="createCookie(\'hideShorterThen\',\'\',0);window.location.reload();return false;">ausschalten</a>';
+        if(count_minLength>0){
+           document.getElementById('notice_before_filmliste__minLength').style.display = 'block';
+           document.getElementById('notice_before_filmliste__minLength').innerHTML = count_minLength+' Filme kürzer als '+getCookie('minLength')+'Minuten werden ausgeblendet. <a href="#" onclick="createCookie(\'minLength\',\'\',0);window.location.reload();return false;">ausschalten</a>';
         } 
 }
         

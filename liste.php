@@ -3,8 +3,8 @@ $startTimeRender = microtime(true);ini_set('display_errors', 1);ini_set('display
 
 require_once 'config.inc.php';
 
-$hideShorterThen = 0;
-if(isset($_GET['hide_shorter_then']) && $_GET['hide_shorter_then']!='')$hideShorterThen = (int)$_GET['hide_shorter_then'];
+$minLength = 0;
+if(isset($_GET['min_length']) && $_GET['min_length']!='')$minLength = (int)$_GET['min_length'];
 if(isset($_GET['thema']) ) $_GET['thema'] = str_replace('x4sdy0ANDx4sdy0','&',$_GET['thema']); //sonst Probleme mit & im Thema
 
 $addPageTitle = '';
@@ -127,7 +127,7 @@ function onload1y(){ //onload
     updateFilmliste_HideElements( getCookie('hideHoerfassungFilme') ,
                       getCookie('hideAudioDeskriptionFilme') ,
                       getCookie('hideTrailerFilme') ,
-                      getCookie('hideShorterThen') );
+                      getCookie('minLength') );
     var h = document.getElementById('fixed_head').offsetHeight;
     if(h>0){
       var elem = document.getElementById('abstand_oben1');      if(elem!=undefined)elem.style.display    = 'none';
@@ -247,18 +247,18 @@ if($loaderAnimation===1) echo "<script language=\"javacript\"  type=\"text/javas
 echo "
 <script type=\"text/javascript\">
 //kann bereits vor onload passieren
-var e = location.href.match('hide_shorter_then=([0-9]*)');
-var hideShorterThen = getCookie('hideShorterThen');
-if(hideShorterThen>0){
+var e = location.href.match('min_length=([0-9]*)');
+var minLength = getCookie('minLength');
+if(minLength>0){
       if( e==null && location.href.search(/\?/)!=-1){ //fuege es hinten an (aber vor den Anker)
         var e = location.href.match('#(.*)');
         var anker = '';
         if(e!=null && e.length>0)anker = '#'+e[1];
-        location.href = location.href.replace(anker,'') + '&hide_shorter_then='+ hideShorterThen + anker;
+        location.href = location.href.replace(anker,'') + '&min_length='+ minLength + anker;
       } 
-      else if(e!=null  && e.length>1 && getCookie('hideShorterThen')!=e[1] ) location.href = location.href.replace('&hide_shorter_then='+e[1], '&hide_shorter_then='+getCookie('hideShorterThen') ); //korrigiere URL
-}else if( location.href.search('&hide_shorter_then=')!=-1){ 
-      location.href = location.href.replace(/&hide_shorter_then=[0-9]*/,''); //lösche es raus
+      else if(e!=null  && e.length>1 && getCookie('minLength')!=e[1] ) location.href = location.href.replace('&min_length='+e[1], '&min_length='+getCookie('minLength') ); //korrigiere URL
+}else if( location.href.search('&min_length=')!=-1){ 
+      location.href = location.href.replace(/&min_length=[0-9]*/,''); //lösche es raus
 }";
 if( isset($_GET['sender']) && (!isset($_GET['thema']) || $_GET['thema']=='') ){
   echo "
@@ -345,7 +345,7 @@ if(isset($_GET['list_update'])){
 
 
 
-$options_createCopyEachSender = array('hideArte_fr'=>$hideArte_fr, 'hideShorterThen'=>$hideShorterThen); //,'hideHoerfassung'=>$hideHoerfassung //'hideTrailer'=>$hideTrailer, 
+$options_createCopyEachSender = array('hideArte_fr'=>$hideArte_fr, 'minLength'=>$minLength); //,'hideHoerfassung'=>$hideHoerfassung //'hideTrailer'=>$hideTrailer, 
    
 //Filmlisten-Datei runterladen (entweder über Adresse liste.php?list_update=1  - oder - automatisch)
 if(
@@ -426,7 +426,7 @@ if(
 
   echo "<p>Aufteilen in einzelne Sender/Themenlisten... "; myFlush();
  
-  createCopyEachSender($file,$options_createCopyEachSender,$hideShorterThenList);
+  createCopyEachSender($file,$options_createCopyEachSender,$minLengthVorlagenMinuten);
 
   echo "<u>Fertig</u></p><br>Bitte seite ggf. <a href=\"#\" onClick=\"window.location.reload()\">neuladen</a> <br>Zurück zum Seiten-Beginn <a href=\"liste.php\" >Liste.php</a><br>"; myFlush();
 }
@@ -434,7 +434,7 @@ if(
 
 if( isset($_GET['list_update__only_aufteilen']) && $_GET['list_update__only_aufteilen']==1 ){ //nur die Aufteilung druchführen
    require_once('inc/inc.filmlisten_download.php');
-   createCopyEachSender($file,$options_createCopyEachSender,$hideShorterThenList);
+   createCopyEachSender($file,$options_createCopyEachSender,$minLengthVorlagenMinuten);
    echo "<u>Fertig</u></p><br>Zurück zum Seiten-Beginn <a href=\"liste.php\" >Liste.php</a><br>"; die();
 }
 
@@ -649,8 +649,8 @@ echo "<br>\n";
 
 if(isset($_GET['sender']))echo "<a href='liste.php?sender=".$_GET['sender']."' id=\"link_thema_select\" onclick=\"document.getElementById('link_thema_select').style.background='#f3f3f3'; document.getElementById('spinner_elem').style.display='inline'; window.setTimeout(show_thema_select,10);\"  class=\"link_black_before_onload\" tabindex=\"2\"><span style=\"background:green\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Thema wählen&nbsp;&nbsp;
 <script type=\"text/javascript\">
-var c = getCookie('hideShorterThen');
-if(c>0) document.getElementById('link_thema_select').href = document.getElementById('link_thema_select').href+'&hide_shorter_then='+c+'';
+var c = getCookie('minLength');
+if(c>0) document.getElementById('link_thema_select').href = document.getElementById('link_thema_select').href+'&min_length='+c+'';
 </script>
 ";
 if( isset($_GET['thema']))$t=$_GET['thema'];else $t='';
@@ -739,17 +739,17 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
          </span>-->
          <span style="float:right; text-align:right">';
 
-              foreach ($hideShorterThenList as $h){
-                  echo '<a href="#" id="options_link_hideShorterThen_'.$h.'" onClick="createCookie(\'hideShorterThen\',\''.$h.'\',356*10);window.location=\'#\';window.location.reload();">'.$h.'Min.</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+              foreach ($minLengthVorlagenMinuten as $h){
+                  echo '<a href="#" id="options_link_minLength_'.$h.'" onClick="createCookie(\'minLength\',\''.$h.'\',356*10);window.location=\'#\';window.location.reload();">'.$h.'Min.</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
               }
   echo '
-        oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideShorterThen_0" onClick="createCookie(\'hideShorterThen\',\'\',0);window.location.reload();">aus</a>
+        oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_minLength_0" onClick="createCookie(\'minLength\',\'\',0);window.location.reload();">aus</a>
         </span>
         <script  language="javascript"  type="text/javascript">
-          var c=getCookie(\'hideShorterThen\');
+          var c=getCookie(\'minLength\');
           if(c==\'\') c=0;
-          document.getElementById(\'options_link_hideShorterThen_\'+parseInt(c)+\'\').innerHTML+=\' &#10008;\';
-          //elseif(c>0) document.getElementById(\'options_link_hideShorterThen_aus\').innerHTML=\'anzeigen &#10008;\';
+          document.getElementById(\'options_link_minLength_\'+parseInt(c)+\'\').innerHTML+=\' &#10008;\';
+          //elseif(c>0) document.getElementById(\'options_link_minLength_aus\').innerHTML=\'anzeigen &#10008;\';
         </script>
         <div style="clear:both"></div>
 
@@ -856,7 +856,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
  */
 require_once 'inc/inc.senderliste_themenliste.php';
 
-$options_showSenderAndThemenliste = array('hideArte_fr'=>$hideArte_fr,'hideShorterThen'=>$hideShorterThen); //, 'hideHoerfassung'=>$hideHoerfassung
+$options_showSenderAndThemenliste = array('hideArte_fr'=>$hideArte_fr,'minLength'=>$minLength); //, 'hideHoerfassung'=>$hideHoerfassung
 $senderListOutArray = getSenderListe($options_showSenderAndThemenliste);
 $dp = 'display:none'; $anker = parse_url($_SERVER["REQUEST_URI"],PHP_URL_FRAGMENT);
 if( $anker=='#sender_select'  || strstr($anker,'#thema_sel')!==false) $dp = 'display:block';
@@ -929,7 +929,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
       <div id=\"list_auswahl_links_thema\" style=\"$dp;position:auto;z-index:102;\">
         <!--<span style=\"float:right\"> <a href='#thema_select' onclick=\"document.getElementById('list_auswahl_links_thema').style.display='none'\">x</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->\n
         ";
-        if($hideShorterThen>0)echo "<p align=\"right\" style=\"padding-right:6pt;\">Filme kürzer als ".$hideShorterThen." Min. werden ausgeblendet (sihe Einstellungen).</p>";
+        if($minLength>0)echo "<p align=\"right\" style=\"padding-right:6pt;color:#777777\">Kürzer als ".$minLength." Min. werden ausgeblendet.</p>";
         //else echo "<br><br>";
         $ll = 0;
         
@@ -1037,7 +1037,7 @@ if($sortByDate==1) krsort($allOuts);
 
 
 echo "
-<div id=\"notice_before_filmliste__hideShorterThen\" style=\"display:none\"></div>
+<div id=\"notice_before_filmliste__minLength\" style=\"display:none\"></div>
 ";
 echo "
     <a name=\"anker1_film_0\"></a>

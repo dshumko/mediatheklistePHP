@@ -10,7 +10,7 @@ function getSenderListe($options){
       
       uksort($sender, 'strcasecmp');
       if( isset($_GET['quality']) && $_GET["quality"]!='' )  $s2 = "&quality=".$_GET['quality']; else $s2="";
-      if( isset($_GET['hide_shorter_then']) && $_GET["hide_shorter_then"]!='' )  $s3 = "&hide_shorter_then=".$_GET['hide_shorter_then']; else $s3="";
+      if( isset($_GET['min_length']) && $_GET["min_length"]!='' )  $s3 = "&min_length=".$_GET['min_length']; else $s3="";
       if( isset($_GET['no_table']) && $_GET["no_table"]!='' )  $s3 .= "&no_table=".(int)$_GET['no_table'];
       
       $senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
@@ -29,9 +29,9 @@ function getSenderListe($options){
 
 function getThemenliste($options){
       $hideArte_fr     = 0; if($options['hideArte_fr'])         $hideArte_fr       = $options['hideArte_fr'];
-      $hideShorterThen = 0; if($options['hideShorterThen'])     $hideShorterThen   = $options['hideShorterThen'];
+      $minLength = 0; if($options['minLength'])     $minLength   = $options['minLength'];
       
-      if( $hideShorterThen>0)$fileNameAppend='hide_shorter_then'.(int)$hideShorterThen; else $fileNameAppend='';
+      if( $minLength>0)$fileNameAppend='min_length'.(int)$minLength; else $fileNameAppend='';
       if( file_exists('cache/1/themenliste'.$fileNameAppend.'.serialize') )$senderThema = unserialize( utf8_decode(file_get_contents('cache/1/themenliste'.$fileNameAppend.'.serialize')));
       else if( file_exists('cache/1/themenliste.serialize') )$senderThema = unserialize( utf8_decode(file_get_contents('cache/1/themenliste.serialize'))); else $senderThema = array();
       
@@ -122,7 +122,7 @@ function getThemenliste($options){
               $count    = $more_data['count'];
               $lastDate = $more_data['lastDate'];         
               if(isset($_GET['sender']) && $_GET['sender']=='alle') $senderUrlPart = 'sender='.$_GET['sender'].'&';
-              if( isset($_GET['hide_shorter_then']) && $_GET["hide_shorter_then"]!='' )  $s3 = "&hide_shorter_then=".$_GET['hide_shorter_then']; else $s3="";
+              if( isset($_GET['min_length']) && $_GET["min_length"]!='' )  $s3 = "&min_length=".$_GET['min_length']; else $s3="";
               $href     = "liste.php?".$senderUrlPart."thema=".rawurlencode(str_replace('\\"','"',$s))."".$s3;
               if( isset($_GET["quality"]) && $_GET["quality"]!='' ) $s2 ="&quality=".$_GET["quality"]; else $s2 = '';
               $b = strtoupper(substr($s,0,1));
