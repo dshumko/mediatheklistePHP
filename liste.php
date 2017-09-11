@@ -884,7 +884,7 @@ if($sortByDate==1) krsort($allOuts);
 
 
 echo "
-<div id=\"notice_before_filmliste__minLength\" style=\"display:none\"></div>
+<div id=\"notice_before_filmliste__minLength\" style=\"display:none;text-align:right;padding-right:3pt;\"></div>
 ";
 echo "
     <a name=\"anker1_film_0\" id=\"anker1_film_0\"></a>
