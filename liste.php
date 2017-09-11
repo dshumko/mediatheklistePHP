@@ -448,7 +448,8 @@ if( isset($_GET['list_update__only_aufteilen']) && $_GET['list_update__only_auft
 echo "<div id=\"content\">";
 
 //utf8_encode()
-echo "<span id=\"abstand_oben1\"><br><br><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
+if(!isset($_GET['sender']) && !isset($_GET['themen'])) echo "<span id=\"abstand_oben1\"><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
+else echo "<span id=\"abstand_oben1\"><br><br><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
 if(!isset($_GET['sender'])) echo "".$welcomeText."";
 
 echo "<span style=\"float:right;padding-right:3pt;\">";
