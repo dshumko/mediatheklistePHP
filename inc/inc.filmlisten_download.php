@@ -111,11 +111,6 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
                              $laenge+=((60/100)*$e[2])/100;
                            }
                 }
-                /*if(stristr($line,"Start des SR-Videotextes")!=''){
-                        echo '<br>n<br>n<br>n<br>'.$laenge.'<br>'.$line;var_dump($treffer);
-                        die();
-                        
-                }*/
 
                 if($sender_raw=='') $s = $lastSender; else $s = ''.$sender_raw.'';
                 if($thema_raw=='')  $t = $lastThema;  else $t = ''.$thema_raw.'';
@@ -128,40 +123,7 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
                 if($thema_raw!='') $lastThema  = $thema_raw;
                 continue;} //ausblenden
 
-                 /* läuft nun per JavaScript
-                 if($hideTrailer==1){
-                   if( strlen($t)>=9 && strtolower(substr($t,0,9))=="trailer: "){
-              if($sender_raw!='')$lastSender = $sender_raw;
-         if($thema_raw!='') $lastThema  = $thema_raw;
-         continue;} //ausblenden
-                   if( strstr(strtolower($t),"trailer ")){
-              if($sender_raw!='')$lastSender = $sender_raw;
-         if($thema_raw!='') $lastThema  = $thema_raw;
-         continue;} //ausblenden
-                   if( strstr(strtolower($t)," trailer")){
-              if($sender_raw!='')$lastSender = $sender_raw;
-         if($thema_raw!='') $lastThema  = $thema_raw;
-         continue;} //ausblenden
-                 }
-                 if($hideHoerfassung==1){
-                   if( strlen($t)>=12 && strtolower(substr($t,0,12))=="hörfassung: "){
-              if($sender_raw!='')$lastSender = $sender_raw;
-         if($thema_raw!='') $lastThema  = $thema_raw;
-         continue;} //ausblenden
-                   //if( strlen($t)>=12 && strtolower(substr($t,-12))=="- hörfassung"){
-              //if($sender_raw!='')$lastSender = $sender_raw;
-         //if($thema_raw!='') $lastThema  = $thema_raw;
-         //continue;} //ausblenden
-                         if( strlen($t)>=12 && strtolower(substr($t,-11))==" hörfassung"){
-              if($sender_raw!='')$lastSender = $sender_raw;
-         if($thema_raw!='') $lastThema  = $thema_raw;
-         continue;} //ausblenden
-                   if( strstr(strtolower($t),"hörfassung")){
-              if($sender_raw!='')$lastSender = $sender_raw;
-         if($thema_raw!='') $lastThema  = $thema_raw;
-         continue;} //ausblenden
-                 }*/  
-            
+                
                 //Speicher ggf. Cache von letzten Thema ab
                 if($use_cache_filmlist_thema){
                     if($t!= $lastThema && $outlines!='') {
@@ -208,8 +170,6 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
                     }
                 }
 
-                //if($t=="3nach9"){ echo $s.' '.$t.'<br>';var_dump($themenlist[$s][$t]);echo "<hr>";}
-                
                 //speichere Filmliste
                 if($use_cache_filmlist_sender && $i>3 && $sender_raw!='' && $sender_raw!=$lastSender && $lineSum!=''){ //$i>3 (damit die ersten Zeile(n) Beschriftung/etc. ausgelasen werden)
                               if( substr($lineSum,-1)==',') $lineSum = substr($lineSum,0,-1);
@@ -232,7 +192,7 @@ function createCopyEachSender($file,$options,$hideShorterThenList){
         if(!file_exists('cache/1')) mkdir('cache/1');
         file_put_contents('cache/1/senderliste.serialize', utf8_encode(serialize($senderlist)));
         
-
+        //Themenlisten mit mindeste-Film-Längen speichern
         foreach($hideShorterThenList as $l){
                 $fileNameAppend='hide_shorter_then'.$l;
                 file_put_contents('cache/1/themenliste'.$fileNameAppend.'.serialize', utf8_encode(serialize($th_l_short[$l])));
