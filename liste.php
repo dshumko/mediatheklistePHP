@@ -719,7 +719,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
               <a href="#" id="options_link_hideAudioDeskription_aus" onClick="createCookie(\'hideAudioDeskription\',\'\',0);window.location.reload();">anzeigen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideAudioDeskription\')==1)document.getElementById(\'options_link_hideAudioDeskription_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideAudioDeskription_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
-        
+         <div style="clear:both"></div>
          <hr>
          Filme mit Trailer im Namen   
          <span style="float:right; text-align:right">
@@ -727,7 +727,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
               <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);window.location.reload();">anzeigen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
-        
+         <div style="clear:both"></div>
          <hr>
 
          <div style="clear:both"></div>
@@ -770,7 +770,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
               <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">eine lange Listen zum scrollen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
-         
+        <div style="clear:both"></div>
         ';
         echo "<hr>Themen ausblenden:
         <span style=\"float:right;padding:1pt\">
@@ -791,9 +791,9 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         echo '
         
         <hr>
-         <span style="float:right; text-align:right"></span>
-                  Feste Fußleiste
-         <span style="float:right; text-align:right">
+        <span style="float:right; text-align:right"></span>
+        Feste Fußleiste
+        <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);window.location.reload();">anzeigen</a>
 
 
@@ -818,7 +818,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         </span>
    
         <span style="clean:both"></span>
-
+         <div style="clear:both"></div>
          
          <hr>
          Performance möglicherweise bessere bei langen Themenlisten:
@@ -828,7 +828,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
               <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);window.location.reload();">Tabelle</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
-        
+        <div style="clear:both"></div>
         
         ';
         if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>"; 
