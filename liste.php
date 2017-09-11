@@ -688,34 +688,22 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
          <hr>
          <div>Standart-Qualität: <span style=\"float:right\">
               &nbsp;&nbsp;&nbsp;&nbsp; 
-              <a href=\"#\" onClick=\"createCookie('quality','hd',365*5);loadNewSite();location.reload();return false;\" id=\"set_quality_hd\" >Hoch (=HD)</a>
+              <a href=\"#\" onClick=\"createCookie('quality','hd',365*5);loadNewSite();location.reload();return false;\" id=\"set_quality_hd\" >Hoch (HD)</a>
               &nbsp;&nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;&nbsp; 
-              <a href=\"#\" onClick=\"createCookie('quality','normal',0);     loadNewSite();location.reload();return false;\" id=\"set_quality_normal\" >Normal (=meist ca. 2Mbit)</a> 
+              <a href=\"#\" onClick=\"createCookie('quality','normal',0);     loadNewSite();location.reload();return false;\" id=\"set_quality_normal\" >Normal (~meist ca. 2Mbit)</a> 
               &nbsp;&nbsp;&nbsp;&nbsp;  oder &nbsp; &nbsp;&nbsp;&nbsp; 
-              <a href=\"#\" onClick=\"createCookie('quality','low',365*5);loadNewSite();location.reload();return false;\" id=\"set_quality_low\" >Gering (=ca. 0,5 - 1Mbit)</a> 
+              <a href=\"#\" onClick=\"createCookie('quality','low',365*5);loadNewSite();location.reload();return false;\" id=\"set_quality_low\" >Gering (~ca. 0,5 - 1Mbit)</a> 
               <script  language=\"javascript\"  type=\"text/javascript\">
                   if(getCookie('quality')=='low')document.getElementById('set_quality_low').innerHTML+=' &#10008;';
                   else if(getCookie('quality')=='hd')document.getElementById('set_quality_hd').innerHTML+=' &#10008;';
                   else document.getElementById('set_quality_normal').innerHTML+=' &#10008;';
               </script>
               </span>
-         </div>\n";
+         </div>
+         <div style=\"clear:both\"></div>\n";
      
 
   echo '
-        <hr>
-        <br>
-        <br>
-        
-        <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
-        HBBTV-Vorschaltseite (sihe Bild rechts)
-        <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp;<a href="#" id="options_link_vorschaltseite_an" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);window.location.reload();">anzeigen</a>
-              <script  language="javascript"  type="text/javascript"> if(getCookie(\'direkt_zur_mediathek_liste\')==1)document.getElementById(\'options_link_vorschaltseite_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_vorschaltseite_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
-        </span>
-   
-        <span style="clean:both"></span>
         <hr>
         Filme mit Hörfassung im Namen   
         <span style="float:right; text-align:right">
@@ -741,9 +729,9 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         
          <hr>
-<br>
+
          <div style="clear:both"></div>
-         Mindest-Länge
+         Mindest Film-Länge
          <!--<span style="float:left; text-align:left">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp; oder: &nbsp;&nbsp;&nbsp;
@@ -769,7 +757,21 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         ';
         $url = 'liste.php?';
 
-  //<br><br>
+        echo '
+        <hr>Themenliste seitenweise. Je Seite<!--<br><span style="color:#999999"></span>-->
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
+              &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">eine lange Listen zum scrollen</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
+         
+        ';
         echo "<hr>Themen ausblenden:
         <span style=\"float:right;padding:1pt\">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"if(confirm('Alle versteckten Einträge wieder anzeigen?')==true){createCookie('hide_thema','',-1);window.location.reload();}return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
@@ -784,46 +786,42 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         
         ";  
         
-        echo '<br><br>';
+        echo '';
         
         echo '
-        <hr>Themenliste seitenweise (je Seite)<!--<br><span style="color:#999999"></span>-->
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
-              &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">lange Listen (scrollen)</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
-         
+        
         <hr>
          <span style="float:right; text-align:right"></span>
-                  feste Fußleiste
+                  Feste Fußleiste
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);window.location.reload();">anzeigen</a>
 
 
               
         </span>
-        
-         
         <div align="right">
-          <img style="float:right" src="img/fussleiste_w500px.png" />
+          <img style="float:right; opacity:0.5" src="img/fussleiste_w500px.png" />
           <span style="color:#999999">
-          <span style="color:#999999">&nbsp;Hilfreich bei reiner Smart-TV Mausbedienung,<br>
-          &nbsp;durch Link zum schneller Spingen nach oben
+          <span style="color:#999999">&nbsp;Für Maus-bedienung am Smart-TV,<br>
+          &nbsp;durch Link unten schneller nach oben springen 
           </span>
         </div>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'showFooter\')==1)document.getElementById(\'options_link_showFooter_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_showFooter_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
-        
+        <hr>
+        <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
+        Vorschaltseite (sihe Bild rechts)
+        <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp;<a href="#" id="options_link_vorschaltseite_an" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);window.location.reload();">anzeigen</a>
+              <script  language="javascript"  type="text/javascript"> if(getCookie(\'direkt_zur_mediathek_liste\')==1)document.getElementById(\'options_link_vorschaltseite_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_vorschaltseite_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
+        </span>
+   
+        <span style="clean:both"></span>
+
          
          <hr>
-         Möglicherweise bessere Performance bei langen Themenlisten:
+         Performance möglicherweise bessere bei langen Themenlisten:
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
@@ -834,7 +832,7 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         
         ';
         if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>"; 
-        echo " <br><br><br>";
+        echo " <br><br><br><br><br>";
      
 
   echo "
