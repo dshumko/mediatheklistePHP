@@ -211,7 +211,7 @@ table#table_sel_thema tr td{
 .t_sel_a{
   display:inline;float:left;width:70%;
 }*/
-.t_sel_a{ display: inline-block; width:100%; }
+tr.t_sel_a{ display: inline-block; width:100%; }
 .themalist_count_nur1{
        /* font-style: italic; */
 }
