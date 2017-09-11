@@ -451,7 +451,7 @@ echo "<div id=\"content\">";
 echo "<span id=\"abstand_oben1\"><br><br><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
 if(!isset($_GET['sender'])) echo "".$welcomeText."";
 
-echo "<span style=\"float:right\">";
+echo "<span style=\"float:right;padding-right:3pt;\">";
 if(!file_exists($file) && file_exists('cache/status_startFilmlistenDownload')) echo "<p>Derzeit wird eine neue Filmliste runtergeladen (im Hintergrund)</p>";
 else if(!file_exists($file) && file_exists('cache/status_startFilmlistenExtract')) echo "<p>Derzeit wird eine neue Filmliste entpackt (im Hintergrund)</p>";
 else if(!file_exists($file)) die("<br><br><br>Mediathek Dateiliste fehlt. <a href=\"liste.php?list_update=1\">jetzt Runterladen</a>");
@@ -460,7 +460,7 @@ if( file_exists($file)){
     else if( $system_allow_exec_and_have_unxz && file_exists("cache/status_newFilmlisteFileVorhanden") && !$filmlisten_autoUpdate ){  echo"<span style=\"color:grew\"></span><a href=\"liste.php?list_update=1\" class=\"abstandlinks\">Neue Filmliste laden</a> &nbsp; "; $fileliste_could_be_updated = true;}
 }
 if( file_exists('cache/status_lastFilmlistenFileModified') ) $d = str_replace(' GMT','', substr(file_get_contents('cache/status_lastFilmlistenFileModified'),19)); else $d = '';
-if(!isset($_GET['sender'])) echo " &nbsp; Stand: ".$d.' &nbsp;'; //date ("d.m.Y H:i", filemtime($file))
+if(!isset($_GET['sender'])) echo " &nbsp; Stand: ".$d.''; //date ("d.m.Y H:i", filemtime($file))
 echo "</span><span style=\"clear:both\"></span>\n";
 
 /* Suchen/Filtern aus (geht auch nur in aktueller Filmliste) (veralteter Programmcode; Suche wurde gelöscht, da viel Ressourcen braucht)
@@ -518,7 +518,7 @@ if( isset($_GET['thema']) && $_GET['thema']!=''){
 
 if( isset($_COOKIE['favs']) && !isset($_GET['sender']) && !isset($_GET['thema'])){
     if(isset($_GET['sender'])) $d =' display:none';else $d = '';
-    echo "<div id=\"schnellauswahl\" style=\"$d\">";
+    echo "<div id=\"schnellauswahl\" style=\"$d;padding-top:5pt;\">";
     echo "Schnellauswahl:</br>";
     echo "</div>";
     echo "<script language=\"javascript\" type=\"text/javascript\">getSchnellauswahl()</script>";
@@ -660,7 +660,7 @@ echo "</a>";
 
   
 
-echo "<div style=\"float:right;padding-right:3pt;\">
+echo "<div style=\"float:right;padding-right:6pt;\">
       <small style=\"color:#777777\">".$footerText. " </small>";
       echo "<small style=\"\"><a href=\"#impressum\" onclick=\"if(document.getElementById('impressum').style.display=='none'){document.getElementById('impressum').style.display = 'block';}else{document.getElementById('impressum').style.display = 'none';}\">Impressum</a></small></div>";
 

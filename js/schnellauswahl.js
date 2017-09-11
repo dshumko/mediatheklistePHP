@@ -420,6 +420,7 @@ function getSchnellauswahl(){
         a_delete.innerText   = 'löschen';
         a_delete.style.float ='right';
         a_delete.style.color ='blue';
+        a_delete.style.paddingRight = '3pt';
         a_delete.setAttribute('onclick',"if( removeFav('"+link.replace('\'','\\\'')+"')){window.location.reload();this.text='wird gelöscht';}");
         span.appendChild(a_delete);
 
