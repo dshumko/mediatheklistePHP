@@ -593,7 +593,7 @@ echo "
 
 
 echo "
-<div id=\"fixed_head\" style=\"width:100%;min-width:100%;top:0px;display:block;position:fixed;margin:0pt;padding:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;\"></span>\n";
+<div id=\"fixed_head\" style=\"width:100%;min-width:100%;top:0px;display:block;position:fixed;margin:0pt;padding:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;\">\n";
 
 echo"\n<div id=\"start\">";
 
