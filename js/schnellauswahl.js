@@ -128,11 +128,11 @@ function showAlleFromHideThema(){
          var link_part0 = cookie[j].split('?sender=')[0];
          var readable_link = cookie[j].replace(link_part0+"?",'').replace(/liste.php\?/,' ').replace(/sender=/,'').replace(/&thema=/,'&nbsp; ').replace(/"/g,'x4sdy0Anfuehrungsz4sdy0').replace(/x4sdy0ANDx4sdy0/g,'&');
          //console.log(link+' ?=? '+cookie_favs[j]);
-         out += '&nbsp;&nbsp;&nbsp;'+readable_link ;
+         out += ''+readable_link ;
          out += ' <a href="#" class="link_every_same_color_underl" data-href="'+cookie[j]+'" onClick="removeHideThemaDataHrefSelf(this);showAlleFromHideThema();var del_hide_thema=1;return false;">Löschen</a><br>';
     }
     if(cookie.length>0 && cookie[0]!='') document.getElementById('options_hide_themen_liste_del__del_all').style.display = 'inline';
-    ziel.innerHTML =  '<span style="background:#4eff001a;display:block;margin-left: 12pt;padding-right:1pt;padding-left:1pt;"> ' + out + '<br>Um Veränderungen zu sehen: <a href="#" class="link_every_same_color_underl" onClick="window.location.reload();return false;">Seite neu laden</a><br><span>';
+    ziel.innerHTML =  '<span style="background:#4eff001a;display:block;margin-left: 20pt;padding:1pt;"> ' + out + '<br><a title=\"Nach Veränderungen sinnvoll\" href="#" class="link_every_same_color_underl" onClick="window.location.reload();return false;" style=\"float: right\">Seite neu laden</a><br><span>';
     //var index 
     return out;
 }
