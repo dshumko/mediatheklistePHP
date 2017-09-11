@@ -822,18 +822,32 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         ';
         
 
-        echo "<hr>Themen ausgeblendet:
+        echo "<hr>
+        <div id=\"optionen_themen_ausblenden_deaktiv\">
+          Blacklist / Themen ausblenden
+          <span style=\"float:right;padding:6pt\">
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','1',365*10);window.location.reload();return false;\" id=\"options_hide_themen_liste_del__del_all\">Aktivieren</a>
+          </span>
+        </div>
+        <div id=\"optionen_themen_ausblenden_aktiv\" style=\"display:none;\">
+        Themen ausgeblendet: 
         <span style=\"float:right;padding:1pt\">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);window.location.reload();return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','',-1);window.location.reload();return false;\" id=\"options_hide_themen_liste_del__del_all\">Funktion deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);window.location.reload();return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
         
         <div id=\"show_hideElementsList\" style=\"\"> </div>
         <script language=\"javascript\"  type=\"text/javascript\">
-            if(getCookie('hide_thema')!='')document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; ';
-            else{ /*document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
-            //document.getElementById('show_hideElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHideThema();return false;\">neu laden<a/>'; 
+            if(getCookie('hide_thema_aktiv')!=''){
+              document.getElementById('optionen_themen_ausblenden_aktiv').style.display = 'block';
+              document.getElementById('optionen_themen_ausblenden_deaktiv').style.display = 'none';
+              if(getCookie('hide_thema')!='')document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; ';
+              else{ /*document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
+                //document.getElementById('show_hideElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHideThema();return false;\">neu laden<a/>'; 
+            }
         </script>
-        
+        </div>
+        <div style=\"clear:both\"></div>
+        <hr>
         ";  
         
         echo '';

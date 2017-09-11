@@ -243,7 +243,7 @@ function showAddMenuLinks(event){
         }
   
         //Ausblenden Link
-        if(tr_del.innerHTML=='')tr_del.innerHTML = themenliste_ausblenden_innerhtml;
+        if( getCookie('hide_thema_aktiv')!='' && tr_del.innerHTML=='')tr_del.innerHTML = themenliste_ausblenden_innerhtml;
         tr_del.style.visibility = '';
 }
 
@@ -320,7 +320,8 @@ function updateListeThemenLink_hideElements_andRepairLinks(){
       var hideAudioDeskription = getCookie('hideAudioDeskription');
       var hideTrailer = getCookie('hideTrailer');
 
-      var raw = getCookie('hide_thema'); if(raw=='') raw = '{}';
+      var raw = getCookie('hide_thema');
+      if(raw=='') raw = '{}';  if(getCookie('hide_thema_aktiv')!='1') raw = '{}';
       if(raw.length<=5 && hideAudioDeskription!=1 && hideTrailer!=1) return; //nix zu tun;
       
       var c = getCookie('minLength');
