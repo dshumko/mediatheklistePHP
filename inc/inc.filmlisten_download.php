@@ -64,7 +64,7 @@ function createCopyEachSender($file,$options,$minLength){
         //$hideTrailer   = 0; if($options['hideTrailer'])     $hideTrailer     = $options['hideTrailer'];
         $hideArte_fr     = 0; if($options['hideArte_fr'])     $hideArte_fr     = $options['hideArte_fr'];
         //$hideHoerfassung = 0; //lasse ich später ausblenden if($options['hideHoerfassung']) $hideHoerfassung = $options['hideHoerfassung'];
-        $hideShorterThen = 0; if($options['hideShorterThen'])     $hideShorterThen     = $options['hideShorterThen'];
+        $minLength = 0; if($options['minLength'])     $minLength     = $options['minLength'];
         
         if(!file_exists($file)){echo '<p><b>Fehler:</b>'.$file.' nicht gefunden </p>';return;}
         $lastSender = '';
@@ -194,7 +194,7 @@ function createCopyEachSender($file,$options,$minLength){
         
         //Themenlisten mit mindeste-Film-Längen speichern
         foreach($minLength as $l){
-                $fileNameAppend='hide_shorter_then'.$l;
+                $fileNameAppend='min_length'.$l;
                 file_put_contents('cache/1/themenliste'.$fileNameAppend.'.serialize', utf8_encode(serialize($themen_withMinLength [$l])));
         }
         file_put_contents('cache/1/themenliste.serialize', utf8_encode(serialize($themenlist)));
