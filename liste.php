@@ -758,36 +758,6 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         ';
         $url = 'liste.php?';
 
-        echo '
-        <hr>Themenliste seitenweise. Je Seite<!--<br><span style="color:#999999"></span>-->
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
-              &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">eine lange Listen zum scrollen</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
-        <div style="clear:both"></div>
-        ';
-        echo "<hr>Themen ausblenden:
-        <span style=\"float:right;padding:1pt\">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"if(confirm('Alle versteckten Einträge wieder anzeigen?')==true){createCookie('hide_thema','',-1);window.location.reload();}return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
-        </span>
-        
-        <div id=\"show_hideElementsList\" style=\"\"> </div>
-        <script language=\"javascript\"  type=\"text/javascript\">
-            if(getCookie('hide_thema')!='')document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; ';
-            else{ /*document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
-            //document.getElementById('show_hideElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHideThema();return false;\">neu laden<a/>'; 
-        </script>
-        
-        ";  
-        
-        echo '';
         
         echo '
         
@@ -832,8 +802,43 @@ echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;pa
         <div style="clear:both"></div>
         
         ';
-        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>"; 
-        echo " <br><br><br><br><br>";
+        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>";
+        
+        
+        echo '
+        <hr>Themenliste seitenweise. Je Seite<!--<br><span style="color:#999999"></span>-->
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
+              &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">eine lange Listen zum scrollen</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
+        <div style="clear:both"></div>
+        ';
+        
+
+        echo "<hr>Themen ausgeblendet:
+        <span style=\"float:right;padding:1pt\">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+        </span>
+        
+        <div id=\"show_hideElementsList\" style=\"\"> </div>
+        <script language=\"javascript\"  type=\"text/javascript\">
+            if(getCookie('hide_thema')!='')document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; ';
+            else{ /*document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
+            //document.getElementById('show_hideElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHideThema();return false;\">neu laden<a/>'; 
+        </script>
+        
+        ";  
+        
+        echo '';
+         
+        echo " <br><br>";
      
 
   echo "
