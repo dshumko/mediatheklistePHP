@@ -776,7 +776,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
       <div id=\"list_auswahl_links_thema\" style=\"$dp;position:auto;z-index:102;\">
         <!--<span style=\"float:right\"> <a href='#thema_select' onclick=\"document.getElementById('list_auswahl_links_thema').style.display='none'\">x</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->\n
         ";
-        if($minLength>0)echo "<p align=\"right\" style=\"padding-right:6pt;color:#777777\">Kürzer als ".$minLength." Min. werden ausgeblendet.</p>";
+        if($minLength>0)echo "<p align=\"right\" style=\"padding-right:6pt;color:#777777\">kürzer als ".$minLength." Min. werden ausgeblendet.</p>";
         //else echo "<br><br>";
         $ll = 0;
         
