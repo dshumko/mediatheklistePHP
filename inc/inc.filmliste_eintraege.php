@@ -17,12 +17,12 @@ function getFilmlistContentCache($file, $sender, $thema){
         $file_cache_sender = '';
         if(isset($sender) && $sender!='')
             $file_cache_sender = 'cache/sender/'.$file.'_sender_'.substr(str_replace('/','',$sender),0,15);
-        if(       $use_cache_filmlist_sender && 
+        if(       $use_cache_filmlist_thema && 
                   isset($sender) && $sender!='' && 
                   isset($thema) && $thema!='' &&
                   file_exists($file_cache_sender_thema)){
                         return file_get_contents($file_cache_sender_thema);
-        }else if( $use_cache_filmlist_thema && 
+        }else if( $use_cache_filmlist_sender && 
                   isset($sender) && $sender!='' && $sender!='alle' &&
                   file_exists($file_cache_sender)){
                         return file_get_contents($file_cache_sender);       
