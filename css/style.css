@@ -199,7 +199,7 @@ a:focus{
   float: left;
 }
 .float_e :nth-child(1){
-  width:50%;  min-width:50%;  max-width:50%;
+  width:50%;  min-width:50%;  max-width:50%; vertical-align: bottom;
 }
 .float_e .td_del{
   width:13%;  min-width:13%;  max-width:13%;

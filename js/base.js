@@ -22,7 +22,7 @@ document.addEventListener("keydown", function(e) {
            var buchstaben = new Array('#' , '(' , ')' , '[' , ']' , "'" ,0,1,2,3,4,5,6,7,8,9);
            toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"1\"
-     if(e.which == 50){ //   || e.which==65 oder auch bustabe A auf normaler Tastatur (test)
+     if(e.which == 50 || e.which==65 ){ //   || e.which==65 oder auch bustabe A auf normaler Tastatur (test)
            var buchstaben = new Array('A','B','C');
            toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"2\"
