@@ -22,7 +22,7 @@ document.addEventListener("keydown", function(e) {
            var buchstaben = new Array('#' , '(' , ')' , '[' , ']' , "'" ,0,1,2,3,4,5,6,7,8,9);
            toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"1\"
-     if(e.which == 50 || e.which==65 ){ //   || e.which==65 oder auch bustabe A auf normaler Tastatur (test)
+     if(e.which == 50){ //   || e.which==65 oder auch bustabe A auf normaler Tastatur (test)
            var buchstaben = new Array('A','B','C');
            toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
      }  //Taste Zahl \"2\"
@@ -60,31 +60,73 @@ document.addEventListener("keydown", function(e) {
      }  //Taste Zahl \"0\"
      
 }, false); //ende Event Listener
-  
-function toggleInLinkListe_andFocus(parentSpan, buchstaben){
-   var found_takeNextElement = false;
-   var ready = false;
+
+var toggleInLinkListe_andFocus__lastNo = 0;
+var toggleInLinkListe_andFocus__lastB = '';
+function toggleInLinkListe_andFocus(parentSpan, buchstabenVorlage){
    var link;
-   var firstElement = null;
-   for(i=0;i<buchstaben.length;i++){ 
-        link = parentSpan.querySelector('[href="#buchstabe_'+buchstaben[i]+'"]'); // gibt es einen BuchstabenLink dafür
-        if(link==undefined || link==null || link.href=='')continue;
-        if(firstElement==null) firstElement = link; //falls man zurückspringen muss auf's erste
-        if(found_takeNextElement){ready=true; break;} //gefunden
-        var link_href_hash = '';
-        if(link.href!='' && link.href.split('#').length>1) link_href_hash = link.href.split('#')[1];
-        if(document.activeElement==link || location.hash.replace('#','')==link_href_hash){ //'link' ist aktuell aktives Element
-                if( i == buchstaben.length-1 )link = firstElement; //'link' ist letztes Element der Reihe; also das erste nehmen;
-                else found_takeNextElement = true; 
-        }
+   var linkListBuchstaben = new Object();
+   var buchstaben = new Array();
+   var currentActiveBuchstabe = '';
+   
+   console.log( "toggleInLinkListe_andFocus__lastNo " + toggleInLinkListe_andFocus__lastNo + " toggleInLinkListe_andFocus__lastB "+toggleInLinkListe_andFocus__lastB);
+   
+   //wurde diese Funktion schonmal/gerade erst aufgerufen?
+   if( toggleInLinkListe_andFocus__lastNo>0 &&
+       document.activeElement == document.getElementById('mainlink_thema_sel_'+toggleInLinkListe_andFocus__lastNo) ){
+       //wenn noch beim zuletzte (via toggleInLinkListe_andFocus) aktivierten Element
+       currentActiveBuchstabe = toggleInLinkListe_andFocus__lastB;
+       console.log( "Diese Funktion schonmal/gerade erst aufgerufen? " + currentActiveBuchstabe );
    }
-   if( !ready && firstElement!=undefined )link = firstElement;
+   
+   
+   //welche Buchstaben gibt es tatsächlich
+   for(i=0;i<buchstabenVorlage.length;i++){ 
+      var b = buchstabenVorlage[i]; 
+      link = parentSpan.querySelector('[href="#buchstabe_'+b+'"]'); // gibt es einen BuchstabenLink dafür
+      if(link==undefined || link==null || link.href=='')continue;
+      buchstaben.push(b);
+      linkListBuchstaben[b] = link;
+   }
+   if(buchstaben.length==0)return; //nix zu tun
+   
+   var nextB = '';
+   //finde den aktuell aktiven Buchstaben
+   for(i=0;i<buchstaben.length;i++){ 
+      var b = buchstaben[i]; 
+      var link = linkListBuchstaben[b];
+      if(link.href!='' && link.href.split('#').length>1) var link_href_hash = link.href.split('#')[1]; else continue;
+      //console.log( location.hash.replace('#','') + "=?=" + link_href_hash );
+      if(document.activeElement == link || location.hash.replace('#','')==link_href_hash || currentActiveBuchstabe==b){ //aktiver Buchstabe?
+              found = true;
+              if( buchstaben[i+1]!=undefined ) var nextB = buchstaben[i+1]; //nächster Buchstaben
+              else var nextB = buchstaben[0]; //im Kreis zurück zum erster Buchstaben
+              //console.log("derzeit aktiver Buchstabe "+b+" ");
+              break;
+      }
+   }
+   
+   if(nextB=='') nextB = buchstaben[0]; //beginne beim ersten Buchstaben
+   console.log("nächster aktiver Buchstabe wird sein: "+nextB);
+   link = linkListBuchstaben[ nextB ];
+   //console.log("aktiver Buchstaben-Link: "+link);
+   
+  
+   
+   //setzt Focus auf Buchstaben-Link
    link.focus(); formItemFocus( link );
+   
+   //setzt Focus auf ersten Themen-Listen-Link (passend zum Buchstaben)
    var firstElementNo = link.getAttribute('data-starts-with-no');
    var a = document.getElementById('mainlink_thema_sel_'+firstElementNo);
    a.focus();    formItemFocus( a );
    //window.setTimeout(function(){ location.href = link.href; },50);
    //window.setTimeout(function(){ location.href = a.href; },50);
+   
+   toggleInLinkListe_andFocus__lastB = nextB;
+   toggleInLinkListe_andFocus__lastNo = firstElementNo;
+   //console.log( "toggleInLinkListe_andFocus__lastNo " + toggleInLinkListe_andFocus__lastNo + " toggleInLinkListe_andFocus__lastB "+toggleInLinkListe_andFocus__lastB);
+   
 }
  
  
