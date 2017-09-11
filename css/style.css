@@ -44,6 +44,9 @@ a:active{
 a:hover, tr.videolink_row td:nth-child(1):hover{
   background:#f9f9f9
 }
+#show_hideElementsList .show_hideElementsList_entry:hover a{
+  background:#bbbbbb;
+}
 /*
 .link_to_thema_span:hover{
   background:#f9f9f9

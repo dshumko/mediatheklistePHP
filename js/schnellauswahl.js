@@ -128,7 +128,7 @@ function showAlleFromHideThema(){
          var link_part0 = cookie[j].split('?sender=')[0];
          var readable_link = cookie[j].replace(link_part0+"?",'').replace(/liste.php\?/,' ').replace(/sender=/,'').replace(/&thema=/,'&nbsp; ').replace(/"/g,'x4sdy0Anfuehrungsz4sdy0').replace(/x4sdy0ANDx4sdy0/g,'&');
          //console.log(link+' ?=? '+cookie_favs[j]);
-         out += '<p style="margin:1pt;">';
+         out += '<p style="margin:1pt;" class="show_hideElementsList_entry">';
          out += '<a href="#" style="display:inline-block;width:100%;text-decoration:none" class="link_every_same_color_underl" title="Lösche Eintrag aus dieser Liste" data-href="'+cookie[j]+'" onClick="removeHideThemaDataHrefSelf(this);showAlleFromHideThema();var del_hide_thema=1;return false;">';
          out += '<span style="color:black;">'+readable_link +'</span>';
          out += ' <span style="text-decoration:underline">Löschen</span></a></p>';
