@@ -196,6 +196,7 @@ a:focus{
 .float_e span a{
   display: inline-block;
   width: 100%;
+  float: left;
 }
 .float_e :nth-child(1){
   width:50%;  min-width:50%;  max-width:50%;
