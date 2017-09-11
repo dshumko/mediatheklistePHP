@@ -156,7 +156,7 @@ function getThemenliste($options){
               //$dp = 'display:none;';
               //if( $anker=='#thema_select' || strstr($anker,'#buchstabe_')!==false || strstr($anker,'#thema_sel_')!==false) $dp = 'display:inline-block';
               if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ) $dp = 'display:inline-block';
-              $out.= "<div style=\"$dp;width:100%;padding-left:1pt;text-indent: -10pt;padding-left: 11pt;margin-top: -1pt;\" id=\"thema_sel_buchstaben\"><span style=\"float:left\"><span style=\"background:blue\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span><!-- Springe zu -->Buchstabe:&nbsp; </span><div id=\"thema_sel_buchstaben_sub\">";
+              $out.= "<div style=\"$dp;width:100%;padding-left:1pt;text-indent: -10pt;padding-left: 11pt;margin-top: -1pt;\" id=\"thema_sel_buchstaben\"><span style=\"float:left\"><span style=\"background:blue\" class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span><!-- Springe zu -->Buchstabe:&nbsp; </span><div id=\"thema_sel_buchstaben_sub\" style=\"margin-right: 6pt\">";
               $out.= "<script language=\"javascript\" type=\"text/javascript\"> possibleHideHbbTVButtons(); </script>";
               $possible_url_base = '';
               if(isset($_GET['start']) && $_GET['start']!='' && isset($_GET['ende']) && $_GET['ende']!=''){

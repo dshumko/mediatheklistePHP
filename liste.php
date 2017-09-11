@@ -627,10 +627,10 @@ echo "</a>";
 
 
 
-echo "<div style=\"float:right;padding-right: 12pt;text-align:right\">
+echo "<div style=\"float:right;text-align:right\">
   <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">⚙ Einstellungen</a> <!-- <a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >&#x2315; Suchen</a> -->
-  <a href=\"#bottom\" title=\"nach unten scrollen\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\" tabindex=\"0\">↧</a>
-  <a href=\"#top\" title=\"nach oben scrollen\" style=\"margin-left:0px;padding-left:0px;text-decoration:none\" tabindex=\"0\">↥</a>";
+  <a href=\"#bottom\" title=\"nach unten scrollen\" style=\"margin-left:0px;padding-left:5pt;padding-right: 5pt;text-decoration:none\" tabindex=\"0\">↧</a>
+  <a href=\"#top\" title=\"nach oben scrollen\" style=\"margin-left:0px;padding-left:5pt;padding-right: 5pt;text-decoration:none\" tabindex=\"0\">↥</a>";
 
 
 echo "</div>";
