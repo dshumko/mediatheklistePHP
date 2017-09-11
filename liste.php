@@ -137,6 +137,11 @@ function onload1y(){ //onload
       //var elem = document.getElementById('schnellauswahl');     if(elem!=undefined)elem.style.paddingTop  = h+'px';
       var elem = document.getElementById('content');              if(elem!=undefined)elem.style.paddingTop  = h+'px';
     }    //alert(a);
+    
+    //Link: Springe zu Filmen direkt über Schnellauswahl
+    var countFavs = 0;       var raw = getCookie('favs');     if(raw=='')raw='{}'; var countFavs = JSON.parse(raw).length;
+    if( countFavs> 2 && document.getElementById('schnellauswahl_list__jump_to_filme')!=undefined && document.getElementsByClassName('videolink_row').length>0 ) document.getElementById('schnellauswahl_list__jump_to_filme').style = 'inline-block';
+    
     var c = getCookie('showFooter'); if(c>0) document.getElementById('fixed_footer').style.display = 'block';
     //alert( new Date().getTime() - starttime + 'ms');
 }
@@ -144,7 +149,8 @@ function onload1y(){ //onload
 
 
 function setFocusForLastLink(){
-  ";
+    if(location.hash=='#anker1_film_0') location.hash='#anker1_film_1';
+    ";
   
     if( isset($_GET['sender']) && $_GET['sender']!='' && isset($_GET['thema']) && $_GET['thema']!='' ){
             echo "
@@ -519,8 +525,9 @@ if( isset($_GET['thema']) && $_GET['thema']!=''){
 
 if( isset($_COOKIE['favs']) && !isset($_GET['sender']) && !isset($_GET['thema'])){
     if(isset($_GET['sender'])) $d =' display:none';else $d = '';
+    $jumpToFilmsLink =  "<a href=\"#anker1_film_0\" id=\"schnellauswahl_list__jump_to_filme\" style=\"display:none\" onClick=\"var e = document.getElementsByCallName('videolink_row'); if(e.length>0)formItemFocus( e[0] )\"> Springe zu den Filmen<br></a>";
     echo "<div id=\"schnellauswahl\" style=\"$d;padding-top:5pt;\">";
-    echo "Schnellauswahl:</br>";
+    echo "<span>$jumpToFilmsLink Schnellauswahl:</br></span>";
     echo "</div>";
     echo "<script language=\"javascript\" type=\"text/javascript\">getSchnellauswahl()</script>";
 }
@@ -880,7 +887,7 @@ echo "
 <div id=\"notice_before_filmliste__minLength\" style=\"display:none\"></div>
 ";
 echo "
-    <a name=\"anker1_film_0\"></a>
+    <a name=\"anker1_film_0\" id=\"anker1_film_0\"></a>
     <table style=\"border-collapse: separate;border-spacing:0 20pt;width:100%;\" >\n";
 $i = 0;
 foreach($allOuts as $outArrayS){ //Timestamp Array

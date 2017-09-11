@@ -447,9 +447,12 @@ function getSchnellauswahl(){
         a_link.innerText = ''+showURL(decodeURIComponent(cookie_favs[j])).replace('liste.php?sender=','').replace('&thema=',' ').replace(/&quality=[^&]*/,'').replace(/&hideHoerfassung=[^&]*/,'');
         //console.log(cookie_favs[j]);
         //console.log( decodeURIComponent(cookie_favs[j]) );
+        a_link.style.paddingLeft = '15pt';
+        a_link.style.minWidth = '80%';
+        a_link.style.display = 'inline-block';
         span.appendChild(a_link);
-
-          target.appendChild(span);
+        
+        target.appendChild(span);
         
       }
       //var index = array.indexOf(href);
