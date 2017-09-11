@@ -448,7 +448,7 @@ if( isset($_GET['list_update__only_aufteilen']) && $_GET['list_update__only_auft
 echo "<div id=\"content\">";
 
 //utf8_encode()
-if(!isset($_GET['sender']) && !isset($_GET['themen'])) echo "<span id=\"abstand_oben1\"><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
+if(!isset($_GET['sender']) && !isset($_GET['themen'])) echo "<span id=\"abstand_oben1\"><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
 else echo "<span id=\"abstand_oben1\"><br><br><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
 if(!isset($_GET['sender'])) echo "".$welcomeText."";
 
@@ -685,7 +685,7 @@ echo "</div></div>"; //schließe fixed header Leiste vom oben
 echo "<a name=\"settings\" class=\"anker\" ></a>";
 echo "<div id=\"options\" style=\"z-index:991;display:none;background:#ffffff;padding:25pt;min-width:500pt;\">";
   echo "<span style=\"float:right\"><a href=\"#\" onclick=\"toggleShowOptions('close');return false;\" title=\"close\">x</a></span>
-  <h3>⚙ Optionen</h3><br>
+  <h3>⚙ Einstellungen</h3><br>
          <hr>
          <div>Standart-Qualität: <span style=\"float:right\">
               &nbsp;&nbsp;&nbsp;&nbsp; 

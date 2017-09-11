@@ -172,7 +172,7 @@ function getCookie(c_name) {
 }
 
 if(getCookie('direkt_zur_mediathek_liste')!='' && location.href.search(/direkt_zur_mediathek_liste_/)==-1){
-        location.href = 'liste.php';
+        window.location.href = 'liste.php';
 }
 
 function setFocus(item){    

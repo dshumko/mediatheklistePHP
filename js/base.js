@@ -343,7 +343,11 @@ function toggleShowOptions(state){
                 else state = 'close';
         }
         
-        if(state== 'show'){document.getElementById('options').style.display = 'block';showAlleFromHideThema()}
+        if(state== 'show'){
+          document.getElementById('options').style.display = 'block';
+          showAlleFromHideThema();
+          formItemFocus(document.getElementById('options').getElementsByTagName('A')[0]);
+        }
         else if(state=='close'){
                 document.getElementById('options').style.display = 'none';
                 history.replaceState( history.state, document.title , '#');
