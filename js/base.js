@@ -396,6 +396,10 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
                           if(parent==undefined) return; else parent.style.display = 'none';   
                   }
+                  if(hideTrailerFilme==1 && list[i].innerText.substring(0,9) == 'Vorschau ' || list[i].innerHTML.substring(0,9) == 'Vorschau '){
+                          var parent = filmliste_line_getParentNode( list[i].parentNode );
+                          if(parent==undefined) return; else parent.style.display = 'none';   
+                  }
                   if(minLength>0){
                       var lObj = list[i].getElementsByClassName('film_length');
                       if(lObj.length>0) var l = lObj[0]; else continue;
