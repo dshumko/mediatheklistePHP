@@ -140,23 +140,56 @@ echo "         <hr>
         <div id=\"optionen_themen_ausblenden_deaktiv\">
           Blacklist / Themen ausblenden
           <span style=\"float:right;padding:6pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','1',365*10);window.location.reload();return false;\" id=\"options_hide_themen_liste_del__del_all\">Aktivieren</a>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','1',365*10);window.location.reload();return false;\" id=\"options_hide_thema_enable_link\">Aktivieren</a>
           </span>
         </div>
         <div id=\"optionen_themen_ausblenden_aktiv\" style=\"display:none;\">
-        Themen ausgeblendet: 
+        Blacklist / Themen ausgeblendet: 
         <span style=\"float:right;padding:1pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','',-1);window.location.reload();return false;\" id=\"options_hide_themen_liste_del__del_all\">Funktion deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);window.location.reload();return false;\" id=\"options_hide_themen_liste_del__del_all\">Alle löschen</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHideThema();return false;\">Liste aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','',-1);window.location.reload();return false;\" id=\"options_hide_thema_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_thema_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_thema_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);window.location.reload();return false;\" id=\"options_hide_thema_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('thema');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
         
-        <div id=\"show_hideElementsList\" style=\"\"> </div>
+        <div id=\"show_hide_thema_ElementsList\" style=\"\"> </div>
         <script language=\"javascript\"  type=\"text/javascript\">
             if(getCookie('hide_thema_aktiv')!=''){
               document.getElementById('optionen_themen_ausblenden_aktiv').style.display = 'block';
               document.getElementById('optionen_themen_ausblenden_deaktiv').style.display = 'none';
-              if(getCookie('hide_thema')!='')document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; ';
-              else{ /*document.getElementById('show_hideElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
-                //document.getElementById('show_hideElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHideThema();return false;\">neu laden<a/>'; 
+              if(getCookie('hide_thema')!='')document.getElementById('show_hide_thema_ElementsList').innerHTML = '&nbsp; &nbsp; ';
+              else{ /*document.getElementById('show_hide_thema_ElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
+                //document.getElementById('show_hide_thema_ElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHide('thema');return false;\">neu laden<a/>'; 
+            }
+        </script>
+        </div>
+        <div style=\"clear:both\"></div>
+        <hr>
+        ";  
+        
+        
+        
+        echo "<hr>
+        <div id=\"optionen_film_ausblenden_deaktiv\">
+          Blacklist / Filme ausblenden
+          <span style=\"float:right;padding:6pt\">
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','1',365*10);window.location.reload();return false;\" id=\"options_hide_film_enable_link\">Aktivieren</a>
+          </span>
+        </div>
+        <div id=\"optionen_film_ausblenden_aktiv\" style=\"display:none;\">
+          Blacklist / Filme ausgeblendet:
+        <span style=\"float:right;padding:1pt\">
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','',-1);window.location.reload();return false;\" id=\"options_hide_film_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_film_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film','',-1);window.location.reload();return false;\" id=\"options_hide_film_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_add_form').style.display='block';return false;\" id=\"options_hide_film_liste_add\">+</a> &nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('film');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+        </span>
+        <div id=\"options_hide_film_liste_add_form\" style=\"text-align:right;display:none\"><br>
+          Folgenden Film ausblenden <input type=\"text\" id=\"options_hide_film_liste_add_form_text\" >* 
+          <input type=\"button\" value=\"ok\" onClick=\" showAlleFromHide_add('options_hide_film_liste_add_form_text','film');document.getElementById('options_hide_film_liste_add_form').style.display='none'\" />
+        </div>
+        <div id=\"show_hide_film_ElementsList\" style=\"\"> </div>
+        <script language=\"javascript\"  type=\"text/javascript\">
+            if(getCookie('hide_film_aktiv')!=''){
+              document.getElementById('optionen_film_ausblenden_aktiv').style.display = 'block';
+              document.getElementById('optionen_film_ausblenden_deaktiv').style.display = 'none';
+              if(getCookie('hide_film')!='')document.getElementById('show_hide_film_ElementsList').innerHTML = '&nbsp; &nbsp; ';
+              else{ /*document.getElementById('show_hide_film_ElementsList').innerHTML = '&nbsp; &nbsp; -keine- ';*/ }
+                //document.getElementById('show_hide_film_ElementsList').innerHTML += '<a class=\"link_every_same_color_underl\" href=\"#\" onClick=\"showAlleFromHide('film');return false;\">neu laden<a/>'; 
             }
         </script>
         </div>

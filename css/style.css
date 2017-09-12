@@ -44,7 +44,7 @@ a:active{
 a:hover, tr.videolink_row td:nth-child(1):hover{
   background:#f9f9f9
 }
-#show_hideElementsList .show_hideElementsList_entry:hover a{
+#show_hide_thema_ElementsList .show_hide_thema_ElementsList_entry:hover a, #show_hide_film_ElementsList .show_hide_film_ElementsList_entry:hover a{
   background:#bbbbbb;
 }
 /*

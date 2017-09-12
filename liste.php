@@ -110,7 +110,7 @@ function onload1y(){ //onload
     while( l!=undefined && l.length>0){ l[0].classList.remove('link_black_before_onload');}
     updateThemenListeLink_addSchnellauswahl(); //Themenliste-in bezug auf ausgewählte aktualisieren (gespeichert in cookies)
     updateFilmlistenSeite_ListeSchnellauswahl(); //Link hinzufügen zu Schnellauswahl aktualsieren (auf Filmlisten-Einträge-Seite)
-    updateListeThemenLink_hideElements_andRepairLinks(); //Themenliste durchgehen, was ggf gelsöscht werden soll (+anhängen Parameter MindestLänge)
+    updateListeThemenLink_hideElements_andRepairLinks(); //Themenliste durchgehen, was ggf gelöscht/ausgeblendet werden soll (+anhängen Parameter MindestLänge)
     updateListeSenderLink(); //Senderliste (anhängen Parameter MindestLänge)
     
     setFocusForLastLink();//if(!isHbbTV())setFocusForLastLink(); //funktioniert bei Hbb-TVs nicht??? (noch testen!!)
@@ -123,7 +123,7 @@ function onload1y(){ //onload
     //}
     filmliste_eintrage_event_onclick();
     filmliste_eintrage_event_videolinks_onclick();
-    updateVideoMainLink_withQualityLink();
+    updateVideoMainLink_withQualityLink_andPossibleHideElements(); //Filmliste durchgehen: Update Videolink + was ggf gelöscht/ausgeblendet werden soll 
     updateFilmliste_HideElements( getCookie('hideHoerfassungFilme') ,
                       getCookie('hideAudioDeskriptionFilme') ,
                       getCookie('hideTrailerFilme') ,

@@ -42,19 +42,29 @@ function append(href, cookie_name){
         //console.log(raw);
         if(raw=='') raw='[]';
         var cookie_favs = JSON.parse(raw);
-  if(cookie_favs.length>0){
-   var index = cookie_favs.indexOf( encodeURIComponent(href) ); 
-   if (index > -1) return false; //element bereits vorhanden in Liste
-  }else cookie_favs = new Array();
-  //href =href.replace(/"/g,'\"');  alert(href);
+        if(cookie_favs.length>0){
+         var index = cookie_favs.indexOf( encodeURIComponent(href) ); 
+         if (index > -1) return false; //element bereits vorhanden in Liste
+        }else cookie_favs = new Array();
+        //href =href.replace(/"/g,'\"');  alert(href);
         //href =href.replace(/%22/g,"%2F%22"); alert(href); //falsch rum /
-  cookie_favs.push( decodeURIComponent(href) );
-        //var newAr = Array(); for (var j = 0; j < cookie_favs.length; j++) {  newAr.push ( encodeURIComponent(cookie_favs[j]) ); }
-        var myJSONString = JSON.stringify(cookie_favs);
-        //var myEscapedJSONString = myJSONString.escapeSpecialChars();
-  createCookie( cookie_name, myJSONString, 365*5);
+        appendCookie (decodeURIComponent(href), cookie_name)
         setUpdateDate();
-  return true;
+        return true;
+}
+function appendCookie(text, cookie_name){
+        var raw = getCookie(cookie_name);
+        if(raw=='') raw='[]';
+        var cookie = JSON.parse(raw);
+        if(cookie.length>0){
+         var index = cookie.indexOf( text ); 
+         if (index > -1) return false; //element bereits vorhanden in Liste
+        }else cookie = new Array();
+        cookie.push( text );
+        var myJSONString = JSON.stringify(cookie);
+        createCookie( cookie_name, myJSONString, 365*5);
+        if(cookie_name=='hide_thema')setUpdateDate();
+        return true;
 }
 
 //damit der Server ggf. bescheidsagen kann, das Seite noch aktuell (=aus den Cache laden)
@@ -76,21 +86,28 @@ function removeFavDataHrefSelf(self){
 function removeFav(href){
         href = href.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
         return remove(href, 'favs');}
-        
 function removeHideThema(href){ 
         href = href.replace(/&quality=[^&]*/,'').replace(/&min_length=[^&]*/,'');
         return remove(href, 'hide_thema'); }
+function removeHideFilm(text){ 
+        return remove(text, 'hide_film'); }
         
-function removeHideThemaDataHrefSelf(self){
+
+function removeHide_thema_DataHrefSelf(self){
   newValueToAdd = self.getAttribute('data-href');
   removeHideThema(newValueToAdd);
+  self.innerText='...gelöscht'; return true;}
+function removeHide_film_DataHrefSelf(self){
+  newValueToAdd = self.getAttribute('data-href');
+  removeHideFilm(newValueToAdd);
+  updateVideoMainLink_withQualityLink_andPossibleHideElements();
   self.innerText='...gelöscht'; return true;}
 
 function remove(href, cookie_name){
   //alert(href+'\n;;;;'+getCookie('favs'));
   var raw = getCookie(cookie_name);
   if(raw=='') raw='{}';
-  var array = JSON.parse(raw); 
+  var array = JSON.parse(raw);
   //console.log(decodeURIComponent(cleanURL(href)));
   var index = array.indexOf( cleanURL(href) ); //mus auf beiden Wegen
   if(index ==-1 )index = array.indexOf( decodeURIComponent(cleanURL(href)) ); //bei &
@@ -105,37 +122,52 @@ function remove(href, cookie_name){
   return true;
 
 }
+function removeCookie(text, cookie_name){
+  var raw = getCookie(cookie_name);
+  if(raw=='') raw='{}';
+  var array = JSON.parse(raw); 
+  var index = array.indexOf( text ); //mus auf beiden Wegen
+  if (index > -1) {
+    array.splice(index, 1);
+  }else return false;
+  if(array.length>0)  createCookie( cookie_name,JSON.stringify(array), 365*5);
+  else                createCookie( cookie_name,JSON.stringify(array), -1);
+  return true;
 
-function showAlleFromHideThema(){
-    var ziel = document.getElementById('show_hideElementsList');
-    var raw = getCookie('hide_thema');
+}
+
+function showAlleFromHide_add(textId, type){
+    var text = document.getElementById(textId).value;
+    appendCookie(text, 'hide_'+type);
+    showAlleFromHide(type);
+    updateVideoMainLink_withQualityLink_andPossibleHideElements();
+}
+function showAlleFromHide(type){
+    if(type!='thema' && type!='film')console.log("unallowed type "+type+" in showAlleFromHide");
+    var ziel = document.getElementById('show_hide_'+type+'_ElementsList');
+    var raw = getCookie('hide_'+type);
     if(raw==''){
      raw='{}';
      ziel.innerHTML = '&nbsp;&nbsp;&nbsp;<span style="color:#999999">(keine)</span>';
      return; //abbruch
     }
-    //console.log(raw);
     var cookie = JSON.parse(raw);
-    //console.log(cookie_favs);
     
     var mainlinks = '';
 
-    var ziel = document.getElementById("show_hideElementsList");
     ziel.style.width = '100%';
-          var out = mainlinks;
+    var out = mainlinks;
     for (var j = 0; j < cookie.length; j++) {  
          cookie[j] = cleanURL(cookie[j]);
          var link_part0 = cookie[j].split('?sender=')[0];
          var readable_link = cookie[j].replace(link_part0+"?",'').replace(/liste.php\?/,' ').replace(/sender=/,'').replace(/&thema=/,'&nbsp; ').replace(/"/g,'x4sdy0Anfuehrungsz4sdy0').replace(/x4sdy0ANDx4sdy0/g,'&');
-         //console.log(link+' ?=? '+cookie_favs[j]);
-         out += '<p style="margin:1pt;" class="show_hideElementsList_entry">';
-         out += '<a href="#" style="display:inline-block;width:100%;text-decoration:none" class="link_every_same_color_underl" title="Lösche Eintrag aus dieser Liste" data-href="'+cookie[j]+'" onClick="removeHideThemaDataHrefSelf(this);showAlleFromHideThema();var del_hide_thema=1;return false;">';
+         out += '<p style="margin:1pt;" class="show_hide_'+type+'_ElementsList_entry">';
+         out += '<a href="#" style="display:inline-block;width:100%;text-decoration:none" class="link_every_same_color_underl" title="Lösche Eintrag aus dieser Liste" data-href="'+cookie[j]+'" onClick="removeHide_'+type+'_DataHrefSelf(this);showAlleFromHide(\''+type+'\');updateListeThemenLink_hideElements_andRepairLinks();var del_hide_thema=1;return false;">';
          out += '<span style="color:black;">'+readable_link +'</span>';
          out += ' <span style="text-decoration:underline">Löschen</span></a></p>';
     }
-    if(cookie.length>0 && cookie[0]!='') document.getElementById('options_hide_themen_liste_del__del_all').style.display = 'inline';
+    if(cookie.length>0 && cookie[0]!='') document.getElementById('options_hide_'+type+'_liste_del__del_all').style.display = 'inline';
     ziel.innerHTML =  '<span style="background:#4eff001a;display:block;margin-left: 20pt;padding:1pt;"> ' + out + '<br><a title=\"Nach Veränderungen sinnvoll\" href="#" class="link_every_same_color_underl" onClick="window.location.reload();return false;" style=\"float: right\">Seite neu laden</a><br><span>';
-    //var index 
     return out;
 }
 
@@ -146,12 +178,21 @@ function cleanURL(link){
     link = link.replace(/%3Fsender%3D/,'?sender=').replace(/%26thema%3D/,'&thema=');//repair
     //link = decodeURIComponent(link);
     var link_part0 = link.split('?sender=')[0];
-    var sender = ( link.split('?sender=')[1] );
-    if( sender.search(/\&/)!=-1)sender = sender.split('&')[0];
-    var thema  = ( link.split('&thema=')[1] );
-    thema = thema.replace(/&/g,'x4sdy0ANDx4sdy0');
-    thema = thema.replace(/x4sdy0Anfuehrungsz4sdy0/g,'"');
-    link = link_part0+'?sender='+sender+'&thema='+thema+'';
+    var sender = '';
+    if(link.split('?sender=').length>1){
+      sender = ( link.split('?sender=')[1] ); 
+      if( sender.search(/\&/)!=-1 )sender = sender.split('&')[0];
+    }
+    var thema  = '';
+    if(link.split('?sender=').length>1){
+      thema = ( link.split('&thema=')[1] );
+      thema = thema.replace(/&/g,'x4sdy0ANDx4sdy0');
+      thema = thema.replace(/x4sdy0Anfuehrungsz4sdy0/g,'"');
+    }
+    link = link_part0;
+    if(sender!='' || thema!='') link += '?';
+    if(sender!='')link += 'sender='+sender+'&';
+    if(thema!='') link += 'thema='+thema+'';
 
     return link    
 }
@@ -333,8 +374,12 @@ function updateListeThemenLink_hideElements_andRepairLinks(){
                       var link = elements[i].getAttribute('href');//parentNode.firstChild.
                       link = decodeURIComponent(link);
                       link = cleanURL(link);
-    
-                      for (var j = 0; j < cookie_favs.length; j++) {  //Ausblenden-Liste
+                      
+                      //reset (für wiederholten aufruf)
+                      if(elements[i].parentNode.parentNode.style.display =='none' ) elements[i].parentNode.parentNode.style.display = '';
+                      
+                      //Ausblenden-Liste
+                      for (var j = 0; j < cookie_favs.length; j++) {
                            cookie_favs[j] = cleanURL(cookie_favs[j]);             
                            if(link==cookie_favs[j] ){
                               var span = elements[i].parentNode.parentNode.style.display = "none";
@@ -349,7 +394,7 @@ function updateListeThemenLink_hideElements_andRepairLinks(){
                       }
     
                       if(c>0){
-                        elements[i].href = elements[i].href + '&min_length' + '=' + c;
+                        if(elements[i].href.search(/&min_length/)==-1)elements[i].href = elements[i].href + '&min_length' + '=' + c;
                       }
       }
 }
@@ -378,8 +423,8 @@ function updateListeSenderLink(){
 function updateFilmlistenSeite_ListeSchnellauswahl(){
       var raw = getCookie('favs');
       if(raw==''){
-       raw='{}';
-       return; //abbruch
+        raw='{}';
+        return; //abbruch
       }
       var cookie_favs = JSON.parse(raw);
 
@@ -387,18 +432,19 @@ function updateFilmlistenSeite_ListeSchnellauswahl(){
 
       for (var i = 0; i < elements.length; i++) {  
           var link = elements[i].getAttribute('data-href');
-                      link = decodeURIComponent(link);
+          link = decodeURIComponent(link);
           for (var j = 0; j < cookie_favs.length; j++) {  
-                  //console.log(cookie_favs[j]);
-                                    //console.log( (link) + "??==??"+cookie_favs[j] );
-            if(link==cookie_favs[j]){
-              elements[i].innerHTML = '★ (löschen)';
-              elements[i].setAttribute("onclick", "removeFavDataHrefSelf(this)"); //'"+link.replace("'","\'")+"'
-              //console.log(elements[i].getAttribute("onClick")+'Fund in ');
-            }
+                //console.log(cookie_favs[j]);
+                //console.log( (link) + "??==??"+cookie_favs[j] );
+                if(link==cookie_favs[j]){
+                  elements[i].innerHTML = '★ (löschen)';
+                  elements[i].setAttribute("onclick", "removeFavDataHrefSelf(this)"); //'"+link.replace("'","\'")+"'
+                  //console.log(elements[i].getAttribute("onClick")+'Fund in ');
+                }
           }
       }
 }
+
 
 
 //in der ThemenList den Schnellauswahl-Link aktualisieren

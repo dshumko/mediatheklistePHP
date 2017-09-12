@@ -16,49 +16,50 @@ document.addEventListener("keydown", function(e) {
            link.focus();
            formItemFocus( link );
      } //Blau
-     
-     var parentSpanSelBuchstaben = document.getElementById('thema_sel_buchstaben');
-     if(e.which == 49){
-           var buchstaben = new Array('#' , '(' , ')' , '[' , ']' , "'" ,0,1,2,3,4,5,6,7,8,9);
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"1\"
-     if(e.which == 50){ //   || e.which==65 oder auch bustabe A auf normaler Tastatur (test)
-           var buchstaben = new Array('A','B','C');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"2\"
-     if(e.which == 51){
-           var buchstaben = new Array('D','E','F');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"3\"
-     if(e.which == 52){
-           var buchstaben = new Array('G','H','I');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"4\"
-     if(e.which == 53){
-           var buchstaben = new Array('J','K','L');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"5\"
-     if(e.which == 54){
-           var buchstaben = new Array('M','N','O');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"6\"
-     if(e.which == 55){
-           var buchstaben = new Array('P','Q','R','S');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"7\"
-     if(e.which == 56){
-           var buchstaben = new Array('T','U','V');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"8\"
-     if(e.which == 57){ // || e.which==87 oder auch buchstabe W auf normaler Tastatur (test)
-           var buchstaben = new Array('W','X','Y');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"9\"
-     if(e.which == 58){
-           var buchstaben = new Array('0');
-           toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
-     }  //Taste Zahl \"0\"
-     
+     if(document.activeElement.id=='options_hide_film_liste_add_form_text') return;
+     else{
+       var parentSpanSelBuchstaben = document.getElementById('thema_sel_buchstaben');
+       if(e.which == 49){
+             var buchstaben = new Array('#' , '(' , ')' , '[' , ']' , "'" ,0,1,2,3,4,5,6,7,8,9);
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"1\"
+       if(e.which == 50){ //   || e.which==65 oder auch bustabe A auf normaler Tastatur (test)
+             var buchstaben = new Array('A','B','C');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"2\"
+       if(e.which == 51){
+             var buchstaben = new Array('D','E','F');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"3\"
+       if(e.which == 52){
+             var buchstaben = new Array('G','H','I');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"4\"
+       if(e.which == 53){
+             var buchstaben = new Array('J','K','L');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"5\"
+       if(e.which == 54){
+             var buchstaben = new Array('M','N','O');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"6\"
+       if(e.which == 55){
+             var buchstaben = new Array('P','Q','R','S');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"7\"
+       if(e.which == 56){
+             var buchstaben = new Array('T','U','V');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"8\"
+       if(e.which == 57){ // || e.which==87 oder auch buchstabe W auf normaler Tastatur (test)
+             var buchstaben = new Array('W','X','Y');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"9\"
+       if(e.which == 58){
+             var buchstaben = new Array('0');
+             toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
+       }  //Taste Zahl \"0\"
+     }//ende if document.activeElement
 }, false); //ende Event Listener
 
 var toggleInLinkListe_andFocus__lastNo = 0;
@@ -69,14 +70,14 @@ function toggleInLinkListe_andFocus(parentSpan, buchstabenVorlage){
    var buchstaben = new Array();
    var currentActiveBuchstabe = '';
    
-   console.log( "toggleInLinkListe_andFocus__lastNo " + toggleInLinkListe_andFocus__lastNo + " toggleInLinkListe_andFocus__lastB "+toggleInLinkListe_andFocus__lastB);
+   //console.log( "toggleInLinkListe_andFocus__lastNo " + toggleInLinkListe_andFocus__lastNo + " toggleInLinkListe_andFocus__lastB "+toggleInLinkListe_andFocus__lastB);
    
    //wurde diese Funktion schonmal/gerade erst aufgerufen?
    if( toggleInLinkListe_andFocus__lastNo>0 &&
        document.activeElement == document.getElementById('mainlink_thema_sel_'+toggleInLinkListe_andFocus__lastNo) ){
        //wenn noch beim zuletzte (via toggleInLinkListe_andFocus) aktivierten Element
        currentActiveBuchstabe = toggleInLinkListe_andFocus__lastB;
-       console.log( "Diese Funktion schonmal/gerade erst aufgerufen? " + currentActiveBuchstabe );
+       //console.log( "Diese Funktion schonmal/gerade erst aufgerufen? " + currentActiveBuchstabe );
    }
    
    
@@ -107,7 +108,7 @@ function toggleInLinkListe_andFocus(parentSpan, buchstabenVorlage){
    }
    
    if(nextB=='') nextB = buchstaben[0]; //beginne beim ersten Buchstaben
-   console.log("nächster aktiver Buchstabe wird sein: "+nextB);
+   //console.log("nächster aktiver Buchstabe wird sein: "+nextB);
    link = linkListBuchstaben[ nextB ];
    //console.log("aktiver Buchstaben-Link: "+link);
    
@@ -288,10 +289,16 @@ function addEventListenerList(list, event, fn) {
 
 
 //Ersetze den Haupt-Videolink durch den passenen Videolink (bspw. durch Videolink auf "geringe" Videoqualität)
-function updateVideoMainLink_withQualityLink(){;
+function updateVideoMainLink_withQualityLink_andPossibleHideElements(){;
         var c = getCookie('quality');
-        if( c=='' || c=='normal' ) return; //prüfe ob überhaupt gesetzt/bzw. abweichend
-        if( c!='hd' && c!='low' )  return; //prüfe ob richtig gesetzt
+        var raw = '';
+        if(getCookie('hide_film_aktiv')!='')raw = getCookie('hide_film');
+        if(raw=='') raw='[]';
+        var hide_film = JSON.parse(raw); for (var j = 0; j < hide_film.length; j++) { hide_film[j] = hide_film[j].toLowerCase() } 
+        if(hide_film.length==0){
+          if( c=='' || c=='normal' ) return; //prüfe ob überhaupt gesetzt/bzw. abweichend
+          if( c!='hd' && c!='low' )  return; //prüfe ob richtig gesetzt
+        }
         var list = document.getElementsByClassName('list_video_mainlink');
           for (var i = 0; i < list.length; i++) {
                   var href = '';
@@ -299,13 +306,25 @@ function updateVideoMainLink_withQualityLink(){;
                   var parent = filmliste_line_getParentNode(list[i].parentNode);
                   if(parent==undefined) return; //Fehler
                   
-
+                  var title = list[i].innerText;
+                  var exit = false; 
+                  for (var j = 0; j < hide_film.length; j++) {
+                    if( title.substring(0, hide_film[j].length).toLowerCase() == hide_film[j]){
+                        parent.style.display='none';
+                        exit = true;
+                        break;                      
+                    }
+                  }
+                  if(exit) continue;
+                  
+                  if(parent.style.display == 'none' ) parent.style.display = '';
+                  
                   if(c=='hd')  e = parent.getElementsByClassName('videolink_hd');
                   if(c=='low') e = parent.getElementsByClassName('videolink_kl');
-                  if(e.length>0){ href = e[0].href; list[i].href = href; } //setzt Link
+                  if(e!=undefined && e.length>0){ href = e[0].href; list[i].href = href; } //setzt Link
                   
                   e = parent.getElementsByClassName('notice_fileformat_not_playable');
-                  if(e.length>0){ e[0].innerHTML = ''; e[0].innerText = '';} //Der hinweis galt nur für "Normal-Video"
+                  if(e!=undefined && e.length>0){ e[0].innerHTML = ''; e[0].innerText = '';} //Der hinweis galt nur für "Normal-Video"
                   
                   //Prüfe Videoformat
                   if(href!=''){
@@ -387,7 +406,7 @@ function toggleShowOptions(state){
         
         if(state== 'show'){
           document.getElementById('options').style.display = 'block';
-          showAlleFromHideThema();
+          showAlleFromHide('thema'); showAlleFromHide('film');
           formItemFocus(document.getElementById('options').getElementsByTagName('A')[0]);
         }
         else if(state=='close'){
