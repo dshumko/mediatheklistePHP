@@ -797,7 +797,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
         }
       
         echo "        <$tag_table id=\"table_sel_thema\"  style=\"border-spacing:0 0pt;width:100%;\" >";
-        foreach($themen as $b => $themen){
+        if(is_array($themen))foreach($themen as $b => $themen){
               $showBuchstabenlink = true;
               foreach($themen as $url => $more){
                   $ll++;

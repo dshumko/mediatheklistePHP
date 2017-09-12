@@ -110,7 +110,8 @@ function getThemenliste($options){
 
         $locale=(defined('PHP_OS') && stristr(PHP_OS, 'win')) ? 'German_Germany.65001' : 'de_DE.utf8';
         $oldLocale=setlocale(LC_COLLATE, "0");
-        if( isset($senderThema[ strtolower($_GET['sender']) ]) )uksort($senderThema[ strtolower($_GET['sender']) ], 'traceStrColl');
+        if( !isset($senderThema[ strtolower($_GET['sender']) ]) )return array('themen'=>'', 'buchstabenLinks'=>'');
+        uksort($senderThema[ strtolower($_GET['sender']) ], 'traceStrColl');
         setlocale(LC_COLLATE, $oldLocale);
         
         unset($senderThema[ strtolower($_GET['sender']) ]['zzz'] ); //ist nur plathalter
