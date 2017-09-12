@@ -144,7 +144,7 @@ function getThemenliste($options){
               //if($lastDate!='') $title.= "<span class=\"t_sel_date\" >".$lastDateFormat."</span>";
               if($lastDate!='') $date = $lastDateFormat; else $date=''; //"<span class=\"t_sel_date\" >"....</span>
 
-              $arrayThemen[ $b ][ $href ] = array('name'=>substr($s,0,50), 'count'=>"$count", 'title'=>$title, 'date'=>$date, 'lastDate'=>$lastDateFormat);
+              $arrayThemen[ $b ][ $href ] = array('name'=>substr($s,0,50), 'count'=>"$count", 'title'=>str_replace('\"','"',$title), 'date'=>$date, 'lastDate'=>$lastDateFormat);
           }
 
           if( isset($allBuchstaben) ){
