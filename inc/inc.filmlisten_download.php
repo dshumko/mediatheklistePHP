@@ -73,9 +73,10 @@ function createCopyEachSender($file,$options,$minLength){
         array_push($lineArray, '["zzz","zzz","zzz"]'); //leere Endzeile (damit auch letzter gespeichert wird)
         $lineSum = '';
         $senderlist = array();
+        $senderliste_withMinLength = array();
         $themenlist = array();
         $themen_withMinLength  = array(); //themenliste (wenn Mindest-Filmlänge angegeben)
-              $i=0;
+        $i=0;
         $line0 = ''; //erste Zeile von Filmliste mit Datum/Spaltennamen //'{"Filmliste":[""],"Filmliste":[""],'
         $outlines = ''; //sammelt eintraege eines Themas; wird bei jeden Themawechsel abgespeichert und geleert
         if(!file_exists('cache'))         mkdir('cache');
@@ -162,7 +163,11 @@ function createCopyEachSender($file,$options,$minLength){
                         //Themenliste  
                             if( !isset($themen_withMinLength [$l][$s]) )$themen_withMinLength [$l][$s] = array();
                             if( !isset($themen_withMinLength [$l][$s][$t]) )$themen_withMinLength [$l][$s][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);
-                                    
+                            
+                            if( !isset($senderliste_withMinLength[$l]) ) $senderliste_withMinLength[$l] = array();
+                            if( !isset($senderliste_withMinLength[$l][$s]) ) $senderliste_withMinLength[$l][$s] = 0;
+                            $senderliste_withMinLength[$l][$s] ++;
+                            
                             if($themen_withMinLength [$l][$s][$t]['lastDate']<$datum) $themen_withMinLength [$l][$s][$t]['lastDate'] = $datum;
                             $themen_withMinLength [$l][$s][$t]['count']++;
                             if($laenge!=''){ $themen_withMinLength [$l][$s][$t]['countFuerGesamtLaenge']++; $themen_withMinLength [$l][$s][$t]['gesamtLaenge'] += $laenge; }
@@ -172,12 +177,12 @@ function createCopyEachSender($file,$options,$minLength){
 
                 //speichere Filmliste
                 if($use_cache_filmlist_sender && $i>3 && $sender_raw!='' && $sender_raw!=$lastSender && $lineSum!=''){ //$i>3 (damit die ersten Zeile(n) Beschriftung/etc. ausgelasen werden)
-                              if( substr($lineSum,-1)==',') $lineSum = substr($lineSum,0,-1);
-                              file_put_contents('cache/sender/'.$file.'_sender_'.$lastSender,$line0.$lineSum.'}');
+                        if( substr($lineSum,-1)==',') $lineSum = substr($lineSum,0,-1);
+                        file_put_contents('cache/sender/'.$file.'_sender_'.$lastSender,$line0.$lineSum.'}');
                         $lineSum = '';
-                      }
+                }
                       
-                            if($sender_raw!='')$lastSender = $sender_raw;
+                if($sender_raw!='')$lastSender = $sender_raw;
                 if($thema_raw!='') $lastThema = $thema_raw;
                 if($use_cache_filmlist_sender) $lineSum .= "\"X\":".$line;
         } //ende foreach
@@ -191,6 +196,11 @@ function createCopyEachSender($file,$options,$minLength){
         if(!file_exists('cache')) mkdir('cache');
         if(!file_exists('cache/1')) mkdir('cache/1');
         file_put_contents('cache/1/senderliste.serialize', utf8_encode(serialize($senderlist)));
+        
+        foreach($minLengthVorlagenMinuten as $l){
+                $fileNameAppend='min_length'.$l;
+                file_put_contents('cache/1/senderliste_'.$fileNameAppend.'.serialize', utf8_encode(serialize($senderliste_withMinLength [$l])));
+        }
         
         //Themenlisten mit mindeste-Film-Längen speichern
         foreach($minLengthVorlagenMinuten as $l){

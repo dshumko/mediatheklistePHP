@@ -6,7 +6,7 @@ $startTimeRender = microtime(true);ini_set('display_errors', 1);ini_set('display
 require_once 'config.inc.php';
 
 $minLength = 0;
-if(isset($_GET['min_length']) && $_GET['min_length']!='')$minLength = (int)$_GET['min_length'];
+if(isset($_GET['min_length']) && $_GET['min_length']!='')$minLength = (int)$_GET['min_length']; 
 if(isset($_GET['thema']) ) $_GET['thema'] = str_replace('x4sdy0ANDx4sdy0','&',$_GET['thema']); //sonst Probleme mit & im Thema
 
 $addPageTitle = '';
@@ -259,11 +259,12 @@ echo "
 var e = location.href.match('min_length=([0-9]*)');
 var minLength = getCookie('minLength');
 if(minLength>0){
-      if( e==null && location.href.search(/\?/)!=-1){ //fuege es hinten an (aber vor den Anker)
+      if( e==null){ //fuege es hinten an (aber vor den Anker)
         var e = location.href.match('#(.*)');
         var anker = '';
         if(e!=null && e.length>0)anker = '#'+e[1];
-        location.href = location.href.replace(anker,'') + '&min_length='+ minLength + anker;
+        if( location.href.search(/\?/)!=-1 ) location.href = location.href.replace(anker,'') + '&min_length='+ minLength + anker;
+        else location.href = location.href.replace(anker,'') + '?min_length='+ minLength + anker;
       } 
       else if(e!=null  && e.length>1 && getCookie('minLength')!=e[1] ) location.href = location.href.replace('&min_length='+e[1], '&min_length='+getCookie('minLength') ); //korrigiere URL
 }else if( location.href.search('&min_length=')!=-1){ 

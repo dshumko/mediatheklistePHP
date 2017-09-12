@@ -3,8 +3,13 @@
 function getSenderListe($options){
       //$hideHoerfassung = 0; if($options['hideHoerfassung'])     $hideHoerfassung     = $options['hideHoerfassung']; //verschoben auf Clientseite in Javascript
       $hideArte_fr     = 0; if($options['hideArte_fr'])       $hideArte_fr       = $options['hideArte_fr'];
+      $minLength       = 0; if($options['minLength'])         $minLength         = $options['minLength'];
       
-      if( file_exists('cache/1/senderliste.serialize') )$sender = unserialize( utf8_decode(file_get_contents('cache/1/senderliste.serialize'))); else $sender = array();
+      if( $minLength>0)$fileNameAppend='min_length'.(int)$minLength; else $fileNameAppend='';
+      $cFile = 'cache/1/senderliste_'.$fileNameAppend.'.serialize'; $cFileAlle = 'cache/1/senderliste.serialize';
+      if( file_exists($cFile) )$sender = unserialize( utf8_decode(file_get_contents($cFile)));
+      else if( file_exists($cFileAlle) )$sender = unserialize( utf8_decode(file_get_contents($cFileAlle)));
+      else $sender = array();
       
       $senderListOutArray = array();
       
