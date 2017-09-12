@@ -631,6 +631,8 @@ echo "
 //doen not work (probleme bei HBBTV): formItemFocus(document.getElementById('sender_alle_link') )
 
 echo "<a href='#sender_select' onClick=\"document.getElementById('div-sender-select').style.display='block';formItemFocus( document.getElementById('senderliste_2') );window.setTimeout(function(){ formItemFocus( document.getElementById('senderliste_2') ); },50);\"  id=\"link_sender_select\" class=\"link_black_before_onload\" tabindex=\"1\"><span style=\"background:yellow\"  class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Sender wählen&nbsp;&nbsp;&nbsp;";
+if($minLength>0)echo "<small align=\"right\" style=\"float:right; padding-right:6pt;color:#777777\">kürzer als ".$minLength." Min. werden ausgeblendet.</small>";
+
 if( isset($_GET['sender']))$s=$_GET['sender'];else $s='';
 echo "<span style=\"color:black\">$s <span id=\"sender_waehlen_append\"></span> </span>";
 echo "</a>";
@@ -696,7 +698,6 @@ echo "<a name=\"settings\" class=\"anker\" ></a>
   echo "
   <span style=\"float:right\"><a href=\"#\" onclick=\"toggleShowOptions('close');return false;\" title=\"close\">x</a></span>
 </div>"; //ende von id=options
-
 
 
 
@@ -780,7 +781,6 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
       <div id=\"list_auswahl_links_thema\" style=\"$dp;position:auto;z-index:102;\">
         <!--<span style=\"float:right\"> <a href='#thema_select' onclick=\"document.getElementById('list_auswahl_links_thema').style.display='none'\">x</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-->\n
         ";
-        if($minLength>0)echo "<p align=\"right\" style=\"padding-right:6pt;color:#777777\">kürzer als ".$minLength." Min. werden ausgeblendet.</p>";
         //else echo "<br><br>";
         $ll = 0;
         
@@ -796,7 +796,8 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
                 $tag_tr = 'div'; $tag_tr_append =  ' class="t_row float_e" ';
                 $tag_td = 'span';  
         }
-      
+        
+
         echo "        <$tag_table id=\"table_sel_thema\"  style=\"border-spacing:0 0pt;width:100%;\" >";
         if(is_array($themen))foreach($themen as $b => $themen){
               $showBuchstabenlink = true;
@@ -857,8 +858,7 @@ myFlush(); //sofort darstellen
  * Liste mit Filmeinträgen: erstellen
  */
 require_once 'inc/inc.filmliste_eintraege.php';
-createAllElements();
-
+$allOuts = createAllElements();
 
 
 
@@ -890,6 +890,14 @@ if($sortByDate==1) krsort($allOuts);
 echo "
 <div id=\"notice_before_filmliste__minLength\" style=\"display:none;text-align:right;padding-right:3pt;\"></div>
 ";
+
+if( isset($_GET['sender']) && isset($_GET['thema']) && is_array($allOuts) && count($allOuts)==0){
+  echo "<p style=\"color:#555555\">Kein Filme vorhanden (vlt. wegen  <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">Einstellungen</a>)";
+
+  if($minLength>0)echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\"><br>Kürzer als ".$minLength." Min. werden ausgeblendet.</span>";
+  echo "</p>";
+}
+        
 echo "
     <a name=\"anker1_film_0\" id=\"anker1_film_0\"></a>
     <table style=\"border-collapse: separate;border-spacing:0 20pt;width:100%;\" >\n";

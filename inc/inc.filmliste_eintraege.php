@@ -369,7 +369,7 @@ function createAllElements(){
                              $l = $e[0]*60+$e[1];
                              $outArray['length'].= ', <span class="film_length">'.$l.'</span> Min.';
                       }
-                      if($minLength>0 && $l<$minLength){ unset($outArray); continue; }
+                      if(isset($l) && $minLength>0 && $l<$minLength){ unset($outArray); continue; }
 
                           if( isset($_GET['sender']) && $_GET['sender']=='alle' ){
                           $outArray['possibleSender'] = ' '.$json_line->X[0].' ';        
@@ -507,6 +507,7 @@ function createAllElements(){
         }//end foreach
         //}//end if($cache_for_startseite_is_fresh==0)
         if( isset($_GET['sender']) && $_GET['sender'] == 'alle' && count($allSenderFromFilme)>0 )echo "<script language=\"javascript\"  type=\"text/javascript\">document.getElementById('sender_waehlen_append').innerText = '".implode(', ',$allSenderFromFilme)."' </script>";
+        return $allOuts;
         
 }//end function create All Elements
 
