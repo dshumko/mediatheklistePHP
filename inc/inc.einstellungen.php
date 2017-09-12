@@ -106,7 +106,7 @@ echo "         <hr>
          <div style="clear:both"></div>
          
          <hr>
-         Performance möglicherweise bessere bei langen Themenlisten:
+         (bisher nur testweise drin) Performance möglicherweise bessere bei langen Themenlisten:
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
