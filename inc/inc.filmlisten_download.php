@@ -64,7 +64,7 @@ function createCopyEachSender($file,$options,$minLength){
         //$hideTrailer   = 0; if($options['hideTrailer'])     $hideTrailer     = $options['hideTrailer'];
         $hideArte_fr     = 0; if($options['hideArte_fr'])     $hideArte_fr     = $options['hideArte_fr'];
         //$hideHoerfassung = 0; //lasse ich später ausblenden if($options['hideHoerfassung']) $hideHoerfassung = $options['hideHoerfassung'];
-        $minLength = 0; if($options['minLength'])     $minLength     = $options['minLength'];
+        $minLengthVorlagenMinuten = 0; if($options['minLengthVorlagenMinuten'])     $minLengthVorlagenMinuten     = $options['minLengthVorlagenMinuten'];
         
         if(!file_exists($file)){echo '<p><b>Fehler:</b>'.$file.' nicht gefunden </p>';return;}
         $lastSender = '';
@@ -156,8 +156,8 @@ function createCopyEachSender($file,$options,$minLength){
                 if($laenge!=''){ $themenlist[$s][$t]['countFuerGesamtLaenge']++; $themenlist[$s][$t]['gesamtLaenge'] += $laenge; }
                 
                 //Themenliste für zu kurze Filme
-                if( count($minLength)>0 ){
-                    foreach($minLength as $l){
+                if( count($minLengthVorlagenMinuten)>0 ){
+                    foreach($minLengthVorlagenMinuten as $l){
                         if($laenge<$l || $laenge==0 || $laenge=='')continue; //zu Kurz
                         //Themenliste  
                             if( !isset($themen_withMinLength [$l][$s]) )$themen_withMinLength [$l][$s] = array();
@@ -184,7 +184,7 @@ function createCopyEachSender($file,$options,$minLength){
         
         $themenlist = proccess_themenliste_getAndRenderDurchschnittslaenge($themenlist);
         
-        foreach($minLength as $l){
+        foreach($minLengthVorlagenMinuten as $l){
             $themen_withMinLength [$l] = proccess_themenliste_getAndRenderDurchschnittslaenge($themen_withMinLength [$l]);
         }
         
@@ -193,7 +193,7 @@ function createCopyEachSender($file,$options,$minLength){
         file_put_contents('cache/1/senderliste.serialize', utf8_encode(serialize($senderlist)));
         
         //Themenlisten mit mindeste-Film-Längen speichern
-        foreach($minLength as $l){
+        foreach($minLengthVorlagenMinuten as $l){
                 $fileNameAppend='min_length'.$l;
                 file_put_contents('cache/1/themenliste'.$fileNameAppend.'.serialize', utf8_encode(serialize($themen_withMinLength [$l])));
         }

@@ -354,7 +354,7 @@ if(isset($_GET['list_update'])){
 
 
 
-$options_createCopyEachSender = array('hideArte_fr'=>$hideArte_fr, 'minLength'=>$minLength); //,'hideHoerfassung'=>$hideHoerfassung //'hideTrailer'=>$hideTrailer, 
+$options_createCopyEachSender = array('hideArte_fr'=>$hideArte_fr, 'minLengthVorlagenMinuten'=>$minLengthVorlagenMinuten); //,'hideHoerfassung'=>$hideHoerfassung //'hideTrailer'=>$hideTrailer, 
    
 //Filmlisten-Datei runterladen (entweder über Adresse liste.php?list_update=1  - oder - automatisch)
 if(
