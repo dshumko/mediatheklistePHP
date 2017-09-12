@@ -295,7 +295,7 @@ function updateVideoMainLink_withQualityLink_andPossibleHideElements(){;
         if(getCookie('hide_film_aktiv')!='')raw = getCookie('hide_film');
         if(raw=='') raw='[]';
         var hide_film = JSON.parse(raw); for (var j = 0; j < hide_film.length; j++) { hide_film[j] = hide_film[j].toLowerCase() } 
-        if(hide_film.length==0){
+        if(hide_film.length==0 && getCookie('video_direktlink')=='' ){
           if( c=='' || c=='normal' ) return; //prüfe ob überhaupt gesetzt/bzw. abweichend
           if( c!='hd' && c!='low' )  return; //prüfe ob richtig gesetzt
         }
@@ -306,6 +306,7 @@ function updateVideoMainLink_withQualityLink_andPossibleHideElements(){;
                   var parent = filmliste_line_getParentNode(list[i].parentNode);
                   if(parent==undefined) return; //Fehler
                   
+                  //ausblenden anhand des Namens (Blackliste)
                   var title = list[i].innerText;
                   var exit = false; 
                   for (var j = 0; j < hide_film.length; j++) {
@@ -317,7 +318,20 @@ function updateVideoMainLink_withQualityLink_andPossibleHideElements(){;
                   }
                   if(exit) continue;
                   
-                  if(parent.style.display == 'none' ) parent.style.display = '';
+                  
+                  if(parent.style.display == 'none' ) parent.style.display = ''; //zurücksetzten
+                  
+                  
+                  if( getCookie('video_direktlink') ==1 ){
+                    var all_videolinks = parent.getElementsByClassName('videolink');
+                    var h;
+                    for (var m = 0; m < all_videolinks.length; m++) {
+                        h = all_videolinks[m].href.split('video.php#');
+                        if(h.length>1)all_videolinks[m].href = h[1];
+                    }
+                    h = list[i].href.split('video.php#');
+                    if(h.length>1)list[i].href = h[1];
+                  }
                   
                   if(c=='hd')  e = parent.getElementsByClassName('videolink_hd');
                   if(c=='low') e = parent.getElementsByClassName('videolink_kl');

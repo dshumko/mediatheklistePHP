@@ -1,6 +1,6 @@
 <?php
 
-echo "         <hr>
+echo "        
          <div>Standart-Qualität: <span style=\"float:right\">
               &nbsp;&nbsp;&nbsp;&nbsp; 
               <a href=\"#\" onClick=\"createCookie('quality','hd',365*5);loadNewSite();location.reload();return false;\" id=\"set_quality_hd\" >Hoch (HD)</a>
@@ -87,7 +87,7 @@ echo "         <hr>
         <div align="right">
           <img style="float:right; opacity:0.5" src="img/fussleiste_w500px.png" />
           <span style="color:#999999">
-          <span style="color:#999999">&nbsp;Für Maus-bedienung am Smart-TV,<br>
+          <span style="color:#999999">&nbsp;Nur für Maus-bedienung am Smart-TV,<br>
           &nbsp;durch Link unten schneller nach oben springen 
           </span>
         </div>
@@ -161,7 +161,7 @@ echo "         <hr>
         </script>
         </div>
         <div style=\"clear:both\"></div>
-        <hr>
+        
         ";  
         
         
@@ -195,9 +195,21 @@ echo "         <hr>
         </div>
         <div style=\"clear:both\"></div>
         <hr>
+        
+        
+
         ";  
         
-        echo '';
-         
+        if( !isset($fullscreen_play) || $fullscreen_play!=1){
+        echo '
+        Video verlinken
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_video_direktlink_an" onClick="createCookie(\'video_direktlink\',\'1\',356*10);window.location.reload();">Direktlink</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_video_direktlink_aus" onClick="createCookie(\'video_direktlink\',\'\',0);window.location.reload();">Normal</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'video_direktlink\')==1)document.getElementById(\'options_link_video_direktlink_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_video_direktlink_aus\').innerHTML+=\' &#10008;\'; </script>
+         <div style="clear:both"></div>
+         <hr>';
+         }
         echo " <br><br>";
         ?>
