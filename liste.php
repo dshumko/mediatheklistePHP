@@ -1,4 +1,6 @@
 <?php
+$program_version = '0.01';
+$program_name    = 'Mediathek-liste PHP';
 $startTimeRender = microtime(true);ini_set('display_errors', 1);ini_set('display_startup_errors', 1);error_reporting(E_ALL);
 
 require_once 'config.inc.php';
@@ -87,6 +89,7 @@ echo '
 <title>'.$PageTitle.' '.$addPageTitle.'</title>
 ';
 echo "
+<!-- $program_name v$program_version AGPL -->
 <!-- stylesheets -->
 <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"/>
 <script language=\"javascript\" type=\"text/javascript\">
@@ -952,7 +955,9 @@ echo "
 echo "<a name=\"impressum\" ></a>";
 echo "<div id=\"impressum\" style=\"display:none;background:white;margin:12pt;padding:12pt\">
 <br/><p align=\"right\"><a href=\"#\" onclick=\"document.getElementById('impressum').style.display='none'\">X</a></p>
-<h3>Impressum</h3>".$impressumText."</div>";
+<h3>Impressum</h3>".$impressumText." <br>
+<small><span style=\"color:#5f5f5f;float:right;padding-right:3pt;\">$program_name v$program_version</span></small><br>
+</div>";
 
 
 
@@ -973,7 +978,7 @@ echo "<a name=\"bottom\" ></a>";
 $end = microtime(true);
 $creationtime = ($end - $startTimeRender);
 //position:fixed;
-if($cacheActive==false) printf("<small><span style=\"color:#000000;float:right;right:35pt;\">page created in %.2f sec.</span></small><br>&nbsp;", $creationtime);
+if($cacheActive==false) printf("<small><span style=\"color:#5f5f5f;float:right;padding-right:3pt;\">page created in %.2f sec.</span></small>", $creationtime);
 echo '</div>'; //id="content" ende
 echo "<div id=\"fixed_footer\" style=\"width:100%;min-width:100%;bottom:0px;display:none;position:fixed;margin:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;;\">
     <a href=\"#top\" tabindex=\"\" style=\"display:block\" title=\"nach oben scrollen\">
