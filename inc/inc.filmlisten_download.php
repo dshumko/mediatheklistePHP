@@ -138,28 +138,36 @@ function createCopyEachSender($file,$options,$minLength){
                 if($s!='zzz')$senderlist[$s]++;
             
                 //filter
+                
                 if( isset($hideArte_fr) && $hideArte_fr==1 && $s == "arte.fr"){
                 if($sender_raw!='')$lastSender = $sender_raw;
                 if($thema_raw!='') $lastThema  = $thema_raw;
                 continue;} //ausblenden
-
-
+                
+                //verstecke Arte.fr in "alle"
+                //$saveInAll = true;
+                //if(isset($hideArte_fr) && $hideArte_fr==2 && $s == "arte.fr") $saveInAll = false;
 
                 
-                //themwechsel; Speicher ggf. Cache von letzten Thema ab
+               
                 if($use_cache_filmlist_thema){
-                    if($t!= $lastThema && $outlines!='') {
+                    if($t!= $lastThema && $outlines!='') {  //themwechsel; Speicher ggf. Cache von letzten Thema ab
                         if($outlines[strlen($outlines)-1]==',')$outlines=substr($outlines,0,strlen($outlines)-1); //lösche letzte ,  am Ende
                         $outlines=str_replace('["","','["'.$lastSender.'","',$outlines);
                         file_put_contents('cache/thema/cache_filmliste_'.$lastSender.'_'.md5($lastThema), $line0."".$outlines."}");
                         
-                        //nun fuer alle sender
-                        if( file_exists('cache/thema/cache_filmliste_alle_'.md5($lastThema)) ){ //öffnet alten Themen-Cache beim Sender "alle"
-                            $old = file_get_contents('cache/thema/cache_filmliste_alle_'.md5($lastThema));
-                            $saveContent = substr($old,0,-1).",".$outlines."}"; //die("aaa".$lastSender.$lastThema.md5($lastThema));  
-                        }else $saveContent = $line0."".$outlines."}";
-                        file_put_contents('cache/thema/cache_filmliste_alle_'.md5($lastThema), $saveContent);  
+                        //verstecke Arte.fr in "alle"
+                        $saveInAll_lastSender = true;
+                        if(isset($hideArte_fr) && $hideArte_fr==2 && $lastSender == "arte.fr") $saveInAll_lastSender = false;
                         
+                        //nun fuer alle sender
+                        if( $saveInAll_lastSender ){ 
+                            if( file_exists('cache/thema/cache_filmliste_alle_'.md5($lastThema)) ){ //öffnet alten Themen-Cache beim Sender "alle"
+                                $old = file_get_contents('cache/thema/cache_filmliste_alle_'.md5($lastThema));
+                                $saveContent = substr($old,0,-1).",".$outlines."}"; //die("aaa".$lastSender.$lastThema.md5($lastThema));  
+                            }else $saveContent = $line0."".$outlines."}";
+                            file_put_contents('cache/thema/cache_filmliste_alle_'.md5($lastThema), $saveContent);  
+                        }
                         $outlines = '';  
                         
                         //extra liste für Audiodeskription / Hörfassung
@@ -190,7 +198,7 @@ function createCopyEachSender($file,$options,$minLength){
                             $outlines_extra_gebaerdensprache = '';
                         }     
                         
-                    }
+                    } //ende if themenwechsel
 
                     if($outlines=='') $outlines .="\"X\":[\"".substr($line,2,strlen($line));
                     else              $outlines .="\"X\":".$line;
@@ -258,7 +266,7 @@ function createCopyEachSender($file,$options,$minLength){
                     }
                 }
 
-                //speichere Filmliste
+                //Senderwechsel; speichere Sender-Filmliste
                 if($use_cache_filmlist_sender && $i>3 && $sender_raw!='' && $sender_raw!=$lastSender && $lineSum!=''){ //$i>3 (damit die ersten Zeile(n) Beschriftung/etc. ausgelasen werden)
                         if( substr($lineSum,-1)==',') $lineSum = substr($lineSum,0,-1);
                         file_put_contents('cache/sender/'.$file.'_sender_'.$lastSender,$line0.$lineSum.'}');

@@ -14,6 +14,7 @@ $addPageTitle = '';
 if(isset($_GET['sender']) && $_GET['sender']!='') $addPageTitle .= ' '.$_GET['sender'];
 if(isset($_GET['thema']) && $_GET['thema']!='')   $addPageTitle .= ' '.$_GET['thema'];
 
+if( $hideArte_fr==2 && isset($_GET['show_arte_fr']) && $_GET['show_arte_fr']!='') $hideArte_fr = 2;
 
 //Seite im Browser cachen (wenn sich Filmdatei/Programm-Code nicht geändert haben, behalte Browscache)
 if(file_exists($file) && $cacheActive){
@@ -150,6 +151,33 @@ function onload1y(){ //onload
     if(getCookie('extra_sender_Gebaerdensprache')!=1) document.getElementsByClassName('sender__alle_gebaerde')[0].style.display = 'none';
     
     var c = getCookie('showFooter'); if(c>0) document.getElementById('fixed_footer').style.display = 'block';
+    
+    
+    ";
+echo "if(document.getElementsByClassName('sender__arte.fr').length>0)document.getElementsByClassName('sender__arte.fr')[0].style.display = 'none';";
+echo "
+var c = getCookie('show_arte_fr')
+if(c>0){";
+  if(isset($_GET['sender']) && $_GET['sender']=='alle') echo "
+    if(location.href.search(/show_arte_fr=1/)==-1){ //korrigiere ggf. aktuelle Adresse
+          var e = location.href.match('#(.*)');
+          var anker = '';
+          if(e!=null && e.length>0)anker = '#'+e[1];
+          location.href = location.href.replace(anker,'') + '&show_arte_fr='+ c + anker;
+    }";
+  echo "
+  if(document.getElementsByClassName('sender__arte.fr').length>0) document.getElementsByClassName('sender__arte.fr')[0].style.display = 'inline-block';
+}else{
+  if(location.href.search(/show_arte_fr=1/)!=-1){ //korrigiere ggf. aktuelle Adresse
+          var e = location.href.match('#(.*)');
+          var anker = '';
+          if(e!=null && e.length>0)anker = '#'+e[1];
+          location.href = location.href.replace(anker,'').replace(/show_arte_fr=1/,'')  + anker;
+    }
+  
+}";
+
+    echo "
     //alert( new Date().getTime() - starttime + 'ms');
 }
 
@@ -218,7 +246,8 @@ function setFocusForLastLink(){
            ";
     }
     
-    if( !isset($_GET['sender']) ) echo " if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
+    if( !isset($_GET['sender']) ) echo " 
+    if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
   ";
     
     echo "
@@ -277,7 +306,12 @@ if(minLength>0){
       else if(e!=null  && e.length>1 && getCookie('minLength')!=e[1] ) location.href = location.href.replace('&min_length='+e[1], '&min_length='+getCookie('minLength') ); //korrigiere URL
 }else if( location.href.search('&min_length=')!=-1){ 
       location.href = location.href.replace(/&min_length=[0-9]*/,''); //lösche es raus
-}";
+}
+
+
+
+";
+
 if( isset($_GET['sender']) && (!isset($_GET['thema']) || $_GET['thema']=='') ){
   echo "
   var e = location.href.match('no_table=([0-9]*)');
@@ -734,6 +768,7 @@ echo "
                 $i++;
                 if(substr($senderTitel,0,7)=='alle_ad')$class = 'sender__alle_ad';
                 else if(substr($senderTitel,0,13)=='alle_gebaerde' || substr($senderTitel,0,10)=='alle_gebae')$class = 'sender__alle_gebaerde';
+                else if(substr($senderTitel,0,7)=='arte.fr')$class = 'sender__arte.fr';
                 else $class='';
                 echo "<a href=\"$senderUrl\" name=\"sender_sel$i\" id=\"senderliste_$i\" class=\"$class\" onClick=\"window.location='#sender_sel$i';loadNewSite()\" style=\"display:block;width:100%;margin-left:-3pt;\" class=\"link_every_same_color\">$senderTitel</a>\n";     
             }

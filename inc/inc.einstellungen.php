@@ -80,6 +80,18 @@ echo "
         
         ';
         if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>";
+        else if( $hideArte_fr==2 ){
+        echo '
+        <hr>
+        Sender Arte.fr auch anzeigen
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_show_arte_fr_an" onClick="createCookie(\'show_arte_fr\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">an</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_show_arte_fr_aus" onClick="createCookie(\'show_arte_fr\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">aus</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'show_arte_fr\')==1)document.getElementById(\'options_link_show_arte_fr_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_show_arte_fr_aus\').innerHTML+=\' &#10008;\'; </script>
+         <div style="clear:both"></div>
+         <hr>';
+         }
         
         
         echo '
@@ -174,6 +186,10 @@ echo "
          <div style="clear:both"></div>
          <hr>';
          }
+         
+         
+
+         
          
          echo '
          

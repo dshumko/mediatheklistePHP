@@ -22,7 +22,7 @@ function getSenderListe($options){
       $senderListOutArray['Alle'] = "liste.php?sender=alle$s2$s3";
       
       foreach($sender as $s=>$count ){
-         if($hideArte_fr && $s =='arte.fr' ) continue;
+         if($hideArte_fr==1 && $s =='arte.fr' ) continue;
          $senderListOutArray[substr($s,0,10)." ($count)"] = "liste.php?sender=".urlencode($s)."$s2$s3";
       }
       return $senderListOutArray;
@@ -62,6 +62,8 @@ function getThemenliste($options){
         if( $_GET['sender']=='alle'){
           $allThemen = array();
           foreach($senderThema as $sender=>$themen ){
+            if($sender=='arte.fr' && $hideArte_fr==1 ) continue;
+            else if($sender=='arte.fr' && (isset($_GET['sender']) && $_GET['sender']=='alle') && $hideArte_fr==2 && (!isset($_GET['show_arte_fr']) || $_GET['show_arte_fr']!=1) ) continue;
             foreach($themen as $thema=>$more_data  ){
              $count    = $more_data['count'];
              $lastDate = $more_data['lastDate']; 
