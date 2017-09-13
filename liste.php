@@ -129,7 +129,7 @@ function onload1y(){ //onload
     updateVideoMainLink_withQualityLink_andPossibleHideElements(); //Filmliste durchgehen: Update Videolink + was ggf gelöscht/ausgeblendet werden soll 
     updateFilmliste_HideElements( getCookie('hideHoerfassungFilme') ,
                       getCookie('hideAudioDeskriptionFilme') ,
-                      getCookie('hideTrailerFilme') ,
+                      getCookie('hideTrailer') ,
                       getCookie('minLength') );
     var h = document.getElementById('fixed_head').offsetHeight;
     if(h>0){
