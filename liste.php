@@ -883,7 +883,7 @@ echo "<div style=\"\">";
 echo $out1; //sammlungs-Ausgabe von oben (ggf. Debug-Infos, bislang ansonsten unwichtig)
 
 //Liste sortieren
-if($sortByDate==1) krsort($allOuts);
+if($sortByDate==1 && is_array($allOuts) ) krsort($allOuts);
 //Liste ausgeben
 
 
@@ -902,6 +902,7 @@ echo "
     <a name=\"anker1_film_0\" id=\"anker1_film_0\"></a>
     <table style=\"border-collapse: separate;border-spacing:0 20pt;width:100%;\" >\n";
 $i = 0;
+if( is_array($allOuts) )
 foreach($allOuts as $outArrayS){ //Timestamp Array
       foreach($outArrayS as $outArray){ //Filme je Timestamp
             $i++; if($i>$maxJeSeite) break;
