@@ -18,12 +18,12 @@ function getSenderListe($options){
       if( isset($_GET['min_length']) && $_GET["min_length"]!='' )  $s3 = "&min_length=".$_GET['min_length']; else $s3="";
       if( isset($_GET['no_table']) && $_GET["no_table"]!='' )  $s3 .= "&no_table=".(int)$_GET['no_table'];
       
-      $senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
+      if( isset($_GET['sender']) || isset($_GET['thema']) )$senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
       $senderListOutArray['Alle'] = "liste.php?sender=alle$s2$s3";
       
       foreach($sender as $s=>$count ){
          if($hideArte_fr && $s =='arte.fr' ) continue;
-         $senderListOutArray[substr($s,0,10)." ($count)"] = "liste.php?sender=".urlencode($s)."$s2";
+         $senderListOutArray[substr($s,0,10)." ($count)"] = "liste.php?sender=".urlencode($s)."$s2$s3";
       }
       return $senderListOutArray;
 

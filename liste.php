@@ -218,12 +218,16 @@ function setFocusForLastLink(){
            
            ";
     }
+    
+    if( !isset($_GET['sender']) ) echo " if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
+  ";
+    
     echo "
     //--- Themenliste Seitenweise ende ---
    
     //if( location.hash=='#thema_select' || location.hash.search('#buchstabe_')!==-1 || location.hash.search('#thema_sel_')!==-1  || location.hash.search('#anker1_thema_sel_')!==-1) show_thema_select();
     if( location.hash=='#sender_select'  || location.hash.search('#thema_sel_')!==-1) document.getElementById('div-sender-select').style.display='block';
-  
+    
     if( location.hash=='#settings') toggleShowOptions('show');
     if( location.hash.search('#film_')!==-1  || location.hash.search('#anker1_film_')!==-1){ 
     var mainlinkNumber = location.hash.replace('#','').replace('anker1_film_','');
@@ -634,7 +638,7 @@ echo "
 //doen not work (probleme bei HBBTV): formItemFocus(document.getElementById('sender_alle_link') )
 
 echo "<a href='#sender_select' onClick=\"document.getElementById('div-sender-select').style.display='block';formItemFocus( document.getElementById('senderliste_2') );window.setTimeout(function(){ formItemFocus( document.getElementById('senderliste_2') ); },50);\"  id=\"link_sender_select\" class=\"link_black_before_onload\" tabindex=\"1\"><span style=\"background:yellow\"  class=\"hbbtv_button\">&nbsp;&nbsp;&nbsp;</span> Sender wählen&nbsp;&nbsp;&nbsp;";
-if($minLength>0)echo "<span align=\"right\" style=\"float:right; padding-right:6pt;color:#777777\">&#8986; <small>kürzer als ".$minLength." Min. werden ausgeblendet.</small></span>";
+if($minLength>0)echo "<span align=\"right\" style=\"float:right; padding-right:6pt;color:#777777\" title=\"mindest Länge des Films $minLength Minuten\">&#8986; <small>>".$minLength." Min. </small></span>"; //kürzer als werden ausgeblendet.
 
 if( isset($_GET['sender']))$s=$_GET['sender'];else $s='';
 echo "<span style=\"color:black\">$s <span id=\"sender_waehlen_append\"></span> </span>";
@@ -764,10 +768,11 @@ if( isset($_GET['sender']) ){
   echo "<div id=\"notice_before_thema-select__minLength\" style=\"float:right;text-align:right;padding-right:3pt;\">
 ";
   if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){
-    echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\"><br>";
-    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
-    echo "Kürzer als ".$minLength." Min. werden ausgeblendet.";
-    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "(nicht bei Hörfassung/Gebärdensprache möglich) </s> ";
+    echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\">";
+    //echo "<br>";
+    //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
+    //echo "> ".$minLength." Min.";
+    //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "(nicht bei Hörfassung/Gebärdensprache möglich) </s> ";
     echo "</span>";
   }
   echo "</div>";
@@ -917,10 +922,11 @@ if( isset($_GET['sender']) && isset($_GET['thema']) && is_array($allOuts) && cou
   echo "<p style=\"color:#555555\">Kein Filme vorhanden (vlt. wegen  <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">Einstellungen</a>)";
 
   if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){
-    echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\"><br>";
-    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
-    echo "Kürzer als ".$minLength." Min. werden ausgeblendet.";
-    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "</s>";
+    echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\">";
+    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<br>Kein Zeitfilter möglich";
+    //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
+    //echo "Kürzer als ".$minLength." Min. werden ausgeblendet.";
+    //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "</s>";
     echo "</span>";
   }
   echo "</p>";

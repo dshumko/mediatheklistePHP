@@ -68,7 +68,7 @@ echo "
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideAudioDeskription\')==1)document.getElementById(\'options_link_hideAudioDeskription_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideAudioDeskription_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
          <div style="clear:both"></div>
          <hr>
-         Ausblenden <i>Trailer/Vorschau</i>:   
+         Ausblenden <i>Trailer/Vorschau</i>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);window.location.reload();">anzeigen</a>
@@ -76,15 +76,7 @@ echo "
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
          <div style="clear:both"></div>
          
-        <hr>
-         Performance bei langen Themenlisten <i>Mögl. besser? nur testweise drin</i>:
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
-              <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
-              <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);window.location.reload();">Tabelle</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
-        <div style="clear:both"></div>
+        
         
         ';
         if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>";
@@ -226,7 +218,15 @@ echo "
    
         <span style="clean:both"></span>
          <div style="clear:both"></div>
-         
+         <hr>
+         Test? lange Themenlisten mit bessere Performance <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser? Nur testweise drin; Funktion wird also evlt. wieder entfernt</i></span>
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
+              <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
+              <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);window.location.reload();">Tabelle</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
+        <div style="clear:both"></div>
          
          ';
          
