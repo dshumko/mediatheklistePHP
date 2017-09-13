@@ -49,7 +49,12 @@ function downloadTheFileAndExtract($webServiceUrl, $filepath, $cloud_convert_api
       return (filesize($filepath) > 0)? true : false;
 }
    
-   
+
+function is_audiodeskription($title_raw){
+  if( stristr($title_raw, 'hörfassung')!=FALSE || stristr($title_raw,'Audiodeskription')!=FALSE  || stristr($title_raw,'AD |')!=FALSE ) return true;
+  else return false;
+}
+
 /**
 * Erstellt Cache
 * a)Liste aller Sender
@@ -63,6 +68,7 @@ function createCopyEachSender($file,$options,$minLength){
         
         //$hideTrailer   = 0; if($options['hideTrailer'])     $hideTrailer     = $options['hideTrailer'];
         $hideArte_fr     = 0; if($options['hideArte_fr'])     $hideArte_fr     = $options['hideArte_fr'];
+        $extra_audiodeskription     = 0; if(isset($options['extra_audiodeskription']))     $extra_audiodeskription     = $options['extra_audiodeskription'];
         //$hideHoerfassung = 0; //lasse ich später ausblenden if($options['hideHoerfassung']) $hideHoerfassung = $options['hideHoerfassung'];
         $minLengthVorlagenMinuten = 0; if($options['minLengthVorlagenMinuten'])     $minLengthVorlagenMinuten     = $options['minLengthVorlagenMinuten'];
         
@@ -70,7 +76,7 @@ function createCopyEachSender($file,$options,$minLength){
         $lastSender = '';
         $lastThema = '';
         $lineArray = explode('"X":', file_get_contents($file) );
-        array_push($lineArray, '["zzz","zzz","zzz"]'); //leere Endzeile (damit auch letzter gespeichert wird)
+        array_push($lineArray, '["zzz","zzz","zzz","zzz"]'); //leere Endzeile (damit auch letzter gespeichert wird)
         $lineSum = '';
         $senderlist = array();
         $senderliste_withMinLength = array();
@@ -79,6 +85,7 @@ function createCopyEachSender($file,$options,$minLength){
         $i=0;
         $line0 = ''; //erste Zeile von Filmliste mit Datum/Spaltennamen //'{"Filmliste":[""],"Filmliste":[""],'
         $outlines = ''; //sammelt eintraege eines Themas; wird bei jeden Themawechsel abgespeichert und geleert
+        $outlines_extra_audiodeskription = '';
         if(!file_exists('cache'))         mkdir('cache');
         if( file_exists('cache/thema'))   delTree('cache/thema');
         if( file_exists('cache/thema'))   rmdir('cache/thema');
@@ -91,9 +98,10 @@ function createCopyEachSender($file,$options,$minLength){
                 if($i==1) {$line0 = $line; continue;}
 
                 //Sender und Thema auslesen
-                $return = preg_match('/\["([^"]*)","(.*)","/U',$line,$treffer); //mit Ungierig (U) arbeiten, weil sonst Themen mit " drin Probleme machen
+                $return = preg_match('/\["([^"]*)","(.*)","(.*)","/U',$line,$treffer); //mit Ungierig (U) arbeiten, weil sonst Themen mit " drin Probleme machen
                 $sender_raw  = trim( strtolower( ''.$treffer[1].'') );
                 $thema_raw  = ''.$treffer[2].'';
+                $title_raw  = ''.$treffer[3].'';
                 $i++;
 
 
@@ -102,15 +110,14 @@ function createCopyEachSender($file,$options,$minLength){
                 //Länge/Dauer auslesen (bislang haben nur die wenigsten eine Längenangabe); in Minuten
                 $laenge = '';
                 $return = preg_match('/\["[^"]*","[^"]*",".*","([0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9])?","([0-9][0-9]:[0-9][0-9]:[0-9][0-9])?","([0-9][0-9]:[0-9][0-9]:[0-9][0-9])","/U',str_replace('\"','',$line),$treffer);
-                            //if(strstr($thema_raw,'moma vom')!==false) {var_dump($treffer);echo $line;die("aaaaaaaaaaa       !!");}
+                //if(strstr($thema_raw,'moma vom')!==false) {var_dump($treffer);echo $line;die("aaaaaaaaaaa       !!");}
                 if( count($treffer)>3 && $treffer[3]!=''){
-                
-                   $e = explode(':',$treffer[3]);
-                           if( count($e)==3){  
-                             $laenge = $e[0]*60;
-                             $laenge+=$e[1];
-                             $laenge+=((60/100)*$e[2])/100;
-                           }
+                     $e = explode(':',$treffer[3]);
+                     if( count($e)==3){  
+                       $laenge = $e[0]*60;
+                       $laenge+=$e[1];
+                       $laenge+=((60/100)*$e[2])/100;
+                     }
                 }
 
                 if($sender_raw=='') $s = $lastSender; else $s = ''.$sender_raw.'';
@@ -124,30 +131,66 @@ function createCopyEachSender($file,$options,$minLength){
                 if($thema_raw!='') $lastThema  = $thema_raw;
                 continue;} //ausblenden
 
+
+
                 
-                //Speicher ggf. Cache von letzten Thema ab
+                //themwechsel; Speicher ggf. Cache von letzten Thema ab
                 if($use_cache_filmlist_thema){
                     if($t!= $lastThema && $outlines!='') {
                         if($outlines[strlen($outlines)-1]==',')$outlines=substr($outlines,0,strlen($outlines)-1); //lösche letzte ,  am Ende
                         $outlines=str_replace('["","','["'.$lastSender.'","',$outlines);
                         file_put_contents('cache/thema/cache_filmliste_'.$lastSender.'_'.md5($lastThema), $line0."".$outlines."}");
+                        
                         //nun fuer alle sender
                         if( file_exists('cache/thema/cache_filmliste_alle_'.md5($lastThema)) ){ //öffnet alten Themen-Cache beim Sender "alle"
                             $old = file_get_contents('cache/thema/cache_filmliste_alle_'.md5($lastThema));
                             $saveContent = substr($old,0,-1).",".$outlines."}"; //die("aaa".$lastSender.$lastThema.md5($lastThema));  
                         }else $saveContent = $line0."".$outlines."}";
-                        file_put_contents('cache/thema/cache_filmliste_alle_'.md5($lastThema), $saveContent);     
-                        $outlines = '';            
+                        file_put_contents('cache/thema/cache_filmliste_alle_'.md5($lastThema), $saveContent);  
+                        
+                        $outlines = '';  
+                        
+                        //extra liste für Audiodeskription / Hörfassung
+                        if( $extra_audiodeskription==1 && $outlines_extra_audiodeskription!='' ){
+                            if($outlines_extra_audiodeskription[strlen($outlines_extra_audiodeskription)-1]==',')$outlines_extra_audiodeskription=substr($outlines_extra_audiodeskription,0,strlen($outlines_extra_audiodeskription)-1); //lösche letzte ,  am Ende
+                            $outlines_extra_audiodeskription=str_replace('["","','["'.$lastSender.'","',$outlines_extra_audiodeskription);
+                            //die('A'.$lastThema.$outlines_extra_audiodeskription.' '.md5($lastThema));
+                            //nun fuer alle sender
+                            if( file_exists('cache/thema/cache_filmliste_alle_ad_'.md5($lastThema)) ){ //öffnet alten Themen-Cache beim Sender "alle"
+                                $old = file_get_contents('cache/thema/cache_filmliste_alle_ad_'.md5($lastThema));
+                                $saveContent = substr($old,0,-1).",".$outlines_extra_audiodeskription."}"; //die("aaa".$lastSender.$lastThema.md5($lastThema));  
+                            }else $saveContent = $line0."".$outlines_extra_audiodeskription."}";
+                            file_put_contents('cache/thema/cache_filmliste_alle_ad_'.md5($lastThema), $saveContent);
+                            $outlines_extra_audiodeskription = '';
+                        }          
+                        
                     }
 
                     if($outlines=='') $outlines .="\"X\":[\"".substr($line,2,strlen($line));
                     else              $outlines .="\"X\":".$line;
                 }
                 
+                
+                if( is_audiodeskription($title_raw) ){
+                  if($outlines_extra_audiodeskription=='') $outlines_extra_audiodeskription .="\"X\":[\"".substr($line,2,strlen($line));
+                  else              $outlines_extra_audiodeskription .="\"X\":".$line;
+                }
+                
                 //Datum  
                 $return = preg_match('/,"([0-9]{10})",/',$line,$treffer); // [16]=> string(6) "DatumL"
                 $datum  = isset($treffer[1])?$treffer[1]:'';
           
+
+                //extra liste für Audiodeskription / Hörfassung
+                if( $extra_audiodeskription==1 && isset($title_raw) && is_audiodeskription($title_raw) ){
+                   if( !isset($themenlist['alle_ad'][$t]) )$themenlist['alle_ad'][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);
+                   if($themenlist['alle_ad'][$t]['lastDate']<$datum) $themenlist['alle_ad'][$t]['lastDate'] = $datum;
+                   $themenlist['alle_ad'][$t]['count']++;
+                   if(!isset($senderlist['alle_ad']))$senderlist['alle_ad'] = 0;
+                   $senderlist['alle_ad']++;
+                }
+                
+                
                 //Themenliste  
                 if( !isset($themenlist[$s]) )$themenlist[$s] = array();
                 if( !isset($themenlist[$s][$t]) )$themenlist[$s][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);

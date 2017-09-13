@@ -211,5 +211,18 @@ echo "
          <div style="clear:both"></div>
          <hr>';
          }
+         
+         echo '
+         
+        <hr>
+        Extra-Eintrag bei Sender für Filme mit Audio-Deskription/Hörfassung:
+        <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);window.location.reload();">ausblenden</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'extra_sender_AudioDeskription\')==1)document.getElementById(\'options_link_extra_sender_AudioDeskription_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_extra_sender_AudioDeskription_aus\').innerHTML+=\' &#10008;\'; </script>
+         
+         ';
+         
         echo " <br><br>";
         ?>

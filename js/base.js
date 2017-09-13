@@ -384,7 +384,7 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
                   var t = list[i].innerText;
                   if(hideHoerfassungFilme==1 && (t.search(/hörfassung/i)!=-1 || html.search(/hörfassung/i)!=-1) ){
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
-                          if(parent==undefined) return; else parent.style.display = 'none';   
+                          if(parent==undefined) return; else parent.style.display = 'none';
                   }
                   if( hideAudioDeskriptionFilme==1 && (t.search(/Audiodeskription/i)!=-1 || h.search(/Audiodeskription/i)!=-1) ){
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
