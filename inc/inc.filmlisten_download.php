@@ -55,6 +55,15 @@ function is_audiodeskription($title_raw){
   else return false;
 }
 
+
+function is_gebaerdensprache($title_raw){
+  if( stristr($title_raw, 'gebärdensprache')!=FALSE ) return true;
+  else return false;
+}
+
+
+
+
 /**
 * Erstellt Cache
 * a)Liste aller Sender
@@ -69,6 +78,7 @@ function createCopyEachSender($file,$options,$minLength){
         //$hideTrailer   = 0; if($options['hideTrailer'])     $hideTrailer     = $options['hideTrailer'];
         $hideArte_fr     = 0; if($options['hideArte_fr'])     $hideArte_fr     = $options['hideArte_fr'];
         $extra_audiodeskription     = 0; if(isset($options['extra_audiodeskription']))     $extra_audiodeskription     = $options['extra_audiodeskription'];
+        $extra_gebaerdensprache     = 0; if(isset($options['extra_gebaerdensprache']))     $extra_gebaerdensprache     = $options['extra_gebaerdensprache'];
         //$hideHoerfassung = 0; //lasse ich später ausblenden if($options['hideHoerfassung']) $hideHoerfassung = $options['hideHoerfassung'];
         $minLengthVorlagenMinuten = 0; if($options['minLengthVorlagenMinuten'])     $minLengthVorlagenMinuten     = $options['minLengthVorlagenMinuten'];
         
@@ -86,6 +96,7 @@ function createCopyEachSender($file,$options,$minLength){
         $line0 = ''; //erste Zeile von Filmliste mit Datum/Spaltennamen //'{"Filmliste":[""],"Filmliste":[""],'
         $outlines = ''; //sammelt eintraege eines Themas; wird bei jeden Themawechsel abgespeichert und geleert
         $outlines_extra_audiodeskription = '';
+        $outlines_extra_gebaerdensprache = '';
         if(!file_exists('cache'))         mkdir('cache');
         if( file_exists('cache/thema'))   delTree('cache/thema');
         if( file_exists('cache/thema'))   rmdir('cache/thema');
@@ -162,7 +173,21 @@ function createCopyEachSender($file,$options,$minLength){
                             }else $saveContent = $line0."".$outlines_extra_audiodeskription."}";
                             file_put_contents('cache/thema/cache_filmliste_alle_ad_'.md5($lastThema), $saveContent);
                             $outlines_extra_audiodeskription = '';
-                        }          
+                        }
+                        
+                        //extra liste für Gebährdensprache
+                        if( $extra_gebaerdensprache==1 && $outlines_extra_gebaerdensprache!='' ){
+                            if($outlines_extra_gebaerdensprache[strlen($outlines_extra_gebaerdensprache)-1]==',')$outlines_extra_gebaerdensprache=substr($outlines_extra_gebaerdensprache,0,strlen($outlines_extra_gebaerdensprache)-1); //lösche letzte ,  am Ende
+                            $outlines_extra_gebaerdensprache=str_replace('["","','["'.$lastSender.'","',$outlines_extra_gebaerdensprache);
+                            //die('A'.$lastThema.$outlines_extra_gebaerdensprache.' '.md5($lastThema));
+                            //nun fuer alle sender
+                            if( file_exists('cache/thema/cache_filmliste_alle_gebaerde_'.md5($lastThema)) ){ //öffnet alten Themen-Cache beim Sender "alle"
+                                $old = file_get_contents('cache/thema/cache_filmliste_alle_gebaerde_'.md5($lastThema));
+                                $saveContent = substr($old,0,-1).",".$outlines_extra_gebaerdensprache."}"; //die("aaa".$lastSender.$lastThema.md5($lastThema));  
+                            }else $saveContent = $line0."".$outlines_extra_gebaerdensprache."}";
+                            file_put_contents('cache/thema/cache_filmliste_alle_gebaerde_'.md5($lastThema), $saveContent);
+                            $outlines_extra_gebaerdensprache = '';
+                        }     
                         
                     }
 
@@ -174,6 +199,11 @@ function createCopyEachSender($file,$options,$minLength){
                 if( is_audiodeskription($title_raw) ){
                   if($outlines_extra_audiodeskription=='') $outlines_extra_audiodeskription .="\"X\":[\"".substr($line,2,strlen($line));
                   else              $outlines_extra_audiodeskription .="\"X\":".$line;
+                }
+                if( is_gebaerdensprache($title_raw) ){ 
+                  if($outlines_extra_gebaerdensprache=='') $outlines_extra_gebaerdensprache .="\"X\":[\"".substr($line,2,strlen($line));
+                  else              $outlines_extra_gebaerdensprache .="\"X\":".$line;
+                    //if( stristr($title_raw,'MAX gies'))die('a'.$title_raw.$outlines_extra_gebaerdensprache.' '.md5($lastThema));
                 }
                 
                 //Datum  
@@ -188,6 +218,15 @@ function createCopyEachSender($file,$options,$minLength){
                    $themenlist['alle_ad'][$t]['count']++;
                    if(!isset($senderlist['alle_ad']))$senderlist['alle_ad'] = 0;
                    $senderlist['alle_ad']++;
+                }
+                
+                //extra liste für Gebährdensprache
+                if( $extra_gebaerdensprache==1 && isset($title_raw) && is_gebaerdensprache($title_raw) ){
+                   if( !isset($themenlist['alle_gebaerde'][$t]) )$themenlist['alle_gebaerde'][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);
+                   if($themenlist['alle_gebaerde'][$t]['lastDate']<$datum) $themenlist['alle_gebaerde'][$t]['lastDate'] = $datum;
+                   $themenlist['alle_gebaerde'][$t]['count']++;
+                   if(!isset($senderlist['alle_gebaerde']))$senderlist['alle_gebaerde'] = 0;
+                   $senderlist['alle_gebaerde']++;
                 }
                 
                 

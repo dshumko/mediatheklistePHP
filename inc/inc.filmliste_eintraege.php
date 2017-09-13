@@ -56,7 +56,7 @@ function createAllElements(){
         //$readerBuffer = fread($handle,$chunk_size);
 
         $lineArray = array();
-        if(isset($_GET['sender']) && ($_GET['sender'] == 'alle' ||  $_GET['sender']=='alle_ad') )$allSenderFromFilme = array();
+        if(isset($_GET['sender']) && ($_GET['sender'] == 'alle' ||  $_GET['sender']=='alle_ad' ||  $_GET['sender']=='alle_gebaerde') )$allSenderFromFilme = array();
 
         $lastSender = 'ohne';
         $lastThema = 'ohne';
@@ -173,7 +173,7 @@ function createAllElements(){
                  $json_line = json_decode( ("{\"X\":".$line."}"));
 
                  //Trage Sender nach;
-                 if(!isset($_GET['sender']) || $_GET['sender']=='' || $_GET['sender']=='alle' || $_GET['sender']=='alle_ad') {}
+                 if(!isset($_GET['sender']) || $_GET['sender']=='' || $_GET['sender']=='alle' || $_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') {}
                  else $json_line->X[0] = substr($_GET["sender"],0,15); 
 
                  //thema
@@ -288,9 +288,9 @@ function createAllElements(){
                 
                 
                //jetzt die Zeile die darstellt (nicht alle werden dargestellt, wenn liste zu lang werden würde)
-               if( (isset($_GET['sender']) && ( $_GET['sender']=='alle' || $_GET['sender']=='alle_ad' || strtolower($_GET['sender']) == $aktuellerSender)) || $is_in_schnellauwahl ){
+               if( (isset($_GET['sender']) && ( $_GET['sender']=='alle' || $_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde' || strtolower($_GET['sender']) == $aktuellerSender)) || $is_in_schnellauwahl ){
                    if($rendered_line_count>=$maxRender)continue;
-                   if( !isset($_GET['thema']) || $_GET['thema']=='alle' ||  $_GET['sender']=='alle_ad' || 
+                   if( !isset($_GET['thema']) || $_GET['thema']=='alle' ||  $_GET['sender']=='alle_ad' ||  $_GET['sender']=='alle_gebaerde' || 
                         strtolower($_GET['thema']) == strtolower($json_line->X[1]) ||
                         (isset($_GET['search']) && $_GET['search']!='') || 
                    $is_in_schnellauwahl ){
@@ -371,7 +371,7 @@ function createAllElements(){
                       }
                       if(isset($l) && $minLength>0 && $l<$minLength){ unset($outArray); continue; }
 
-                          if( isset($_GET['sender']) && ($_GET['sender']=='alle' ||  $_GET['sender']=='alle_ad') ){
+                          if( isset($_GET['sender']) && ($_GET['sender']=='alle' ||  $_GET['sender']=='alle_ad' ||  $_GET['sender']=='alle_gebaerde') ){
                           $outArray['possibleSender'] = ' '.$json_line->X[0].' ';        
                       }
 
@@ -500,13 +500,13 @@ function createAllElements(){
                           $out.= ("<span id=\"notice\"><p>Liste wurde zu lang (abgebrochen beim sortieren bei $rendered_line_count)</p></span>");
                       }
                     
-                      if( isset($_GET['sender']) && ($_GET['sender'] == 'alle' || $_GET['sender']=='alle_ad')) $allSenderFromFilme[ $json_line->X[0] ] = $json_line->X[0];
+                      if( isset($_GET['sender']) && ($_GET['sender'] == 'alle' || $_GET['sender']=='alle_ad' || $_GET['sender']=='alle_ad')) $allSenderFromFilme[ $json_line->X[0] ] = $json_line->X[0];
                     }
                     if($outArray['title']!='')$allOuts[ $json_line->X[16] ][] = $outArray;
                  }
         }//end foreach
         //}//end if($cache_for_startseite_is_fresh==0)
-        if( isset($_GET['sender']) && ($_GET['sender'] == 'alle' ||  $_GET['sender']=='alle_ad') && count($allSenderFromFilme)>0 )echo "<script language=\"javascript\"  type=\"text/javascript\">document.getElementById('sender_waehlen_append').innerText = '".implode(', ',$allSenderFromFilme)."' </script>";
+        if( isset($_GET['sender']) && ($_GET['sender'] == 'alle' ||  $_GET['sender']=='alle_ad' ||  $_GET['sender']=='alle_gebaerde') && count($allSenderFromFilme)>0 )echo "<script language=\"javascript\"  type=\"text/javascript\">document.getElementById('sender_waehlen_append').innerText = '".implode(', ',$allSenderFromFilme)."' </script>";
         return $allOuts;
         
 }//end function create All Elements

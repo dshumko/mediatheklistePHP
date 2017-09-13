@@ -222,6 +222,15 @@ echo "
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'extra_sender_AudioDeskription\')==1)document.getElementById(\'options_link_extra_sender_AudioDeskription_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_extra_sender_AudioDeskription_aus\').innerHTML+=\' &#10008;\'; </script>
          
+         
+        <hr>
+        Extra-Eintrag bei Sender für Filme mit Gebärdensprache:
+        <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);window.location.reload();">ausblenden</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'extra_sender_Gebaerdensprache\')==1)document.getElementById(\'options_link_extra_sender_Gebaerdensprache_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_extra_sender_Gebaerdensprache_aus\').innerHTML+=\' &#10008;\'; </script>
+         
          ';
          
         echo " <br><br>";

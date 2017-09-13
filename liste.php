@@ -146,6 +146,7 @@ function onload1y(){ //onload
     if( countFavs> 2 && document.getElementById('schnellauswahl_list__jump_to_filme')!=undefined && document.getElementsByClassName('videolink_row').length>0 ) document.getElementById('schnellauswahl_list__jump_to_filme').style = 'inline-block';
     
     if(getCookie('extra_sender_AudioDeskription')!=1) document.getElementsByClassName('sender__alle_ad')[0].style.display = 'none';
+    if(getCookie('extra_sender_Gebaerdensprache')!=1) document.getElementsByClassName('sender__alle_gebaerde')[0].style.display = 'none';
     
     var c = getCookie('showFooter'); if(c>0) document.getElementById('fixed_footer').style.display = 'block';
     //alert( new Date().getTime() - starttime + 'ms');
@@ -357,7 +358,7 @@ if(isset($_GET['list_update'])){
 
 
 
-$options_createCopyEachSender = array('hideArte_fr'=>$hideArte_fr, 'minLengthVorlagenMinuten'=>$minLengthVorlagenMinuten, 'extra_audiodeskription' => $extra_audiodeskription); //,'hideHoerfassung'=>$hideHoerfassung //'hideTrailer'=>$hideTrailer, 
+$options_createCopyEachSender = array('hideArte_fr'=>$hideArte_fr, 'minLengthVorlagenMinuten'=>$minLengthVorlagenMinuten, 'extra_audiodeskription' => $extra_audiodeskription, 'extra_gebaerdensprache'=> $extra_gebaerdensprache); //,'hideHoerfassung'=>$hideHoerfassung //'hideTrailer'=>$hideTrailer, 
    
 //Filmlisten-Datei runterladen (entweder über Adresse liste.php?list_update=1  - oder - automatisch)
 if(
@@ -727,7 +728,9 @@ echo "
             $i=0;
             foreach($senderListOutArray as $senderTitel => $senderUrl){
                 $i++;
-                if(substr($senderTitel,0,7)=='alle_ad')$class = 'sender__alle_ad'; else $class='';
+                if(substr($senderTitel,0,7)=='alle_ad')$class = 'sender__alle_ad';
+                else if(substr($senderTitel,0,13)=='alle_gebaerde' || substr($senderTitel,0,10)=='alle_gebae')$class = 'sender__alle_gebaerde';
+                else $class='';
                 echo "<a href=\"$senderUrl\" name=\"sender_sel$i\" id=\"senderliste_$i\" class=\"$class\" onClick=\"window.location='#sender_sel$i';loadNewSite()\" style=\"display:block;width:100%;margin-left:-3pt;\" class=\"link_every_same_color\">$senderTitel</a>\n";     
             }
 echo "
