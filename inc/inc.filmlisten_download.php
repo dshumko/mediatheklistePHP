@@ -6,7 +6,8 @@ function filmlist_download_and_extract_exec_getcommand($filmlisteUrl, $file, $st
     if($step=='download' || $step = 'all'){
            $command[] = 'if [ -e "cache/status_startFilmlistenExtract" ]; then exit; else touch cache/status_startFilmlistenDownload; fi'; //läuft parall noch entpacke?
            //echo "";
-           $command[] = 'rm -f '.$file.'.xz';
+           $command[] = 'rm -f '.$file.'_old.xz';
+           $command[] = 'mv '.$file.'.xz '.$file.'_old.xz';
            $command[] = 'curl -s -X HEAD -I '.$filmlisteUrl.' 2>&1  | grep \'^Last-Modified:\' > cache/status_lastFilmlistenFileModified_temp';
            $command[] = 'if [ -e "cache/status_startFilmlistenDownload" ]; then touch \'cache/status_startFilmlistenDownload\'; wget '.$filmlisteUrl.'; else exit; fi';
            $command[] = 'if [ -e "'.$file.'" ]; then rm -f '.$file.'_old; fi'; //lösche alte Backup-Datei von Filmliste

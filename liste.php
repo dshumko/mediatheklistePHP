@@ -389,7 +389,6 @@ if(
       </span>
         
     <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"/>
-        <!--<span style=\"color:#cccccc\"></span><br><span id=\"spinner_elem0\"> <--<span class=\"rotate0 rotate_correctur\">&#1161;</span>-->  </span>-->
         <!--
         <style language=\"text/css\">
           .rotate0 {
