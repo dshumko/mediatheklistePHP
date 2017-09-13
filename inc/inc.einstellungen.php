@@ -214,7 +214,6 @@ echo "
          
          echo '
          
-        <hr>
         Extra-Eintrag bei Sender für Filme mit Audio-Deskription/Hörfassung "alle_ad":
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
