@@ -215,7 +215,7 @@ echo "
          echo '
          
         <hr>
-        Extra-Eintrag bei Sender für Filme mit Audio-Deskription/Hörfassung:
+        Extra-Eintrag bei Sender für Filme mit Audio-Deskription/Hörfassung "alle_ad":
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);window.location.reload();">ausblenden</a>
@@ -224,7 +224,7 @@ echo "
          
          
         <hr>
-        Extra-Eintrag bei Sender für Filme mit Gebärdensprache:
+        Extra-Eintrag bei Sender für Filme mit Gebärdensprache "alle_gebaerde":
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);window.location.reload();">ausblenden</a>

@@ -220,7 +220,7 @@ function createCopyEachSender($file,$options,$minLength){
                    $senderlist['alle_ad']++;
                 }
                 
-                //extra liste für Gebährdensprache
+                //extra liste für Gebärdensprache
                 if( $extra_gebaerdensprache==1 && isset($title_raw) && is_gebaerdensprache($title_raw) ){
                    if( !isset($themenlist['alle_gebaerde'][$t]) )$themenlist['alle_gebaerde'][$t] = array('count'=>0,'lastDate'=>0,'countFuerGesamtLaenge'=>0,'gesamtLaenge'=>0);
                    if($themenlist['alle_gebaerde'][$t]['lastDate']<$datum) $themenlist['alle_gebaerde'][$t]['lastDate'] = $datum;
@@ -281,6 +281,7 @@ function createCopyEachSender($file,$options,$minLength){
         
         foreach($minLengthVorlagenMinuten as $l){
                 $fileNameAppend='min_length'.$l;
+                $senderliste_withMinLength [$l]['alle_ad'] = ''; $senderliste_withMinLength [$l]['alle_gebaerde'] = '';
                 file_put_contents('cache/1/senderliste_'.$fileNameAppend.'.serialize', utf8_encode(serialize($senderliste_withMinLength [$l])));
         }
         

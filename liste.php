@@ -7,6 +7,7 @@ require_once 'config.inc.php';
 
 $minLength = 0;
 if(isset($_GET['min_length']) && $_GET['min_length']!='')$minLength = (int)$_GET['min_length']; 
+if(isset($_GET['sender']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) $minLength = 0;
 if(isset($_GET['thema']) ) $_GET['thema'] = str_replace('x4sdy0ANDx4sdy0','&',$_GET['thema']); //sonst Probleme mit & im Thema
 
 $addPageTitle = '';
@@ -900,7 +901,13 @@ echo "
 if( isset($_GET['sender']) && isset($_GET['thema']) && is_array($allOuts) && count($allOuts)==0){
   echo "<p style=\"color:#555555\">Kein Filme vorhanden (vlt. wegen  <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">Einstellungen</a>)";
 
-  if($minLength>0)echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\"><br>Kürzer als ".$minLength." Min. werden ausgeblendet.</span>";
+  if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){
+    echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\"><br>";
+    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
+    echo "Kürzer als ".$minLength." Min. werden ausgeblendet.";
+    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "</s>";
+    echo "</span>";
+  }
   echo "</p>";
 }
         

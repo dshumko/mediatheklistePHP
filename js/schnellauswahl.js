@@ -394,6 +394,7 @@ function updateListeThemenLink_hideElements_andRepairLinks(){
                       }
     
                       if(c>0){
+                        //var match = location.href.match(/sender=(.*)/);console.log(match);
                         if(elements[i].href.search(/&min_length/)==-1)elements[i].href = elements[i].href + '&min_length' + '=' + c;
                       }
       }
