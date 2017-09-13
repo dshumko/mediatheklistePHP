@@ -757,6 +757,22 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
   echo "
   <div id=\"div-thema-select\">";
   
+  
+
+
+if( isset($_GET['sender']) ){
+  echo "<div id=\"notice_before_thema-select__minLength\" style=\"float:right;text-align:right;padding-right:3pt;\">
+";
+  if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){
+    echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\"><br>";
+    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
+    echo "Kürzer als ".$minLength." Min. werden ausgeblendet.";
+    if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "(nicht bei Hörfassung/Gebärdensprache möglich) </s> ";
+    echo "</span>";
+  }
+  echo "</div>";
+}
+  
     if(isset($_GET['start'])){
       $ll_von = (int)$_GET['start'];        
       $ll_bis = (int)$_GET['ende'];
