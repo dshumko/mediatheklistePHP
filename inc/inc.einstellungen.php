@@ -52,7 +52,7 @@ echo "
         
         echo '
         <hr>
-        Ausblenden <i>Hörfassung</i>   
+        <i>Hörfassung</i>   
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideHoerfassung_an" onClick="createCookie(\'hideHoerfassung\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_hideHoerfassung_aus" onClick="createCookie(\'hideHoerfassung\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
@@ -60,7 +60,7 @@ echo "
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideHoerfassung\')==1)document.getElementById(\'options_link_hideHoerfassung_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideHoerfassung_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         
          <hr>
-         Ausblenden <i>Audiodeskription</i> 
+         <i>Audiodeskription</i> 
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideAudioDeskription_an" onClick="createCookie(\'hideAudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_hideAudioDeskription_aus" onClick="createCookie(\'hideAudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
@@ -68,7 +68,7 @@ echo "
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideAudioDeskription\')==1)document.getElementById(\'options_link_hideAudioDeskription_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideAudioDeskription_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
          <div style="clear:both"></div>
          <hr>
-         Ausblenden <i>Trailer/Vorschau</i>
+         <i>Trailer/Vorschau</i>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
@@ -102,7 +102,7 @@ echo "
         echo "<hr>
         <div id=\"optionen_themen_ausblenden_deaktiv\">
           Blacklist: Themen ausblenden
-          <span style=\"float:right;padding:6pt\">
+          <span style=\"float:right;padding:0pt\">
                 <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','1',365*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_enable_link\">Aktivieren</a>
           </span>
         </div>
@@ -132,7 +132,7 @@ echo "
         echo "<hr>
         <div id=\"optionen_film_ausblenden_deaktiv\">
           Blacklist: Filme ausblenden
-          <span style=\"float:right;padding:6pt\">
+          <span style=\"float:right;padding:0pt\">
                 <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','1',365*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_enable_link\">Aktivieren</a>
           </span>
         </div>
@@ -177,7 +177,7 @@ echo "
          
          echo '
          
-        Extra-Eintrag für Filme mit Audio-Deskription/Hörfassung <i> als Sender "alle_ad"</i>:
+        Extra-Eintrag: nur Audio-Deskription/Hörfassung <i> als Sender "alle_ad"</i>:
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
@@ -186,7 +186,7 @@ echo "
          
          
         <hr>
-        Extra-Eintrag für Filme mit Gebärdensprache <i> als Sender "alle_gebaerde"</i>:
+        Extra-Eintrag: nur Gebärdensprache <i> als Sender "alle_gebaerde"</i>:
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
@@ -197,7 +197,7 @@ echo "
         <hr>
         <span style="float:right; text-align:right"></span>
         Feste Fußleiste 
-        <span style="color:#999999; font-size:0.9em">&nbsp;für Maus-bedienung am Smart-TV (durch Link unten schneller nach oben springen)</span>
+        <span style="color:#999999; font-size:0.9em">&nbsp;hilfreich bei Maus-bedienung am Smart-TV (schneller nach oben springen)</span>
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
 
@@ -208,18 +208,19 @@ echo "
         <div style="clear:both"></div>
         
         <hr>
-        <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
-        Vorschaltseite (sihe Bild rechts)
+       
+        Vorschaltseite (sihe Bild)
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp;<a href="#" id="options_link_vorschaltseite_an" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
               <script  language="javascript"  type="text/javascript"> if(getCookie(\'direkt_zur_mediathek_liste\')==1)document.getElementById(\'options_link_vorschaltseite_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_vorschaltseite_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         </span>
+         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
    
         <span style="clean:both"></span>
          <div style="clear:both"></div>
          <hr>
-         Test? lange Themenlisten mit bessere Performance <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser? Nur testweise drin; Funktion wird also evlt. wieder entfernt</i></span>
+         Test? lange Themenlisten mit bessere Performance? <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser; Nur testweise drin; Funktion wird evlt. wieder entfernt</i></span>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Textliste</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">TextlisteTabelle</a>, &nbsp;&nbsp;
