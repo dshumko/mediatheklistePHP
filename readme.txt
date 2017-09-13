@@ -8,7 +8,7 @@ Das Web-Programm listet die Filmliste vom MediathekView Projekt.
 
 Vorraussetzungen (Stand 8/2017):
 -PHP5
--RAM*: sollten >350MB (notfalls 256MB)
+-RAM*: sollten > 450MB (notfalls 256MB)
 -Speicherplatz*: Sollten 570MB (notfalls 240MB)
 * Speicherbedarf könnte in Zukunft steigen
 
