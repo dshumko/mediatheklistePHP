@@ -372,7 +372,7 @@ if(
  
   if($system_allow_exec_and_have_unxz==1){ //lade+entpacke lokal
         echo "Filmliste wird neu geladen....bitte warten... 
-        (je nach Internet-Verbindung/Server-Auslastung länger; kann bei 2Mbit auch bis zu 10Minuten dauern)
+        (je nach Internet-Verbindung/Server-Auslastung länger; kann bei 2Mbit auch bis zu 10Minuten dauern; Zieldatei: Filmliste-akt.xz)
         ";
         echo "
       <span style=\"float:left;position:relative;left:50%;\">
