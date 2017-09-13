@@ -417,7 +417,26 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
            document.getElementById('notice_before_filmliste__minLength').innerHTML = count_minLength+' Filme kürzer als '+getCookie('minLength')+'Minuten werden ausgeblendet. <a href="#" onclick="createCookie(\'minLength\',\'\',0);window.location.reload();return false;">ausschalten</a>';
         } 
 }
-        
+
+
+//Einstellungs-Link als Hash
+function optionsSafeLastUsesLinkAsHash(self){
+        var p = document.getElementById('options');
+        var list = p.getElementsByTagName('A');
+        var found = i;
+        for(var i =0;i<list.length;i++){
+          if(list[i]==self){ found=i; break; }
+        }
+        //console.log( 'found '+ found);
+        if(found>0){
+          var hash = 'settings_'+found;
+          if(history.replaceState) history.replaceState( history.state, document.title , window.location.href.replace( window.location.hash, '').replace('#','')+'#'+hash);
+          //else window.history.back();
+          window.location.hash = hash;
+        }
+}
+
+//Einstellungen zeigen/versteckten 
 function toggleShowOptions(state){
         
         if(state==''){
@@ -429,6 +448,16 @@ function toggleShowOptions(state){
           document.getElementById('options').style.display = 'block';
           showAlleFromHide('thema'); showAlleFromHide('film');
           formItemFocus(document.getElementById('options').getElementsByTagName('A')[0]);
+          if( location.hash.search('#settings_')!==-1 ){
+              var number = location.hash.replace('#settings_','');
+              var p = document.getElementById('options');
+              var list = p.getElementsByTagName('A');
+
+              if( list[ number] != undefined ){
+                list[ number].focus();
+                formItemFocus( list[ number] );
+              }
+          }
         }
         else if(state=='close'){
                 document.getElementById('options').style.display = 'none';

@@ -154,7 +154,6 @@ function onload1y(){ //onload
 }
 
 
-
 function setFocusForLastLink(){
     if(location.hash=='#anker1_film_0') location.hash='#anker1_film_1';
     ";
@@ -228,7 +227,8 @@ function setFocusForLastLink(){
     //if( location.hash=='#thema_select' || location.hash.search('#buchstabe_')!==-1 || location.hash.search('#thema_sel_')!==-1  || location.hash.search('#anker1_thema_sel_')!==-1) show_thema_select();
     if( location.hash=='#sender_select'  || location.hash.search('#thema_sel_')!==-1) document.getElementById('div-sender-select').style.display='block';
     
-    if( location.hash=='#settings') toggleShowOptions('show');
+    if( location.hash=='#settings' ) toggleShowOptions('show');
+    if( location.hash.search('#settings_')!==-1 ) toggleShowOptions('show');
     if( location.hash.search('#film_')!==-1  || location.hash.search('#anker1_film_')!==-1){ 
     var mainlinkNumber = location.hash.replace('#','').replace('anker1_film_','');
     var number = Number(mainlinkNumber);//  + 2;

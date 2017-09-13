@@ -31,10 +31,10 @@ echo "
          <span style="float:right; text-align:right">';
 
               foreach ($minLengthVorlagenMinuten as $h){
-                  echo '<a href="#" id="options_link_minLength_'.$h.'" onClick="createCookie(\'minLength\',\''.$h.'\',356*10);window.location=\'#\';window.location.reload();">'.$h.'Min.</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                  echo '<a href="#" id="options_link_minLength_'.$h.'" onClick="createCookie(\'minLength\',\''.$h.'\',356*10);window.location=\'#\';;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">'.$h.'Min.</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
               }
   echo '
-        oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_minLength_0" onClick="createCookie(\'minLength\',\'\',0);window.location.reload();">aus</a>
+        oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_minLength_0" onClick="createCookie(\'minLength\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">aus</a>
         </span>
         <script  language="javascript"  type="text/javascript">
           var c=getCookie(\'minLength\');
@@ -54,24 +54,24 @@ echo "
         <hr>
         Ausblenden <i>Hörfassung</i>   
         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideHoerfassung_an" onClick="createCookie(\'hideHoerfassung\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_hideHoerfassung_aus" onClick="createCookie(\'hideHoerfassung\',\'\',0);window.location.reload();">anzeigen</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideHoerfassung_an" onClick="createCookie(\'hideHoerfassung\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_hideHoerfassung_aus" onClick="createCookie(\'hideHoerfassung\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideHoerfassung\')==1)document.getElementById(\'options_link_hideHoerfassung_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideHoerfassung_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         
          <hr>
          Ausblenden <i>Audiodeskription</i> 
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideAudioDeskription_an" onClick="createCookie(\'hideAudioDeskription\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_hideAudioDeskription_aus" onClick="createCookie(\'hideAudioDeskription\',\'\',0);window.location.reload();">anzeigen</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideAudioDeskription_an" onClick="createCookie(\'hideAudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_hideAudioDeskription_aus" onClick="createCookie(\'hideAudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideAudioDeskription\')==1)document.getElementById(\'options_link_hideAudioDeskription_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideAudioDeskription_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
          <div style="clear:both"></div>
          <hr>
          Ausblenden <i>Trailer/Vorschau</i>
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);window.location.reload();">anzeigen</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
          <div style="clear:both"></div>
@@ -87,12 +87,12 @@ echo "
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);window.location.reload();"> 10 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);window.location.reload();"> 20 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);window.location.reload();"> 30 </a> &nbsp;&nbsp;
-              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);window.location.reload();"> 40 </a>
+              <a href="#" id="options_link_pageination10" onClick="createCookie(\'pageination\',\'10\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;"> 10 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination20" onClick="createCookie(\'pageination\',\'20\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;"> 20 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination30" onClick="createCookie(\'pageination\',\'30\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;"> 30 </a> &nbsp;&nbsp;
+              <a href="#" id="options_link_pageination40" onClick="createCookie(\'pageination\',\'40\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;"> 40 </a>
               &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'))window.location.reload();">eine lange Listen zum scrollen</a>
+              <a href="#" id="options_link_pageination_aus" onClick="createCookie(\'pageination\',\'\',0);window.location = (window.location.href).replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'); if(window.location == window.location.href.replace(/start=-?[0-9]*/,\'\').replace(/ende=-?[0-9]*/,\'\'));optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">eine lange Listen zum scrollen</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'pageination\')>0)document.getElementById(\'options_link_pageination\'+getCookie(\'pageination\')).innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_pageination_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
@@ -103,13 +103,13 @@ echo "
         <div id=\"optionen_themen_ausblenden_deaktiv\">
           Blacklist: Themen ausblenden
           <span style=\"float:right;padding:6pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','1',365*10);window.location.reload();return false;\" id=\"options_hide_thema_enable_link\">Aktivieren</a>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','1',365*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_enable_link\">Aktivieren</a>
           </span>
         </div>
         <div id=\"optionen_themen_ausblenden_aktiv\" style=\"display:none;\">
         Blacklist: Themen ausgeblendet: 
         <span style=\"float:right;padding:1pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','',-1);window.location.reload();return false;\" id=\"options_hide_thema_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_thema_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_thema_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);window.location.reload();return false;\" id=\"options_hide_thema_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('thema');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_thema_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_thema_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('thema');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
         
         <div id=\"show_hide_thema_ElementsList\" style=\"\"> </div>
@@ -133,13 +133,13 @@ echo "
         <div id=\"optionen_film_ausblenden_deaktiv\">
           Blacklist: Filme ausblenden
           <span style=\"float:right;padding:6pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','1',365*10);window.location.reload();return false;\" id=\"options_hide_film_enable_link\">Aktivieren</a>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','1',365*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_enable_link\">Aktivieren</a>
           </span>
         </div>
         <div id=\"optionen_film_ausblenden_aktiv\" style=\"display:none;\">
           Blacklist: Filme ausgeblendet:
         <span style=\"float:right;padding:1pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','',-1);window.location.reload();return false;\" id=\"options_hide_film_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_film_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film','',-1);window.location.reload();return false;\" id=\"options_hide_film_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_add_form').style.display='block';return false;\" id=\"options_hide_film_liste_add\">+</a> &nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('film');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_film_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_add_form').style.display='block';return false;\" id=\"options_hide_film_liste_add\">+</a> &nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('film');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
         <div id=\"options_hide_film_liste_add_form\" style=\"text-align:right;display:none\"><br>
           Folgenden Film ausblenden <input type=\"text\" id=\"options_hide_film_liste_add_form_text\" >* 
@@ -167,8 +167,8 @@ echo "
         echo '
         Video verlinken
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_video_direktlink_an" onClick="createCookie(\'video_direktlink\',\'1\',356*10);window.location.reload();">Direktlink</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_video_direktlink_aus" onClick="createCookie(\'video_direktlink\',\'\',0);window.location.reload();">Normal</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_video_direktlink_an" onClick="createCookie(\'video_direktlink\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Direktlink</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_video_direktlink_aus" onClick="createCookie(\'video_direktlink\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Normal</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'video_direktlink\')==1)document.getElementById(\'options_link_video_direktlink_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_video_direktlink_aus\').innerHTML+=\' &#10008;\'; </script>
          <div style="clear:both"></div>
@@ -179,8 +179,8 @@ echo "
          
         Extra-Eintrag für Filme mit Audio-Deskription/Hörfassung <i> als Sender "alle_ad"</i>:
         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);window.location.reload();">ausblenden</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'extra_sender_AudioDeskription\')==1)document.getElementById(\'options_link_extra_sender_AudioDeskription_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_extra_sender_AudioDeskription_aus\').innerHTML+=\' &#10008;\'; </script>
          
@@ -188,8 +188,8 @@ echo "
         <hr>
         Extra-Eintrag für Filme mit Gebärdensprache <i> als Sender "alle_gebaerde"</i>:
         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);window.location.reload();">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);window.location.reload();">ausblenden</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'extra_sender_Gebaerdensprache\')==1)document.getElementById(\'options_link_extra_sender_Gebaerdensprache_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_extra_sender_Gebaerdensprache_aus\').innerHTML+=\' &#10008;\'; </script>
          
@@ -199,7 +199,7 @@ echo "
         Feste Fußleiste 
         <span style="color:#999999; font-size:0.9em">&nbsp;für Maus-bedienung am Smart-TV (durch Link unten schneller nach oben springen)</span>
         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);window.location.reload();">anzeigen</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
 
 
               
@@ -211,8 +211,8 @@ echo "
         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
         Vorschaltseite (sihe Bild rechts)
         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp;<a href="#" id="options_link_vorschaltseite_an" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'1\',356*10);window.location.reload();">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);window.location.reload();">anzeigen</a>
+              &nbsp;&nbsp;&nbsp;<a href="#" id="options_link_vorschaltseite_an" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
               <script  language="javascript"  type="text/javascript"> if(getCookie(\'direkt_zur_mediathek_liste\')==1)document.getElementById(\'options_link_vorschaltseite_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_vorschaltseite_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         </span>
    
@@ -221,9 +221,9 @@ echo "
          <hr>
          Test? lange Themenlisten mit bessere Performance <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser? Nur testweise drin; Funktion wird also evlt. wieder entfernt</i></span>
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);window.location.reload();">Textliste</a>, &nbsp;&nbsp;
-              <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);window.location.reload();">TextlisteTabelle</a>, &nbsp;&nbsp;
-              <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);window.location.reload();">Tabelle</a>
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Textliste</a>, &nbsp;&nbsp;
+              <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">TextlisteTabelle</a>, &nbsp;&nbsp;
+              <a href="#" id="options_link_no_table_aus" onClick="createCookie(\'no_table\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Tabelle</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
