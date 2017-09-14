@@ -365,7 +365,7 @@ if( !file_exists('cache/status_newFilmlisteFileVorhanden')
         //if(!file_exists('cache/status_lastFilmlistenFileModified') ) exec('touch cache/status_lastFilmlistenFileModified'); //Timstamp der Datei stimmt zwar nicht, aber besser als kar keinen
         
         require_once('inc/inc.filmlisten_download.php');
-
+        $comandsDownload = '';
         if($filmlisten_autoUpdate){ //sammle Kommandus, für ggf. update
              $comandsDownload = filmlist_download_and_extract_exec_getcommand($filmlisteUrl, $file, 'all');
              $comandsDownload.= ' wget -qO '.$self_host_url .'?list_update__only_aufteilen=1  2>&1 > /dev/null;';//teilt die neue Filmlisten-Datei auf
@@ -454,9 +454,10 @@ if(
         echo exec( filmlist_download_and_extract_exec_getcommand($filmlisteUrl, $file, 'extract') );
         echo "fertig mit entpacken....<br>"; myFlush();
 
-  }elseif($cloud_convert_apikey!=''){ //lade+entspacke über Cloud-Service
+  }else{ //lade+entspacke über Cloud-Service
+        if($cloud_convert_apikey=='') die("?Unterstützt ihr Server kein exec()? <br>Daher sind sie auf einen externen Dienst wie cloudconvert.com angewiesen. Bitte dort registieren und API-Code in config.inc.php eintragen.");
         echo "Filmliste wird neu geladen....bitte warten... 
-              (je nach Internet-Verbindung des Server/ dessen Auslastung (>100MB download))<br>"; myFlush();
+              (je nach Internet-Verbindung des Server/ dessen Auslastung (mind. 130MB download))<br>"; myFlush();
         if(file_exists($file)) rename($file,$file."_old");
         downloadTheFileAndExtract("https://api.cloudconvert.com/convert", $file, $cloud_convert_apikey, $filmlisteUrl);
 

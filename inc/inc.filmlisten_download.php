@@ -31,7 +31,7 @@ function filmlist_download_and_extract_exec_getcommand($filmlisteUrl, $file, $st
 function downloadTheFileAndExtract($webServiceUrl, $filepath, $cloud_convert_apikey, $filmlisteUrl){
       //Webserice lädt die Datei runter und sendet Sie entpackt zurück.
       $ch = curl_init($webServiceUrl);
-      curl_setopt($ch, CURLOPT_HEADER, 1);
+      curl_setopt($ch, CURLOPT_HEADER, 0); //darf keine Header sein (wird sonst mit gespeichert in Filmliste-akt)
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
       curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
       curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -40,14 +40,16 @@ function downloadTheFileAndExtract($webServiceUrl, $filepath, $cloud_convert_api
       curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 
       $raw_file_data = curl_exec($ch);
-
+      //echo substr($raw_file_data, 0,1000);
       if(curl_errno($ch)){
+         echo substr($raw_file_data, 0,500);
          echo 'error:' . curl_error($ch);
+         return false;
       }
       curl_close($ch);
 
       file_put_contents($filepath, $raw_file_data);
-      return (filesize($filepath) > 0)? true : false;
+      return false;
 }
    
 
