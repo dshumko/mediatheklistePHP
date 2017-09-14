@@ -388,7 +388,7 @@ if( file_exists('cache/status_startFilmlistenExtract') && filemtime('cache/statu
 
 if(isset($_GET['list_update'])){
     sleep(3); //warte, damit oben gezeigt Prüfung durchgeführt wurde;
-    if(!$system_allow_exec_and_have_unxz && file_exists($file) && date('U') <= filemtime($file)+($timoutFilmlisteToOld*60))die( "<br><br><br><br><p>Datei konnte nicht aktualisiert werden (geht nur alle ".$timoutFilmlisteToOld." Minuten).</p>".'<a href="liste.php?" style="padding-bottom:15pt">weiter</a>');
+    if(!$system_allow_exec_and_have_unxz && file_exists($file) && date('U') <= filemtime($file)+($filmliste_manuellUpdate_showLink_timeout*60))die( "<br><br><br><br><p>Datei konnte nicht aktualisiert werden (geht nur alle ".$filmliste_manuellUpdate_showLink_timeout." Minuten).</p>".'<a href="liste.php?" style="padding-bottom:15pt">weiter</a>');
     if( file_exists("cache/status_lastFilmlistenFileModified") )$lM = file_get_contents("cache/status_lastFilmlistenFileModified"); else $lM = '';
     if($system_allow_exec_and_have_unxz && !file_exists('cache/status_newFilmlisteFileVorhanden') && file_exists($file)) die( "<br><br><br><br><p>Datei konnte nicht aktualisiert werden <br>(geht nur wenn aktuellere Datei auf den Mediathek-View Server vorliegt; bitte die Seite neu-laden um es ein zeites mal zuversuchen). ".$lM."</p>".'<a href="liste.php?" style="padding-bottom:15pt">weiter</a>');  
 }
@@ -509,7 +509,7 @@ if(!file_exists($file) && file_exists('cache/status_startFilmlistenDownload')) e
 else if(!file_exists($file) && file_exists('cache/status_startFilmlistenExtract')) echo "<p>Derzeit wird eine neue Filmliste entpackt (im Hintergrund)</p>";
 else if(!file_exists($file)) die("<br><br><br>Mediathek Dateiliste fehlt. <a href=\"liste.php?list_update=1\">jetzt Runterladen</a>");
 if( file_exists($file)){
-    if( $timoutFilmlisteToOld>1 && date('U') > filemtime($file)+($timoutFilmlisteToOld*60) && !$filmlisten_autoUpdate){ echo" <a href=\"liste.php?list_update=1\" class=\"abstandlinks\">Liste aktualisieren</a> &nbsp; "; $fileliste_could_be_updated = true;}
+    if( $filmliste_manuellUpdate_showLink_timeout>1 && date('U') > filemtime($file)+($filmliste_manuellUpdate_showLink_timeout*60) && !$filmlisten_autoUpdate){ echo" <a href=\"liste.php?list_update=1\" class=\"abstandlinks\">Liste aktualisieren</a> &nbsp; "; $fileliste_could_be_updated = true;}
     else if( $system_allow_exec_and_have_unxz && file_exists("cache/status_newFilmlisteFileVorhanden") && !$filmlisten_autoUpdate ){  echo"<span style=\"color:grew\"></span><a href=\"liste.php?list_update=1\" class=\"abstandlinks\">Neue Filmliste laden</a> &nbsp; "; $fileliste_could_be_updated = true;}
 }
 if( file_exists('cache/status_lastFilmlistenFileModified') ) $d = str_replace(' GMT','', substr(file_get_contents('cache/status_lastFilmlistenFileModified'),19)); else $d = '';
