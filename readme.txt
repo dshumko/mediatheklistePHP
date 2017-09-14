@@ -1,5 +1,5 @@
 Readme
-Lizenz: GPLv3
+Lizenz: APGL
 soerenj-os@web.de
 
 
