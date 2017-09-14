@@ -20,11 +20,21 @@ function getSenderListe($options){
       
       if( isset($_GET['sender']) || isset($_GET['thema']) )$senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
       $senderListOutArray['Alle'] = "liste.php?sender=alle$s2$s3";
+      if(isset($sender['alle_ad'])){
+        $senderListOutArray['Alle AudioDeskription'] = "liste.php?sender=alle_ad$s2$s3";
+        unset($sender['alle_ad']);
+      }
+      if(isset($sender['alle_gebaerde'])){
+        $senderListOutArray['Alle Gebärdensprache']  = "liste.php?sender=alle_gebaerde$s2$s3";
+        unset($sender['alle_gebaerde']);
+      }
       
       foreach($sender as $s=>$count ){
          if($hideArte_fr==1 && $s =='arte.fr' ) continue;
-         $senderListOutArray[substr($s,0,10)." ($count)"] = "liste.php?sender=".urlencode($s)."$s2$s3";
+         $title = substr($s,0,10);
+         $senderListOutArray[$title." ($count)"] = "liste.php?sender=".urlencode($s)."$s2$s3";
       }
+      
       return $senderListOutArray;
 
 }
