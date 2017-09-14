@@ -2,6 +2,8 @@ Readme
 Lizenz: APGL
 soerenj-os@web.de
 
+DemoServer: http://149.202.236.159/
+
 
 Das Web-Programm listet die Filmliste vom MediathekView Projekt.
 
