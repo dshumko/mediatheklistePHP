@@ -17,7 +17,7 @@ if(isset($_GET['thema']) && $_GET['thema']!='')   $addPageTitle .= ' '.$_GET['th
 if( $hideArte_fr==2 && isset($_GET['show_arte_fr']) && $_GET['show_arte_fr']!='') $hideArte_fr = 2;
 
 //Seite im Browser cachen (wenn sich Filmdatei/Programm-Code nicht geändert haben, behalte Browscache)
-if(file_exists($file) && $cacheActive){
+if(file_exists($file) && $clientBrowserCacheActive==1 ){
 
     if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
     $if_modified_since = preg_replace('/;.*$/', '',   $_SERVER['HTTP_IF_MODIFIED_SINCE']);
@@ -1058,7 +1058,7 @@ echo "<a name=\"bottom\" ></a>";
 $end = microtime(true);
 $creationtime = ($end - $startTimeRender);
 //position:fixed;
-if($cacheActive==false) printf("<small><span style=\"color:#5f5f5f;float:right;padding-right:3pt;\">page created in %.2f sec.</span></small>", $creationtime);
+if($clientBrowserCacheActive==0) printf("<small><span style=\"color:#5f5f5f;float:right;padding-right:3pt;\">page created in %.2f sec.</span></small>", $creationtime);
 echo '</div>'; //id="content" ende
 echo "<div id=\"fixed_footer\" style=\"width:100%;min-width:100%;bottom:0px;display:none;position:fixed;margin:0pt;padding-left:8pt;margin-left:-8pt;padding-right:20pt;z-index:9;;\">
     <a href=\"#top\" tabindex=\"\" style=\"display:block\" title=\"nach oben scrollen\">
