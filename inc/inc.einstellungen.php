@@ -244,7 +244,17 @@ echo "
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
-         
+         <div style="clear:both"></div>
+         <hr> Bedien-Hilfe für Hbb-TV:
+         <div style="padding-left:20pt">
+         Navigieren:   &nbsp;&nbsp; &#8594; &#8593; &#8592; &#8595; Pfeiltasten,  &nbsp;&nbsp; Zurück/Back
+         <br>Farbtasten:  &nbsp;&nbsp; Gelb = Senderwahl,  &nbsp;&nbsp; Grün = Themenwahl,  &nbsp;&nbsp; Blau = Buchstabenwahl<br>
+         Themenliste:
+         <br>&nbsp;&nbsp;&nbsp;&nbsp;A-Z [ 1-9 Tasten ] für springen zum Buchstaben<br>
+         Während Film: 
+         <br>&nbsp;&nbsp;&nbsp;&nbsp;Play,  &nbsp;&nbsp;  &nbsp;&nbsp; Pause,  &nbsp;&nbsp; Vorwärts, &nbsp;&nbsp;  Rückwärts, &nbsp;&nbsp;  Stop
+         <br>&nbsp;&nbsp;&nbsp;&nbsp;Pfeiltasten  &nbsp;&nbsp; &#8594; +30 &nbsp;&nbsp; &#8593; +60 &nbsp;&nbsp; &#8592; -30  &nbsp;&nbsp; &#8595; -60 &nbsp;&nbsp;  Sekunden springen
+         </div>
          ';
          
         echo " <br><br>";
