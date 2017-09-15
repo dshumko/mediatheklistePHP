@@ -523,8 +523,10 @@ function createAllElements(){
                               else{
                                       //verschiedene Formate
                                       foreach($outArray['videofiles_links'] as $videoName => $videoUrl){
+                                          if( substr($videoUrl,-4)!='.mp4'){
                                               $outArray['videofiles_links']['<nobr>'.$videoName .' <small>'.substr($videoUrl,-4).'</small></nobr>'] = $videoUrl;
                                               unset($outArray['videofiles_links'][$videoName]); //old
+                                          }
                                       }
                                       break;
                               }
