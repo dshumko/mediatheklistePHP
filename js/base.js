@@ -326,10 +326,10 @@ function updateVideoMainLink_withQualityLink_andPossibleHideElements(){;
                     var all_videolinks = parent.getElementsByClassName('videolink');
                     var h;
                     for (var m = 0; m < all_videolinks.length; m++) {
-                        h = all_videolinks[m].href.split('video.php#');
+                        h = all_videolinks[m].href.split('video_mediatheklistephp.php#');
                         if(h.length>1)all_videolinks[m].href = h[1];
                     }
-                    h = list[i].href.split('video.php#');
+                    h = list[i].href.split('video_mediatheklistephp.php#');
                     if(h.length>1)list[i].href = h[1];
                   }
                   
