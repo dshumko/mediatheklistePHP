@@ -515,9 +515,9 @@ function createAllElements(){
                         $href = $dereff.$linkHd;
                         if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video_mediatheklistephp.php#".($linkHd);  
                         $outArray['videofiles_links']['HD'] = $href;
-                      }
+                      }                      
                       
-                      if(isset($json_line->X[13]) && $json_line->X[13]!='')$outArray['videofiles_links']['RTMP klein'] = $dereff.$json_line->X[13];
+
                       /* wenn mehr als ein Videolink + verschiedene Formate */
                       $type = '';
                       if( count($outArray['videofiles_links'])>1){
@@ -536,10 +536,12 @@ function createAllElements(){
                           }
                       }
                       
-                      
+                      if(isset($json_line->X[13]) && $json_line->X[13]!='')$outArray['videofiles_links']['RTMP klein'] = $dereff.$json_line->X[13];
                       if(isset($json_line->X[11]) && $json_line->X[11]!='')$outArray['videofiles_links']['RTMP'] = $dereff.$json_line->X[11];
                       if(isset($json_line->X[15]) && $json_line->X[15]!='')$outArray['videofiles_links']['RTMP HD'] = $dereff.$json_line->X[15];
                   
+                  
+
                       /* wofuer?
                       if(isset($_GET['search']) && $_GET['search']!=''){
                           $href = "liste.php?sender=".$json_line->X[0]."&thema=".rawurlencode($json_line->X[1])."";
