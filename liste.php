@@ -756,7 +756,7 @@ echo "
             foreach($senderListOutArray as $senderTitel => $senderUrl){
                 $i++;
                 preg_match('/sender=([^&]*)#?/',$senderUrl, $match);
-                if( isset($match[1]) ) $class = 'sender__'.$match[1];
+                if( isset($match[1]) ) $class = 'sender__'.$match[1]; else $class ='';
                 echo "<a href=\"$senderUrl\" name=\"sender_sel$i\" id=\"senderliste_$i\" class=\"$class\" onClick=\"window.location='#sender_sel$i';loadNewSite()\" style=\"display:block;width:100%;margin-left:-3pt;\" class=\"link_every_same_color\">$senderTitel</a>\n";     
             }
 echo "

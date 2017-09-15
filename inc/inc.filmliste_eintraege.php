@@ -369,7 +369,7 @@ function createAllElements(){
                              $l = $e[0]*60+$e[1];
                              $outArray['length'].= ', <span class="film_length">'.$l.'</span> Min.';
                       }
-                      if(isset($l) && $minLength>0 && $l<$minLength && $_GET['sender']!='alle_ad' && $_GET['sender']!='alle_gebaerde'){ unset($outArray); continue; }
+                      if(isset($l) && $minLength>0 && $l<$minLength && isset($_GET['sender']) && $_GET['sender']!='alle_ad' && $_GET['sender']!='alle_gebaerde'){ unset($outArray); continue; }
 
                           if( isset($_GET['sender']) && ($_GET['sender']=='alle' ||  $_GET['sender']=='alle_ad' ||  $_GET['sender']=='alle_gebaerde') ){
                           $outArray['possibleSender'] = ' '.$json_line->X[0].' ';        
