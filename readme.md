@@ -1,8 +1,9 @@
-Das Web-Programm listet die Filmliste vom MediathekView Projekt.
+Das Web-Programm listet die Filmliste vom MediathekView Projekt.  
+Optimiert für SmartTV / TV-Browser  
 
-### Demo
-Server: http://149.202.236.159/  
-Video(August2017): https://youtu.be/DLFDfNCTSYQ  
+### mediathek-ListePHP
+DemoServer: http://149.202.236.159/  
+DemoVideo(August2017): https://youtu.be/DLFDfNCTSYQ  
 Für Vestel/Telefunken als TV-App (DNS-Hack): https://youtu.be/GwNNpYhJq94  
 
 ![Screenshot mit Themenliste](screenshots/Bildschirmfoto_themenliste.png)
