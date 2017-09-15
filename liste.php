@@ -755,10 +755,8 @@ echo "
             $i=0;
             foreach($senderListOutArray as $senderTitel => $senderUrl){
                 $i++;
-                if(substr($senderTitel,0,7)=='alle_ad') $class = 'sender__alle_ad';
-                else if(substr($senderTitel,0,13)=='alle_gebaerde' || substr($senderTitel,0,10)=='alle_gebae') $class = 'sender__alle_gebaerde';
-                else if(substr($senderTitel,0,7)=='arte.fr') $class = 'sender__arte.fr';
-                else $class='';
+                preg_match('/sender=([^&]*)#?/',$senderUrl, $match);
+                if( isset($match[1]) ) $class = 'sender__'.$match[1];
                 echo "<a href=\"$senderUrl\" name=\"sender_sel$i\" id=\"senderliste_$i\" class=\"$class\" onClick=\"window.location='#sender_sel$i';loadNewSite()\" style=\"display:block;width:100%;margin-left:-3pt;\" class=\"link_every_same_color\">$senderTitel</a>\n";     
             }
 echo "
