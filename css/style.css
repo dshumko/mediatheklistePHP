@@ -137,6 +137,10 @@ a.list_video_mainlink:hover{
   min-width:70%;
 }
 
+/* themenliste(alle): AD | gebaerde */
+.t__ad, .t__geb{
+  display:none;
+}
 
 
 .list_video_mainlink:visited{

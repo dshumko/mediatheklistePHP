@@ -150,8 +150,18 @@ function onload1y(){ //onload
     var countFavs = 0;       var raw = getCookie('favs');     if(raw=='')raw='{}'; var countFavs = JSON.parse(raw).length;
     if( countFavs> 2 && document.getElementById('schnellauswahl_list__jump_to_filme')!=undefined && document.getElementsByClassName('videolink_row').length>0 ) document.getElementById('schnellauswahl_list__jump_to_filme').style = 'inline-block';
     
-    if(getCookie('extra_sender_AudioDeskription')!=1 && document.getElementsByClassName('sender__alle_ad').length>0) document.getElementsByClassName('sender__alle_ad')[0].style.display = 'none';
-    if(getCookie('extra_sender_Gebaerdensprache')!=1 && document.getElementsByClassName('sender__alle_gebaerde').length>0) document.getElementsByClassName('sender__alle_gebaerde')[0].style.display = 'none';
+    if(getCookie('extra_sender_AudioDeskription')!=1){
+      if(document.getElementsByClassName('sender__alle_ad').length>0) document.getElementsByClassName('sender__alle_ad')[0].style.display = 'none';
+    }else{
+      var list = document.getElementsByClassName('t__ad');
+      for(var i=0;i<list.length;i++){ list[i].style.display = 'inline'; }
+    }
+    if(getCookie('extra_sender_Gebaerdensprache')!=1){
+      if(document.getElementsByClassName('sender__alle_gebaerde').length>0) document.getElementsByClassName('sender__alle_gebaerde')[0].style.display = 'none';
+    }else{
+      var list = document.getElementsByClassName('t__geb');
+      for(var i=0;i<list.length;i++){ list[i].style.display = 'inline'; }
+    }
     
     var c = getCookie('showFooter'); if(c>0) document.getElementById('fixed_footer').style.display = 'block';
     

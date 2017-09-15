@@ -148,7 +148,16 @@ function getThemenliste($options){
                   $title.= ' &nbsp; '.round($more_data['aLen']).'Min'; //durchschnittslaenge
                   if($count>1) $title.= '∅';
               }
-              if( isset($more_data['sender']) )$title.= " ".implode(', ',$more_data['sender'])."";
+              
+              //Sender "Alle": Füge an bei welche Sendern (+ggf. ExtraSender Gebaerde/AD)
+              if( isset($more_data['sender']) ){
+                foreach($more_data['sender'] as $index => &$s){
+                    if($s=='alle_ad'){ $title.= '<span class="t__ad">AD</span> '; unset($more_data['sender'][$index]); }
+                    else if($s=='alle_gebaerde'){ $title.= '<span class="t__geb">gebaerde</span>'; unset($more_data['sender'][$index]); }
+                }
+                $title.= " ".implode(', ',$more_data['sender'])."";
+              }
+              
               if($lastDate!='') $lastDateFormat = de_getWochentag($lastDate+(60*60)).gmdate(', d.m.Y H:i', $lastDate+(60*60));
               //if($lastDate!='') $title.= "<span class=\"t_sel_date\" >".$lastDateFormat."</span>";
               if($lastDate!='') $date = $lastDateFormat; else $date=''; //"<span class=\"t_sel_date\" >"....</span>
