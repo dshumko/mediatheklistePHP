@@ -10,20 +10,32 @@ Für Vestel/Telefunken als TV-App (DNS-Hack; allerdings wird das Smart-Portal st
 
 
 
+
+
 ### Funktion:
-  * Liste mit allen Themen
-  * Liste mit Themen je Sender 
-  * Extra-Liste mit Themen in Gebärdensprache / Hörfassung / AudioDeskription (aktivierbar)
-  * Themen als Schnellauswahl speichern (sozusagen: Lesezeichen/Favouriten)
-  * Individuelle Filmliste zusammenstellen lassen (über die Schnellauswahl)
-  * Technisch: Filmliste wird augeteilt in mehrer Unterlisten um das verarbeiten zu beschleunigen (cache)
-### Filter
-  * Themen/Filme einzeln ausblenden
-  * arte.fr zuschaltbar
-  * orf-Filme prüfe ob in dtl. erreichbar 
+  * Liste allen Themen
+  * Liste Themen je Sender 
+  * Extra-Liste mit Themen Gebärdensprache / Hörfassung / AudioDeskription (aktivierbar)
+  * Themen als Schnellauswahl speichern (Favouriten)
+  * Eigene Startseite [mit individueller Filmliste](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_schnellauswahl.png)
+  * Navigation über lange Scroll-Liste oder [Seitenweise](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_themenliste_seitenweise.png)
+  * Sortiert nach Datum
+  * Technisch: verwendet einen Cache (aufgeteilte Filmliste)
+  * Eigenen Server betreiben? kann auf etwas besseren Web-Hosting Paketen installiert werden. [Vorraussetzungen](https://github.com/soerenj/mediatheklistePHP/wiki/Installieren)
+
+### Filter:
+  * Themen einzeln ausblenden
+  * Filme einzeln ausblenden (freitext)
+  * arte_fr deaktivierbar
+  * orf-Filme prüfen ob in dtl. erreichbar 
   * Trailer/Vorschau/Hörfassungen/AudioDeskription ausblenden
-  * Mindest-Filmlänge angeben
-  
+  * filtern nach Mindest-Filmlänge  
+
+### Negativpunkte
+  * KEINE Suchfunktion (braucht zu viel Systemlast)
+  * graues Design
+  * schwer zu installieren: Smart-TVs lassen meist nur vom Hersteller zugelassen Anwendungen installieren; Aber vlt. hat eurer SmartTV immerhin ein freien TV-Browser
+
 
 ### Server-Vorraussetzungen
 Stand 8/2017  
