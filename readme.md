@@ -8,6 +8,23 @@ Für Vestel/Telefunken als TV-App (DNS-Hack): https://youtu.be/GwNNpYhJq94
 
 ![Screenshot mit Themenliste](img/screenshots/Bildschirmfoto_themenliste.png)
 
+
+
+### Funktion:
+  * Liste mit allen Themen
+  * Liste mit Themen je Sender 
+  * Extra-Liste mit Themen in Gebärdensprache / Hörfassung / AudioDeskription (aktivierbar)
+  * Themen als Schnellauswahl speichern (sozusagen: Lesezeichen/Favouriten)
+  * Individuelle Filmliste zusammenstellen lassen (über die Schnellauswahl)
+  * Technisch: Filmliste wird augeteilt in mehrer Unterlisten um das verarbeiten zu beschleunigen (cache)
+### Filter
+  * Themen/Filme einzeln ausblenden
+  * arte.fr zuschaltbar
+  * orf-Filme prüfe ob in dtl. erreichbar 
+  * Trailer/Vorschau/Hörfassungen/AudioDeskription ausblenden
+  * Mindest-Filmlänge angeben
+  
+
 ### Server-Vorraussetzungen
 Stand 8/2017  
 - PHP5

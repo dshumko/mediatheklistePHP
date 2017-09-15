@@ -51,7 +51,7 @@ $impressumText   = '
 <h4>Datenherkunft:</h4>
 <div style="padding-left:10pt">
 Die Daten stammen von den Projekt <a href="http://www.mediathekview.de">http://www.mediathekview.de</a><br>
-Diesen Gründer, Entwickler und gesamt Projekt gebührt der Dank für das auslesen der Mediatheken, sonst wäre die Liste leer :-(<br>
+Diesen Gründer, Entwickler und gesamt Projekt gebührt der Dank für das auslesen der Mediatheken, sonst wäre die Liste leer :-<<br>
 Den Quellcode für diese Web-Anwendung finden Sie bei <a href="https://github.com/soerenj/mediatheklistePHP">github</a>.
 </div><br>
 
