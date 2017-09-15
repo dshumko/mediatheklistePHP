@@ -4,8 +4,10 @@ soerenj-os@web.de
 
 DemoServer: http://149.202.236.159/
 
-
 Das Web-Programm listet die Filmliste vom MediathekView Projekt.
+
+DemoVideo(etwas älter): https://youtu.be/DLFDfNCTSYQ
+Als SmartTV-App auf Vestel/Telefunken installieren: https://youtu.be/GwNNpYhJq94
 
 
 Vorraussetzungen (Stand 8/2017):
