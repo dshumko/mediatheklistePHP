@@ -4,7 +4,7 @@ Optimiert für SmartTV / TV-Browser
 ### mediathek-ListePHP
 DemoServer: http://149.202.236.159/  
 DemoVideo(August2017): https://youtu.be/DLFDfNCTSYQ  
-Für Vestel/Telefunken als TV-App (DNS-Hack): https://youtu.be/GwNNpYhJq94  
+Für Vestel/Telefunken als TV-App (DNS-Hack; allerdings wird das Smart-Portal starten dadurch langsamer): https://youtu.be/GwNNpYhJq94  
 
 ![Screenshot mit Themenliste](img/screenshots/Bildschirmfoto_themenliste.png)
 
