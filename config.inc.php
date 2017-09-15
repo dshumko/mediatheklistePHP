@@ -39,7 +39,7 @@ $filmliste_manuellUpdate_showLink_timeout = 0;  //Link zum manuellen Update anze
 
 //Texte//
 $PageTitle       = 'MediathekListePHP';
-$welcomeText     = '<span style=\"color:#999999\">Mediathek-liste in PHP, &nbsp;geschrieben für TV-Browser & Hbb-TV. Daten von MediathekView.de</span>';
+$welcomeText     = '<span style=\"color:#999999\">Mediathek-liste in PHP, &nbsp;geschrieben für TV-Browser & Hbb-TV. Daten von MediathekView.de</span><br><b>Dank</b> an die MediathekView-Leute :-)';
 $notice_14_09_2017 = '<div style="border-top: 3pt solid #999999;margin:10pt;padding:10pt;" id="rechtshinweis_14_09_2017"><b>Hier werden Daten der öffentliche rechtlichen Fernsehprogramme dargestellt.</b></br>
 Für diese Inhalte kann ich keine Verantwortung übernehmen und würde Sie bitte mich hinzuweisen, sollten Sie rechtliche Probleme mit den dargestellten Daten haben / bzw. grundsätzlich. Dieser Hinweis ist nur nach der Programm-Erstveröffentlichung im Monat September bis 14.10.2017 sichtbar.<p align="right"><a href="#" onClick="createCookie(\'rechtshinweis_14_09_2017\',1,60);document.getElementById(\'rechtshinweis_14_09_2017\').style.display=\'none\';">dauerhaft ausblenden [x]</a></p>
 <script type="text/javascript" >if(getCookie(\'rechtshinweis_14_09_2017\')>0)document.getElementById(\'rechtshinweis_14_09_2017\').style.display=\'none\';</script>
