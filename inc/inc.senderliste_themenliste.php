@@ -97,12 +97,12 @@ function getThemenliste($options){
            }
           }
           
-          uksort($allThemen, 'strcasecmp');
+          //uksort($allThemen, 'strcasecmp');
           $senderThema['alle'] = $allThemen;
         }
         
 
-        if( isset($senderThema[ strtolower($_GET['sender']) ]) ) uksort($senderThema[ strtolower($_GET['sender']) ] , 'strcasecmp');
+        //if( isset($senderThema[ strtolower($_GET['sender']) ]) ) uksort($senderThema[ strtolower($_GET['sender']) ] , 'strcasecmp');
         $senderUrlPart = '';
         
         if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ) $dp = 'display:block';
@@ -117,21 +117,12 @@ function getThemenliste($options){
         if( isset($_COOKIE['favs']) ) $favs = JSON_decode( $_COOKIE['favs'] );
 
 
-        //richtig sortieren (auch Umlaute richtig)
-        //source: https://stackoverflow.com/questions/120334/how-to-sort-an-array-of-utf-8-strings
-        function traceStrColl($a, $b) {
-          $outValue=strcoll($a, $b);
-          //echo "$a $b $outValue\r\n";
-          return $outValue;
-        }
 
-        $locale=(defined('PHP_OS') && stristr(PHP_OS, 'win')) ? 'German_Germany.65001' : 'de_DE.utf8';
-        $oldLocale=setlocale(LC_COLLATE, "0");
-        if( !isset($senderThema[ strtolower($_GET['sender']) ]) )return array('themen'=>'', 'buchstabenLinks'=>'');
-        uksort($senderThema[ strtolower($_GET['sender']) ], 'traceStrColl');
-        setlocale(LC_COLLATE, $oldLocale);
         
         unset($senderThema[ strtolower($_GET['sender']) ]['zzz'] ); //ist nur plathalter
+
+
+        if( !isset($senderThema[ strtolower($_GET['sender']) ]) )return array('themen'=>'', 'buchstabenLinks'=>'');
 
         $ll = 0;
 
@@ -166,10 +157,6 @@ function getThemenliste($options){
           }
 
           if( isset($allBuchstaben) ){
-              $locale=(defined('PHP_OS') && stristr(PHP_OS, 'win')) ? 'German_Germany.65001' : 'de_DE.utf8';
-              $oldLocale=setlocale(LC_COLLATE, "0");
-              uksort($allBuchstaben, 'traceStrColl');
-              setlocale(LC_COLLATE, $oldLocale);
               $dp = '';
               //$dp = 'display:none;';
               //if( $anker=='#thema_select' || strstr($anker,'#buchstabe_')!==false || strstr($anker,'#thema_sel_')!==false) $dp = 'display:inline-block';

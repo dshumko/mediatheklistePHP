@@ -296,11 +296,35 @@ function createCopyEachSender($file,$options,$minLength){
                 file_put_contents('cache/1/senderliste_'.$fileNameAppend.'.serialize', utf8_encode(serialize($senderliste_withMinLength [$l])));
         }
         
+        
+        //richtig sortieren (auch Umlaute richtig)
+        //source: https://stackoverflow.com/questions/120334/how-to-sort-an-array-of-utf-8-strings
+        function traceStrColl($a, $b) {
+          $outValue=strcoll($a, $b);
+          //echo "$a $b $outValue\r\n";
+          return $outValue;
+        }
+
+
+
+        
+        
         //Themenlisten mit mindeste-Film-Längen speichern
         foreach($minLengthVorlagenMinuten as $l){
+        
+                $locale=(defined('PHP_OS') && stristr(PHP_OS, 'win')) ? 'German_Germany.65001' : 'de_DE.utf8';
+                $oldLocale=setlocale(LC_COLLATE, "0");
+                uksort($themen_withMinLength [$l], 'traceStrColl');
+                setlocale(LC_COLLATE, $oldLocale);
+        
                 $fileNameAppend='min_length'.$l;
                 file_put_contents('cache/1/themenliste'.$fileNameAppend.'.serialize', utf8_encode(serialize($themen_withMinLength [$l])));
         }
+        $locale=(defined('PHP_OS') && stristr(PHP_OS, 'win')) ? 'German_Germany.65001' : 'de_DE.utf8';
+        $oldLocale=setlocale(LC_COLLATE, "0");
+        uksort($themenlist, 'traceStrColl');
+        setlocale(LC_COLLATE, $oldLocale);
+
         file_put_contents('cache/1/themenliste.serialize', utf8_encode(serialize($themenlist)));
         
         $return = preg_match('/^{"Filmliste":\["([^"]*)","([^"]*)"/U',$line0,$treffer);

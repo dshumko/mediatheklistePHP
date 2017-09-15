@@ -52,7 +52,7 @@ document.addEventListener("keydown", function(e) {
              toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
        }  //Taste Zahl \"8\"
        if(e.which == 57){ // || e.which==87 oder auch buchstabe W auf normaler Tastatur (test)
-             var buchstaben = new Array('W','X','Y');
+             var buchstaben = new Array('W','X','Y','Z');
              toggleInLinkListe_andFocus(parentSpanSelBuchstaben, buchstaben);
        }  //Taste Zahl \"9\"
        if(e.which == 58){
