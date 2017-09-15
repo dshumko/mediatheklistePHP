@@ -9,6 +9,7 @@ Das Web-Programm listet die Filmliste vom MediathekView Projekt.
 DemoVideo(etwas älter): https://youtu.be/DLFDfNCTSYQ
 Als SmartTV-App auf Vestel/Telefunken installieren: https://youtu.be/GwNNpYhJq94
 
+![Alt text](screenshots/Bildschirmfoto 1.png)
 
 Vorraussetzungen (Stand 8/2017):
 -PHP5
