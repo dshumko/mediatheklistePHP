@@ -11,6 +11,8 @@ Für Vestel/Telefunken als TV-App (DNS-Hack; allerdings wird das Smart-Portal st
 
 
 
+Zustand: Teilweise noch umständlich mit der Fernbedienung zu bedienen, Großteils aber brauchbar.  
+In normalen Browsern sind einige Filme nicht abspielbar.
 
 ### Funktion:
   * Liste allen Themen
