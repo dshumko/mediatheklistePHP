@@ -16,8 +16,8 @@ Stand 8/2017
 
 Muss installiert sein auf den Server:  
 Mindestens:  
-- Dann läuft der Filmlisten-Download über externen WebSerice (muss man sich anmelden)
 - PHP mit cURL  
+- wenn nur mindestens vorliegt: der Filmlisten-Download läuft über externen WebSerice (muss man sich anmelden)  
 
 Empfohlen:  
 - ausführen von Befehlen erlauben ("exec")
