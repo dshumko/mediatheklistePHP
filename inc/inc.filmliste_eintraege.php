@@ -404,13 +404,76 @@ function createAllElements(){
                       if(   ( isset($json_line->X[8]) && strstr($json_line->X[8],'ndr.de/') ) ||
                             ( isset($json_line->X[9]) && strstr($json_line->X[9],'ndr.de/') ) 
                           ){
-                          if(strstr($json_line->X[8],'.hq.mp4') || strstr($json_line->X[8],'.hi.mp4') ){
-                                $linkVeryLow = str_replace('.hq.mp4','.lo.mp4',$json_line->X[8]);
-                                $linkVeryLow = str_replace('.hi.mp4','.lo.mp4',$linkVeryLow);
-                                    if($remove_https_at_video_links)$linkVeryLow = str_replace('https://','http://',$linkVeryLow);
+                          $substr = substr($json_line->X[8],-7);
+                          if( $substr == '.hq.mp4' || $substr == '.hi.mp4' || $substr == '.hd.mp4' ){
+                                $linkVeryLow = str_replace($substr,'.lo.mp4',$json_line->X[8]);
+                                if($remove_https_at_video_links)$linkVeryLow = str_replace('https://','http://',$linkVeryLow);
                                 $href = $dereff.$linkVeryLow;
                                 if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video_mediatheklistephp.php#".($linkVeryLow);  
-                                $outArray['videofiles_links']['sehrKlein?'] = $href;
+                                $outArray['videofiles_links']['sehrKlein'] = $href;
+                          }
+                      }
+                      
+                      if(   ( isset($json_line->X[8]) && strstr($json_line->X[8],'br.de/') ) ||
+                            ( isset($json_line->X[9]) && strstr($json_line->X[9],'br.de/') ) 
+                          ){
+                          $substr = substr($json_line->X[8],-6);
+                          if( $substr == '_B.mp4' || $substr == '_C.mp4' || $substr == '_X.mp4' ){
+                                $linkVeryLow = str_replace($substr,'_A.mp4',$json_line->X[8]);
+                                if($remove_https_at_video_links)$linkVeryLow = str_replace('https://','http://',$linkVeryLow);
+                                $href = $dereff.$linkVeryLow;
+                                if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video_mediatheklistephp.php#".($linkVeryLow);  
+                                $outArray['videofiles_links']['sehrKlein'] = $href;
+                          }
+                      }
+                      //MDR: $substr == 'e9ebd6e42ce1_b2.mp4' || $substr == 'c7cca1d51b4b_b2.mp4' || $substr == '15e7604ea4a4_b2.mp4' b2 ist variable
+                      //RBB  _546cd068-111c-4a13-be9e-57ef89a630a9.mp4  _318fd53b-4b29-4d63-89cf-69031445f12b.mp4     
+                      //     _89e72e07-d414-425f-a176-42cb207d9571.mp4  _447a9980-5734-4cb9-a0d8-70a1e62038ad.mp4
+                      
+                      if(   ( isset($json_line->X[8]) && strstr($json_line->X[8],'rbb-online.de/') ) ||
+                            ( isset($json_line->X[9]) && strstr($json_line->X[9],'rbb-online.de/') ) 
+                          ){
+                          $substr1 = substr($json_line->X[8],-9);
+                          $substr2 = substr($json_line->X[8],-10);
+                          if( $substr1 == '_128k.mp4' || $substr1 == '_512k.mp4' || $substr2 == '_1024k.mp4' || $substr2 == '_1800k.mp4' ){
+                                $linkVeryLow = str_replace($substr1,'_128.mp4',$json_line->X[8]);
+                                $linkVeryLow = str_replace($substr2,'_128.mp4',$linkVeryLow);
+                                if($remove_https_at_video_links)$linkVeryLow = str_replace('https://','http://',$linkVeryLow);
+                                $href = $dereff.$linkVeryLow;
+                                if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video_mediatheklistephp.php#".($linkVeryLow);  
+                                $outArray['videofiles_links']['sehrKlein'] = $href;
+                                if( !isset($outArray['videofiles_links']['HD']) || $outArray['videofiles_links']['HD']=='' ) $outArray['videofiles_links']['HD'] = str_replace('_128.mp4','_1800k.mp4',$href);
+                          }
+                      }
+                      
+                      
+                      if(   ( isset($json_line->X[8]) && strstr($json_line->X[8],'sr-online.de/') ) ||
+                            ( isset($json_line->X[9]) && strstr($json_line->X[9],'sr-online.de/') ) ||
+                            ( isset($json_line->X[8]) && strstr($json_line->X[12],'sr-online.de/') ) ||
+                            ( isset($json_line->X[8]) && strstr($json_line->X[8],'srstorage') )
+                          ){
+                          $substr = substr($json_line->X[8],-6);
+                          if( $substr == '_M.mp4' || $substr == '_L.mp4' || $substr == '_P.mp4'){
+                                $linkVeryLow = str_replace($substr,'_S.mp4',$json_line->X[8]);
+                                if($remove_https_at_video_links)$linkVeryLow = str_replace('https://','http://',$linkVeryLow);
+                                $href = $dereff.$linkVeryLow;
+                                if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video_mediatheklistephp.php#".($linkVeryLow);  
+                                $outArray['videofiles_links']['sehrKlein'] = $href;
+                          }
+                      }
+                      
+                      if(   ( isset($json_line->X[8]) && strstr($json_line->X[8],'dw.com/') ) ||
+                            ( isset($json_line->X[9]) && strstr($json_line->X[9],'dw.com/') ) 
+                          ){
+                          $substr = substr($json_line->X[8],-11);
+                          if( $substr == '_sd_vp6.flv' || $substr == '_sd_sor.mp4'  || $substr == '_sd_avc.mp4' ){
+                                $linkX = $json_line->X[8];
+                                if($remove_https_at_video_links)$linkX = str_replace('https://','http://',$linkX);
+                                $href = $dereff.$linkX;
+                                if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video_mediatheklistephp.php#".($linkX);  
+                                if( $substr == '_sd_vp6.flv' )$outArray['videofiles_links']['Normal_besser'] = str_replace($substr,'_sd_avc.mp4', $href);
+                                if( !isset($outArray['videofiles_links']['Klein']) )$outArray['videofiles_links']['Klein'] = str_replace($substr,'_sd_sor.mp4', $href);
+                                
                           }
                       }
                       
@@ -438,7 +501,12 @@ function createAllElements(){
                       $href = $dereff.urlencode($json_line->X[8]);
                       if($remove_https_at_video_links)$href = str_replace('https://','http://',$href);
                       if(isset($fullscreen_play) && $fullscreen_play==1) $href = "video_mediatheklistephp.php#".($json_line->X[8]);  
-                      $outArray['videofiles_links']['Normal'] = $href;
+                      if(isset($outArray['videofiles_links']['Normal_besser'])){ //korrigiere
+                        if(checkIfVideoPlayable($json_line->X[8])!='' && substr($outArray['videofiles_links']['Normal_besser'],-4)=='.mp4')$outArray['titleNotice'] = str_replace(checkIfVideoPlayable($json_line->X[8]),'', $outArray['titleNotice']);
+                        $outArray['videofiles_links']['Normal'] = $outArray['videofiles_links']['Normal_besser'];
+                        $outArray['videofiles_links']['Normal2'] = $href;
+                        unset($outArray['videofiles_links']['Normal_besser']);
+                      } else $outArray['videofiles_links']['Normal'] = $href;
                        
                       if(isset($json_line->X[14]) && $json_line->X[14]!=''){
                         $href = $dereff.$linkHd;
