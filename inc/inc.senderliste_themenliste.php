@@ -188,7 +188,7 @@ function getThemenliste($options){
                     $s = floor($allBuchstabenFirstEntry[$b]/$diff)*$diff;
                     $possible_url= $possible_url_base.'&start='.$s.'&ende='.($s+$diff).'';
                   } else $possible_url = '';
-                  $out.= "&nbsp;<a href=\"$possible_url#buchstabe_".rawurlencode(utf8_encode($b))."\" data-starts-with-no=\"".$allBuchstabenFirstEntry[$b]."\" onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';formItemFocus('mainlink_thema_sel_".$allBuchstabenFirstEntry[$b]."');updateHash('#anker1_thema_sel_92');\" class=\"buchstaben_anker_link\" title=\"$count Filme\"><b>".utf8_encode($b)."</b>&nbsp;<small class=\"b_count\">($count)</small> </a> &nbsp;\n";  
+                  $out.= "&nbsp;<a href=\"$possible_url#buchstabe_".rawurlencode(utf8_encode($b))."\" data-starts-with-no=\"".$allBuchstabenFirstEntry[$b]."\" onClick=\"document.getElementById('list_auswahl_links_thema').style.display='block';formItemFocus(document.getElementById('mainlink_thema_sel_".$allBuchstabenFirstEntry[$b]."'));updateHash('#anker1_thema_sel_92');\" class=\"buchstaben_anker_link\" title=\"$count Filme\"><b>".utf8_encode($b)."</b>&nbsp;<small class=\"b_count\">($count)</small> </a> &nbsp;\n";  
               }
               $out.= "
                <script language=\"javascript\" type=\"text/javascript\">
