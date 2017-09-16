@@ -175,21 +175,7 @@ echo "
 
         ";  
         
-        if( !isset($fullscreen_play) || $fullscreen_play!=1){
-        echo '
-        <hr>
-        Video verlinken
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_video_direktlink_an" onClick="createCookie(\'video_direktlink\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Direktlink</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_video_direktlink_aus" onClick="createCookie(\'video_direktlink\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Normal</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'video_direktlink\')==1)document.getElementById(\'options_link_video_direktlink_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_video_direktlink_aus\').innerHTML+=\' &#10008;\'; </script>
-         <div style="clear:both"></div>
-         ';
-         }
-         
-         
-
+        
          
          
          echo '
@@ -212,6 +198,26 @@ echo "
          
         <hr><br>
         <hr>
+        ';
+        
+        if( !isset($fullscreen_play) || $fullscreen_play==2){
+        echo '
+
+        Videoplayer / Direktlink
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_video_direktlink_an" onClick="createCookie(\'video_direktlink\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">aus (nur Link)</a> &nbsp;&nbsp;&nbsp; oder  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_video_direktlink_aus" onClick="createCookie(\'video_direktlink\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">an</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'video_direktlink\')==1)document.getElementById(\'options_link_video_direktlink_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_video_direktlink_aus\').innerHTML+=\' &#10008;\'; </script>
+         <div style="clear:both"></div>
+                 <hr>
+         ';
+         }
+         
+         
+
+
+        echo '
         <span style="float:right; text-align:right"></span>
         Feste Fußleiste 
         <span style="color:#999999; font-size:0.9em">&nbsp;hilfreich bei Maus-bedienung am Smart-TV (schneller nach oben springen)</span>

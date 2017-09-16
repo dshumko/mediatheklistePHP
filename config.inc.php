@@ -119,7 +119,10 @@ $extra_gebaerdensprache = 1; //erstelle einen extra "Sender" nur für alle Gebä
 
 $hideArte_fr     = 2; //Arte.fr ausblenden (0=deaktiviert, 1=komplettArte.fr Ausblenden, 2=Arte.fr Kann vom Benutzer aktiviert werden)
                       // (der Cache muss nach Wertänderung neu erstellt werden: liste.php?list_update__only_aufteilen=1)
-$fullscreen_play = 1; //Öffnet alle Video auf einer Player Seite (Fullscreen, startet sofort); Ansonst wäre es nur ein driktlink zur mp4 und wird evtl. nur klein dargestellt.
+$fullscreen_play = 1; //Videoplayer
+                      // (0=deaktiviert (nur direkter Datei-Link), 1=Videoplayer (EMPFOHLEN!), 2=Videoplayer Kann vom Benutzer deaktiviert werden)
+                      // Öffnet alle Video auf einer Player Seite (Video auf Bildschirmgröße, startet sofort);
+                      // Der Datei-dirktlink wird nicht als volle Größe (also nur zu klein) dargestellt
 $letzterListeneintragOben = 1; //beim Zurückspringen zur Liste, ist der letzte Eintrag ganz oben (Hilfreich wenn der TV-Browser jedesmal die Maus-Position auf oben Links zurücksetzt)
 $sortByDate = 1; //sortiert Filmliste nach Datum (aktuelles Oben)
 
