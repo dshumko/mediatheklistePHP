@@ -97,13 +97,14 @@ echo "
 <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"/>
 <script language=\"javascript\" type=\"text/javascript\">
 
-function  loadNewSite(){ //beim verlassen der Seite (Ladeanimation)
+function loadNewSite(){ //beim verlassen der Seite (Ladeanimation)
     document.getElementsByTagName('body')[0].style.background = '#c3c3ff';
     document.getElementById('div-sender-select').style.background = '#c3c3ff';
     if(document.getElementById('list_auswahl_links_thema')!=undefined)document.getElementById('list_auswahl_links_thema').style.background  = '#c3c3ff';
+    document.getElementById('please_wait').style.display='none';
     if(document.getElementById('spinner_elem')!=undefined){
-      document.getElementById('spinner_elem').style.display='inline';
-      window.setTimeout(function(){document.getElementById('spinner_elem').style.display='none'},50);
+      if(getCookie('spinner')!='')document.getElementById('spinner_elem').style.display='inline';
+      window.setTimeout(function(){document.getElementById('spinner_elem').style.display='none'; document.getElementById('please_wait').style.display='none'; },50);
     }
 }
 
@@ -341,7 +342,8 @@ if( isset($_GET['sender']) && (!isset($_GET['thema']) || $_GET['thema']=='') ){
 }
 echo "
 </script>
-</head>
+</head>";
+echo "
 <body onload=\"onload1y()\">
 
 
@@ -431,14 +433,23 @@ if(
         else                     echo   "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten </span>";
 
         if($loaderAnimation===1) echo   "<span id=\"spinner_elem\"></span>";
-        if($loaderAnimation===2) echo   "<span id=\"spinner_elem\">
+        if($loaderAnimation===2) echo   "<span id=\"spinner_elem\" style=\"display:none\">
                                             <span class=\"rotate\"><span class=\"rotate_correctur\">&#1161;</span></span>
                                          </span>";
 
-        if($loaderAnimation===1) echo "
+        if($loaderAnimation==1)echo "<script type=\"text/javascript\" src=\"js/spin.min.js\" async></script>";
+        echo "
+        <script language=\"javascript\"  type=\"text/javascript\">
+          if( getCookie('spinner_show')=='1'){
+            document.getElementById('please_wait').style.display = 'block';
+            document.getElementById('spinner_elem').style.display = 'block';
+          } 
+        </script>";
+        echo "
         </span>
       </span>
-        
+        ";
+        if($loaderAnimation===1) echo "
         <link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\"/>
         <script type=\"text/javascript\" src=\"js/spin.min.js\" async></script>
         <script language=\"javascript\"  type=\"text/javascript\">
@@ -600,11 +611,18 @@ echo "
   <span style=\"float:left;position:relative;left:50%;\">
    <span style=\"float:left;font-size:20pt;position:relative;left:-50%;\">";
    
-if($loaderAnimation!==0) echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> <!--warten--> </span>";
+if($loaderAnimation!==0) echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten... lädt.. </span>";
 else             echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten </span>";
 
-if($loaderAnimation===1) echo   "<span id=\"spinner_elem\"></span>";
-if($loaderAnimation===2) echo   "<span id=\"spinner_elem\"><span class=\"rotate\"><span class=\"rotate_correctur\">&#1161;</span></span></span>";
+if($loaderAnimation===1) echo   "<span id=\"spinner_elem\" style=\"display:none\"></span>";
+if($loaderAnimation===2) echo   "<span id=\"spinner_elem\" style=\"display:none\"><span class=\"rotate\"><span class=\"rotate_correctur\">&#1161;</span></span></span>";
+if($loaderAnimation>0) echo   "
+        <script language=\"javascript\" type=\"text/javascript\" asyn>
+          if( getCookie('spinner_show')=='1'){
+            document.getElementById('please_wait').style.display = 'block';
+            document.getElementById('spinner_elem').style.display = 'block';
+          } 
+        </script>";
 
 if($loaderAnimation===1) echo "
 <script language=\"javascript\"  type=\"text/javascript\">

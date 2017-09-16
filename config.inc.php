@@ -101,8 +101,10 @@ $use_cache_filmlist_thema  = true; //true|false Beschleuigt das auslesen, indem 
 
 
 
-$loaderAnimation              = 2;    //0|1|2 ladeKreis Animation
-                                      //(0=aus, 1=spinner.js (muss noch von Hand runtergeladen werden), 2=drehendes utf8-Zeichen)
+$loaderAnimation              = 2;    //0|1|2 ladeKreis Animation (muss der Benutzer zusätzlich unter Einstellungen aktivieren)
+                                      //0=aus,
+                                      //1=spinner.js (muss noch von Hand runtergeladen werden und in den Ordner js packen), 
+                                      //2=drehendes utf8-Zeichen)
 $remove_https_at_video_links  = 1;    //0|1 es gab bei sr-online mal probleme mit https://
 $orf_filcheck_legal__filesize = 934445; //Prüfe ORF-Film ob auch in deutschand erreichbar (deaktvieren=0 oder =false)
                             //Bei gespeerten Filmen wird stattdessen ein Hinweißclip abgespielt.

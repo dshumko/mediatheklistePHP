@@ -243,10 +243,27 @@ echo "
         </span>
          <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite_320px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;height:100pt;">
    
+   
+   
         <span style="clean:both"></span>
          <div style="clear:both"></div>
-         <hr>
-         Testweise: lange Themenlisten mit bessere Performance? <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser; Nur testweise drin; Funktion wird evlt. wieder entfernt</i></span>
+        
+        ';
+if($loaderAnimation>0)echo '  
+        <hr>
+         Performance: <span style="color:#555555; ">Lade-Animation </span><span style="color:#999999; font-size:0.9em"><i>Am TVs besser auslassen, wegen Performance</i></span>
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_spinner_an" onClick="createCookie(\'spinner_show\',\'1\',356*10);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Anschalten</a>, &nbsp;&nbsp;
+              <a href="#" id="options_link_spinner_aus" onClick="createCookie(\'spinner_show\',\'\',0);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">aus</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'spinner_show\')==1)document.getElementById(\'options_link_spinner_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_spinner_aus\').innerHTML+=\' &#10008;\'; </script>
+        <div style="clear:both"></div>
+';
+
+echo '
+
+        <hr>               
+         Performance nut testweise: lange Themenlisten<span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser??; Nur testweise drin; Funktion wird wieder entfernt</i></span>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Textliste</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">TextlisteTabelle</a>, &nbsp;&nbsp;
@@ -254,6 +271,8 @@ echo "
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
+        
+        
          <div style="clear:both"></div>
          <hr> Bedienungs-Hilfe für Hbb-TV:
          <div style="padding-left:20pt">
