@@ -90,7 +90,7 @@ echo "
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'show_arte_fr\')==1)document.getElementById(\'options_link_show_arte_fr_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_show_arte_fr_aus\').innerHTML+=\' &#10008;\'; </script>
          <div style="clear:both"></div>
-         <hr>';
+         <hr><br>';
          }
         
         
@@ -113,15 +113,15 @@ echo "
 
         echo "<hr>
         <div id=\"optionen_themen_ausblenden_deaktiv\">
-          Blacklist: Themen ausblenden
+          Themen ausblenden
           <span style=\"float:right;padding:0pt\">
                 <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','1',365*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_enable_link\">Aktivieren</a>
           </span>
         </div>
         <div id=\"optionen_themen_ausblenden_aktiv\" style=\"display:none;\">
-        Blacklist: Themen ausgeblendet: 
+        Themen ausgeblendet:
         <span style=\"float:right;padding:1pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_thema_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_thema_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('thema');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema_aktiv','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_thema_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_thema_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_thema','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_thema_liste_del__del_all_realy\">Wirklich diese Liste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('thema');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
         
         <div id=\"show_hide_thema_ElementsList\" style=\"\"> </div>
@@ -143,19 +143,19 @@ echo "
         
         echo "<hr>
         <div id=\"optionen_film_ausblenden_deaktiv\">
-          Blacklist: Filme ausblenden
+          Filme ausblenden
           <span style=\"float:right;padding:0pt\">
                 <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','1',365*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_enable_link\">Aktivieren</a>
           </span>
         </div>
         <div id=\"optionen_film_ausblenden_aktiv\" style=\"display:none;\">
-          Blacklist: Filme ausgeblendet:
+          Filme ausgeblendet:
         <span style=\"float:right;padding:1pt\">
-                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_disable_link\">deaktivieren</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_film_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_liste_del__del_all_realy\">Wirklich diese Blackliste löschen?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_add_form').style.display='block';return false;\" id=\"options_hide_film_liste_add\">+</a> &nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('film');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
+                <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film_aktiv','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_disable_link\">deaktivieren</a><a href=\"#\" style=\"display:none\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_del__del_all_realy').style.display='block';return false;\" id=\"options_hide_film_liste_del__del_all\">Alle löschen</a> <a href=\"#\" style=\"border: 3pt solid blue;margin:3pt;display:none\" class=\"link_every_same_color_underl\" onClick=\"createCookie('hide_film','',-1);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;return false;\" id=\"options_hide_film_liste_del__del_all_realy\">Wirklich diese Liste löschen?</a> &nbsp;&nbsp;&nbsp; <a href=\"#\" style=\"\" class=\"link_every_same_color_underl\" onClick=\"document.getElementById('options_hide_film_liste_add_form').style.display='block';return false;\" id=\"options_hide_film_liste_add\">+</a> &nbsp;&nbsp; <a href=\"#\" class=\"link_every_same_color_underl\" onClick=\"showAlleFromHide('film');return false;\">aktualisieren &#x21B4;</a><span style=\"clear:both\"></span>
         </span>
         <div id=\"options_hide_film_liste_add_form\" style=\"text-align:right;display:none\"><br>
           Folgenden Film ausblenden <input type=\"text\" id=\"options_hide_film_liste_add_form_text\" >* 
-          <input type=\"button\" value=\"ok\" onClick=\" showAlleFromHide_add('options_hide_film_liste_add_form_text','film');document.getElementById('options_hide_film_liste_add_form').style.display='none'\" />
+          <input type=\"button\" value=\"ok\" onClick=\" if(document.getElementById('options_hide_film_liste_add_form_text').value!='')){ showAlleFromHide_add('options_hide_film_liste_add_form_text','film');document.getElementById('options_hide_film_liste_add_form').style.display='none';}\" />
         </div>
         <div id=\"show_hide_film_ElementsList\" style=\"\"> </div>
         <script language=\"javascript\"  type=\"text/javascript\">
@@ -170,13 +170,14 @@ echo "
         </div>
         <div style=\"clear:both\"></div>
         <hr>
-        
+        <br>
         
 
         ";  
         
         if( !isset($fullscreen_play) || $fullscreen_play!=1){
         echo '
+        <hr>
         Video verlinken
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_video_direktlink_an" onClick="createCookie(\'video_direktlink\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Direktlink</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
@@ -184,7 +185,7 @@ echo "
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'video_direktlink\')==1)document.getElementById(\'options_link_video_direktlink_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_video_direktlink_aus\').innerHTML+=\' &#10008;\'; </script>
          <div style="clear:both"></div>
-         <hr>';
+         ';
          }
          
          
@@ -192,8 +193,8 @@ echo "
          
          
          echo '
-         
-        Extra-Eintrag: nur Audio-Deskription/Hörfassung als Sender
+         <hr>
+        Audio-Deskription/Hörfassung als Eintrag unter Sender
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
@@ -202,14 +203,14 @@ echo "
          
          
         <hr>
-        Extra-Eintrag: nur Gebärdensprache als Sender
+        Gebärdensprache als Eintrag unter als Sender
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'extra_sender_Gebaerdensprache\')==1)document.getElementById(\'options_link_extra_sender_Gebaerdensprache_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_extra_sender_Gebaerdensprache_aus\').innerHTML+=\' &#10008;\'; </script>
          
-         
+        <hr><br>
         <hr>
         <span style="float:right; text-align:right"></span>
         Feste Fußleiste 

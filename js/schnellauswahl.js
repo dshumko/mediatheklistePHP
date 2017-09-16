@@ -149,7 +149,10 @@ function showAlleFromHide(type){
     var raw = getCookie('hide_'+type);
     if(raw==''){
      raw='{}';
-     ziel.innerHTML = '&nbsp;&nbsp;&nbsp;<span style="color:#999999">(keine)</span>';
+     var addText = ''
+     if(type=='thema') addText = ' &nbsp; <i>In der Themenliste auf \"ausblenden\" </i>';
+     if(type=='film') addText = ' &nbsp; <i>Rechts auf \"+\" </i>';
+     ziel.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#999999">(keine)'+addText+'</span>';
      return; //abbruch
     }
     var cookie = JSON.parse(raw);
