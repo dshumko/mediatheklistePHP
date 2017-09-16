@@ -49,7 +49,7 @@ function append(href, cookie_name){
         //href =href.replace(/"/g,'\"');  alert(href);
         //href =href.replace(/%22/g,"%2F%22"); alert(href); //falsch rum /
         appendCookie (decodeURIComponent(href), cookie_name)
-        if(cookie_name=='hide_thema' || cookie_name=='minLength')setUpdateDate();
+        if(cookie_name=='hide_thema' || cookie_name=='minLength'  || cookie_name=='favs')setUpdateDate();
         return true;
 }
 function appendCookie(text, cookie_name){
@@ -63,7 +63,7 @@ function appendCookie(text, cookie_name){
         cookie.push( text );
         var myJSONString = JSON.stringify(cookie);
         createCookie( cookie_name, myJSONString, 365*5);
-        if(cookie_name=='hide_thema' || cookie_name=='minLength')setUpdateDate();
+        if(cookie_name=='hide_thema' || cookie_name=='minLength' || cookie_name=='favs')setUpdateDate();
         return true;
 }
 
@@ -118,7 +118,7 @@ function remove(href, cookie_name){
   if(array.length>0)  createCookie( cookie_name,JSON.stringify(array), 365*5);
   else                createCookie( cookie_name,JSON.stringify(array), -1);
   //alert(href+'\n;;;;'+getCookie('favs'));
-  if(cookie_name=='hide_thema' || cookie_name=='minLength')setUpdateDate();
+  if(cookie_name=='hide_thema' || cookie_name=='minLength'  || cookie_name=='favs')setUpdateDate();
   return true;
 
 }
@@ -132,7 +132,7 @@ function removeCookie(text, cookie_name){
   }else return false;
   if(array.length>0)  createCookie( cookie_name,JSON.stringify(array), 365*5);
   else                createCookie( cookie_name,JSON.stringify(array), -1);
-  if(cookie_name=='hide_thema' || cookie_name=='minLength')setUpdateDate();
+  if(cookie_name=='hide_thema' || cookie_name=='minLength'  || cookie_name=='favs')setUpdateDate();
   return true;
 
 }
