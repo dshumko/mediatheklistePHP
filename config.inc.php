@@ -119,7 +119,7 @@ $extra_gebaerdensprache = 1; //erstelle einen extra "Sender" nur für alle Gebä
 
 $hideArte_fr     = 2; //Arte.fr ausblenden (0=deaktiviert, 1=komplettArte.fr Ausblenden, 2=Arte.fr Kann vom Benutzer aktiviert werden)
                       // (der Cache muss nach Wertänderung neu erstellt werden: liste.php?list_update__only_aufteilen=1)
-$fullscreen_play = 1; //Videoplayer
+$fullscreen_play = 2; //Videoplayer
                       // (0=deaktiviert (nur direkter Datei-Link), 1=Videoplayer (EMPFOHLEN!), 2=Videoplayer Kann vom Benutzer deaktiviert werden)
                       // Öffnet alle Video auf einer Player Seite (Video auf Bildschirmgröße, startet sofort);
                       // Der Datei-dirktlink wird nicht als volle Größe (also nur zu klein) dargestellt
