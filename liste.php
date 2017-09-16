@@ -33,12 +33,10 @@ if(file_exists($file) && $clientBrowserCacheActive==1 ){
     $mtime1 = filemtime($_SERVER['SCRIPT_FILENAME']);
     $mtime2 = filemtime($file);
     if( !isset($_GET['sender']) || $_GET['sender']=='' ){ //wenn auf Startseite mit Schnellauswahl
-      /*blöde Idee:
         if( isset($_COOKIE['favs']) && isset($_COOKIE['favs_last_update']) && $_COOKIE['favs_last_update']!=''){
       
             $mtime3 = strtotime($_COOKIE['favs_last_update']);
-            $cacheControl = 'private'; //damit der Reverse Proxy nicht zwischenspeichert
-       }*/
+       }
        $cacheControl = 'private'; //damit der Reverse Proxy nicht zwischenspeichert
     }
     
