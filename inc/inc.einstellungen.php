@@ -45,57 +45,14 @@ echo "
         <div style="clear:both"></div>
 
         
-    
-        ';
-        $url = 'liste.php?';
-
-        
-        echo '
         <hr>
-        <i>Hörfassung</i>   
-        <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideHoerfassung_an" onClick="createCookie(\'hideHoerfassung\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_hideHoerfassung_aus" onClick="createCookie(\'hideHoerfassung\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideHoerfassung\')==1)document.getElementById(\'options_link_hideHoerfassung_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideHoerfassung_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
-        
-         <hr>
-         <i>Audiodeskription</i> 
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideAudioDeskription_an" onClick="createCookie(\'hideAudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_hideAudioDeskription_aus" onClick="createCookie(\'hideAudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideAudioDeskription\')==1)document.getElementById(\'options_link_hideAudioDeskription_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideAudioDeskription_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
-         <div style="clear:both"></div>
-         <hr>
-         <i>Trailer/Vorschau</i>
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
-         <div style="clear:both"></div>
-         
-        
-        
+        <br>
+        <br>
         ';
-        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>";
-        else if( $hideArte_fr==2 ){
-        echo '
-        <hr>
-        <span title="Arte Frankreich">Arte.fr</span>
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_show_arte_fr_aus" onClick="createCookie(\'show_arte_fr\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_show_arte_fr_an" onClick="createCookie(\'show_arte_fr\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
-              
-        </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'show_arte_fr\')==1)document.getElementById(\'options_link_show_arte_fr_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_show_arte_fr_aus\').innerHTML+=\' &#10008;\'; </script>
-         <div style="clear:both"></div>
-         <hr><br>';
-         }
         
         
         echo '
-        <hr>Themenliste seitenweise. <i>Je Seite<!--<br><span style="color:#999999"></span>--></i>
+        Themenliste seitenweise. <i>Je Seite<!--<br><span style="color:#999999"></span>--></i>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;
@@ -171,16 +128,62 @@ echo "
         <div style=\"clear:both\"></div>
         <hr>
         <br>
-        
+        <br>
 
         ";  
         
+
         
+        echo '
+        
+        <i>Hörfassung</i>   
+        <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideHoerfassung_an" onClick="createCookie(\'hideHoerfassung\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_hideHoerfassung_aus" onClick="createCookie(\'hideHoerfassung\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideHoerfassung\')==1)document.getElementById(\'options_link_hideHoerfassung_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideHoerfassung_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
+        
+         <hr>
+         <i>Audiodeskription</i> 
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideAudioDeskription_an" onClick="createCookie(\'hideAudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_hideAudioDeskription_aus" onClick="createCookie(\'hideAudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideAudioDeskription\')==1)document.getElementById(\'options_link_hideAudioDeskription_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideAudioDeskription_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
+         <div style="clear:both"></div>
+         <hr>
+         <i>Trailer/Vorschau</i>
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_hideTrailer_an" onClick="createCookie(\'hideTrailer\',\'1\',356*10);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_link_hideTrailer_aus" onClick="createCookie(\'hideTrailer\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'hideTrailer\')==1)document.getElementById(\'options_link_hideTrailer_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_hideTrailer_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
+         <div style="clear:both"></div>
+         
+        
+        
+        ';
+
+        
+        if($hideArte_fr == 1) echo "<hr><span style=\"color:#999999\">Sender arte.fr ausgeblendet <span style=\"\">(fest eingestellt im Server)</span></span><br>";
+        else if( $hideArte_fr==2 ){
+        echo '
+        <hr>
+        <span title="Arte Frankreich">Arte.fr</span>
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_show_arte_fr_aus" onClick="createCookie(\'show_arte_fr\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_show_arte_fr_an" onClick="createCookie(\'show_arte_fr\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
+              
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'show_arte_fr\')==1)document.getElementById(\'options_link_show_arte_fr_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_show_arte_fr_aus\').innerHTML+=\' &#10008;\'; </script>
+         <div style="clear:both"></div>
+         ';
+         }
+         echo '<hr><br><br>';
          
          
          echo '
-         <hr>
-        Audio-Deskription/Hörfassung als Eintrag unter Sender
+         
+        Audio-Deskription/Hörfassung-Liste unter Sender
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
@@ -189,17 +192,17 @@ echo "
          
          
         <hr>
-        Gebärdensprache als Eintrag unter als Sender
+        Gebärdensprache-Liste unter Sender
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'extra_sender_Gebaerdensprache\')==1)document.getElementById(\'options_link_extra_sender_Gebaerdensprache_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_extra_sender_Gebaerdensprache_aus\').innerHTML+=\' &#10008;\'; </script>
          
-        <hr><br>
         <hr>
-        ';
         
+        ';
+                 echo '<br><br>';
         if( !isset($fullscreen_play) || $fullscreen_play==2){
         echo '
 
@@ -214,13 +217,13 @@ echo "
          ';
          }
          
-         
+
 
 
         echo '
         <span style="float:right; text-align:right"></span>
         Feste Fußleiste 
-        <span style="color:#999999; font-size:0.9em">&nbsp;hilfreich bei Maus-bedienung am Smart-TV (schneller nach oben springen)</span>
+        <span style="color:#999999; font-size:0.9em">&nbsp;hilfreich bei Maus-bedienung am Smart-TV (einfacher nach oben springen)</span>
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
 
@@ -243,7 +246,7 @@ echo "
         <span style="clean:both"></span>
          <div style="clear:both"></div>
          <hr>
-         Test? lange Themenlisten mit bessere Performance? <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser; Nur testweise drin; Funktion wird evlt. wieder entfernt</i></span>
+         Testweise: lange Themenlisten mit bessere Performance? <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser; Nur testweise drin; Funktion wird evlt. wieder entfernt</i></span>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Textliste</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">TextlisteTabelle</a>, &nbsp;&nbsp;
@@ -252,7 +255,7 @@ echo "
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
          <div style="clear:both"></div>
-         <hr> Bedien-Hilfe für Hbb-TV:
+         <hr> Bedienungs-Hilfe für Hbb-TV:
          <div style="padding-left:20pt">
          Navigieren:   &nbsp;&nbsp; &#8594; &#8593; &#8592; &#8595; Pfeiltasten,  &nbsp;&nbsp; Zurück/Back
          <br>Farbtasten:  &nbsp;&nbsp; Gelb = Senderwahl,  &nbsp;&nbsp; Grün = Themenwahl,  &nbsp;&nbsp; Blau = Buchstabenwahl<br>
