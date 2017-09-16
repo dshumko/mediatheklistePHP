@@ -241,7 +241,7 @@ echo "
               <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
               <script  language="javascript"  type="text/javascript"> if(getCookie(\'direkt_zur_mediathek_liste\')==1)document.getElementById(\'options_link_vorschaltseite_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_vorschaltseite_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         </span>
-         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite-mittext-thumb400px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;">
+         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite_320px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;height:100pt;">
    
         <span style="clean:both"></span>
          <div style="clear:both"></div>
