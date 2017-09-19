@@ -1,43 +1,67 @@
-Das Web-Programm listet die Filmliste vom MediathekView Projekt.  
-Optimiert für SmartTV / TV-Browser  
+Mediathek-Liste PHP
+---------------------------------------------------------------------------------------
 
-### mediathek-ListePHP
-DemoServer: http://149.202.236.159/  
+List of Movies from german Television/Broadcast Mediathek (Crawled by MediathekView.de)
+
+---------------------------------------------------------------------------------------
+
+Das Web-Programm listet die Filmliste vom MediathekView Projekt.  Optimiert für SmartTV / TV-Browser  
+
+
+### Zielplattform
+Für folgende TVs:
+
+ *  neuere TV mit Internet-Browser (Mausbedienung ist aber umständlich)
+ *  TV-Modelle vom Hersteller Vestel / Telefunken / Dual (s.u.)
+
+Oder im normalen Browser (nicht alle Filme abspielbar)
+
+### Demo
+DemoServer: http://149.202.236.159/liste.php  
 DemoVideo(August2017): https://youtu.be/DLFDfNCTSYQ  
-Für Vestel/Telefunken als TV-App (DNS-Hack; allerdings wird das Smart-Portal starten dadurch langsamer): https://youtu.be/GwNNpYhJq94  
+Für Vestel/Telefunken als TV-App: https://youtu.be/GwNNpYhJq94   (Anleitung) *(DNS-Hack; Nachteil: der Start vom Smart-Portal dauert länger)*  
 
 ![Screenshot mit Themenliste](img/screenshots/Bildschirmfoto_themenliste.png)
 
 
 
 
-Zustand: Teilweise noch umständlich mit der Fernbedienung zu bedienen, Großteils aber brauchbar.  
-In normalen Browsern sind einige Filme nicht abspielbar.
+
+### Bedienbarkeit:
+
+  * Als Smart-TV-App (für u.g. Modell)mit der Fernbedienung: Teilweise noch nicht ganz rund, aber im großen gut.
+  * Im TV-Browser (d.h. die Fernbedienung-Pfeiltasten werden als Maus verwendet. Besser: man schließt eine ComputerMaus an den TV an): Das steuern mit der Fernbedienung ist recht umständlich.
+
 
 ### Funktion:
-  * Liste allen Themen
-  * Liste Themen je Sender 
-  * Extra-Liste mit Themen Gebärdensprache / Hörfassung / AudioDeskription (aktivierbar)
+  * Themen je Sender
+  * Alle Themen, aller Sender 
+  * Extra-Liste für Gebärdensprache / Hörfassung / AudioDeskription (aktivierbar)
   * Themen als Schnellauswahl speichern (Favouriten)
-  * Eigene Startseite [mit individueller Filmliste](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_schnellauswahl.png)
-  * Navigation über lange Scroll-Liste oder [Seitenweise](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_themenliste_seitenweise.png)
+  * Startseite [mit individueller Filmliste](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_schnellauswahl.png)
+  * lange Scroll-Liste oder [Seitenweise](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_themenliste_seitenweise.png) navigieren
   * Sortiert nach Datum
-  * Technisch: verwendet einen Cache (aufgeteilte Filmliste)
-  * Eigenen Server betreiben? kann auf etwas besseren Web-Hosting Paketen installiert werden. [Vorraussetzungen](https://github.com/soerenj/mediatheklistePHP/wiki/Installieren)
+  * verschiedene Video-Qualitäten einstellbar
 
 ### Filter:
-  * Themen einzeln ausblenden
-  * Filme einzeln ausblenden (freitext)
+  * Themen ausblenden
+  * Filme ausblenden (freitext)
   * arte_fr deaktivierbar
   * orf-Filme prüfen ob in dtl. erreichbar 
   * Trailer/Vorschau/Hörfassungen/AudioDeskription ausblenden
   * filtern nach Mindest-Filmlänge  
 
-### Negativpunkte
-  * KEINE Suchfunktion (braucht zu viel Systemlast)
-  * graues Design
-  * schwer zu installieren: Smart-TVs lassen meist nur vom Hersteller zugelassen Anwendungen installieren; Aber vlt. hat eurer SmartTV immerhin ein freien TV-Browser
+### Geschwindigkeit
+  * Grundsätzlich in Ordnung / brauchbar.
+  * Beim nutzen der Funktion "[*Eigene Startseite mit individueller Filmliste*](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_schnellauswahl.png) " jedoch z.T. Wartezeiten von bis zu 10 Sekunden möglich.
+  
+### Installation auf TV:
 
+  * Nur für einige Telefunken / Vestel / Dual TV-Geräte (Board MB110); DNS (Am TV muss die App drivecast muss vorhanden sein)
+  * o.g. Anleitung lässt sich auf andere TVs übertragen, wenn man die Zeit hat die passende Adresse herauszufinden (braucht technisches Verständnis & Zeit).  
+  
+Darum habe ich das Programm geschrieben: Weil bei meiner Internet-Verbindung die SmartTV ZDF-Mediathek nicht benutzbar ist (zu langsam).  
+Anderer Gedanke: Vielleicht können ältere SmartTV-Modell dadurch die Mediatheken nutzen.  
 
 ### Server-Vorraussetzungen
 Stand 8/2017  
