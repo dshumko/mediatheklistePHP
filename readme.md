@@ -69,7 +69,7 @@ Und ein anderer Grund: Vielleicht können ältere SmartTV-Modell dadurch doch no
 
 ### Server-Vorraussetzungen
 Stand 8/2017  
-- PHP5
+- PHP 5.6 *(?)*
 - RAM: sollten > 450MB (notfalls 256MB)
 - Speicherplatz: Sollten 570MB (notfalls 240MB)
 - Speicher-Vorraussetzungen im Detail: https://github.com/soerenj/mediatheklistePHP/wiki/Speicher-Vorraussetzungen-im-Detail
