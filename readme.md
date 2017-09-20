@@ -3,6 +3,7 @@ Mediathek-Liste PHP
 
 List of Movies from german Television/Broadcast Mediathek (Crawled by MediathekView.de)
 
+Mediathek-Liste PHP
 ---------------------------------------------------------------------------------------
 
 Das Web-Programm listet die Filmliste vom MediathekView Projekt.  Optimiert für SmartTV / TV-Browser  
@@ -14,12 +15,13 @@ Für folgende TVs:
  *  neuere TV mit Internet-Browser (Mausbedienung ist aber umständlich)
  *  TV-Modelle vom Hersteller Vestel / Telefunken / Dual (s.u.)
 
-Oder im normalen Browser (nicht alle Filme abspielbar)
+**Oder** im normalen Browser (nicht alle Filme abspielbar)
 
 ### Demo
-DemoServer: http://149.202.236.159/liste.php  
-DemoVideo(August2017): https://youtu.be/DLFDfNCTSYQ  
-Für Vestel/Telefunken als TV-App: https://youtu.be/GwNNpYhJq94   (Anleitung) *(DNS-Hack; Nachteil: der Start vom Smart-Portal dauert länger)*  
+DemoServer: http://149.202.236.159/liste.php   *(bis vorraussichtlich 31.12.2017)*
+[DemoVideo youtube](https://youtu.be/DLFDfNCTSYQ)  
+[Screenshots](https://github.com/soerenj/mediatheklistePHP/wiki)    
+TV-App für Vestel/Telefunken: [Anleitung](https://github.com/soerenj/mediatheklistePHP/wiki/DNS-Hack-auf-Smart-TV) *(Nachteil: der Start vom Smart-Portal dauert länger)*  *(bis vorraussichtlich 31.12.2017)*
 
 ![Screenshot mit Themenliste](img/screenshots/Bildschirmfoto_themenliste.png)
 
@@ -42,7 +44,8 @@ Für Vestel/Telefunken als TV-App: https://youtu.be/GwNNpYhJq94   (Anleitung) *(
   * lange Scroll-Liste oder [Seitenweise](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_themenliste_seitenweise.png) navigieren
   * Sortiert nach Datum
   * verschiedene Video-Qualitäten einstellbar
-
+  * KEINE Such-Funktion
+  
 ### Filter:
   * Themen ausblenden
   * Filme ausblenden (freitext)
@@ -60,8 +63,9 @@ Für Vestel/Telefunken als TV-App: https://youtu.be/GwNNpYhJq94   (Anleitung) *(
   * Nur für einige Telefunken / Vestel / Dual TV-Geräte (Board MB110); DNS (Am TV muss die App drivecast muss vorhanden sein)
   * o.g. Anleitung lässt sich auf andere TVs übertragen, wenn man die Zeit hat die passende Adresse herauszufinden (braucht technisches Verständnis & Zeit).  
   
-Darum habe ich das Programm geschrieben: Weil bei meiner Internet-Verbindung die SmartTV ZDF-Mediathek nicht benutzbar ist (zu langsam).  
-Anderer Gedanke: Vielleicht können ältere SmartTV-Modell dadurch die Mediatheken nutzen.  
+Darum habe ich das Programm geschrieben:  
+Weil bei meiner Internet-Verbindung die SmartTV ZDF-Mediathek nicht benutzbar ist (zu langsam).  
+Und ein anderer Grund: Vielleicht können ältere SmartTV-Modell dadurch doch noch die Mediatheken nutzen.  
 
 ### Server-Vorraussetzungen
 Stand 8/2017  
