@@ -97,7 +97,7 @@ function getThemenliste($options){
            }
           }
           
-          //uksort($allThemen, 'strcasecmp');
+          uksort($allThemen, 'strcasecmp');
           $senderThema['alle'] = $allThemen;
         }
         
