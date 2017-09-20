@@ -380,9 +380,11 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
         var count_minLength = 0;
         var list = document.getElementsByClassName('list_video_mainlink');
         for (var i = 0; i < list.length; i++) {
-                  var h = list[i].innerHTML;
-                  var t = list[i].innerText;
-                  if(hideHoerfassungFilme==1 && (t.search(/hörfassung/i)!=-1 || html.search(/hörfassung/i)!=-1) ){
+                  var temp = list[i].getElementsByClassName('line_headline');
+                  if(temp.length>0)var h = temp[0].innerHTML; else var h = '';
+                  var temp = list[i].getElementsByClassName('line_headline');
+                  if(temp.length>0)var t = temp[0].innerText; else var t = '';
+                  if( hideHoerfassungFilme==1 && (t.search(/hörfassung/i)!=-1 || h.search(/hörfassung/i)!=-1) ){
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
                           if(parent==undefined) return; else parent.style.display = 'none';
                   }
@@ -398,7 +400,7 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
                           if(parent==undefined) return; else parent.style.display = 'none';   
                   }
-                  if(hideTrailerFilme==1 && 
+                  if( hideTrailerFilme==1 && 
                        (t.search(/Trailer/i)!=-1 || h.search(/Trailer/i)!=-1 ||
                         t.substring(0,9) == 'Vorschau ' || h.substring(0,9) == 'Vorschau ' ||
                         t.substring(0,9) == 'Vorschau: ' || h.substring(0,9) == 'Vorschau: ')

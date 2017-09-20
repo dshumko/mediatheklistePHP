@@ -131,8 +131,8 @@ function onload1y(){ //onload
     filmliste_eintrage_event_onclick();
     filmliste_eintrage_event_videolinks_onclick();
     updateVideoMainLink_withQualityLink_andPossibleHideElements(); //Filmliste durchgehen: Update Videolink + was ggf gelöscht/ausgeblendet werden soll 
-    updateFilmliste_HideElements( getCookie('hideHoerfassungFilme') ,
-                      getCookie('hideAudioDeskriptionFilme') ,
+    updateFilmliste_HideElements( getCookie('hideHoerfassung') ,
+                      getCookie('hideAudioDeskription') ,
                       getCookie('hideTrailer') ,
                       getCookie('minLength') );
     var h = document.getElementById('fixed_head').offsetHeight;
