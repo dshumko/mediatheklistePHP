@@ -392,7 +392,7 @@ function updateFilmliste_HideElements(hideHoerfassungFilme, hideAudioDeskription
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
                           if(parent==undefined) return; else parent.style.display = 'none';   
                   }
-                  if( hideAudioDeskriptionFilme==1 && (t.search(/AD | /i)!=-1 || h.search(/AD | /i)!=-1)){
+                  if( hideAudioDeskriptionFilme==1 && (t.search(/AD \| /i)!=-1 || h.search(/AD \| /i)!=-1)){
                           var parent = filmliste_line_getParentNode( list[i].parentNode );
                           if(parent==undefined) return; else parent.style.display = 'none';   
                   }
