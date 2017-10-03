@@ -54,7 +54,7 @@ function downloadTheFileAndExtract($webServiceUrl, $filepath, $cloud_convert_api
    
 
 function is_audiodeskription($title_raw){
-  if( stristr($title_raw, 'hörfassung')!=FALSE || stristr($title_raw,'Audiodeskription')!=FALSE  || stristr($title_raw,'AD |' )!=FALSE || stristr($title_raw,'(AD)' )!=FALSE ) return true;
+  if( stristr($title_raw, 'hörfassung')!=FALSE || stristr($title_raw,'Audiodeskription')!=FALSE  || stristr($title_raw,'AD |' )!=FALSE || stristr($title_raw,' (AD)' )!=FALSE ) return true;
   else return false;
 }
 
