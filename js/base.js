@@ -215,7 +215,7 @@ function hideHbbTVButtons(){
             arr[i].style.display = 'none';    
         }
 }
-function isHbbTV(){
+function isHbbTV(){ //Mit vorsicht zu genießen; Nicht jeder UserAgent hat HBB-TV drin und kann vlt. doch einige Teile davon...
         if(navigator.userAgent.search('HbbTV/')!=-1) return true;
         else return false;        
 }
@@ -346,11 +346,11 @@ function updateVideoMainLink_withQualityLink_andPossibleHideElements(){;
                           if( !isHbbTV() && type!='mp4' ){ //bspw. bei flv m3u m3u8
                                   preText = '';
                                   e = parent.getElementsByClassName('videolink_kl'); var hrefLo = ''; if(e.length>0) hrefLo = e[0].href;
-                                  if(type != getFileType(hrefLo) && hrefLo!='' )preText = 'Bitte anderen VideoLinks wählen.';
+                                  if(type != getFileType(hrefLo) && hrefLo!='' )preText = '? anderen VideoLinks wählen.';
                                   e = parent.getElementsByClassName('videolink_no'); var hrefNo = ''; if(e.length>0) hrefNo = e[0].href;
-                                  if(type != getFileType(hrefNo) && hrefNo!='' )preText = 'Bitte anderen VideoLinks wählen.';
+                                  if(type != getFileType(hrefNo) && hrefNo!='' )preText = '? anderen VideoLinks wählen.';
                                   e = parent.getElementsByClassName('videolink_hd'); var hrefHd = ''; if(e.length>0) hrefHd = e[0].href;
-                                  if(type != getFileType(hrefHd) && hrefHd!='' )preText = 'Bitte anderen VideoLinks wählen.';
+                                  if(type != getFileType(hrefHd) && hrefHd!='' )preText = '? anderen VideoLinks wählen.';
                                   parent.getElementsByClassName('line_headline')[0].innerHTML = type + ' ' + preText + parent.getElementsByClassName('line_headline')[0].innerHTML;
                           }
                           

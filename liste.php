@@ -124,6 +124,7 @@ function onload1y(){ //onload
     possibleHideHbbTVButtons(); //lösche HbbTV-Farb Buttons bei normalen Browsern (fuer Sender/Thema-Wahl)
     //if(isHbbTV()){ //klappt nicht..
           //falls der TV-Browser sich auch als HBBTV ausgibt, dabei ist er auf Maus Steuerung ausgelegt //mousemoveFunctionOnce
+          //Einige Browser geben den HBB-TV String gar nicht mit z.B. MB97 von Telefunken
          // document.getElementById('link_sender_select').addEventListener('mouseover', function(e){hideHbbTVButtons();}, false);
          // document.getElementById('link_sender_select').addEventListener('focus', hideHbbTVButtons, false);
          // document.getElementById('link_sender_select').addEventListener('focusin', hideHbbTVButtons, false);

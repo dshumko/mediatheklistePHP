@@ -189,11 +189,11 @@ function setFocus(item){
 function hideNoneHbbTVLinks(){
     if(navigator.userAgent.search('HbbTV/')!=-1) return false;
 
-    var list = document.getElementsByClassName('hbblink');
-    for (var i = 0, len = list.length; i < len; i++) {
-        list[i].style.display = 'none';
-    }
-    document.getElementById('append').innerHTML = '<span style="color:#aaaaaa"><small />Ihr Browser unterstützt kein HbbTV, daher Links versteckt.</small></span>';
+    //var list = document.getElementsByClassName('hbblink');
+    //for (var i = 0, len = list.length; i < len; i++) {
+    //    list[i].style.display = 'none';
+    //}
+    document.getElementById('append').innerHTML = '<span style="color:#aaaaaa"><small />Ihr Browser unterstützt (wahrscheinlich) kein HbbTV</small></span>';
 }
 
  
@@ -235,5 +235,5 @@ function hideNoneHbbTVLinks(){
 </span>
 
 <span style="clear:both" ></span>
-<span id="append" style="display: block;position: absolute;bottom: 5pt;left: 5pt;"></span>
+<span id="append" style="display:block;bottom: 5pt;left: 5pt;"></span>
 
