@@ -72,7 +72,7 @@ Diese werden als Server-Logs gespeichert (Inhalt: wann; welche Seite; welcher IP
 
 
 
-$clientBrowserCacheActive             = 0; //0|1 Client/Browser/Proxy-Cache aktvieren;  Beim testen besser ausschalten
+$clientBrowserCacheActive             = 1; //0|1 Client/Browser/Proxy-Cache aktvieren;  Beim testen besser ausschalten
 
 
 //Filmliste
