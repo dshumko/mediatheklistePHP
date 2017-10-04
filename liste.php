@@ -544,7 +544,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' ){
 
 */
 
-if( true ){ //isset($_GET['sender']) && $_GET['sender']!=''
+if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
       $n='';
       if( !isset($_GET['search']) || $_GET['search']=='' ) $n = 'display:none';
       if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> &nbsp; </span> ";
@@ -561,6 +561,8 @@ if( true ){ //isset($_GET['sender']) && $_GET['sender']!=''
        echo "<input type=\"submit\" value=\"Suchen\" /> <input type=\"reset\" onClick=\"document.getElementById('filmliste_search_input_search').value='';document.getElementById('filmliste_search_input_search').checked=false;this.form.submit();\" form=\"filmliste_search\" value=\"⌫ Löschen\" />";
       echo "</form>\n";
       echo "<p align=\"right\"><i>Suche ist Ungenau. Bspw: \"Osten\", findet auch Kosten; Suche nach einen Satz muss exakt sein.</i>&nbsp;</p>\n";
+}else{
+  if(isset($_GET['search'])) $_GET['search'] = '';
 }
 
 

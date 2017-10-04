@@ -39,7 +39,7 @@ $filmliste_manuellUpdate_showLink_timeout = 0;  //Link zum manuellen Update anze
 
 //Texte//
 $PageTitle       = 'MediathekListePHP';
-$welcomeText     = '<span style=\"color:#999999\">Mediathek-liste in PHP, &nbsp;geschrieben für TV-Browser & Hbb-TV. Daten von MediathekView.de</span><br><b>Dank</b> an die MediathekView-Leute :-)';
+$welcomeText     = '<span style=\"color:#999999\">Mediathek-liste in PHP, &nbsp;geschrieben für TV-Browser & Hbb-TV. Daten von MediathekView.de</span>Danke an MediathekView :-)';
 $notice_14_09_2017 = '<div style="border-top: 3pt solid #999999;margin:10pt;padding:10pt;" id="rechtshinweis_14_09_2017"><b>Hier werden Daten der öffentliche rechtlichen Fernsehprogramme dargestellt.</b></br>
 Für diese Inhalte kann ich keine Verantwortung übernehmen und würde Sie bitte mich hinzuweisen, sollten Sie rechtliche Probleme mit den dargestellten Daten haben / bzw. grundsätzlich. Dieser Hinweis ist nur nach der Programm-Erstveröffentlichung im Monat September bis 14.10.2017 sichtbar.<p align="right"><a href="#" onClick="createCookie(\'rechtshinweis_14_09_2017\',1,60);document.getElementById(\'rechtshinweis_14_09_2017\').style.display=\'none\';">dauerhaft ausblenden [x]</a></p>
 <script type="text/javascript" >if(getCookie(\'rechtshinweis_14_09_2017\')>0)document.getElementById(\'rechtshinweis_14_09_2017\').style.display=\'none\';</script>
@@ -72,7 +72,7 @@ Diese werden als Server-Logs gespeichert (Inhalt: wann; welche Seite; welcher IP
 
 
 
-$clientBrowserCacheActive             = 1; //0|1 Client/Browser/Proxy-Cache aktvieren;  Beim testen besser ausschalten
+$clientBrowserCacheActive             = 0; //0|1 Client/Browser/Proxy-Cache aktvieren;  Beim testen besser ausschalten
 
 
 //Filmliste
@@ -132,6 +132,7 @@ $dereff = ''; //bspw.:   http://nullrefer.com/?//geht nur bei den Direktlinks (n
 
 $only_accessable_for_hbbtv_experimental = false; //true|false Nur HBB-TV-Gerät zugelasssen (Nut Testweise; Normale Browser sollten nicht mehr richtig mit der Seite arbeiten können)
 
+$search_allow    = false; //Suchfunktion braucht viel System-Ressourcen
 
 //eigene vollständige URL
 //Die Adresse ist notwenig für die automatische verarbeiten der Filmliste nach den Download (konkret: liste.php?list_update__only_aufteilen=1 )
