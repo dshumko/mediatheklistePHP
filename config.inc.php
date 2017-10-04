@@ -132,7 +132,7 @@ $dereff = ''; //bspw.:   http://nullrefer.com/?//geht nur bei den Direktlinks (n
 
 $only_accessable_for_hbbtv_experimental = false; //true|false Nur HBB-TV-Gerät zugelasssen (Nut Testweise; Normale Browser sollten nicht mehr richtig mit der Seite arbeiten können)
 
-$search_allow    = false; //Suchfunktion braucht viel System-Ressourcen
+$search_allow    = true; //Suchfunktion braucht viel System-Ressourcen
 
 //eigene vollständige URL
 //Die Adresse ist notwenig für die automatische verarbeiten der Filmliste nach den Download (konkret: liste.php?list_update__only_aufteilen=1 )
