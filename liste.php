@@ -780,7 +780,7 @@ require_once 'inc/inc.senderliste_themenliste.php';
 $options_showSenderAndThemenliste = array('hideArte_fr'=>$hideArte_fr,'minLength'=>$minLength); //, 'hideHoerfassung'=>$hideHoerfassung
 $senderListOutArray = getSenderListe($options_showSenderAndThemenliste);
 $dp = 'display:none'; $anker = parse_url($_SERVER["REQUEST_URI"],PHP_URL_FRAGMENT);
-if( $anker=='#sender_select'  || strstr($anker,'#thema_sel')!==false) $dp = 'display:block';
+//if( $anker=='#sender_select'  || strstr($anker,'#thema_sel')!==false) $dp = 'display:block'; //geht nicht, da ja Cache/Proxy evtl. dazuwischenfunkt
 if( isset($_GET['search']) && $_GET['search']!='' ) $dp = 'display:none';
       
 echo "
@@ -814,7 +814,7 @@ else if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']
   $themen        = $return['themen'];
   $buchstabenLinks = $return['buchstabenLinks'];
   $dp = 'display:none'; $anker = parse_url($_SERVER["REQUEST_URI"],PHP_URL_FRAGMENT);
-  if( $anker=='#sender_select'  || strstr($anker,'#thema_sel')!==false) $dp = 'display:block';
+  //if( $anker=='#sender_select'  || strstr($anker,'#thema_sel')!==false) $dp = 'display:block';  //geht nicht, da ja Cache/Proxy evtl. dazuwischenfunkt
   if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='')) $dp = 'display:block';
   //$dp = '';
 
