@@ -429,8 +429,8 @@ if(
       <span style=\"float:left;position:relative;left:50%;\">
        <span style=\"float:left;font-size:20pt;position:relative;left:-50%;\">";
        
-        if($loaderAnimation!==0) echo   "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> <!--warten--> </span>";
-        else                     echo   "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten </span>";
+        if($loaderAnimation!==0) echo   "<span id=\"please_wait\" style=\"font-size:10pt;color:#666666\"> <!--warten--> </span>";
+        else                     echo   "<span id=\"please_wait\" style=\"font-size:10pt;color:#666666\"> warten </span>";
 
         if($loaderAnimation===1) echo   "<span id=\"spinner_elem\"></span>";
         if($loaderAnimation===2) echo   "<span id=\"spinner_elem\" style=\"display:none\">
@@ -547,7 +547,7 @@ if( isset($_GET['sender']) && $_GET['sender']!='' ){
 if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
       $n='';
       if( !isset($_GET['search']) || $_GET['search']=='' ) $n = 'display:none';
-      if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> &nbsp; </span> ";
+      //if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> &nbsp; </span> ";
       echo "<form style=\"display:block;text-align:right;$n\" id=\"filmliste_search\" method=\"GET\" >Suchwort: &nbsp; ";
       
        //echo "<input type=\"hidden\" name=\"filter_maxFilmLength\" value=\"".(isset($_GET['filter_maxFilmLength'])?$_GET['filter_maxFilmLength']:'')."\" />";
@@ -617,8 +617,8 @@ echo "
   <span style=\"float:left;position:relative;left:50%;\">
    <span style=\"float:left;font-size:20pt;position:relative;left:-50%;\">";
    
-if($loaderAnimation!==0) echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten... lädt.. </span>";
-else             echo     "<span id=\"please_wait\" style=\"font-size:8pt;color:#666666\"> warten </span>";
+if($loaderAnimation!==0) echo     "<span id=\"please_wait\" style=\"font-size:10pt;color:#666666\"> warten... lädt.. </span>";
+else             echo     "<span id=\"please_wait\" style=\"font-size:10pt;color:#666666\"> warten </span>";
 
 if($loaderAnimation===1) echo   "<span id=\"spinner_elem\" style=\"display:none\"></span>";
 if($loaderAnimation===2) echo   "<span id=\"spinner_elem\" style=\"display:none\"><span class=\"rotate\"><span class=\"rotate_correctur\">&#1161;</span></span></span>";
@@ -703,7 +703,14 @@ echo "</a>";
 
 
 
-echo "<div style=\"float:right;text-align:right\">
+echo "<div style=\"float:right;text-align:right\">";
+if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
+      $n='';
+      if( !isset($_GET['search']) || $_GET['search']=='' ) $n = 'display:none';
+      if($n!='')echo "<span style=\"text-align:right;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none'; formItemFocus(document.getElementById('filmliste_search_input_search'))\" class=\"abstandlinks\" >Suchen</a>&nbsp;</span> ";
+}
+
+echo "
   <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">⚙ Einstellungen</a> <!-- <a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >&#x2315; Suchen</a> -->
   <a href=\"#bottom\" title=\"nach unten scrollen\" style=\"margin-left:0px;padding-left:5pt;padding-right: 5pt;text-decoration:none\" tabindex=\"0\">↧</a>
   <a href=\"#top\" title=\"nach oben scrollen\" style=\"margin-left:0px;padding-left:5pt;padding-right: 5pt;text-decoration:none\" tabindex=\"0\">↥</a>";
