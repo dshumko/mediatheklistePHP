@@ -258,7 +258,7 @@ function setFocusForLastLink(){
            ";
     }
     
-    if( !isset($_GET['sender']) ) echo " 
+    if( !isset($_GET['sender']) && !isset($_GET['search']) ) echo " 
     if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
   ";
     
@@ -509,7 +509,7 @@ echo "<div id=\"content\">";
 //utf8_encode()
 if(!isset($_GET['sender']) && !isset($_GET['themen'])) echo "<span id=\"abstand_oben1\"><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
 else echo "<span id=\"abstand_oben1\"><br><br><br><br><br></span>"; //Leerzeilen am Anfang (werden soweiso überdeckt)
-if(!isset($_GET['sender'])) echo "".$welcomeText."";
+if(!isset($_GET['sender']) && !isset($_GET['search'])) echo "".$welcomeText."";
 
 echo "<span style=\"float:right;padding-right:3pt;\">";
 if(!file_exists($file) && file_exists('cache/status_startFilmlistenDownload')) echo "<p>Derzeit wird eine neue Filmliste runtergeladen (im Hintergrund)</p>";
@@ -542,24 +542,27 @@ if( isset($_GET['sender']) && $_GET['sender']!='' ){
       echo "</form>\n";
 }
 
+*/
 
-if( isset($_GET['sender']) && $_GET['sender']!='' ){
+if( true ){ //isset($_GET['sender']) && $_GET['sender']!=''
       $n='';
       if( !isset($_GET['search']) || $_GET['search']=='' ) $n = 'display:none';
-      if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> (nur in aktueller Liste) &nbsp; </span> ";
-      echo "<form style=\"display:block;text-align:right;$n\" id=\"filmliste_search\" method=\"GET\" >Suchwort in aktueller Liste: &nbsp; ";
-       echo "<input type=\"hidden\" name=\"sender\" value=\"".$_GET['sender']."\" />";
-       echo "<input type=\"hidden\" name=\"filter_minFilmLength\" value=\"".(isset($_GET['filter_minFilmLength'])?$_GET['filter_minFilmLength']:'')."\" />";
-       echo "<input type=\"hidden\" name=\"filter_maxFilmLength\" value=\"".(isset($_GET['filter_maxFilmLength'])?$_GET['filter_maxFilmLength']:'')."\" />";
-       echo "<input type=\"hidden\" name=\"thema\" value=\"".(isset($_GET['thema'])?$_GET['thema']:'')."\" />";
+      if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> &nbsp; </span> ";
+      echo "<form style=\"display:block;text-align:right;$n\" id=\"filmliste_search\" method=\"GET\" >Suchwort: &nbsp; ";
+      if(isset($_GET['sender']))echo "<input type=\"hidden\" name=\"sender\" value=\"".$_GET['sender']."\" />";
+       //echo "<input type=\"hidden\" name=\"filter_maxFilmLength\" value=\"".(isset($_GET['filter_maxFilmLength'])?$_GET['filter_maxFilmLength']:'')."\" />";
+   
+       //echo "<input type=\"hidden\" name=\"thema\" value=\"".(isset($_GET['thema'])?$_GET['thema']:'')."\" />";
        //echo "<input type=\"hidden\" name=\"quality\" value=\"".(isset($_GET['filter_quality'])?$_GET['quality']:'')."\" />"; //verschoben in Cookie/Javascript
-       echo "<input type=\"text\" name=\"search\" placeholder=\"Einzelnes Wort\"  size=\"10\" id=\"filmliste_search_input_search\" value=\"".(isset($_GET['search'])?$_GET['search']:'')."\" /> ";
+      echo "<input type=\"text\" name=\"search\" placeholder=\"Einzelnes Wort\"  size=\"10\" id=\"filmliste_search_input_search\" value=\"".(isset($_GET['search'])?$_GET['search']:'')."\" /> ";
       echo "&nbsp;<input type=\"checkbox\" name=\"search_fulltext\" id=\"search_fulltext\" value=\"1\" ".(isset($_GET['search_fulltext'])?'checked':'')." /><label for=\"search_fulltext\">Auch in Beschreibung suchen </label>";
+      //echo "&nbsp;&nbsp;<label for=\"search_fulltext\">Mindest Länge </label><input size=\"2\" type=\"text\" placeholder=\"Minuten\" name=\"filter_minFilmLength\" value=\"".(isset($_GET['filter_minFilmLength'])?$_GET['filter_minFilmLength']:'')."\" id=\"filter_minFilmLength\"/>";
       //foreach($allLengths as $l=>$count){} //bisher nicht benutzt
        echo "<input type=\"submit\" value=\"Suchen\" /> <input type=\"reset\" onClick=\"document.getElementById('filmliste_search_input_search').value='';document.getElementById('filmliste_search_input_search').checked=false;this.form.submit();\" form=\"filmliste_search\" value=\"⌫ Löschen\" />";
       echo "</form>\n";
+      echo "<p align=\"right\"><i>Suche ist Ungenau. Bspw: \"Osten\", findet auch Kosten; Suche nach einen Satz muss exakt sein.</i>&nbsp;</p>\n";
 }
-*/
+
 
 
 
@@ -768,6 +771,7 @@ $options_showSenderAndThemenliste = array('hideArte_fr'=>$hideArte_fr,'minLength
 $senderListOutArray = getSenderListe($options_showSenderAndThemenliste);
 $dp = 'display:none'; $anker = parse_url($_SERVER["REQUEST_URI"],PHP_URL_FRAGMENT);
 if( $anker=='#sender_select'  || strstr($anker,'#thema_sel')!==false) $dp = 'display:block';
+if( isset($_GET['search']) && $_GET['search']!='' ) $dp = 'display:none';
       
 echo "
 <div id=\"div-sender-select\"  style=\"$dp\">
@@ -792,8 +796,8 @@ echo "
 
 
 
-
-if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ){
+if( isset($_GET['search']) && $_GET['search']!='' ){}
+else if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ){
 
   $return = getThemenliste($options_showSenderAndThemenliste);
 
@@ -812,19 +816,19 @@ if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || 
   
 
 
-if( isset($_GET['sender']) ){
-  echo "<div id=\"notice_before_thema-select__minLength\" style=\"float:right;text-align:right;padding-right:3pt;\">
-";
-  if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){
-    echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\">";
-    //echo "<br>";
-    //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
-    //echo "> ".$minLength." Min.";
-    //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "(nicht bei Hörfassung/Gebärdensprache möglich) </s> ";
-    echo "</span>";
+  if( isset($_GET['sender']) ){
+    echo "<div id=\"notice_before_thema-select__minLength\" style=\"float:right;text-align:right;padding-right:3pt;\">
+  ";
+    if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){
+      echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\">";
+      //echo "<br>";
+      //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<s title=\"geht hier nicht\">";
+      //echo "> ".$minLength." Min.";
+      //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "(nicht bei Hörfassung/Gebärdensprache möglich) </s> ";
+      echo "</span>";
+    }
+    echo "</div>";
   }
-  echo "</div>";
-}
   
     if(isset($_GET['start'])){
       $ll_von = (int)$_GET['start'];        
@@ -966,7 +970,13 @@ echo "
 <div id=\"notice_before_filmliste__minLength\" style=\"display:none;text-align:right;padding-right:3pt;\"></div>
 ";
 
-if( isset($_GET['sender']) && isset($_GET['thema']) && is_array($allOuts) && count($allOuts)==0){
+if( 
+      (
+        (isset($_GET['search']) && $_GET['search']!='' ) ||
+        (isset($_GET['sender']) && isset($_GET['thema']))
+      )
+        && is_array($allOuts) && count($allOuts)==0 
+    ){
   echo "<p style=\"color:#555555\">Kein Filme vorhanden (vlt. wegen  <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">Einstellungen</a>)";
 
   if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){

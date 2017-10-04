@@ -60,7 +60,8 @@ function createAllElements(){
 
         $lastSender = 'ohne';
         $lastThema = 'ohne';
-        if( (!isset($_GET['sender']) ||$_GET['sender']=='' ) && (!isset($_COOKIE["favs"]) || strlen($_COOKIE["favs"])<5)  ){
+        if( isset($_GET['search']) && $_GET['search']!=''){}
+        else if( (!isset($_GET['sender']) ||$_GET['sender']=='' ) && (!isset($_COOKIE["favs"]) || strlen($_COOKIE["favs"])<5)  ){
              return; //leere Startseite (also ohne Schnellauswahl einträge)
         }
         $hasAndShowFavs = false;
@@ -69,6 +70,7 @@ function createAllElements(){
         }
         $beOnThemenSelect = false;
         if( isset($_GET['sender']) && $_GET['sender']!='' && (!isset($_GET['thema']) || $_GET['thema']=='') ) $beOnThemenSelect = true;
+        if( isset($_GET['search']) && $_GET['search']!='' ) $beOnThemenSelect = false;
 
         /*if( 
             ( (!isset($_GET['sender']) ||$_GET['sender']=='' ) && (isset($_COOKIE["favs"]) && strlen($_COOKIE["favs"])<5) ) || 
@@ -77,7 +79,7 @@ function createAllElements(){
         else*/
 
 
-        if( $beOnThemenSelect ){}
+        if( $beOnThemenSelect ){ }
         else {
                 /* alt, muell:
                 if( isset($_GET['thema']) && 
@@ -87,7 +89,8 @@ function createAllElements(){
                 
                 //zeige nur Schnellauswahl
                 $is_in_schnellauwahl = false;$favs = array();
-                if( $use_cache_filmlist_thema && !isset($_GET['sender']) && !isset($_GET['thema']) ){
+                if( $use_cache_filmlist_thema && (!isset($_GET['search']) || $_GET['search']=='')
+                    && !isset($_GET['sender']) && !isset($_GET['thema']) ){
                         if( isset($_COOKIE['favs']) )$favs = JSON_decode($_COOKIE['favs']); else $favs= array();
                         //foreach($favs as &$f)  $f = str_replace('x4sdy0ANDx4sdy0','&',$f);
                         $line0='';
@@ -107,7 +110,9 @@ function createAllElements(){
                         
                         //finde richtig Cache-Datei (oder nehme komplette Liste)
                         if($use_cache_filmlist_thema){
-                                $lineArray = explode('"X":', getFilmlistContentCache($file, $_GET['sender'], $_GET['thema']) );
+                                $a = (isset($_GET['sender']))? $_GET['sender'] : '';
+                                $b = (isset($_GET['thema']))? $_GET['thema'] : '';
+                                $lineArray = explode('"X":', getFilmlistContentCache($file, $a, $b) );
                                 if( count($lineArray)<=1 && $lineArray[0]=='') $lineArray = explode('"X":', file_get_contents($file) ); //wenn cache leer, nimm alle
                         }else $lineArray = explode('"X":', file_get_contents($file) ); 
                         
@@ -288,7 +293,10 @@ function createAllElements(){
                 
                 
                //jetzt die Zeile die darstellt (nicht alle werden dargestellt, wenn liste zu lang werden würde)
-               if( (isset($_GET['sender']) && ( $_GET['sender']=='alle' || $_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde' || strtolower($_GET['sender']) == $aktuellerSender)) || $is_in_schnellauwahl ){
+               if( 
+                   (isset($_GET['sender']) && ( $_GET['sender']=='alle' || $_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde' || strtolower($_GET['sender']) == $aktuellerSender))
+                   || $is_in_schnellauwahl || (isset($_GET['search']) && $_GET['search']!='') 
+                   ){
                    if($rendered_line_count>=$maxRender)continue;
                    if( !isset($_GET['thema']) || $_GET['thema']=='alle' ||  $_GET['sender']=='alle_ad' ||  $_GET['sender']=='alle_gebaerde' || 
                         strtolower($_GET['thema']) == strtolower($json_line->X[1]) ||
