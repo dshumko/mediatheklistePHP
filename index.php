@@ -172,7 +172,7 @@ function getCookie(c_name) {
 }
 
 if(getCookie('direkt_zur_mediathek_liste')!='' && location.href.search(/direkt_zur_mediathek_liste_/)==-1){
-        window.location.href = 'liste.php';
+        window.location.href = 'liste.php?';
 }
 
 function setFocus(item){    
@@ -204,7 +204,7 @@ function hideNoneHbbTVLinks(){
 <span id="links">
 
   
-  <a href="liste.php" class="element" tab-index="1" id="firstLink"><img src="img/mediathek-liste-thumb400px.png" /><br>Mediathek-Liste</a>
+  <a href="liste.php?" class="element" tab-index="1" id="firstLink"><img src="img/mediathek-liste-thumb400px.png" /><br>Mediathek-Liste</a>
   <a href="http://www.heise.de/extras/ct/hbbtv" class="hbblink element"><img src="img/HBBTV-links-thumb400px.png" /><br>HBB-TV<br><small>http://www.heise.de/extras/ct/hbbtv</small></a>
   <a href="http://urju.de/hbbtv/" class="hbblink element links_lower"><br>weitere HBB-TV Links 1<br>(einige davon offline)<br><small>http://urju.de/hbbtv/</small></a>
   <a href="http://www.hbbig.com/" class="hbblink element links_lower"><br>weitere HBB-TV Links 2<br><small>http://www.hbbig.com/</small></a>

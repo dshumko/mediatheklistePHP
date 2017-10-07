@@ -20,9 +20,9 @@ if( $hideArte_fr==2 && isset($_GET['show_arte_fr']) && $_GET['show_arte_fr']!=''
 if(file_exists($file) && $clientBrowserCacheActive==1 ){
 
     if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
-    $if_modified_since = preg_replace('/;.*$/', '',   $_SERVER['HTTP_IF_MODIFIED_SINCE']);
+      $if_modified_since = preg_replace('/;.*$/', '',   $_SERVER['HTTP_IF_MODIFIED_SINCE']);
     } else {
-    $if_modified_since = '';
+      $if_modified_since = '';
     }
 
     /* welchen Zeitpunkt nehmen?:
@@ -50,8 +50,8 @@ if(file_exists($file) && $clientBrowserCacheActive==1 ){
     $gmdate_mod = date('D, d M Y H:i:s', $mtime) . ' GMT';
     //die($_SERVER['HTTP_IF_MODIFIED_SINCE'].'A'.$gmdate_mod);
     if ($if_modified_since == $gmdate_mod) {
-    header("HTTP/1.0 304 Not Modified");
-    exit;
+      header("HTTP/1.0 304 Not Modified");
+      exit;
     }
 
     header("Last-Modified: $gmdate_mod");
@@ -488,14 +488,14 @@ if(
  
   createCopyEachSender($file,$options_createCopyEachSender,$minLengthVorlagenMinuten);
 
-  echo "<u>Fertig</u></p><br>Bitte seite ggf. <a href=\"#\" onClick=\"window.location.reload()\">neuladen</a> <br>Zurück zum Seiten-Beginn <a href=\"liste.php\" >Liste.php</a><br>"; myFlush();
+  echo "<u>Fertig</u></p><br>Bitte seite ggf. <a href=\"#\" onClick=\"window.location.reload()\">neuladen</a> <br>Zurück zum Seiten-Beginn <a href=\"liste.php?\" >Liste.php</a><br>"; myFlush();
 }
 
 
 if( isset($_GET['list_update__only_aufteilen']) && $_GET['list_update__only_aufteilen']==1 ){ //nur die Aufteilung druchführen
    require_once('inc/inc.filmlisten_download.php');
    createCopyEachSender($file,$options_createCopyEachSender,$minLengthVorlagenMinuten);
-   echo "<u>Fertig</u></p><br>Zurück zum Seiten-Beginn <a href=\"liste.php\" >Liste.php</a><br>"; die();
+   echo "<u>Fertig</u></p><br>Zurück zum Seiten-Beginn <a href=\"liste.php?\" >Liste.php</a><br>"; die();
 }
 
 
