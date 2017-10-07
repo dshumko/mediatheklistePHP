@@ -584,7 +584,7 @@ if( isset($_GET['thema']) && $_GET['thema']!=''){
 
 
 if( isset($_COOKIE['favs']) && !isset($_GET['sender']) && !isset($_GET['thema'])){
-    if(isset($_GET['sender'])) $d =' display:none';else $d = '';
+    if(isset($_GET['sender']) || (isset($_GET['search']) && $_GET['search']!='') ) $d =' display:none';else $d = '';
     $jumpToFilmsLink =  "<a href=\"#anker1_film_0\" id=\"schnellauswahl_list__jump_to_filme\" style=\"display:none\" onClick=\"var e = document.getElementsByCallName('videolink_row'); if(e.length>0)formItemFocus( e[0] )\"> Springe zu den Filmen<br></a>";
     echo "<div id=\"schnellauswahl\" style=\"$d;padding-top:5pt;\">";
     echo "<span>$jumpToFilmsLink Schnellauswahl:</br></span>";
