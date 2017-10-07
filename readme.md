@@ -44,7 +44,7 @@ TV-App für Vestel/Telefunken: [Anleitung](https://github.com/soerenj/mediathekl
   * lange Scroll-Liste oder [Seitenweise](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_themenliste_seitenweise.png) navigieren
   * Sortiert nach Datum
   * verschiedene Video-Qualitäten einstellbar
-  * Such-Funktion (verbraucht viel Ressourcen, daher deaktivierbar)
+  * Such-Funktion (verbraucht viel Ressourcen, dauert 10Sekunden; auch deaktivierbar)
   
 ### Filter:
   * Themen ausblenden
