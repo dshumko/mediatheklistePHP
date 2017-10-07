@@ -585,11 +585,12 @@ function createAllElements(){
                     
                       if( isset($_GET['sender']) && ($_GET['sender'] == 'alle' || $_GET['sender']=='alle_ad' || $_GET['sender']=='alle_ad')) $allSenderFromFilme[ $json_line->X[0] ] = $json_line->X[0];
                     }
-                    if($outArray['title']!='')$allOuts[ $json_line->X[16] ][] = $outArray;
+                    if($outArray['title']!='')$allOuts[ $json_line->X[16] ][ $outArray['title'].'-'.$outArray['mediathekUrl'] ] = $outArray;
                  }
         }//end foreach
         //}//end if($cache_for_startseite_is_fresh==0)
         if( isset($_GET['sender']) && ($_GET['sender'] == 'alle' ||  $_GET['sender']=='alle_ad' ||  $_GET['sender']=='alle_gebaerde') && count($allSenderFromFilme)>0 )echo "<script language=\"javascript\"  type=\"text/javascript\">document.getElementById('sender_waehlen_append').innerText = '".implode(', ',$allSenderFromFilme)."' </script>";
+        
         return $allOuts;
         
 }//end function create All Elements
