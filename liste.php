@@ -554,9 +554,11 @@ if( isset($_GET['sender']) && $_GET['sender']!='' ){
 */
 
 if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
+      echo "<a name=\"search\" class=\"anker\"></a>";
       $n='';
       if( !isset($_GET['search']) || $_GET['search']=='' ) $n = 'display:none';
       //if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> &nbsp; </span> ";
+      echo "<span align=\"right\">";
       echo "<form style=\"display:block;text-align:right;$n\" id=\"filmliste_search\" method=\"GET\" >Suchwort: &nbsp; ";
       
        //echo "<input type=\"hidden\" name=\"filter_maxFilmLength\" value=\"".(isset($_GET['filter_maxFilmLength'])?$_GET['filter_maxFilmLength']:'')."\" />";
@@ -571,6 +573,7 @@ if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
        echo "<input type=\"submit\" value=\"Suchen\" /> <input type=\"reset\" onClick=\"document.getElementById('filmliste_search_input_search').value='';document.getElementById('filmliste_search_input_search').checked=false;this.form.submit();\" form=\"filmliste_search\" value=\"⌫ Löschen\" />";
       echo "<p align=\"right\" style=\"margin-top: 1pt;\" ><i>Suche ist Ungenau. Bspw: \"Osten\", findet auch Kosten; Suche nach einen Satz muss exakt sein.</i>&nbsp;</p>\n";
       echo "</form>\n";
+      echo "</span>\n";
 }else{
   if(isset($_GET['search'])) $_GET['search'] = '';
 }
@@ -716,7 +719,7 @@ echo "<div style=\"float:right;text-align:right\">";
 if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
       $n='';
       if( !isset($_GET['search']) || $_GET['search']=='' ) $n = 'display:none';
-      if($n!='')echo "<span style=\"text-align:right;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none'; formItemFocus(document.getElementById('filmliste_search_input_search'))\" class=\"abstandlinks\" >Suchen</a>&nbsp;</span> ";
+      if($n!='')echo "<span style=\"text-align:right;\" ><a href=\"#search\" onclick=\"document.getElementById('filmliste_search').style.display='inline';formItemFocus(document.getElementById('filmliste_search_input_search'))\" class=\"abstandlinks\" >Suchen</a>&nbsp;</span> ";
 }
 
 echo "
