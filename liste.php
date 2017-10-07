@@ -521,8 +521,16 @@ if( file_exists($file)){
     else if( $system_allow_exec_and_have_unxz && file_exists("cache/status_newFilmlisteFileVorhanden") && !$filmlisten_autoUpdate ){  echo"<span style=\"color:grew\"></span><a href=\"liste.php?list_update=1\" class=\"abstandlinks\">Neue Filmliste laden</a> &nbsp; "; $fileliste_could_be_updated = true;}
 }
 if( file_exists('cache/status_lastFilmlistenFileModified') ) $d = str_replace(' GMT','', substr(file_get_contents('cache/status_lastFilmlistenFileModified'),19)); else $d = '';
-if(!isset($_GET['sender'])) echo " &nbsp; Stand: ".$d.''; //date ("d.m.Y H:i", filemtime($file))
+if(!isset($_GET['sender']) && (!isset($_GET['search']) || $_GET['search']=='') ) echo " &nbsp; Stand: ".$d.''; //date ("d.m.Y H:i", filemtime($file))
 echo "</span><span style=\"clear:both\"></span>\n";
+
+
+if( (isset($_GET['search']) && $_GET['search']!='') )echo "
+<p align=\"right\">
+    <a href=\"#\" id=\"link_zu_schnellauswahl_waehrend_suche\" style=\"\" onClick=\"getSchnellauswahl()\"> schnellauswahl zeigen</a>
+    <script language=\"javascript\" type=\"text/javascript\">if(getCookie('favs').length<=5)document.getElementById('link_zu_schnellauswahl_waehrend_suche').style.display='none'</script>
+</p>";
+
 
 /* Suchen/Filtern aus (geht auch nur in aktueller Filmliste) (veralteter Programmcode; Suche wurde gelöscht, da viel Ressourcen braucht)
 if( isset($_GET['sender']) && $_GET['sender']!='' ){
