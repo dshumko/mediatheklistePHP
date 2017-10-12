@@ -559,6 +559,8 @@ if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
       if( !isset($_GET['search']) || $_GET['search']=='' ) $n = 'display:none';
       //if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> &nbsp; </span> ";
       echo "<span align=\"right\">";
+      if( isset($_GET['search_fulltext']) && $_GET['search_fulltext']!='')$beschreibung = '(auch im Text)'; else $beschreibung = '';
+      if(isset($_GET['search']) && $_GET['search']!='') echo "Suche \"".strip_tags($_GET['search'])."\" $beschreibung <a href=\"#\" onClick=\"document.getElementById('filmliste_search').style.display='block';formItemFocus( document.getElementById('filmliste_search_input_search') );return false;\">[Suche Ändern]</a>";
       echo "<form style=\"display:block;text-align:right;$n\" id=\"filmliste_search\" method=\"GET\" >Suchwort: &nbsp; ";
       
        //echo "<input type=\"hidden\" name=\"filter_maxFilmLength\" value=\"".(isset($_GET['filter_maxFilmLength'])?$_GET['filter_maxFilmLength']:'')."\" />";
@@ -571,8 +573,10 @@ if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
       //echo "&nbsp;&nbsp;<label for=\"search_fulltext\">Mindest Länge </label><input size=\"2\" type=\"text\" placeholder=\"Minuten\" name=\"filter_minFilmLength\" value=\"".(isset($_GET['filter_minFilmLength'])?$_GET['filter_minFilmLength']:'')."\" id=\"filter_minFilmLength\"/>";
       //foreach($allLengths as $l=>$count){} //bisher nicht benutzt
        echo "<input type=\"submit\" value=\"Suchen\" /> <input type=\"reset\" onClick=\"document.getElementById('filmliste_search_input_search').value='';document.getElementById('filmliste_search_input_search').checked=false;this.form.submit();\" form=\"filmliste_search\" value=\"⌫ Löschen\" />";
-      echo "<p align=\"right\" style=\"margin-top: 1pt;\" ><i>Suche ist Ungenau. Bspw: \"Osten\", findet auch Kosten; Suche nach einen Satz muss exakt sein.</i>&nbsp;</p>\n";
+      echo "<p align=\"right\" style=\"margin-top: 1pt;\" ><small>Such-Hinweis: Suche ist Ungenau. Bspw: \"Osten\", findet auch Kosten; Suche nach einen Satz muss exakt sein.</small>&nbsp;</p>\n";      
       echo "</form>\n";
+      if(isset($_GET['search']) && $_GET['search']!='') echo "<script language=\"javascript\">document.getElementById('filmliste_search').style.display='none';</script>";
+
       echo "</span>\n";
 }else{
   if(isset($_GET['search'])) $_GET['search'] = '';
@@ -1011,6 +1015,14 @@ if(
   }
   echo "</p>";
 }
+ 
+$count = 0;    
+foreach($allOuts as $outArrayS){ //Timestamp Array
+      foreach($outArrayS as $outArray){ //Filme je Timestamp
+          $count++;
+      }
+}
+if(isset($_GET['search']) && $_GET['search']!='') echo 'Gefunden: '.$count;
         
 echo "
     <a name=\"anker1_film_0\" id=\"anker1_film_0\"></a>
