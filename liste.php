@@ -1016,13 +1016,18 @@ if(
   echo "</p>";
 }
  
-$count = 0;    
-foreach($allOuts as $outArrayS){ //Timestamp Array
-      foreach($outArrayS as $outArray){ //Filme je Timestamp
-          $count++;
-      }
+ 
+if(isset($_GET['search']) && $_GET['search']!='')  {
+  $count = 0;    
+  if( is_array($allOuts) ){
+    foreach($allOuts as $outArrayS){ //Timestamp Array
+        foreach($outArrayS as $outArray){ //Filme je Timestamp
+            $count++;
+        }
+    }
+  }
+  echo 'Gefunden: '.$count;
 }
-if(isset($_GET['search']) && $_GET['search']!='') echo 'Gefunden: '.$count;
         
 echo "
     <a name=\"anker1_film_0\" id=\"anker1_film_0\"></a>
