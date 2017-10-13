@@ -259,9 +259,6 @@ function setFocusForLastLink(){
            ";
     }
     
-    if( !isset($_GET['sender']) && !isset($_GET['search']) ) echo " 
-    if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
-  ";
     
     echo "
     //--- Themenliste Seitenweise ende ---
@@ -303,6 +300,27 @@ echo '
 <script language="javacript"  type="text/javascript"  src="js/base.js"></script>
 ';
 if($loaderAnimation===1) echo "<script language=\"javacript\"  type=\"text/javascript\" src=\"js/spin.min.js\" ></script>";
+
+
+if( !isset($_GET['sender']) && !isset($_GET['search']) ) echo "
+<script type=\"text/javascript\">
+//kann bereits vor onload passieren
+if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
+else { //pruefe ob Cache frisch genug
+  //console.log( 'schnellauswahl_must_update ' + getCookie('schnellauswahl_must_update') );
+  if(getCookie( 'schnellauswahl_must_update')=='1' && getCookie( 'schnellauswahl_last_modifed')!='' ){
+    if( getCookie( 'schnellauswahl_last_modifed') == document.lastModified){
+      //console.log(\"MUSST Reload\");
+      createCookie( 'schnellauswahl_must_update','',-1);
+      document.location.reload();
+    }
+  }
+  createCookie( 'schnellauswahl_last_modifed', document.lastModified,1);
+  //console.log( 'schnellauswahl_must_update ' + getCookie('schnellauswahl_must_update') );
+}
+</script>
+";
+  
 echo "
 <script type=\"text/javascript\">
 //kann bereits vor onload passieren

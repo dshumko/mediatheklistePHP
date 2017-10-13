@@ -68,7 +68,11 @@ function appendCookie(text, cookie_name){
 }
 
 //damit der Server ggf. bescheidsagen kann, das Seite noch aktuell (=aus den Cache laden)
-function setUpdateDate(){  var d = new Date();       createCookie( 'favs_last_update', d.toUTCString(),365*5); }
+function setUpdateDate(){ 
+        var d = new Date();
+        createCookie( 'favs_last_update', d.toUTCString(),365*5);
+        createCookie( 'schnellauswahl_must_update', 1,1);
+}
 
 function removeFavSelf(self){
   newValueToRemove = self.parentNode.parentNode.getElementsByClassName('t_sel_a')[0].getAttribute('href');
