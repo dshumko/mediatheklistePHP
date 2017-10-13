@@ -223,7 +223,7 @@ echo "
         echo '
         <span style="float:right; text-align:right"></span>
         Feste Fußleiste 
-        <span style="color:#999999; font-size:0.9em">&nbsp;hilfreich bei Maus-bedienung am Smart-TV (einfacher nach oben springen)</span>
+        <span style="color:#999999; font-size:0.9em">&nbsp;hilfreich bei Maus-bedienung am Smart-TV um einfacher nach oben zu springen</span>
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_aus" onClick="createCookie(\'showFooter\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_showFooter_an" onClick="createCookie(\'showFooter\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
 
@@ -231,17 +231,30 @@ echo "
               
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'showFooter\')==1)document.getElementById(\'options_link_showFooter_an\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_showFooter_aus\').innerHTML+=\' &#10008;\'; </script>
+        <div style="clear:both"></div>';
+        
+echo '
+        
+        <hr>               
+         Start/Schnellauswahl schneller laden (=nur Links anzeigen)<span style="color:#999999; font-size:0.9em"><i></i></span>
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_schnellauswahl_nurlinks_an" onClick="createCookie(\'schnellauswahl_nurlinks_an\',\'1\',356*10);setUpdateDate();optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">nur Links</a> &nbsp;&nbsp;oder&nbsp;&nbsp;
+              <a href="#" id="options_schnellauswahl_nurlinks_aus" onClick="createCookie(\'schnellauswahl_nurlinks_an\',\'\',0);setUpdateDate();optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">mit Videoliste</a>
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'schnellauswahl_nurlinks_an\')==1)document.getElementById(\'options_schnellauswahl_nurlinks_an\').innerHTML+=\' &#10008;\'; else document.getElementById(\'options_schnellauswahl_nurlinks_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
+';
+echo '
         
         <hr>
        
-        Vorschaltseite (sihe Bild)
+        Vorschaltseite ausblenden (sihe Bild)
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp;<a href="#" id="options_link_vorschaltseite_an" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_vorschaltseite_aus" onClick="createCookie(\'direkt_zur_mediathek_liste\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
               <script  language="javascript"  type="text/javascript"> if(getCookie(\'direkt_zur_mediathek_liste\')==1)document.getElementById(\'options_link_vorschaltseite_an\').innerHTML=\' ausblenden &#10008;\';else document.getElementById(\'options_link_vorschaltseite_aus\').innerHTML=\'anzeigen &#10008;\'; </script>
         </span>
-         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite_320px.png" height="200" border="1" style="margin-left:15pt;float:right;margin-right:5pt;margin-bottom:5pt;height:100pt;">
+         <img id="vorschaltseite_thumb" title="so siht die vorschaltseite aus" src="" data-src="img/vorschaltseite_320px.png" height="200" border="1" style="margin-left:15pt;float:right;border:dotted #555555 1pt;margin-right:5pt;margin-bottom:5pt;height:100pt;">
    
    
    
@@ -249,6 +262,10 @@ echo "
          <div style="clear:both"></div>
         
         ';
+        
+        
+
+
 if($loaderAnimation>0)echo '  
         <hr>
          Performance: <span style="color:#555555; ">Lade-Animation </span><span style="color:#999999; font-size:0.9em"><i>Am TVs besser auslassen, wegen Performance</i></span>
@@ -260,10 +277,12 @@ if($loaderAnimation>0)echo '
         <div style="clear:both"></div>
 ';
 
+
+
 echo '
 
         <hr>               
-         Performance nut testweise: lange Themenlisten<span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser??; Nur testweise drin; Funktion wird wieder entfernt</i></span>
+         Performance nur testweise: lange Themenlisten<span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser??; Nur testweise drin; Funktion wird wieder entfernt</i></span>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Textliste</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">TextlisteTabelle</a>, &nbsp;&nbsp;
@@ -271,6 +290,7 @@ echo '
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'no_table\')==1)document.getElementById(\'options_link_no_table_an\').innerHTML+=\' &#10008;\';else if(getCookie(\'no_table\')==2)document.getElementById(\'options_link_no_table_an2\').innerHTML+=\' &#10008;\';else document.getElementById(\'options_link_no_table_aus\').innerHTML+=\' &#10008;\'; </script>
         <div style="clear:both"></div>
+
         
         
          <div style="clear:both"></div>
