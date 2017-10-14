@@ -25,17 +25,26 @@
 <style>
 
 video#video { 
-        position: fixed; right: 0; bottom: 0;
-        min-width: 100%; min-height: 100%;
-        width: auto; height: auto; z-index: -100;
+        /*position: fixed; right: 0; bottom: 0;*/
+        /*min-width: 100%; min-height: 100%;*/
+        min-height: 100%;
+        height: 100%;
+        width: auto; /*height: auto;*/ z-index: -100;
         background:  no-repeat;
         background-size: contain;
         z-index:100;
 }
+body{
+        background:black;
+        padding: 0px;
+        margin: 0px;
+}
 
 </style>
 <div id="status_show" style="z-index:101; position: fixed;right: 10pt;background:#ffffff;font-size:14pt;"></div>
-<video id="video" height="100" width="100" preload="auto" controls autoplay="autoplay" onClick="togglePlay()" src=""></video>
+<div align="center">
+    <video id="video" height="100" width="100" preload="auto" controls autoplay="autoplay" onClick="togglePlay()" src=""></video>
+</div>
 <script language="javascript">
         document.getElementById('video').src = location.hash.replace('#',''); document.getElementById('video').play()
 </script>
