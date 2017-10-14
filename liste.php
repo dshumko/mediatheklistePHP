@@ -199,7 +199,7 @@ function setFocusForLastLink(){
     if(location.hash=='#anker1_film_0') location.hash='#anker1_film_1';
     ";
   
-    if( isset($_GET['sender']) && $_GET['sender']!='' && isset($_GET['thema']) && $_GET['thema']!='' ){
+    if( (isset($_GET['sender']) && $_GET['sender']!='' && isset($_GET['thema']) && $_GET['thema']!='') || (isset($_GET['search']) && $_GET['search']!='') ){
             echo "
             var firstlink = document.getElementsByClassName('list_video_mainlink')[0];
             firstlink.focus();
