@@ -18,7 +18,7 @@ function getSenderListe($options){
       if( isset($_GET['min_length']) && $_GET["min_length"]!='' )  $s3 = "&min_length=".$_GET['min_length']; else $s3="";
       if( isset($_GET['no_table']) && $_GET["no_table"]!='' )  $s3 .= "&no_table=".(int)$_GET['no_table'];
       
-      if( isset($_GET['sender']) || isset($_GET['thema']) )$senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
+      if( isset($_GET['sender']) || isset($_GET['thema']) ||  (isset($_GET['search']) && $_GET['search']!='')  )$senderListOutArray['Start / Schnellauswahl'] = "liste.php?$s2"; //&#x2302;&#x2302;
       $senderListOutArray['Alle'] = "liste.php?sender=alle$s2$s3";
       if(isset($sender['alle_ad'])){
         $senderListOutArray['Alle AudioDeskription'] = "liste.php?sender=alle_ad$s2$s3";
