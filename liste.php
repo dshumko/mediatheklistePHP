@@ -305,6 +305,7 @@ if($loaderAnimation===1) echo "<script language=\"javacript\"  type=\"text/javas
 if( !isset($_GET['sender']) && !isset($_GET['search']) ) echo "
 <script type=\"text/javascript\">
 //kann bereits vor onload passieren
+//Prüfe ob die die cached (vom Browser) noch aktuell genug ist
 if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
 else { //pruefe ob Cache frisch genug
   //console.log( 'schnellauswahl_must_update ' + getCookie('schnellauswahl_must_update') );
@@ -312,6 +313,7 @@ else { //pruefe ob Cache frisch genug
     if( getCookie( 'schnellauswahl_last_modifed') == document.lastModified){
       //console.log(\"MUSST Reload\");
       createCookie( 'schnellauswahl_must_update','',-1);
+      toggleShowOptions('close');
       document.location.reload();
     }
   }
