@@ -199,7 +199,7 @@ function hideNoneHbbTVLinks(){
  
 </script>
 </head>
-<body onload="append();setFocus(document.getElementById('firstLink'));hideNoneHbbTVLinks();">
+<body onload="append();hideNoneHbbTVLinks();"><!-- /*geht vielleicht auch ohne?: setFocus(document.getElementById('firstLink'));*/ -->
 
 <span id="links">
 
