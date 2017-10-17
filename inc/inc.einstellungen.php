@@ -218,6 +218,22 @@ echo "
          }
          
 
+        echo '
+
+        Videoplayer-Technik  <span style="color:#999999; font-size:0.9em">Wenn bei alten TVs alle Video nicht laufen; Auch videoplayer aussschalten versuchen</span>
+         <span style="float:right; text-align:right">
+              &nbsp;&nbsp;&nbsp; 
+              <a href="#" id="options_videoplayer_version_2" onClick="createCookie(\'videoplayer_version\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Object-Tag</a>  &nbsp;&nbsp;&nbsp; oder  &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_videoplayer_version_3" onClick="createCookie(\'videoplayer_version\',\'3\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Embed-Tag</a>  &nbsp;&nbsp;&nbsp; oder  &nbsp;&nbsp;&nbsp;
+              <a href="#" id="options_videoplayer_version" onClick="createCookie(\'videoplayer_version\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Video-Tag (Normal)</a>
+              
+        </span>
+        <script  language="javascript"  type="text/javascript"> if(getCookie(\'videoplayer_version\')==2)document.getElementById(\'options_videoplayer_version_2\').innerHTML+=\' &#10008;\';else if(getCookie(\'videoplayer_version\')==3)document.getElementById(\'options_videoplayer_version_3\').innerHTML+=\' &#10008;\'; else document.getElementById(\'options_videoplayer_version\').innerHTML+=\' &#10008;\'; </script>
+         <div style="clear:both"></div>
+                 <hr>
+         ';
+         
+
 
 
         echo '

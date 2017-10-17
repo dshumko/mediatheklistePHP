@@ -34,26 +34,6 @@ video#video {
         background-size: contain;
         z-index:100;
 }
-video#video2 { 
-        /*position: fixed; right: 0; bottom: 0;*/
-        /*min-width: 100%; min-height: 100%;*/
-        min-height: 100%;
-        height: 100%;
-        width: 100%; /*height: auto;*/ z-index: -100;
-        background:  no-repeat;
-        background-size: contain;
-        z-index:100;
-}
-video#video3 { 
-        /*position: fixed; right: 0; bottom: 0;*/
-        /*min-width: 100%; min-height: 100%;*/
-        min-height: 100%;
-        height: 100%;
-        width: 100%; /*height: auto;*/ z-index: -100;
-        background:  no-repeat;
-        background-size: contain;
-        z-index:100;
-}
 body{
         background:black;
         padding: 0px;
@@ -63,33 +43,17 @@ body{
 </style>
 <div id="status_show" style="z-index:101; position: fixed;right: 10pt;background:#ffffff;font-size:14pt;"></div>
 <div align="center">
-    <video id="video" class="video" preload="auto" controls autoplay="autoplay" onClick="togglePlay()" src="">
-       <object type="video/mp4" class="video" id="video2" data="" width="640" height="480" src="" autoplay="true">
-           <embed class="video" id="video3" data="" width="" height="" src="" autoplay="true" allowfullscreen="allowfullscreen"  mozallowfullscreen="mozallowfullscreen"  msallowfullscreen="msallowfullscreen"  oallowfullscreen="oallowfullscreen"  webkitallowfullscreen="webkitallowfullscreen">
-               Your browser does not support (<i>this</i>) video<br>
-               Das liegt am Video oder wahrscheinlicher am Engerät (TV)
-           </embed>
-       </object>
+    <video id="video" height="100" width="100" preload="auto" controls autoplay="autoplay" onClick="togglePlay()" src="">
+      <a href="" style="display:none;color:white;background:black;font-size:30pt;" id="hidden__video_direktlink">Videodatei direktlink</a>
     </video>
 </div>
 <script language="javascript">
-        if(document.getElementById('video')!=undefined){
-           document.getElementById('video').src = location.hash.replace('#','');
-           if(document.getElementById('video').play)document.getElementById('video').play();
+        if(document.getElementById('hidden__video_direktlink')!=undefined){   
+          document.getElementById('hidden__video_direktlink').style.display = 'block';
+          document.getElementById('hidden__video_direktlink').href = location.hash.replace('#','');
         }
-        if(document.getElementById('video2')!=undefined){
-           document.getElementById('video2').src = location.hash.replace('#','');
-           document.getElementById('video2').data = location.hash.replace('#','');
-           document.getElementById('video2').height = window.screen.height;
-           document.getElementById('video3').width = window.screen.width;
-           if(document.getElementById('video2').play)document.getElementById('video2').play();
-        }
-        if(document.getElementById('video3')!=undefined){
-           document.getElementById('video3').src = location.hash.replace('#','');
-           document.getElementById('video3').height = window.screen.height;
-           document.getElementById('video3').width = window.screen.width;
-           if(document.getElementById('video3').play)document.getElementById('video3').play();
-        }
+        document.getElementById('video').src = location.hash.replace('#','');
+        if(document.getElementById('video').play) document.getElementById('video').play();
 </script>
 <script type='text/javascript'>
 
@@ -97,36 +61,32 @@ body{
 
   //Springe zurück, wenn Video zuende
   document.getElementById('video').addEventListener('ended',myHandler,false);
-  function myHandler(e) {
-	    window.history.back();
+    function myHandler(e) {
+	window.history.back();
   }
   
   function togglePlay(){
-      if(document.getElementById('video')!=undefined){
-            var v = document.getElementById('video');
-            var t = document.getElementById('status_show');
-            
-            if(v.paused || v.playbackRate==0){
-                    v.play();
-                    t.innerText = 'Play';
-            }else{
-                    v.pause();
-                    t.innerText = 'Pause';
-            }
-            
-            v.playbackRate=1; //Geschwingkeit zurücksetzen
-
-            //Anzeige Playrate (=Abspiel-Geschwindkeit)
-           if(timeout!=undefined) window.clearTimeout(timeout);
-           if(  ! v.paused )timeout = window.setTimeout('document.getElementById(\'status_show\').innerText=\'\'',1000);
+        var v = document.getElementById('video');
+        var t = document.getElementById('status_show');
+        
+        if(v.paused || v.playbackRate==0){
+                v.play();
+                t.innerText = 'Play';
+        }else{
+                v.pause();
+                t.innerText = 'Pause';
         }
+        
+        v.playbackRate=1; //Geschwingkeit zurücksetzen
+
+        //Anzeige Playrate (=Abspiel-Geschwindkeit)
+       if(timeout!=undefined) window.clearTimeout(timeout);
+       if(  ! v.paused )timeout = window.setTimeout('document.getElementById(\'status_show\').innerText=\'\'',1000);
     }
     
   //Tastatur/Fernbedienung-Eingaben
   var timeout;
   document.addEventListener("keydown", function(e) {
-     if(document.getElementById('video')==undefined) return; //nur bei html5-video tag
-     
      var v = document.getElementById('video');
      var t = document.getElementById('status_show');
      var src = document.getElementById('video').src;
@@ -174,7 +134,7 @@ body{
      
      //Anzeige Playrate (=Abspiel-Geschwindkeit)
      if(timeout!=undefined) window.clearTimeout(timeout);
-     if(v.playbackRate!=1 && v.playbackRate!=undefined){ //läuft schneller oder langsamer 
+     if(v.playbackRate!=1){ //läuft schneller oder langsamer 
         t.innerText=v.playbackRate+"x Geschwindigkeit";
         //if(v.playbackRate===0)t.innerText = "Auch Pfeiltasten verwendenbar (link/unten)";
         t.style.display = 'block';
