@@ -580,6 +580,7 @@ if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
       //if($n!='')echo "<span style=\"text-align:right;display:block;\" ><a href=\"#\" onclick=\"document.getElementById('filmliste_search').style.display='inline';this.style.display='none';\" class=\"abstandlinks\" >Suchwort</a> &nbsp; </span> ";
       echo "<span align=\"right\">";
       if( isset($_GET['search_fulltext']) && $_GET['search_fulltext']!='')$beschreibung = '(auch im Text)'; else $beschreibung = '';
+      if(isset($_GET['sender']) && $_GET['sender']!='alle')$beschreibung.= 'Sender: '.$_GET['sender'];
       if(isset($_GET['search']) && $_GET['search']!='') echo "Suche \"".strip_tags($_GET['search'])."\" $beschreibung <a href=\"#\" onClick=\"document.getElementById('filmliste_search').style.display='block';formItemFocus( document.getElementById('filmliste_search_input_search') );return false;\">[Suche Ändern]</a>";
       echo "<form style=\"display:block;text-align:right;$n\" id=\"filmliste_search\" method=\"GET\" >Suchwort: &nbsp; ";
       
