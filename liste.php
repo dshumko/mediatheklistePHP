@@ -622,6 +622,12 @@ if( isset($_GET['thema']) && $_GET['thema']!=''){
 if( isset($_COOKIE['favs']) && !isset($_GET['sender']) && !isset($_GET['thema'])){
     if(isset($_GET['sender']) || (isset($_GET['search']) && $_GET['search']!='') ) $d =' display:none';else $d = '';
     $jumpToFilmsLink =  "<a href=\"#anker1_film_0\" id=\"schnellauswahl_list__jump_to_filme\" style=\"display:none\" onClick=\"var e = document.getElementsByCallName('videolink_row'); if(e.length>0)formItemFocus( e[0] )\"> Springe zu den Filmen<br></a>";
+    if(!isset($_GET['schnellauswahl_zeigefilmliste']))echo "
+      <span id=\"above_schnellauswahl_ladefilmlistezurschnellauswahl\">
+         <br><a href=\"liste.php?schnellauswahl_zeigefilmliste=1\">Lade Filmliste der Schnellauswahl </a> <!--<span style=\"float:right;color:#555555; \">Dauerhaft aktivierbar in den Einstellungen</span>-->
+      </span>
+      <script language=\"javascript\" type=\"text/javascript\">if(getCookie('schnellauswahl_nurlinks_an')!=1){ document.getElementById('above_schnellauswahl_ladefilmlistezurschnellauswahl').style.display='none';}</script>
+         ";
     echo "<div id=\"schnellauswahl\" style=\"$d;padding-top:5pt;\">";
     echo "<span>$jumpToFilmsLink Schnellauswahl:</br></span>";
     echo "</div>";
