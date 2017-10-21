@@ -475,7 +475,7 @@ function toggleShowOptions(state){
           }
         }
         else if(state=='close'){
-                document.getElementById('options').style.display = 'none';
+                if(document.getElementById('options')!=undefined)document.getElementById('options').style.display = 'none';
                 history.replaceState( history.state, document.title , '#');
                 //if( location.hash.search('#settings')!==-1)window.history.back();//location.hash = '';
         }

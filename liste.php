@@ -306,7 +306,7 @@ if( !isset($_GET['sender']) && !isset($_GET['search']) ) echo "
 <script type=\"text/javascript\">
 //kann bereits vor onload passieren
 //Prüfe ob die die cached (vom Browser) noch aktuell genug ist
-if( getCookie('favs').length<10) document.getElementById('div-sender-select').style.display='block';
+if( getCookie('favs').length<10 && document.getElementById('div-sender-select')!=undefined) document.getElementById('div-sender-select').style.display='block';
 else { //pruefe ob Cache frisch genug
   //console.log( 'schnellauswahl_must_update ' + getCookie('schnellauswahl_must_update') );
   if(getCookie( 'schnellauswahl_must_update')=='1' && getCookie( 'schnellauswahl_last_modifed')!='' ){
