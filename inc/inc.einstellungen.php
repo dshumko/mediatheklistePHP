@@ -169,7 +169,7 @@ echo "
         else if( $hideArte_fr==2 ){
         echo '
         <hr>
-        <span title="Arte Frankreich">Arte.fr</span>
+        <span title="Arte Frankreich">Sender Arte.fr</span>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_show_arte_fr_aus" onClick="createCookie(\'show_arte_fr\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_show_arte_fr_an" onClick="createCookie(\'show_arte_fr\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a>
               
@@ -183,7 +183,7 @@ echo "
          
          echo '
          
-        Audio-Deskription/Hörfassung-Liste unter Sender
+        Extra-Liste für Audio-Deskription/Hörfassung-Liste <span style="color:#999999; font-size:0.9em">unter Sender aufgeführt</span>
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
@@ -192,7 +192,7 @@ echo "
          
          
         <hr>
-        Gebärdensprache-Liste unter Sender
+        Extra-Liste für Gebärdensprache <span style="color:#999999; font-size:0.9em">unter Sender aufgeführt</span>
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_Gebaerdensprache_an" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_Gebaerdensprache_aus" onClick="createCookie(\'extra_sender_Gebaerdensprache\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
