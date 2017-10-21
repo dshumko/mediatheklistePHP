@@ -65,7 +65,7 @@ function createAllElements(){
              return; //leere Startseite (also ohne Schnellauswahl einträge)
         }
         $hasAndShowFavs = false;
-        if( isset($_COOKIE["favs"]) && strlen($_COOKIE["favs"])>5  ){
+        if( !isset($_GET['sender']) && isset($_COOKIE["favs"]) && strlen($_COOKIE["favs"])>5  ){
              if( (!isset($_GET['sender']) ||$_GET['sender']=='' ))    $hasAndShowFavs = true;
              if( isset($_COOKIE['schnellauswahl_nurlinks_an']) && $_COOKIE['schnellauswahl_nurlinks_an']!='' ){ $hasAndShowFavs = false; return array(); }
         }
