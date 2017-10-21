@@ -116,7 +116,13 @@ function createCopyEachSender($file,$options,$minLength){
                 $sender_raw  = trim( strtolower( ''.$treffer[1].'') );
                 $thema_raw  = ''.$treffer[2].'';
                 $title_raw  = ''.$treffer[3].'';
-               
+                
+                //Datum
+                //$return = preg_match('/\["'.preg_quote($treffer[1],'/').'","'.preg_quote($treffer[2],'/').'","'.preg_quote($treffer[3],'/').'","([0-9]{2}\.[0-9]{2}\.[0-9]{4})","/U',$line,$treffer2);
+                //$datum_raw = (isset($treffer2[1]))?$treffer2[1]:'';
+                //$datum = strtotime(str_replace('.','-',str_replace('','',$datum_raw)));
+                ////aussortieren nach Datum
+                //if($datum_raw!='' && $datum<time()-(60*60*24*7*4*2) ) {  $i--; continue; }
 
                 //Länge/Dauer auslesen (bislang haben nur die wenigsten eine Längenangabe); in Minuten
                 $laenge = '';
