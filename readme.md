@@ -39,7 +39,7 @@ TV-App für Vestel/Telefunken: [Anleitung](https://github.com/soerenj/mediathekl
   * Themen je Sender
   * Alle Themen, aller Sender 
   * Extra-Liste für Gebärdensprache / Hörfassung / AudioDeskription (aktivierbar)
-  * Themen als Schnellauswahl speichern (Favouriten)
+  * Themen als Schnellauswahl speichern (Favouriten; Programmstart bei langer Schnellauswahl z.T. mit Wartezeit verbunden)
   * Startseite [mit individueller Filmliste](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_schnellauswahl.png)
   * lange Scroll-Liste oder [Seitenweise](https://raw.githubusercontent.com/soerenj/mediatheklistePHP/master/img/screenshots/Bildschirmfoto_themenliste_seitenweise.png) navigieren
   * Sortiert nach Datum
