@@ -479,7 +479,7 @@ function toggleShowOptions(state){
                 history.replaceState( history.state, document.title , '#');
                 //if( location.hash.search('#settings')!==-1)window.history.back();//location.hash = '';
         }
-        document.getElementById('vorschaltseite_thumb').src = document.getElementById('vorschaltseite_thumb').getAttribute('data-src');
+        if(document.getElementById('vorschaltseite_thumb')!=undefined)document.getElementById('vorschaltseite_thumb').src = document.getElementById('vorschaltseite_thumb').getAttribute('data-src');
 }
 /*
 
