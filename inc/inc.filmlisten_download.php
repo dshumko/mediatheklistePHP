@@ -116,10 +116,7 @@ function createCopyEachSender($file,$options,$minLength){
                 $sender_raw  = trim( strtolower( ''.$treffer[1].'') );
                 $thema_raw  = ''.$treffer[2].'';
                 $title_raw  = ''.$treffer[3].'';
-                $i++;
-
-
-             
+               
 
                 //Länge/Dauer auslesen (bislang haben nur die wenigsten eine Längenangabe); in Minuten
                 $laenge = '';
