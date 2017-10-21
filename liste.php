@@ -1023,8 +1023,9 @@ if(
       )
         && is_array($allOuts) && count($allOuts)==0 
     ){
-  echo "<p style=\"color:#555555\">Kein Filme vorhanden (vlt. wegen  <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">Einstellungen</a>)";
-
+  echo "<p>Kein Filme vorhanden. <span style=\"color:#555555\">";
+  if(isset($_GET['min_length']) && $_GET['min_length']>0) echo "<br>Vielleicht wegen  Mindest-Filmlänge unter <a href=\"#settings\" onclick=\"toggleShowOptions('');\" style=\"margin-left:0px;padding-left:3pt;padding-right:10pt;text-decoration:none\">Einstellungen</a>?";
+  
   if($minLength>0 || (isset($_GET['min_length']) && $_GET['min_length']>0) ){
     echo "<span align=\"left\" style=\"padding-right:6pt;color:#777777\">";
     if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "<br>Kein Zeitfilter möglich";
@@ -1033,6 +1034,7 @@ if(
     //if( isset($_GET['min_length']) && ($_GET['sender']=='alle_ad' || $_GET['sender']=='alle_gebaerde') ) echo "</s>";
     echo "</span>";
   }
+  echo "</span>";
   echo "</p>";
 }
  
