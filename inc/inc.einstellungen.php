@@ -183,7 +183,7 @@ echo "
          
          echo '
          
-        Extra-Liste für Audio-Deskription/Hörfassung-Liste <span style="color:#999999; font-size:0.9em">unter Sender aufgeführt</span>
+        Extra-Liste für Audio-Deskription/Hörfassung <span style="color:#999999; font-size:0.9em">unter Sender aufgeführt</span>
         <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_extra_sender_AudioDeskription_an" onClick="createCookie(\'extra_sender_AudioDeskription\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">anzeigen</a> &nbsp;&nbsp;&nbsp; oder &nbsp;&nbsp;&nbsp;
               <a href="#" id="options_link_extra_sender_AudioDeskription_aus" onClick="createCookie(\'extra_sender_AudioDeskription\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">ausblenden</a>
@@ -219,18 +219,24 @@ echo "
          
 
         echo '
-
-        Videoplayer-Technik  <span style="color:#999999; font-size:0.9em">Wenn bei alten TVs alle Video nicht laufen; Auch videoplayer aussschalten versuchen</span>
-         <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; 
-              <a href="#" id="options_videoplayer_version_2" onClick="createCookie(\'videoplayer_version\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Object-Tag</a>  &nbsp;&nbsp;&nbsp; oder  &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_videoplayer_version_3" onClick="createCookie(\'videoplayer_version\',\'3\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Embed-Tag</a>  &nbsp;&nbsp;&nbsp; oder  &nbsp;&nbsp;&nbsp;
-              <a href="#" id="options_videoplayer_version" onClick="createCookie(\'videoplayer_version\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Video-Tag (Normal)</a>
-              
+        <span id="einstellungen_zeile_videoplay_technik">
+          Technische Details zum Videoplayer  <span style="color:#999999; font-size:0.9em">Evtl. hilfreich bei alten TVs; Ansonsten Videoplay ausschalten (nur Link) ausprobieren.</span>
+           <span style="float:right; text-align:right">
+                &nbsp;&nbsp;&nbsp; 
+                <a href="#" id="options_videoplayer_version_2" onClick="createCookie(\'videoplayer_version\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Object-Tag</a>  &nbsp;&nbsp;&nbsp; oder  &nbsp;&nbsp;&nbsp;
+                <a href="#" id="options_videoplayer_version_3" onClick="createCookie(\'videoplayer_version\',\'3\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Embed-Tag</a>  &nbsp;&nbsp;&nbsp; oder  &nbsp;&nbsp;&nbsp;
+                <a href="#" id="options_videoplayer_version" onClick="createCookie(\'videoplayer_version\',\'\',0);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Video-Tag (Normal)</a>
+                
+          </span>
+          <script  language="javascript"  type="text/javascript">
+          if( getCookie(\'video_direktlink\')!=1 ){
+            
+            if(getCookie(\'videoplayer_version\')==2)document.getElementById(\'options_videoplayer_version_2\').innerHTML+=\' &#10008;\';else if(getCookie(\'videoplayer_version\')==3)document.getElementById(\'options_videoplayer_version_3\').innerHTML+=\' &#10008;\'; else document.getElementById(\'options_videoplayer_version\').innerHTML+=\' &#10008;\';
+          }else document.getElementById(\'einstellungen_zeile_videoplay_technik\').style.display=\'none\';
+          </script>
+          <div style="clear:both"></div>
+          <hr>
         </span>
-        <script  language="javascript"  type="text/javascript"> if(getCookie(\'videoplayer_version\')==2)document.getElementById(\'options_videoplayer_version_2\').innerHTML+=\' &#10008;\';else if(getCookie(\'videoplayer_version\')==3)document.getElementById(\'options_videoplayer_version_3\').innerHTML+=\' &#10008;\'; else document.getElementById(\'options_videoplayer_version\').innerHTML+=\' &#10008;\'; </script>
-         <div style="clear:both"></div>
-                 <hr>
          ';
          
 
@@ -252,9 +258,9 @@ echo "
 echo '
         
         <hr>               
-         Start/Schnellauswahl schneller laden (=nur Links anzeigen)<span style="color:#999999; font-size:0.9em"><i></i></span>
+         Start/Schnellauswahl schneller laden <span style="color:#999999; font-size:0.9em"><i></i></span>
          <span style="float:right; text-align:right">
-              &nbsp;&nbsp;&nbsp; <a href="#" id="options_schnellauswahl_nurlinks_an" onClick="createCookie(\'schnellauswahl_nurlinks_an\',\'1\',356*10);setUpdateDate();optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">nur Links</a> &nbsp;&nbsp;oder&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp; <a href="#" id="options_schnellauswahl_nurlinks_an" onClick="createCookie(\'schnellauswahl_nurlinks_an\',\'1\',356*10);setUpdateDate();optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">nur Links (schneller)</a> &nbsp;&nbsp;oder&nbsp;&nbsp;
               <a href="#" id="options_schnellauswahl_nurlinks_aus" onClick="createCookie(\'schnellauswahl_nurlinks_an\',\'\',0);setUpdateDate();optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">mit Videoliste</a>
         </span>
         <script  language="javascript"  type="text/javascript"> if(getCookie(\'schnellauswahl_nurlinks_an\')==1)document.getElementById(\'options_schnellauswahl_nurlinks_an\').innerHTML+=\' &#10008;\'; else document.getElementById(\'options_schnellauswahl_nurlinks_aus\').innerHTML+=\' &#10008;\'; </script>
@@ -284,7 +290,7 @@ echo '
 
 if($loaderAnimation>0)echo '  
         <hr>
-         Performance: <span style="color:#555555; ">Lade-Animation </span><span style="color:#999999; font-size:0.9em"><i>Am TVs besser auslassen, wegen Performance</i></span>
+         Performance: <span style="color:#555555; ">Lade-Animation </span><span style="color:#999999; font-size:0.9em"><i>Am TV besser auslassen, wegen Performance</i></span>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_spinner_an" onClick="createCookie(\'spinner_show\',\'1\',356*10);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Anschalten</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_spinner_aus" onClick="createCookie(\'spinner_show\',\'\',0);optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">aus</a>
@@ -298,7 +304,7 @@ if($loaderAnimation>0)echo '
 echo '
 
         <hr>               
-         Performance nur testweise: lange Themenlisten<span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser??; Nur testweise drin; Funktion wird wieder entfernt</i></span>
+         Performance nur testweise: lange Themenlisten <span style="color:#999999; font-size:0.9em"><i>Möglicherweise besser??; Nur testweise drin; Funktion wird wieder entfernt</i></span>
          <span style="float:right; text-align:right">
               &nbsp;&nbsp;&nbsp; <a href="#" id="options_link_no_table_an" onClick="createCookie(\'no_table\',\'1\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">Textliste</a>, &nbsp;&nbsp;
               <a href="#" id="options_link_no_table_an2" onClick="createCookie(\'no_table\',\'2\',356*10);;optionsSafeLastUsesLinkAsHash(this);window.location.reload();return false;">TextlisteTabelle</a>, &nbsp;&nbsp;
@@ -316,7 +322,7 @@ echo '
          <br>Farbtasten:  &nbsp;&nbsp; Gelb = Senderwahl,  &nbsp;&nbsp; Grün = Themenwahl,  &nbsp;&nbsp; Blau = Buchstabenwahl<br>
          Themenliste:
          <br>&nbsp;&nbsp;&nbsp;&nbsp;A-Z [ 1-9 Tasten ] für springen zum Buchstaben<br>
-         Während Film: 
+         Während des Films: 
          <br>&nbsp;&nbsp;&nbsp;&nbsp;Play,  &nbsp;&nbsp;  &nbsp;&nbsp; Pause,  &nbsp;&nbsp; Vorwärts, &nbsp;&nbsp;  Rückwärts, &nbsp;&nbsp;  Stop
          <br>&nbsp;&nbsp;&nbsp;&nbsp;Pfeiltasten  &nbsp;&nbsp; &#8594; +30 &nbsp;&nbsp; &#8593; +60 &nbsp;&nbsp; &#8592; -30  &nbsp;&nbsp; &#8595; -60 &nbsp;&nbsp;  Sekunden springen
          </div>
