@@ -590,7 +590,7 @@ if( $search_allow ){ //isset($_GET['sender']) && $_GET['sender']!=''
        //echo "<input type=\"hidden\" name=\"quality\" value=\"".(isset($_GET['filter_quality'])?$_GET['quality']:'')."\" />"; //verschoben in Cookie/Javascript
       echo "<input type=\"text\" name=\"search\" placeholder=\"Einzelnes Wort\"  size=\"10\" id=\"filmliste_search_input_search\" value=\"".(isset($_GET['search'])?$_GET['search']:'')."\" /> ";
       echo "&nbsp;<input type=\"checkbox\" name=\"search_fulltext\" id=\"search_fulltext\" value=\"1\" ".(isset($_GET['search_fulltext'])?'checked':'')." /><label for=\"search_fulltext\">Auch in Beschreibung suchen </label>";
-      if(isset($_GET['sender']) && $_GET['sender']!='alle')echo " &nbsp; &nbsp; Sender: <input type=\"text\" size=\"5\" style=\"background:none;border:none;\" readonly name=\"sender\" value=\"".$_GET['sender']."\" />";
+      //if(isset($_GET['sender']) && $_GET['sender']!='alle')echo " &nbsp; &nbsp; Sender: <input type=\"text\" size=\"5\" style=\"background:none;border:none;\" readonly name=\"sender\" value=\"".$_GET['sender']."\" />";
       //echo "&nbsp;&nbsp;<label for=\"search_fulltext\">Mindest Länge </label><input size=\"2\" type=\"text\" placeholder=\"Minuten\" name=\"filter_minFilmLength\" value=\"".(isset($_GET['filter_minFilmLength'])?$_GET['filter_minFilmLength']:'')."\" id=\"filter_minFilmLength\"/>";
       //foreach($allLengths as $l=>$count){} //bisher nicht benutzt
        echo "<input type=\"submit\" value=\"Suchen\" /> <input type=\"reset\" onClick=\"document.getElementById('filmliste_search_input_search').value='';document.getElementById('filmliste_search_input_search').checked=false;this.form.submit();\" form=\"filmliste_search\" value=\"⌫ Löschen\" />";
