@@ -10,6 +10,10 @@ span.line_span:hover{
   background: #f9f9f9;   
 }
 
+#options {
+  color:black;
+}
+
 a{
   text-decoration:none;
 }
