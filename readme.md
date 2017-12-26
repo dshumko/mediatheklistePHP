@@ -1,27 +1,29 @@
 Mediathek-Liste PHP
 ---------------------------------------------------------------------------------------
+**Archiv**; No longer developed
 
 List of Movies from german Television/Broadcast Mediathek (Crawled by MediathekView.de)
 
 Mediathek-Liste PHP
 ---------------------------------------------------------------------------------------
+**Archiv**; Keine Weiterentwicklung
 
-Das Web-Programm listet die Filmliste vom MediathekView Projekt.  Optimiert für SmartTV / TV-Browser  
+Server-Programm für **Web-Server mit PHP**.
+Das Web-Programm listet die Filmliste vom MediathekView Projekt. Die Ansicht ist optimiert für SmartTV / TV-Browser.
+
+### Server
+* PHP, ausreichend Ram, "exec" erlaubt (details: siehe unten)
+
+### Client
+ * normaler Browser (nicht alle Filme abspielbar)
+ * (neuere) TVs mit Internet-Browser (Mausbedienung ist umständlich!)
+ * (Früher:) War auch mal als TV-App möglich (über die Pfeiltasten/Farbtasten der Fernbedienung)
 
 
-### Zielplattform
-Für folgende TVs:
-
- *  neuere TV mit Internet-Browser (Mausbedienung ist aber umständlich)
- *  TV-Modelle vom Hersteller Vestel / Telefunken / Dual (s.u.)
-
-**Oder** im normalen Browser (nicht alle Filme abspielbar)
 
 ### Demo
-DemoServer: http://149.202.236.159/liste.php   *(bis vorraussichtlich 31.12.2017)*
 [DemoVideo youtube](https://youtu.be/DLFDfNCTSYQ)  
 [Screenshots](https://github.com/soerenj/mediatheklistePHP/wiki)    
-TV-App für Vestel/Telefunken: [Anleitung](https://github.com/soerenj/mediatheklistePHP/wiki/DNS-Hack-auf-Smart-TV) *(Nachteil: der Start vom Smart-Portal dauert länger)*  *(bis vorraussichtlich 31.12.2017)*
 
 ![Screenshot mit Themenliste](img/screenshots/Bildschirmfoto_themenliste.png)
 
@@ -31,7 +33,7 @@ TV-App für Vestel/Telefunken: [Anleitung](https://github.com/soerenj/mediathekl
 
 ### Bedienbarkeit:
 
-  * Als Smart-TV-App (für u.g. Modell)mit der Fernbedienung: Teilweise noch nicht ganz rund, aber im großen gut.
+  * (Früher:) Als Smart-TV-App (für u.g. Modell)mit der Fernbedienung: Teilweise noch nicht ganz rund, aber im großen und ganzen gut.
   * Im TV-Browser (d.h. die Fernbedienung-Pfeiltasten werden als Maus verwendet. Besser: man schließt eine ComputerMaus an den TV an): Das steuern mit der Fernbedienung ist recht umständlich.
 
 
@@ -60,12 +62,8 @@ TV-App für Vestel/Telefunken: [Anleitung](https://github.com/soerenj/mediathekl
   
 ### Installation auf TV:
 
-  * Nur für einige Telefunken / Vestel / Dual TV-Geräte (Board MB110); DNS (Am TV muss die App drivecast muss vorhanden sein)
-  * o.g. Anleitung lässt sich auf andere TVs übertragen, wenn man die Zeit hat die passende Adresse herauszufinden (braucht technisches Verständnis & Zeit).  
+  * (Früher:) Wäre nur via DNS-Hack möglich. Siehe Erkläsung im wiki: Installieren--&-DNS-Hack-auf-Smart-TV: https://github.com/soerenj/mediatheklistePHP/wiki/Installieren--&-DNS-Hack-auf-Smart-TV
   
-Darum habe ich das Programm geschrieben:  
-Weil bei meiner Internet-Verbindung die SmartTV ZDF-Mediathek nicht benutzbar ist (zu langsam).  
-Und ein anderer Grund: Vielleicht können ältere SmartTV-Modell dadurch doch noch die Mediatheken nutzen.  
 
 ### Server-Vorraussetzungen
 Stand 8/2017  
