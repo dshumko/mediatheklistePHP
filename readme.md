@@ -6,7 +6,7 @@ List of Movies from german Television/Broadcast Mediathek (Crawled by MediathekV
 Mediathek-Liste PHP
 ---------------------------------------------------------------------------------------
 **Archiv**; Keine Weiterentwicklung  
-Server-Programm für **Web-Server mit PHP**.
+Server-Programm für Web-Server mit PHP.
 Das Web-Programm listet die Filmliste vom MediathekView Projekt. Die Ansicht ist optimiert für SmartTV / TV-Browser.
 
 ### Server
