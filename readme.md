@@ -80,6 +80,8 @@ Empfohlen:
 - ausführen von Befehlen erlauben ("exec")
 - installierte Programme: wget xz-utils curl (sollte bei etwas besseren Webhosting standart sein(?))
 
+### Fehlerbehebung
+- Findet keine neue Filmliste? Prüfen ob Filmlisten-URL noch richtig ist (https://res.mediathekview.de/akt.xml)
 
 ==================================================
 
