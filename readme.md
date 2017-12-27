@@ -15,7 +15,7 @@ Das Web-Programm listet die Filmliste vom MediathekView Projekt. Die Ansicht ist
 ### Client
  * normaler Browser (nicht alle Filme abspielbar)
  * (neuere) TVs mit Internet-Browser (Mausbedienung ist umständlich!)
- * (Früher:) War auch mal als TV-App möglich (über die Pfeiltasten/Farbtasten der Fernbedienung)
+ * (Früher:) War auch mal als TV-App möglich (über die Pfeiltasten/Farbtasten der Fernbedienung; über DNS-Hack)
 
 
 
