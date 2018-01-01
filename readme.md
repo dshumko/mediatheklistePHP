@@ -46,7 +46,11 @@ DemoServer abgeschaltet
   * Sortiert nach Datum
   * verschiedene Video-Qualitäten einstellbar
   * Such-Funktion (verbraucht viel Ressourcen, dauert 10Sekunden; auch deaktivierbar)
-  
+  * rein technisch: bereit für Reverse-Proxy Betrieb
+
+### NICHT Funktionen
+  * KEINE extrem Lange liste mit 100.000 Einträgen (zu viel Traffic; zu groß für schwache TV-Browser)
+
 ### Filter:
   * Themen ausblenden
   * Filme ausblenden (freitext)
