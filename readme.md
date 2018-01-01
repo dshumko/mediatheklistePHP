@@ -27,7 +27,8 @@ DemoServer abgeschaltet
 ![Screenshot mit Themenliste](img/screenshots/Bildschirmfoto_themenliste.png)
 
 
-
+* Das ganze ich nach Themen/Sendereihen sortiert (soweit möglich)
+* keine extrem Lange liste mit 100.000 Einträgen (wäre zu viel Traffic; zu groß/überlastend für schwache TV-Browser)
 
 
 ### Bedienbarkeit:
@@ -48,9 +49,6 @@ DemoServer abgeschaltet
   * Such-Funktion (verbraucht viel Ressourcen, dauert 10Sekunden; auch deaktivierbar)
   * rein technisch: bereit für Reverse-Proxy Betrieb
 
-### NICHT Funktionen
-  * KEINE extrem Lange liste mit 100.000 Einträgen (zu viel Traffic; zu groß für schwache TV-Browser)
-
 ### Filter:
   * Themen ausblenden
   * Filme ausblenden (freitext)
@@ -65,7 +63,7 @@ DemoServer abgeschaltet
   
 ### Installation auf TV:
 
-  * (Früher:) Wäre nur via DNS-Hack möglich. Siehe Erkläsung im wiki: Installieren--&-DNS-Hack-auf-Smart-TV: https://github.com/soerenj/mediatheklistePHP/wiki/Installieren--&-DNS-Hack-auf-Smart-TV
+  * (Früher:) Wäre nur via DNS-Hack möglich. [Installieren--&-DNS-Hack-auf-Smart-TV](https://github.com/soerenj/mediatheklistePHP/wiki/Installieren--&-DNS-Hack-auf-Smart-TV)
   
 
 ### Server-Vorraussetzungen
@@ -73,7 +71,7 @@ Stand 8/2017
 - PHP 5.6 *(?)*
 - RAM: sollten > 450MB (notfalls 256MB)
 - Speicherplatz: Sollten 570MB (notfalls 240MB)
-- Speicher-Vorraussetzungen im Detail: https://github.com/soerenj/mediatheklistePHP/wiki/Speicher-Vorraussetzungen-im-Detail
+- [Speicher-Vorraussetzungen im Detail](https://github.com/soerenj/mediatheklistePHP/wiki/Speicher-Vorraussetzungen-im-Detail)
 
 Muss installiert sein auf den Server:  
 Mindestens:  
