@@ -389,7 +389,10 @@ echo "
 * 2. Update von Hand anstoßen ?updatelist=1
 ***/
 
-if(!file_exists('cache'))       mkdir('cache');
+if(!file_exists('cache')){       
+	mkdir('cache');
+	chmod('cache', 777);//chmod ist notwendig, da sowohl php, las auch shell/exec schreiben können müssen
+}
 
 //Prüfe ob neue Filmlisten-Datei vorhanden
 if( !file_exists('cache/status_newFilmlisteFileVorhanden')
