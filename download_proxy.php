@@ -51,6 +51,7 @@ if($filesize==0) die("Datei nicht gefunden");
                                  
 //header("Content-Disposition: attachment; filename=\"".basename($_GET['url'])."\";" ); //Datei direkt runterladen
 if( substr($url,-4)=='.mp4')header("Content-Type: video/mp4" );
+else header("Content-Disposition: attachment; filename=\"".basename($_GET['url'])."\";" ); //Datei direkt runterladen
 header("Content-Transfer-Encoding: binary");
 header("Content-Length: ".$filesize);
 
