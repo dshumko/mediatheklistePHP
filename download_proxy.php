@@ -40,7 +40,7 @@ if( !stristr(file_get_contents('Filmliste-akt'), $url_cuted) ){
 	}
 }
 $url_secure = explode('?',$_GET['url'])[0];
-$url = $url_secure
+$url = $url_secure;
 
 
 exec("curl -s -X HEAD -I --connect-timeout 10 -m 10 ".escapeshellarg($url)." 2>&1  | grep '^Content-Length: '",$return);
