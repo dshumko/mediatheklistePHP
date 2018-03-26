@@ -50,7 +50,7 @@ if($filesize==0) die("Datei nicht gefunden");
 //if($filesize<10485760) die("Da Stimmt was nicht.<br>Die Datei sehr klein (<10MB); Vermutlich ist es daher kein Video und der Zugriff über Proxy wurde gesperrt.<br>Direkter Zugriff ohne Proxy über diese Adresse:<br>".strip_tags($_GET[''])); //Das funktioniert nicht als Sicherheits-maßname. Grund: da nach einen HTTP HEAD-Anfrage wahrscheinlich schon die Anfrage/bzw. Hackangriff ausgeführt wurden (?)
                                  
 //header("Content-Disposition: attachment; filename=\"".basename($_GET['url'])."\";" ); //Datei direkt runterladen
-if( substring($url,-4)=='.mp4')header("Content-Type: video/mp4" );
+if( substr($url,-4)=='.mp4')header("Content-Type: video/mp4" );
 header("Content-Transfer-Encoding: binary");
 header("Content-Length: ".$filesize);
 
