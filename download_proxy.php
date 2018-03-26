@@ -1,5 +1,7 @@
 <?php
 
+//Diese Datei ist nur optional
+
 /*
 Eine Weiterlöeitung (Proxy) zum DOWNLOAD (nur Download, nicht direkt anschauen) vom Filmdateien.
 Das ist bspw. sinnvoll wenn man keine Deutsche IP-Adresse hat.
