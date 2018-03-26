@@ -12,6 +12,8 @@ Aktivieren:
    die('deaktiviert');
 2) Config.inc.php bearbeiten:
    $dereff = 'download_proxy.php?url='; 
+3) Config.inc.php
+   $fullscreen_play darf nicht auf =1 stehen ! (am besten $fullscreen_play=0;)
 */
 
 die('deaktiviert');
