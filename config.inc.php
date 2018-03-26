@@ -121,14 +121,16 @@ $extra_gebaerdensprache = 1; //erstelle einen extra "Sender" nur für alle Gebä
 
 $hideArte_fr     = 2; //Arte.fr ausblenden (0=deaktiviert, 1=komplettArte.fr Ausblenden, 2=Arte.fr Kann vom Benutzer aktiviert werden)
                       // (der Cache muss nach Wertänderung neu erstellt werden: liste.php?list_update__only_aufteilen=1)
-$fullscreen_play = 2; //Videoplayer
+$fullscreen_play = 0; //Videoplayer
                       // (0=deaktiviert (nur direkter Datei-Link), 1=Videoplayer (EMPFOHLEN!), 2=Videoplayer Kann vom Benutzer deaktiviert werden)
                       // Öffnet alle Video auf einer Player Seite (Video auf Bildschirmgröße, startet sofort);
                       // Der Datei-dirktlink wird nicht als volle Größe (also nur zu klein) dargestellt
+                      // Bei aktivierten download_proxy.php muss der fullscreen_play deaktivert ("0") sein.
 $letzterListeneintragOben = 1; //beim Zurückspringen zur Liste, ist der letzte Eintrag ganz oben (Hilfreich wenn der TV-Browser jedesmal die Maus-Position auf oben Links zurücksetzt)
 $sortByDate = 1; //sortiert Filmliste nach Datum (aktuelles Oben)
 
 $dereff = ''; //bspw.:   http://nullrefer.com/?//geht nur bei den Direktlinks (nicht für die videos in Vollbild abgespielt werden) (dadurch wird die eigene Homepage-Adresse versteckt)
+//download_proxy.php kann man hier auch eintragen (Bspw. wenn man keine deutsch IP-Adresse hat; Dann werden alle Filmdateien darüber rungerladen; sihe download_proxy.php)
 
 $only_accessable_for_hbbtv_experimental = false; //true|false Nur HBB-TV-Gerät zugelasssen (Nut Testweise; Normale Browser sollten nicht mehr richtig mit der Seite arbeiten können)
 
