@@ -130,7 +130,7 @@ $letzterListeneintragOben = 1; //beim Zurückspringen zur Liste, ist der letzte 
 $sortByDate = 1; //sortiert Filmliste nach Datum (aktuelles Oben)
 
 $dereff = ''; //bspw.:   http://nullrefer.com/?//geht nur bei den Direktlinks (nicht für die videos in Vollbild abgespielt werden) (dadurch wird die eigene Homepage-Adresse versteckt)
-//download_proxy.php kann man hier auch eintragen (Bspw. wenn man keine deutsch IP-Adresse hat; Dann werden alle Filmdateien darüber rungerladen; sihe download_proxy.php)
+$proxy = ''; //bspw.: download_proxy.php kann man hier eintragen (Bspw. wenn man keine deutsch IP-Adresse hat; Dann werden alle Filmdateien darüber rungerladen; sihe download_proxy.php); Als Extra Download Link
 
 $only_accessable_for_hbbtv_experimental = false; //true|false Nur HBB-TV-Gerät zugelasssen (Nut Testweise; Normale Browser sollten nicht mehr richtig mit der Seite arbeiten können)
 
