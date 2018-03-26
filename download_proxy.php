@@ -3,7 +3,7 @@
 //Diese Datei ist nur optional
 
 /*
-Eine Weiterleitung (Proxy) zum Download/ansehen vom Filmdateien.
+Eine Weiterleitung (Proxy) zum DOWNLOAD vom Filmdateien.
 Das ist bspw. sinnvoll wenn man keine Deutsche IP-Adresse hat.
 
 Dieser Download Proxy ist eine mögliche SICHERHEITS-LÜCKE.
@@ -49,9 +49,9 @@ if($filesize==0) die("Datei nicht gefunden");
 
 //if($filesize<10485760) die("Da Stimmt was nicht.<br>Die Datei sehr klein (<10MB); Vermutlich ist es daher kein Video und der Zugriff über Proxy wurde gesperrt.<br>Direkter Zugriff ohne Proxy über diese Adresse:<br>".strip_tags($_GET[''])); //Das funktioniert nicht als Sicherheits-maßname. Grund: da nach einen HTTP HEAD-Anfrage wahrscheinlich schon die Anfrage/bzw. Hackangriff ausgeführt wurden (?)
                                  
-//header("Content-Disposition: attachment; filename=\"".basename($_GET['url'])."\";" ); //Datei direkt runterladen
-if( substr($url,-4)=='.mp4')header("Content-Type: video/mp4" );
-else header("Content-Disposition: attachment; filename=\"".basename($_GET['url'])."\";" ); //Datei direkt runterladen
+header("Content-Disposition: attachment; filename=\"".basename($_GET['url'])."\";" ); //Datei direkt runterladen 
+//if( substr($url,-4)=='.mp4')header("Content-Type: video/mp4" ); //dirket ansehen klappt nicht ganz rund (zumindes bei einen test)
+//else header("Content-Disposition: attachment; filename=\"".basename($_GET['url'])."\";" ); //Datei direkt runterladen
 header("Content-Transfer-Encoding: binary");
 header("Content-Length: ".$filesize);
 
