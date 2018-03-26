@@ -43,7 +43,7 @@ $url_secure = explode('?',$_GET['url'])[0];
 $url = $url_secure
 
 
-exec("curl -s -X HEAD -I --connect-timeout 10 -m 10 ".$url." 2>&1  | grep '^Content-Length: '",$return);
+exec("curl -s -X HEAD -I --connect-timeout 10 -m 10 ".escapeshellarg($url)." 2>&1  | grep '^Content-Length: '",$return);
 $filesize = str_replace('Content-Length: ','',$return[0]);
 if($filesize==0) die("Datei nicht gefunden");
 
