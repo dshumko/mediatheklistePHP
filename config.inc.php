@@ -51,7 +51,7 @@ $impressumText   = '
 <h4>Datenherkunft:</h4>
 <div style="padding-left:10pt">
 Die Daten stammen von den Projekt <a href="http://www.mediathekview.de">http://www.mediathekview.de</a><br>
-Diesen Gründer, Entwickler und gesamt Projekt gebührt der Dank für das auslesen der Mediatheken, sonst wäre die Liste leer :-<<br>
+Diesen Entwickler-Team gebührt der ganze Dank für das auslesen der Mediatheken, sonst wäre die Liste leer :-<<br>
 Den Quellcode für diese Web-Anwendung finden Sie bei <a href="https://github.com/soerenj/mediatheklistePHP">github</a>.
 </div><br>
 
@@ -64,7 +64,7 @@ Den Quellcode für diese Web-Anwendung finden Sie bei <a href="https://github.co
 <div style="padding-left:10pt">
 Bei der Nutzung dieser Seite fallen Verkehrsdaten an.<br>
 Diese werden als Server-Logs gespeichert (Inhalt: wann; welche Seite; welcher IP-adresse)<br>
--------------------- Bitte ergänzen Sie hier ihren Hinweis -------------------- 
+-------------------- Bitte ergänzen Sie hier Ihren Hinweis -------------------- 
 </div><br>
 
 
@@ -129,8 +129,12 @@ $fullscreen_play = 0; //Videoplayer
 $letzterListeneintragOben = 1; //beim Zurückspringen zur Liste, ist der letzte Eintrag ganz oben (Hilfreich wenn der TV-Browser jedesmal die Maus-Position auf oben Links zurücksetzt)
 $sortByDate = 1; //sortiert Filmliste nach Datum (aktuelles Oben)
 
-$dereff = ''; //bspw.:   http://nullrefer.com/?//geht nur bei den Direktlinks (nicht für die videos in Vollbild abgespielt werden) (dadurch wird die eigene Homepage-Adresse versteckt)
-             //bspw.: download_proxy.php kann man hier auch eintragen (Bspw. wenn man keine deutsch IP-Adresse hat; Dann werden alle Filmdateien darüber rungerladen; sihe download_proxy.php); Als Extra Download Link
+$dereff = ''; //Gilt bei ausgehende Links: Videolinks-Direktlinks, "Mediathek"-Link
+              // geht nur bei den Direktlinks (nicht für die videos in Vollbild abgespielt werden) (dadurch wird die eigene Homepage-Adresse versteckt)
+              //bspw.: kann eingetragen werden: http://nullrefer.com/?
+              //ganz anderes Beispiel: Testweise: download_proxy.php: kann man hier auch eintragen
+              //                       (Bspw. wenn man keine deutsch IP-Adresse hat; Dann werden alle Filmdateien darüber rungerladen; sihe download_proxy.php); Als Extra Download Link
+              //                       Nachteil: Der Link "Mediathek" (unter den Video-direktlinks) funktioniert dann nicht mehr
 
 $only_accessable_for_hbbtv_experimental = false; //true|false Nur HBB-TV-Gerät zugelasssen (Nut Testweise; Normale Browser sollten nicht mehr richtig mit der Seite arbeiten können)
 
